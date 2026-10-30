@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Admin · Papo Dado RPG</title>
+<meta name="theme-color" content="#0E1426">
+<link rel="icon" href="../img/icone.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<style>[hidden]{display:none!important}</style>
+<style>
+:root {
+  --ciano: #00BAFC; --azul: #005DFB; --roxo: #7020F9; --vermelho: #FB0F3A; --laranja: #FD7601;
+  --preto: #000; --branco: #fff; --bg: #0E1426; --superficie: #171f38; --superficie2: #1d2645; --linha: #26304f; --suave: #a7b0cc;
+  --serie1: #0096CF; --serie2: #E86A00; /* validadas para o fundo escuro (pessoas, visitas) */
+  --ok: #3ccf91; --erro: #ff6b81;
+  --fonte: "Bricolage Grotesque", system-ui, sans-serif; --raio: 14px;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--branco); font-family: var(--fonte); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+.faixa { height: 6px; background: linear-gradient(90deg, var(--ciano) 0 20%, var(--azul) 20% 40%, var(--roxo) 40% 60%, var(--vermelho) 60% 80%, var(--laranja) 80% 100%); }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 16px; }
+a { color: var(--ciano); }
+h1, h2, h3 { line-height: 1.15; margin: 0; }
+h2 { font-size: 22px; }
+h3 { font-size: 17px; }
+.rotulo { text-transform: uppercase; letter-spacing: .12em; font-size: 12px; font-weight: 700; color: var(--laranja); }
+.suave { color: var(--suave); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 9px 18px; border-radius: 999px; font: inherit; font-weight: 700; font-size: 15px; border: 2px solid var(--preto); cursor: pointer; text-decoration: none; white-space: nowrap; }
+.btn-play { background: var(--laranja); color: var(--preto); box-shadow: 0 3px 0 var(--preto); }
+.btn-linha { background: transparent; color: var(--branco); border-color: var(--linha); }
+.btn-linha:hover { border-color: var(--suave); }
+.btn-perigo { background: transparent; color: var(--erro); border-color: #5a2633; }
+.btn-mini { padding: 5px 12px; font-size: 13px; }
+.btn:disabled { opacity: .5; cursor: default; }
+input, select, textarea { font: inherit; color: var(--branco); background: var(--bg); border: 1px solid var(--linha); border-radius: 10px; padding: 9px 12px; width: 100%; }
+input:focus, select:focus, textarea:focus, .btn:focus-visible { outline: 2px solid var(--ciano); outline-offset: 1px; }
+textarea { min-height: 90px; resize: vertical; }
+label { display: grid; gap: 4px; font-size: 14px; color: var(--suave); }
+label > span { font-weight: 700; }
+.dica { font-size: 13px; color: var(--suave); }
+.msg { font-size: 14px; margin: 0; }
+.msg:empty { display: none; }
+.msg.erro { color: var(--erro); }
+.msg.ok { color: var(--ok); }
+
+/* ===== login ===== */
+.entrada { min-height: calc(100vh - 6px); display: grid; place-items: center; padding: 24px 16px; }
+.cartao { background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio); padding: 28px; width: min(420px, 100%); display: grid; gap: 16px; }
+.cartao img { width: 190px; }
+.link-btn { background: none; border: 0; color: var(--ciano); font: inherit; font-size: 14px; cursor: pointer; padding: 0; text-align: left; }
+
+/* ===== app ===== */
+.topo { border-bottom: 1px solid var(--linha); background: rgba(14, 20, 38, .92); position: sticky; top: 0; z-index: 10; backdrop-filter: blur(8px); }
+.topo .wrap { display: flex; align-items: center; gap: 16px; min-height: 64px; flex-wrap: wrap; padding-top: 8px; padding-bottom: 8px; }
+.topo img { width: 150px; display: block; }
+.abas { display: flex; gap: 4px; flex: 1; flex-wrap: wrap; }
+.abas button { background: none; border: 0; color: var(--suave); font: inherit; font-weight: 700; padding: 8px 14px; border-radius: 999px; cursor: pointer; }
+.abas button[aria-selected="true"] { background: var(--superficie2); color: var(--branco); }
+.quem { font-size: 14px; color: var(--suave); display: flex; gap: 10px; align-items: center; }
+main { padding: 28px 0 60px; }
+.cab { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+.painel { background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio); padding: 20px; }
+.grade { display: grid; gap: 16px; }
+
+/* filtros de período */
+.periodos { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.periodos button { background: var(--superficie); border: 1px solid var(--linha); color: var(--branco); font: inherit; font-weight: 700; font-size: 14px; padding: 7px 14px; border-radius: 999px; cursor: pointer; }
+.periodos button[aria-pressed="true"] { background: var(--branco); color: var(--preto); border-color: var(--branco); }
+.personalizado { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.personalizado input { width: auto; padding: 6px 10px; }
+
+/* números */
+.numeros { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.numero { background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio); padding: 16px 18px; }
+.numero .n { font-size: 34px; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1.1; margin: 4px 0; }
+.numero .rot { font-size: 14px; color: var(--suave); font-weight: 700; }
+.delta { font-size: 13px; color: var(--suave); }
+.delta b.sobe { color: var(--ok); }
+.delta b.desce { color: var(--erro); }
+
+/* gráfico */
+.grafico { position: relative; }
+.grafico svg { display: block; width: 100%; height: 260px; overflow: visible; }
+.grafico .eixo { fill: var(--suave); font-size: 12px; font-family: var(--fonte); }
+.grafico .grade-y { stroke: var(--linha); stroke-width: 1; }
+.grafico .rotulo-serie { font-size: 12px; font-weight: 700; fill: var(--branco); font-family: var(--fonte); }
+.legenda { display: flex; gap: 16px; font-size: 14px; color: var(--suave); margin-bottom: 8px; }
+.legenda i { display: inline-block; width: 14px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+.dica-graf { position: absolute; pointer-events: none; background: var(--bg); border: 1px solid var(--linha); border-radius: 10px; padding: 8px 12px; font-size: 13px; white-space: nowrap; box-shadow: 0 6px 20px rgba(0,0,0,.4); transform: translate(-50%, -100%); }
+.dica-graf b { font-variant-numeric: tabular-nums; }
+.dica-graf i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+
+/* barras de área */
+.areas { display: grid; gap: 6px; }
+.area > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: minmax(130px, 220px) 1fr 70px; gap: 12px; align-items: center; padding: 6px 4px; border-radius: 8px; }
+.area > summary::-webkit-details-marker { display: none; }
+.area > summary:hover { background: var(--superficie2); }
+.area .nome { font-weight: 700; font-size: 15px; }
+.area .nome::before { content: "▸"; color: var(--suave); margin-right: 6px; display: inline-block; transition: transform .15s; }
+.area[open] .nome::before { transform: rotate(90deg); }
+.barra { height: 14px; background: var(--bg); border-radius: 4px; overflow: hidden; }
+.barra i { display: block; height: 100%; background: var(--serie1); border-radius: 0 4px 4px 0; min-width: 2px; }
+.area .val { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }
+.alvos { margin: 4px 0 10px 24px; display: grid; gap: 2px; font-size: 14px; }
+.alvos div { display: flex; justify-content: space-between; gap: 12px; padding: 3px 8px; border-bottom: 1px dashed var(--linha); }
+.alvos span:last-child { font-variant-numeric: tabular-nums; color: var(--suave); }
+
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--linha); vertical-align: top; }
+th { color: var(--suave); font-weight: 700; font-size: 13px; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.tres { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.vazio { color: var(--suave); font-size: 14px; padding: 8px 0; }
+details.tabela > summary { cursor: pointer; color: var(--suave); font-size: 14px; margin-top: 10px; }
+
+/* agenda */
+.lista-camp { display: grid; gap: 8px; }
+.camp { display: grid; grid-template-columns: 96px 1fr auto; gap: 14px; align-items: center; background: var(--superficie); border: 1px solid var(--linha); border-left: 5px solid var(--cor, var(--linha)); border-radius: var(--raio); padding: 10px 14px 10px 10px; }
+.camp img, .camp .sem-capa { width: 96px; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; background: var(--bg); display: block; }
+.camp .info { display: grid; gap: 2px; min-width: 0; }
+.camp .info strong { font-size: 16px; }
+.camp .info span { font-size: 14px; color: var(--suave); }
+.aviso { color: var(--laranja); font-weight: 700; }
+dialog { background: var(--superficie); color: var(--branco); border: 1px solid var(--linha); border-radius: var(--raio); padding: 0; width: min(760px, calc(100% - 24px)); max-height: calc(100vh - 32px); }
+dialog::backdrop { background: rgba(0, 0, 0, .6); }
+.dlg-cab { display: flex; justify-content: space-between; align-items: center; padding: 18px 22px; border-bottom: 1px solid var(--linha); position: sticky; top: 0; background: var(--superficie); z-index: 2; }
+.dlg-corpo { padding: 20px 22px; display: grid; gap: 14px; }
+.dlg-pe { display: flex; gap: 10px; justify-content: space-between; flex-wrap: wrap; padding: 16px 22px; border-top: 1px solid var(--linha); position: sticky; bottom: 0; background: var(--superficie); }
+.duas { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
+.cores { display: flex; gap: 8px; }
+.cores label { display: block; }
+.cores input { position: absolute; opacity: 0; width: 1px; }
+.cores span { display: block; width: 34px; height: 34px; border-radius: 50%; border: 3px solid var(--preto); cursor: pointer; }
+.cores input:checked + span { outline: 3px solid var(--branco); outline-offset: 2px; }
+.cores input:focus-visible + span { outline: 3px solid var(--ciano); outline-offset: 2px; }
+.capa-ed { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.capa-ed img { width: 160px; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; background: var(--bg); }
+.datas { display: grid; gap: 6px; }
+.data-linha { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; padding: 8px 12px; background: var(--bg); border: 1px solid var(--linha); border-radius: 10px; }
+.data-linha.cancelada .q { text-decoration: line-through; color: var(--suave); }
+.data-linha .acoes { display: flex; gap: 6px; flex-wrap: wrap; justify-content: end; }
+.data-linha .remarcar { grid-column: 1 / -1; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.data-linha .remarcar input { width: auto; }
+.estado { font-size: 13px; font-weight: 700; }
+.estado.cancelada { color: var(--erro); }
+.estado.remarcada { color: var(--laranja); }
+.diff { font-size: 13px; color: var(--suave); }
+.diff b { color: var(--branco); }
+
+@media (max-width: 860px) {
+  .topo .wrap { gap: 8px 12px; }
+  .abas { order: 3; flex-basis: 100%; }
+  .quem { margin-left: auto; }
+  .cab > .grade { justify-items: start !important; }
+  .numeros { grid-template-columns: repeat(2, 1fr); }
+  .tres { grid-template-columns: 1fr; }
+  .area > summary { grid-template-columns: 1fr 60px; }
+  .area .barra { grid-column: 1 / -1; grid-row: 2; }
+  .duas { grid-template-columns: 1fr; }
+  .camp { grid-template-columns: 72px 1fr; }
+  .camp img, .camp .sem-capa { width: 72px; }
+  .camp .btn { grid-column: 1 / -1; justify-self: start; }
+}
+</style>
+</head>
+<body>
+<div class="faixa" aria-hidden="true"></div>
+
+<!-- ============ LOGIN ============ -->
+<section class="entrada" id="tela-login" hidden>
+  <form class="cartao" id="form-login">
+    <img src="../img/logo-horizontal.svg" alt="Papo Dado RPG">
+    <div><div class="rotulo">Área restrita</div><h2>Entrar no admin</h2></div>
+    <label><span>E-mail</span><input type="email" id="login-email" autocomplete="username" required></label>
+    <label><span>Senha</span><input type="password" id="login-senha" autocomplete="current-password" required></label>
+    <button class="btn btn-play" type="submit">Entrar</button>
+    <button class="link-btn" type="button" id="esqueci">Esqueci a senha</button>
+    <p class="msg" id="msg-login" role="status"></p>
+  </form>
+</section>
+
+<!-- ============ DEFINIR SENHA (convite ou "esqueci a senha") ============ -->
+<section class="entrada" id="tela-senha" hidden>
+  <form class="cartao" id="form-senha">
+    <img src="../img/logo-horizontal.svg" alt="Papo Dado RPG">
+    <div><div class="rotulo">Bem-vindo</div><h2>Crie sua senha</h2></div>
+    <p class="dica" id="senha-email"></p>
+    <label><span>Nova senha</span><input type="password" id="senha-1" autocomplete="new-password" minlength="8" required></label>
+    <label><span>Repita a senha</span><input type="password" id="senha-2" autocomplete="new-password" minlength="8" required></label>
+    <p class="dica">Pelo menos 8 caracteres.</p>
+    <button class="btn btn-play" type="submit">Salvar senha e entrar</button>
+    <p class="msg" id="msg-senha" role="status"></p>
+  </form>
+</section>
+
+<!-- ============ APP ============ -->
+<div id="app" hidden>
+  <header class="topo">
+    <div class="wrap">
+      <a href="../" title="Ver o site"><img src="../img/logo-horizontal.svg" alt="Papo Dado RPG"></a>
+      <nav class="abas" role="tablist">
+        <button role="tab" data-aba="acessos" aria-selected="true">Acessos</button>
+        <button role="tab" data-aba="agenda" aria-selected="false">Agenda</button>
+        <button role="tab" data-aba="historico" aria-selected="false">Histórico</button>
+      </nav>
+      <div class="quem"><span id="quem"></span><button class="btn btn-linha btn-mini" id="sair">Sair</button></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- ACESSOS -->
+    <section id="aba-acessos" class="grade">
+      <div class="cab">
+        <div><div class="rotulo">Acessos ao site</div><h2 id="titulo-periodo">Últimos 7 dias</h2><div class="dica" id="desde"></div></div>
+        <div class="grade" style="gap:8px;justify-items:end">
+          <div class="periodos" id="periodos">
+            <button data-dias="7" aria-pressed="true">7 dias</button>
+            <button data-dias="14" aria-pressed="false">14 dias</button>
+            <button data-dias="28" aria-pressed="false">28 dias</button>
+            <button data-dias="90" aria-pressed="false">90 dias</button>
+            <button data-dias="0" aria-pressed="false">Personalizado</button>
+          </div>
+          <form class="personalizado" id="form-periodo" hidden>
+            <input type="date" id="per-ini" required aria-label="De"> <span class="suave">até</span> <input type="date" id="per-fim" required aria-label="Até">
+            <button class="btn btn-linha btn-mini" type="submit">Aplicar</button>
+          </form>
+        </div>
+      </div>
+      <p class="msg" id="msg-acessos" role="status"></p>
+      <div class="numeros" id="numeros"></div>
+      <div class="painel">
+        <div class="cab" style="margin-bottom:6px"><h3>Pessoas e visitas por dia</h3>
+          <div class="legenda"><span><i style="background:var(--serie1)"></i>Pessoas</span><span><i style="background:var(--serie2)"></i>Visitas</span></div></div>
+        <div class="grafico" id="grafico"></div>
+        <details class="tabela"><summary>Ver em tabela</summary><div id="tabela-dias"></div></details>
+      </div>
+      <div class="painel">
+        <div class="cab" style="margin-bottom:10px"><h3>Cliques por área do site</h3><span class="dica">Toque numa área para ver os botões e links mais clicados</span></div>
+        <div class="areas" id="areas"></div>
+      </div>
+      <div class="tres">
+        <div class="painel"><h3 style="margin-bottom:8px">De onde vêm as visitas</h3><div id="origens"></div></div>
+        <div class="painel"><h3 style="margin-bottom:8px">Páginas mais vistas</h3><div id="paginas"></div></div>
+        <div class="painel"><h3 style="margin-bottom:8px">Aparelhos</h3><div id="aparelhos"></div></div>
+      </div>
+      <p class="dica">Pessoas = navegadores diferentes (cada um recebe um código anônimo). Visitas = idas ao site; 30 minutos parado começa outra. Seus acessos logados no admin não entram na conta.</p>
+    </section>
+
+    <!-- AGENDA -->
+    <section id="aba-agenda" class="grade" hidden>
+      <div class="cab">
+        <div><div class="rotulo">Agenda do canal</div><h2>Campanhas e sessões</h2><div class="dica">O que mudar aqui aparece no site na hora.</div></div>
+        <button class="btn btn-play" id="nova-camp">+ Nova campanha</button>
+      </div>
+      <p class="msg" id="msg-agenda" role="status"></p>
+      <h3>No ar no canal</h3>
+      <div class="lista-camp" id="lista-ativas"></div>
+      <h3 style="margin-top:12px">Encerradas</h3>
+      <div class="lista-camp" id="lista-encerradas"></div>
+    </section>
+
+    <!-- HISTÓRICO -->
+    <section id="aba-historico" class="grade" hidden>
+      <div class="cab"><div><div class="rotulo">Histórico</div><h2>Quem mudou o quê</h2><div class="dica">As 150 alterações mais recentes na agenda.</div></div></div>
+      <div class="painel" id="historico"></div>
+    </section>
+  </main>
+</div>
+
+<!-- ============ EDITOR DE CAMPANHA ============ -->
+<dialog id="dlg">
+  <form id="form-camp" method="dialog">
+    <div class="dlg-cab"><h2 id="dlg-titulo">Campanha</h2><button class="btn btn-linha btn-mini" type="button" id="dlg-fechar">Fechar</button></div>
+    <div class="dlg-corpo">
+      <div class="duas">
+        <label><span>Nome</span><input id="f-nome" required maxlength="80"></label>
+        <label><span>Código (endereço da página)</span><input id="f-id" required pattern="[a-z0-9-]{2,40}" maxlength="40"><span class="dica" id="f-id-dica">papodadorpg.com.br/#/campanha/…</span></label>
+      </div>
+      <div class="duas">
+        <label><span>Situação</span><select id="f-ativa"><option value="1">No ar no canal</option><option value="0">Encerrada</option></select></label>
+        <label id="l-status" hidden><span>Como terminou</span><select id="f-status"><option value="finalizada">Finalizada</option><option value="encerrada">Encerrada</option><option value="cancelada">Cancelada</option></select></label>
+      </div>
+      <div class="duas" id="bloco-ritmo">
+        <label><span>Data e hora de uma sessão (ou da estreia)</span><input type="datetime-local" id="f-ref" step="900"><span class="dica">Horário de Brasília. Define o dia da semana e o horário fixos.</span></label>
+        <label><span>Frequência</span><select id="f-cada"><option value="14">Quinzenal</option><option value="7">Semanal</option><option value="21">A cada 3 semanas</option><option value="28">A cada 4 semanas</option></select></label>
+      </div>
+      <div class="duas">
+        <label><span>Sistema</span><input id="f-sistema" maxlength="40" placeholder="D&D 5.5"></label>
+        <label><span>Mestre</span><input id="f-mestre" maxlength="60" placeholder="Henrique Müller"></label>
+      </div>
+      <div>
+        <div class="dica" style="font-weight:700;margin-bottom:6px">Cor na agenda</div>
+        <div class="cores" id="f-cores"></div>
+      </div>
+      <label><span>Playlist no YouTube</span><input id="f-playlist" placeholder="Cole o link da playlist ou o código (PL…)"><span class="dica">Com playlist, o robô diário puxa os episódios e a capa.</span></label>
+      <div>
+        <div class="dica" style="font-weight:700;margin-bottom:6px">Capa</div>
+        <div class="capa-ed"><img id="f-capa-img" alt="" hidden><span class="dica" id="f-capa-txt"></span>
+          <label class="btn btn-linha btn-mini" style="display:inline-flex">Enviar imagem<input type="file" id="f-capa" accept="image/*" hidden></label>
+          <button class="btn btn-linha btn-mini" type="button" id="f-capa-tirar" hidden>Usar a capa da playlist</button></div>
+      </div>
+      <label><span>Sinopse curta (aparece no card)</span><textarea id="f-sinopse" maxlength="400"></textarea></label>
+      <label><span>Texto extra da página da campanha</span><textarea id="f-sobre" style="min-height:120px"></textarea><span class="dica">Deixe uma linha em branco entre os parágrafos.</span></label>
+      <div class="duas">
+        <label id="l-videos" hidden><span>Nº de vídeos (se a playlist não for lida)</span><input type="number" id="f-videos" min="0"></label>
+        <label><span>Ordem nas listas</span><input type="number" id="f-ordem" min="0" max="999"><span class="dica">Menor aparece primeiro.</span></label>
+      </div>
+      <div id="bloco-datas" hidden>
+        <div class="rotulo" style="margin:8px 0 4px">Próximas sessões</div>
+        <p class="dica" style="margin:0 0 8px">Cancele ou remarque uma data específica sem mudar o ritmo da campanha. Vale na hora no site.</p>
+        <div class="datas" id="datas"></div>
+      </div>
+      <p class="msg" id="msg-camp" role="status"></p>
+    </div>
+    <div class="dlg-pe">
+      <button class="btn btn-perigo" type="button" id="f-excluir">Excluir campanha</button>
+      <div style="display:flex;gap:10px"><button class="btn btn-linha" type="button" id="f-cancelar">Cancelar</button><button class="btn btn-play" type="submit" id="f-salvar">Salvar</button></div>
+    </div>
+  </form>
+</dialog>
+
+<script>
+// ================= CONFIGURAÇÃO =================
+const SB_URL = 'https://oumhibikfxorrknthbqb.supabase.co';
+const SB_CHAVE = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91bWhpYmlrZnhvcnJrbnRoYnFiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzODcyNDIsImV4cCI6MjEwODk2MzI0Mn0.JlgqDluN1BEHBAGGpbcVw-wVowlcl_x0EjU2E4e-zns';
+const TZ = 'America/Sao_Paulo';
+const COR = { ciano: '#00BAFC', azul: '#005DFB', roxo: '#7020F9', vermelho: '#FB0F3A', laranja: '#FD7601' };
+const DIAS = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+
+// o link do convite / "esqueci a senha" chega com #...type=invite|recovery; guarda antes do Supabase limpar o endereço
+const parametrosLink = new URLSearchParams(location.hash.slice(1));
+const tipoLink = parametrosLink.get('type');
+const erroLink = parametrosLink.get('error_description');
+
+const sb = supabase.createClient(SB_URL, SB_CHAVE, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, flowType: 'implicit' } });
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const fmt = (n) => Number(n || 0).toLocaleString('pt-BR');
+function mostrar(tela) { for (const id of ['tela-login', 'tela-senha', 'app']) $(id).hidden = id !== tela; }
+function aviso(id, texto, tipo = '') { const el = $(id); el.textContent = texto; el.className = `msg ${tipo}`; }
+
+// ================= DATAS (Brasília, sem horário de verão) =================
+const diaBR = (d) => new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
+const hojeBR = () => diaBR(new Date());
+const somaDias = (iso, n) => { const d = new Date(iso + 'T12:00:00Z'); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+const difDias = (a, b) => Math.round((new Date(b + 'T12:00:00Z') - new Date(a + 'T12:00:00Z')) / 86400000);
+const deBrasilia = (iso) => new Date(iso + ':00-03:00');
+const dataBR = (iso) => { const [a, m, d] = iso.split('-'); return `${d}/${m}/${a}`; };
+const dataCurta = (iso) => { const [, m, d] = iso.split('-'); return `${d}/${m}`; };
+const quandoBR = (d) => new Intl.DateTimeFormat('pt-BR', { timeZone: TZ, weekday: 'short', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }).format(d).replace('.', '');
+const isoLocalBR = (d) => { const p = Object.fromEntries(new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(d).map((x) => [x.type, x.value])); return `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}`; };
+const quandoHist = (t) => new Intl.DateTimeFormat('pt-BR', { timeZone: TZ, day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' }).format(new Date(t));
+
+// ================= LOGIN =================
+$('form-login').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  aviso('msg-login', 'Entrando…');
+  const { error } = await sb.auth.signInWithPassword({ email: $('login-email').value.trim(), password: $('login-senha').value });
+  if (error) return aviso('msg-login', error.message.includes('Invalid') ? 'E-mail ou senha incorretos.' : error.message, 'erro');
+  aviso('msg-login', '');
+});
+$('esqueci').addEventListener('click', async () => {
+  const email = $('login-email').value.trim();
+  if (!email) return aviso('msg-login', 'Digite seu e-mail acima e toque de novo em "Esqueci a senha".', 'erro');
+  const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: location.origin + location.pathname });
+  aviso('msg-login', error ? error.message : 'Se esse e-mail for de um admin, chega um link para criar uma nova senha.', error ? 'erro' : 'ok');
+});
+$('form-senha').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const s1 = $('senha-1').value, s2 = $('senha-2').value;
+  if (s1 !== s2) return aviso('msg-senha', 'As senhas não são iguais.', 'erro');
+  if (s1.length < 8) return aviso('msg-senha', 'Use pelo menos 8 caracteres.', 'erro');
+  aviso('msg-senha', 'Salvando…');
+  const { error } = await sb.auth.updateUser({ password: s1 });
+  if (error) return aviso('msg-senha', error.message, 'erro');
+  history.replaceState(null, '', location.pathname);
+  entrar();
+});
+$('sair').addEventListener('click', async () => { await sb.auth.signOut(); location.reload(); });
+
+let USUARIO = null, iniciado = false;
+async function entrar() {
+  const { data } = await sb.auth.getSession();
+  USUARIO = data.session?.user || null;
+  if (!USUARIO) { mostrar('tela-login'); if (erroLink) aviso('msg-login', `O link não funcionou (${erroLink}). Peça um novo convite ou use "Esqueci a senha".`, 'erro'); return; }
+  if (tipoLink === 'invite' || tipoLink === 'recovery') {
+    if (!$('tela-senha').dataset.feito) { $('tela-senha').dataset.feito = 1; $('senha-email').textContent = USUARIO.email; mostrar('tela-senha'); return; }
+  }
+  $('quem').textContent = USUARIO.email;
+  mostrar('app');
+  if (!iniciado) { iniciado = true; abrirAba(location.hash.replace('#', '') || 'acessos'); }
+}
+sb.auth.onAuthStateChange((evento) => {
+  if (evento === 'PASSWORD_RECOVERY') { $('senha-email').textContent = ''; mostrar('tela-senha'); return; }
+  if (evento === 'SIGNED_IN' || evento === 'SIGNED_OUT') setTimeout(entrar, 0);
+});
+
+// ================= ABAS =================
+function abrirAba(aba) {
+  if (!['acessos', 'agenda', 'historico'].includes(aba)) aba = 'acessos';
+  document.querySelectorAll('.abas button').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.aba === aba)));
+  for (const a of ['acessos', 'agenda', 'historico']) $(`aba-${a}`).hidden = a !== aba;
+  history.replaceState(null, '', `#${aba}`);
+  if (aba === 'acessos') carregarPainel();
+  if (aba === 'agenda') carregarAgenda();
+  if (aba === 'historico') carregarHistorico();
+}
+document.querySelectorAll('.abas button').forEach((b) => b.addEventListener('click', () => abrirAba(b.dataset.aba)));
+
+// ================= ACESSOS =================
+let PERIODO = { dias: 7 };
+function intervalo() {
+  if (PERIODO.dias) { const fim = hojeBR(); return { ini: somaDias(fim, -(PERIODO.dias - 1)), fim }; }
+  return { ini: PERIODO.ini, fim: PERIODO.fim };
+}
+$('periodos').addEventListener('click', (e) => {
+  const b = e.target.closest('button'); if (!b) return;
+  document.querySelectorAll('#periodos button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+  const dias = +b.dataset.dias;
+  $('form-periodo').hidden = dias !== 0;
+  if (dias) { PERIODO = { dias }; carregarPainel(); }
+  else { const { ini, fim } = intervalo(); $('per-ini').value = ini; $('per-fim').value = fim; $('per-ini').max = $('per-fim').max = hojeBR(); }
+});
+$('form-periodo').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const ini = $('per-ini').value, fim = $('per-fim').value;
+  if (!ini || !fim || fim < ini) return aviso('msg-acessos', 'Escolha uma data inicial antes da final.', 'erro');
+  if (difDias(ini, fim) > 400) return aviso('msg-acessos', 'O período máximo é de 400 dias.', 'erro');
+  PERIODO = { ini, fim }; carregarPainel();
+});
+
+let DADOS = null;
+async function carregarPainel() {
+  const { ini, fim } = intervalo();
+  $('titulo-periodo').textContent = PERIODO.dias ? `Últimos ${PERIODO.dias} dias` : `${dataBR(ini)} a ${dataBR(fim)}`;
+  aviso('msg-acessos', 'Carregando…');
+  if (!Object.keys(NOMES).length) { const r = await sb.from('campanhas').select('id,nome:dados->>nome'); NOMES = Object.fromEntries((r.data || []).map((x) => [x.id, x.nome])); }
+  const { data, error } = await sb.rpc('painel', { p_inicio: ini, p_fim: fim });
+  if (error) return aviso('msg-acessos', `Não consegui carregar os acessos: ${error.message}`, 'erro');
+  aviso('msg-acessos', '');
+  DADOS = data;
+  $('desde').textContent = data.primeiro_evento ? `Contagem desde ${quandoHist(data.primeiro_evento).slice(0, 8)}.` : 'Ainda não há acessos registrados.';
+  pintarNumeros(data); pintarGrafico(data.por_dia); pintarAreas(data); pintarListas(data);
+}
+
+function deltaTxt(atual, antes) {
+  if (!antes && !atual) return '<span class="delta">sem dados no período anterior</span>';
+  if (!antes) return '<span class="delta"><b class="sobe">novo</b> vs. período anterior</span>';
+  const p = Math.round(((atual - antes) / antes) * 100);
+  const cls = p > 0 ? 'sobe' : p < 0 ? 'desce' : '';
+  return `<span class="delta"><b class="${cls}">${p > 0 ? '+' : ''}${p}%</b> vs. período anterior (${fmt(antes)})</span>`;
+}
+function pintarNumeros({ totais, anterior }) {
+  const itens = [['pessoas', 'Pessoas'], ['visitas', 'Visitas'], ['paginas', 'Páginas vistas'], ['cliques', 'Cliques']];
+  $('numeros').innerHTML = itens.map(([k, rot]) => `<div class="numero"><div class="rot">${rot}</div><div class="n">${fmt(totais[k])}</div>${deltaTxt(totais[k], anterior[k])}</div>`).join('');
+}
+
+// Gráfico de linhas: pessoas e visitas por dia, com régua e dica ao passar o mouse/dedo
+function pintarGrafico(dias) {
+  const caixa = $('grafico');
+  const W = Math.max(320, caixa.clientWidth), H = 260, m = { t: 16, r: 64, b: 28, l: 40 };
+  const series = [{ k: 'pessoas', nome: 'Pessoas', cor: 'var(--serie1)' }, { k: 'visitas', nome: 'Visitas', cor: 'var(--serie2)' }];
+  const max = Math.max(4, ...dias.flatMap((d) => [d.pessoas, d.visitas]));
+  const passoY = Math.pow(10, Math.floor(Math.log10(max))) * (max / Math.pow(10, Math.floor(Math.log10(max))) > 5 ? 2 : 1);
+  const topo = Math.ceil(max / passoY) * passoY;
+  const x = (i) => m.l + (dias.length === 1 ? (W - m.l - m.r) / 2 : (i * (W - m.l - m.r)) / (dias.length - 1));
+  const y = (v) => m.t + (H - m.t - m.b) * (1 - v / topo);
+  let svg = '';
+  for (let v = 0; v <= topo; v += passoY) svg += `<line class="grade-y" x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}"/><text class="eixo" x="${m.l - 8}" y="${y(v) + 4}" text-anchor="end">${fmt(v)}</text>`;
+  const cadaX = Math.max(1, Math.ceil(dias.length / Math.floor((W - m.l - m.r) / 56)));
+  dias.forEach((d, i) => { if (i % cadaX === 0 || i === dias.length - 1) svg += `<text class="eixo" x="${x(i)}" y="${H - 6}" text-anchor="middle">${dataCurta(d.dia)}</text>`; });
+  for (const s of series) {
+    const pts = dias.map((d, i) => `${x(i).toFixed(1)},${y(d[s.k]).toFixed(1)}`).join(' ');
+    svg += `<polyline points="${pts}" fill="none" stroke="${s.cor}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+    if (dias.length <= 31) dias.forEach((d, i) => { svg += `<circle cx="${x(i)}" cy="${y(d[s.k])}" r="3" fill="${s.cor}" stroke="var(--superficie)" stroke-width="2"/>`; });
+  }
+  // rótulo direto no fim de cada linha (evita sobrepor)
+  const ult = dias[dias.length - 1];
+  let yp = y(ult.pessoas), yv = y(ult.visitas);
+  if (Math.abs(yp - yv) < 14) { if (yp <= yv) { yp -= 7; yv += 7; } else { yp += 7; yv -= 7; } }
+  svg += `<text class="rotulo-serie" x="${W - m.r + 8}" y="${yp + 4}">Pessoas</text><text class="rotulo-serie" x="${W - m.r + 8}" y="${yv + 4}">Visitas</text>`;
+  svg += `<line id="regua" x1="0" x2="0" y1="${m.t}" y2="${H - m.b}" stroke="var(--suave)" stroke-width="1" stroke-dasharray="3 3" visibility="hidden"/>`;
+  svg += `<rect id="alvo-graf" x="${m.l}" y="0" width="${W - m.l - m.r}" height="${H}" fill="transparent"/>`;
+  caixa.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Pessoas e visitas por dia">${svg}</svg><div class="dica-graf" hidden></div>`;
+  const dica = caixa.querySelector('.dica-graf'), regua = caixa.querySelector('#regua');
+  const mover = (ev) => {
+    const r = caixa.querySelector('svg').getBoundingClientRect();
+    const px = ((ev.touches?.[0]?.clientX ?? ev.clientX) - r.left) * (W / r.width);
+    const i = Math.max(0, Math.min(dias.length - 1, Math.round(((px - m.l) / (W - m.l - m.r)) * (dias.length - 1))));
+    const d = dias[i];
+    regua.setAttribute('x1', x(i)); regua.setAttribute('x2', x(i)); regua.setAttribute('visibility', 'visible');
+    dica.hidden = false;
+    dica.style.left = `${(x(i) / W) * r.width}px`; dica.style.top = `${(Math.min(y(d.pessoas), y(d.visitas)) / H) * r.height - 8}px`;
+    dica.innerHTML = `<div class="suave">${dataBR(d.dia)}</div><div><i style="background:var(--serie1)"></i>Pessoas <b>${fmt(d.pessoas)}</b></div><div><i style="background:var(--serie2)"></i>Visitas <b>${fmt(d.visitas)}</b></div><div class="suave">${fmt(d.paginas)} páginas · ${fmt(d.cliques)} cliques</div>`;
+  };
+  const sair = () => { dica.hidden = true; regua.setAttribute('visibility', 'hidden'); };
+  const alvo = caixa.querySelector('#alvo-graf');
+  alvo.addEventListener('mousemove', mover); alvo.addEventListener('touchmove', mover, { passive: true }); alvo.addEventListener('touchstart', mover, { passive: true });
+  alvo.addEventListener('mouseleave', sair); alvo.addEventListener('touchend', sair);
+  $('tabela-dias').innerHTML = `<table><thead><tr><th>Dia</th><th class="num">Pessoas</th><th class="num">Visitas</th><th class="num">Páginas</th><th class="num">Cliques</th></tr></thead><tbody>${
+    dias.slice().reverse().map((d) => `<tr><td>${dataBR(d.dia)}</td><td class="num">${fmt(d.pessoas)}</td><td class="num">${fmt(d.visitas)}</td><td class="num">${fmt(d.paginas)}</td><td class="num">${fmt(d.cliques)}</td></tr>`).join('')}</tbody></table>`;
+}
+window.addEventListener('resize', () => { if (DADOS && !$('aba-acessos').hidden) pintarGrafico(DADOS.por_dia); });
+
+function pintarAreas({ areas, alvos }) {
+  if (!areas.length) { $('areas').innerHTML = '<div class="vazio">Nenhum clique no período.</div>'; return; }
+  const max = Math.max(...areas.map((a) => a.cliques));
+  $('areas').innerHTML = areas.map((a) => `<details class="area">
+    <summary><span class="nome">${esc(a.area)}</span><span class="barra" title="${fmt(a.cliques)} cliques"><i style="width:${(a.cliques / max) * 100}%"></i></span><span class="val">${fmt(a.cliques)}</span></summary>
+    <div class="alvos"><div class="suave"><span>${fmt(a.pessoas)} ${a.pessoas === 1 ? 'pessoa clicou' : 'pessoas clicaram'} nessa área</span><span>cliques</span></div>${
+      alvos.filter((x) => x.area === a.area).map((x) => `<div><span>${esc(x.alvo)}</span><span>${fmt(x.cliques)}</span></div>`).join('')}</div>
+  </details>`).join('');
+}
+function tabelaSimples(linhas, colunas, vazio) {
+  if (!linhas.length) return `<div class="vazio">${vazio}</div>`;
+  return `<table><thead><tr>${colunas.map(([, rot, num]) => `<th${num ? ' class="num"' : ''}>${rot}</th>`).join('')}</tr></thead><tbody>${
+    linhas.map((l) => `<tr>${colunas.map(([k, , num, f]) => `<td${num ? ' class="num"' : ''}>${f ? f(l[k]) : num ? fmt(l[k]) : esc(l[k])}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+}
+let NOMES = {};
+const nomePagina = (p) => (p === '/' || p === '/index.html' ? 'Início' : p.startsWith('/campanha/') ? `Campanha: ${NOMES[p.slice(10)] || p.slice(10)}` : p);
+function pintarListas({ origens, paginas, aparelhos }) {
+  $('origens').innerHTML = tabelaSimples(origens, [['origem', 'Origem', false, (v) => (v === 'direto' ? 'Direto / sem origem' : esc(v))], ['visitas', 'Visitas', true]], 'Sem visitas no período.');
+  $('paginas').innerHTML = tabelaSimples(paginas, [['pagina', 'Página', false, (v) => esc(nomePagina(v))], ['vistas', 'Vistas', true], ['pessoas', 'Pessoas', true]], 'Sem visitas no período.');
+  $('aparelhos').innerHTML = tabelaSimples(aparelhos, [['aparelho', 'Aparelho', false, (v) => esc(v === '?' ? 'Não identificado' : v[0].toUpperCase() + v.slice(1))], ['pessoas', 'Pessoas', true]], 'Sem visitas no período.');
+}
+
+// ================= AGENDA =================
+let CAMPS = [], EXC = [];
+async function carregarAgenda() {
+  aviso('msg-agenda', 'Carregando…');
+  const [c, e] = await Promise.all([
+    sb.from('campanhas').select('*').order('ordem').order('id'),
+    sb.from('excecoes').select('*').gte('data', somaDias(hojeBR(), -30)).order('data'),
+  ]);
+  if (c.error || e.error) return aviso('msg-agenda', `Erro ao carregar: ${(c.error || e.error).message}`, 'erro');
+  aviso('msg-agenda', '');
+  CAMPS = c.data; EXC = e.data;
+  pintarAgenda();
+}
+const capaDe = (c) => c.dados.capa_url || (c.dados.playlist || c.dados.capa ? `../img/pl/${c.id}.webp` : '');
+// datas normais (ritmo) a partir de hoje, com o que foi cancelado/remarcado
+function proximasDatas(c, n = 8) {
+  const d = c.dados; if (!d.ref || !d.cada) return [];
+  const passo = d.cada * 86400000, ref = deBrasilia(d.ref).getTime(), agora = Date.now() - 3 * 3600000;
+  const base = agora < ref ? ref : ref + Math.ceil((agora - ref) / passo) * passo;
+  return Array.from({ length: n }, (_, k) => { const t = new Date(base + k * passo); const dia = diaBR(t); return { t, dia, exc: EXC.find((x) => x.campanha === c.id && x.data === dia) }; });
+}
+function resumoProxima(c) {
+  const ds = proximasDatas(c, 6), cancel = [];
+  for (const d of ds) {
+    if (d.exc?.acao === 'cancelada') { cancel.push(dataCurta(d.dia)); continue; }
+    const t = d.exc?.acao === 'remarcada' ? deBrasilia(d.exc.novo_inicio) : d.t;
+    return `Próxima: ${quandoBR(t)}${d.exc ? ' <span class="aviso">(remarcada)</span>' : ''}${cancel.length ? ` · <span class="aviso">sem live em ${cancel.join(', ')}</span>` : ''}`;
+  }
+  return '<span class="aviso">Sem próximas datas</span>';
+}
+function linhaCamp(c) {
+  const d = c.dados, capa = capaDe(c);
+  const ritmo = d.ref ? `${DIAS[new Date(deBrasilia(d.ref).getTime() - 3 * 3600000).getUTCDay()]} · ${d.ref.slice(11, 16).replace(':00', 'h').replace(':', 'h')} · ${({ 7: 'semanal', 14: 'quinzenal' })[d.cada] || `a cada ${d.cada} dias`}` : '';
+  return `<div class="camp" style="--cor:${COR[d.cor] || 'var(--linha)'}">
+    ${capa ? `<img src="${esc(capa)}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'sem-capa'}))">` : '<div class="sem-capa"></div>'}
+    <div class="info"><strong>${esc(d.nome || c.id)}</strong>
+      ${c.ativa ? `<span>${esc(ritmo)}${d.sistema ? ` · ${esc(d.sistema)}` : ''}</span><span>${resumoProxima(c)}</span>` : `<span>${esc(d.sistema || '')}${d.mestre && d.mestre !== 'Henrique Müller' ? ` · Mestre ${esc(d.mestre)}` : ''}</span>`}</div>
+    <button class="btn btn-linha btn-mini" data-editar="${esc(c.id)}">Editar</button></div>`;
+}
+function pintarAgenda() {
+  $('lista-ativas').innerHTML = CAMPS.filter((c) => c.ativa).map(linhaCamp).join('') || '<div class="vazio">Nenhuma campanha no ar.</div>';
+  $('lista-encerradas').innerHTML = CAMPS.filter((c) => !c.ativa).map(linhaCamp).join('') || '<div class="vazio">Nenhuma.</div>';
+}
+document.addEventListener('click', (e) => { const b = e.target.closest('[data-editar]'); if (b) abrirEditor(CAMPS.find((c) => c.id === b.dataset.editar)); });
+$('nova-camp').addEventListener('click', () => abrirEditor(null));
+
+// ---------- editor ----------
+let EDITANDO = null, CAPA_URL = null;
+const slug = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40);
+$('f-cores').innerHTML = Object.entries(COR).map(([k, v]) => `<label title="${k}"><input type="radio" name="cor" value="${k}"><span style="background:${v}"></span></label>`).join('');
+function ajustarSituacao() {
+  const ativa = $('f-ativa').value === '1';
+  $('l-status').hidden = ativa; $('l-videos').hidden = ativa; $('bloco-ritmo').hidden = !ativa;
+  $('f-ref').required = ativa;
+  $('bloco-datas').hidden = !ativa || !EDITANDO;
+}
+$('f-ativa').addEventListener('change', ajustarSituacao);
+$('f-nome').addEventListener('input', () => { if (!EDITANDO && !$('f-id').dataset.mexido) $('f-id').value = slug($('f-nome').value); });
+$('f-id').addEventListener('input', () => { $('f-id').dataset.mexido = 1; });
+function pintarCapa() {
+  const url = CAPA_URL || (EDITANDO && (EDITANDO.dados.playlist || EDITANDO.dados.capa) ? `../img/pl/${EDITANDO.id}.webp` : '');
+  $('f-capa-img').hidden = !url; if (url) $('f-capa-img').src = url;
+  $('f-capa-txt').textContent = CAPA_URL ? 'Capa enviada' : url ? 'Capa da playlist' : 'Sem capa (o site usa o mosaico colorido)';
+  $('f-capa-tirar').hidden = !CAPA_URL;
+}
+function abrirEditor(c) {
+  EDITANDO = c; CAPA_URL = c?.dados.capa_url || null;
+  const d = c?.dados || { cada: 14, cor: 'laranja', mestre: 'Henrique Müller', sistema: 'D&D 5.5' };
+  $('dlg-titulo').textContent = c ? d.nome : 'Nova campanha';
+  $('f-nome').value = d.nome || ''; $('f-id').value = c?.id || ''; $('f-id').disabled = !!c; delete $('f-id').dataset.mexido;
+  $('f-id-dica').textContent = c ? 'O código não muda depois de criado.' : 'Gerado a partir do nome. Só letras minúsculas, números e hífen.';
+  $('f-ativa').value = !c || c.ativa ? '1' : '0';
+  $('f-status').value = d.status || 'finalizada';
+  $('f-ref').value = d.ref || ''; $('f-cada').value = String(d.cada || 14);
+  $('f-sistema').value = d.sistema || ''; $('f-mestre').value = d.mestre || '';
+  document.querySelectorAll('input[name=cor]').forEach((r) => { r.checked = r.value === (d.cor || 'laranja'); });
+  $('f-playlist').value = d.playlist || '';
+  $('f-sinopse').value = d.sinopse || ''; $('f-sobre').value = (d.sobre || []).join('\n\n');
+  $('f-videos').value = d.videos ?? ''; $('f-ordem').value = c ? c.ordem : (Math.max(0, ...CAMPS.filter((x) => x.ativa).map((x) => x.ordem)) + 1);
+  $('f-excluir').hidden = !c;
+  aviso('msg-camp', '');
+  ajustarSituacao(); pintarCapa(); pintarDatas();
+  $('dlg').showModal();
+}
+const fechar = () => $('dlg').close();
+$('dlg-fechar').addEventListener('click', fechar); $('f-cancelar').addEventListener('click', fechar);
+
+// capa: converte para WebP (até 960 px) no navegador e envia ao Storage
+$('f-capa').addEventListener('change', async (e) => {
+  const arq = e.target.files[0]; if (!arq) return;
+  const id = EDITANDO?.id || $('f-id').value || slug($('f-nome').value) || 'capa';
+  aviso('msg-camp', 'Enviando a capa…');
+  try {
+    const img = await createImageBitmap(arq);
+    const esc_ = Math.min(1, 960 / img.width), cv = document.createElement('canvas');
+    cv.width = Math.round(img.width * esc_); cv.height = Math.round(img.height * esc_);
+    cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
+    const blob = await new Promise((ok) => cv.toBlob(ok, 'image/webp', 0.82));
+    const caminho = `${id}-${Date.now()}.webp`;
+    const { error } = await sb.storage.from('capas').upload(caminho, blob, { contentType: 'image/webp', upsert: true });
+    if (error) throw error;
+    CAPA_URL = sb.storage.from('capas').getPublicUrl(caminho).data.publicUrl;
+    pintarCapa(); aviso('msg-camp', 'Capa enviada. Clique em Salvar para usar.', 'ok');
+  } catch (err) { aviso('msg-camp', `Não consegui enviar a capa: ${err.message || err}`, 'erro'); }
+  e.target.value = '';
+});
+$('f-capa-tirar').addEventListener('click', () => { CAPA_URL = null; pintarCapa(); });
+
+function playlistId(v) { v = v.trim(); const m = v.match(/[?&]list=([\w-]+)/); return m ? m[1] : v; }
+$('form-camp').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const ativa = $('f-ativa').value === '1';
+  const id = EDITANDO?.id || $('f-id').value.trim();
+  if (!/^[a-z0-9-]{2,40}$/.test(id)) return aviso('msg-camp', 'Código inválido: use só letras minúsculas, números e hífen.', 'erro');
+  if (!EDITANDO && CAMPS.some((c) => c.id === id)) return aviso('msg-camp', 'Já existe uma campanha com esse código.', 'erro');
+  if (ativa && !$('f-ref').value) return aviso('msg-camp', 'Informe a data e hora de uma sessão.', 'erro');
+  const antigos = EDITANDO?.dados || {};
+  const dados = { ...antigos,
+    nome: $('f-nome').value.trim(), sistema: $('f-sistema').value.trim(), mestre: $('f-mestre').value.trim(),
+    cor: document.querySelector('input[name=cor]:checked')?.value || 'laranja', playlist: playlistId($('f-playlist').value),
+    sinopse: $('f-sinopse').value.trim(), sobre: $('f-sobre').value.split(/\n\s*\n/).map((t) => t.replace(/\s+/g, ' ').trim()).filter(Boolean),
+    capa_url: CAPA_URL || '',
+  };
+  if (ativa) { dados.ref = $('f-ref').value.slice(0, 16); dados.cada = +$('f-cada').value; delete dados.status; }
+  else { dados.status = $('f-status').value; if ($('f-videos').value !== '') dados.videos = +$('f-videos').value; }
+  for (const k of Object.keys(dados)) if (dados[k] === '' || (Array.isArray(dados[k]) && !dados[k].length)) delete dados[k];
+  $('f-salvar').disabled = true; aviso('msg-camp', 'Salvando…');
+  const { error } = await sb.from('campanhas').upsert({ id, ativa, ordem: +$('f-ordem').value || 0, dados });
+  $('f-salvar').disabled = false;
+  if (error) return aviso('msg-camp', `Erro ao salvar: ${error.message}`, 'erro');
+  fechar(); aviso('msg-agenda', `“${dados.nome}” salva.`, 'ok'); carregarAgenda();
+});
+$('f-excluir').addEventListener('click', async () => {
+  if (!EDITANDO) return;
+  if (!confirm(`Excluir “${EDITANDO.dados.nome}” do site? Para uma campanha que terminou, o melhor é mudar a situação para "Encerrada".`)) return;
+  const { error } = await sb.from('campanhas').delete().eq('id', EDITANDO.id);
+  if (error) return aviso('msg-camp', `Erro ao excluir: ${error.message}`, 'erro');
+  fechar(); aviso('msg-agenda', 'Campanha excluída.', 'ok'); carregarAgenda();
+});
+
+// ---------- datas específicas (cancelar / remarcar) ----------
+function pintarDatas() {
+  if (!EDITANDO || !EDITANDO.ativa) { $('datas').innerHTML = ''; return; }
+  $('datas').innerHTML = proximasDatas(EDITANDO).map(({ t, dia, exc }) => {
+    const estado = exc?.acao === 'cancelada' ? '<span class="estado cancelada">Cancelada</span>'
+      : exc?.acao === 'remarcada' ? `<span class="estado remarcada">Remarcada para ${esc(quandoBR(deBrasilia(exc.novo_inicio)))}</span>` : '';
+    return `<div class="data-linha${exc?.acao === 'cancelada' ? ' cancelada' : ''}" data-dia="${dia}">
+      <div><span class="q">${esc(quandoBR(t))}</span> ${estado}${exc?.nota ? ` <span class="dica">· ${esc(exc.nota)}</span>` : ''}</div>
+      <div class="acoes">${exc ? `<button type="button" class="btn btn-linha btn-mini" data-desfazer="${dia}">Desfazer</button>`
+        : `<button type="button" class="btn btn-linha btn-mini" data-cancelar="${dia}">Cancelar</button><button type="button" class="btn btn-linha btn-mini" data-remarcar="${dia}" data-t="${t.toISOString()}">Remarcar</button>`}</div>
+    </div>`;
+  }).join('');
+}
+$('datas').addEventListener('click', async (e) => {
+  const b = e.target.closest('button'); if (!b) return;
+  const camp = EDITANDO.id;
+  const feito = async (q) => { const { error } = await q; if (error) return aviso('msg-camp', `Erro: ${error.message}`, 'erro'); await recarregarExc(); };
+  if (b.dataset.cancelar) {
+    const nota = prompt('Motivo (opcional, aparece só aqui no admin):', '') ?? null;
+    if (nota === null) return;
+    await feito(sb.from('excecoes').insert({ campanha: camp, data: b.dataset.cancelar, acao: 'cancelada', nota: nota.slice(0, 200) || null }));
+  } else if (b.dataset.desfazer) {
+    await feito(sb.from('excecoes').delete().eq('campanha', camp).eq('data', b.dataset.desfazer));
+  } else if (b.dataset.remarcar) {
+    const linha = b.closest('.data-linha');
+    if (linha.querySelector('.remarcar')) return;
+    linha.insertAdjacentHTML('beforeend', `<div class="remarcar"><span class="dica">Nova data e hora:</span><input type="datetime-local" step="900" value="${isoLocalBR(new Date(b.dataset.t))}"><button type="button" class="btn btn-play btn-mini" data-confirmar="${b.dataset.remarcar}">Remarcar</button></div>`);
+    linha.querySelector('.remarcar input').focus();
+  } else if (b.dataset.confirmar) {
+    const v = b.closest('.remarcar').querySelector('input').value.slice(0, 16);
+    if (!v) return;
+    await feito(sb.from('excecoes').insert({ campanha: camp, data: b.dataset.confirmar, acao: 'remarcada', novo_inicio: v }));
+  }
+});
+async function recarregarExc() {
+  const { data, error } = await sb.from('excecoes').select('*').gte('data', somaDias(hojeBR(), -30)).order('data');
+  if (error) return aviso('msg-camp', error.message, 'erro');
+  EXC = data; pintarDatas(); pintarAgenda(); aviso('msg-camp', 'Atualizado no site.', 'ok');
+}
+
+// ================= HISTÓRICO =================
+const ROTULOS = { nome: 'nome', ref: 'data/hora', cada: 'frequência', cor: 'cor', sistema: 'sistema', mestre: 'mestre', playlist: 'playlist', sinopse: 'sinopse', sobre: 'texto da página', capa_url: 'capa', status: 'situação', videos: 'vídeos' };
+function descreve(h) {
+  const reg = h.depois || h.antes || {};
+  if (h.tabela === 'excecoes') {
+    const quando = reg.data ? dataBR(reg.data) : '';
+    if (h.acao === 'delete') return `Desfez a mudança da sessão de ${quando}`;
+    return reg.acao === 'cancelada' ? `Cancelou a sessão de ${quando}` : `Remarcou a sessão de ${quando} para ${quandoBR(deBrasilia(reg.novo_inicio))}`;
+  }
+  if (h.acao === 'insert') return 'Criou a campanha';
+  if (h.acao === 'delete') return 'Excluiu a campanha';
+  const a = h.antes || {}, d = h.depois || {}, mud = [];
+  if (a.ativa !== d.ativa) mud.push(d.ativa ? 'voltou para <b>no ar</b>' : 'marcou como <b>encerrada</b>');
+  if (a.ordem !== d.ordem) mud.push('mudou a <b>ordem</b>');
+  const ka = a.dados || {}, kd = d.dados || {};
+  for (const k of new Set([...Object.keys(ka), ...Object.keys(kd)])) {
+    if (JSON.stringify(ka[k]) === JSON.stringify(kd[k])) continue;
+    const r = ROTULOS[k] || k;
+    mud.push(k === 'ref' ? `<b>${r}</b>: ${esc(ka[k] || '—').replace('T', ' ')} → ${esc(kd[k] || '—').replace('T', ' ')}` : `<b>${esc(r)}</b>`);
+  }
+  return mud.length ? `Alterou ${mud.join(', ')}` : 'Salvou sem mudanças';
+}
+async function carregarHistorico() {
+  $('historico').innerHTML = '<div class="vazio">Carregando…</div>';
+  const [h, c] = await Promise.all([sb.from('historico').select('*').order('quando', { ascending: false }).limit(150), sb.from('campanhas').select('id,nome:dados->>nome')]);
+  if (h.error) { $('historico').innerHTML = `<div class="vazio">Erro: ${esc(h.error.message)}</div>`; return; }
+  const nomes = Object.fromEntries((c.data || []).map((x) => [x.id, x.nome]));
+  $('historico').innerHTML = h.data.length ? `<table><thead><tr><th>Quando</th><th>Quem</th><th>Campanha</th><th>O quê</th></tr></thead><tbody>${
+    h.data.map((x) => `<tr><td>${quandoHist(x.quando)}</td><td>${esc(x.email === 'sistema' ? 'Carga inicial' : x.email)}</td><td>${esc(nomes[x.registro] || x.registro)}</td><td class="diff">${descreve(x)}</td></tr>`).join('')}</tbody></table>`
+    : '<div class="vazio">Nenhuma alteração ainda.</div>';
+}
+
+entrar();
+</script>
+</body>
+</html>

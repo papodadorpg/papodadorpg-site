@@ -38,6 +38,45 @@ PLAYLISTS = {
 HIGHLIGHTS = "PLGyde_ofvU6A"
 
 
+def playlists_do_banco(pasta):
+    """Campanhas cadastradas no /admin (Supabase) entram na lista; a lista fixa acima é a reserva."""
+    try:
+        cfg = json.load(open(os.path.join(pasta, "config.json"), encoding="utf8"))
+        req = urllib.request.Request(f"{cfg['supabase_url']}/rest/v1/campanhas?select=id,dados",
+                                     headers={"apikey": cfg["supabase_anon"], "Authorization": f"Bearer {cfg['supabase_anon']}"})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            for c in json.load(r):
+                pid = (c.get("dados") or {}).get("playlist")
+                if pid:
+                    PLAYLISTS[c["id"]] = pid
+    except Exception as e:
+        print(f"campanhas do banco não lidas (usa a lista fixa): {e}", file=sys.stderr)
+
+
+def capa_da_playlist(cid, pid, pasta):
+    """Baixa a capa da playlist para img/pl/<campanha>.webp, só se ainda não existir."""
+    destino = os.path.join(pasta, "img", "pl", f"{cid}.webp")
+    if os.path.exists(destino):
+        return
+    try:
+        h = baixar(f"https://www.youtube.com/playlist?list={pid}")
+        url = re.findall(r'<meta property="og:image" content="([^"]+)"', h)[-1].replace("&amp;", "&")  # a última é a maior
+        url = re.sub(r"/(hq|mq|sd)default\.jpg", "/maxresdefault.jpg", url) if "i.ytimg.com/vi/" in url else url
+        try:
+            bruto = baixar(url, binario=True)
+        except Exception:
+            bruto = baixar(url.replace("maxresdefault", "hqdefault"), binario=True)
+        from io import BytesIO
+        from PIL import Image
+        img = Image.open(BytesIO(bruto)).convert("RGB")
+        img.thumbnail((854, 480))
+        os.makedirs(os.path.dirname(destino), exist_ok=True)
+        img.save(destino, "WEBP", quality=82)
+        print(f"capa nova: img/pl/{cid}.webp", file=sys.stderr)
+    except Exception as e:
+        print(f"capa da playlist {cid} não baixada: {e}", file=sys.stderr)
+
+
 def baixar(url, binario=False):
     req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept-Language": "pt-BR,pt;q=0.9", "Cookie": COOKIE})
     with urllib.request.urlopen(req, timeout=30) as r:
@@ -217,7 +256,9 @@ def episodios(pasta):
     except Exception:
         antigo = {"campanhas": {}, "highlights": []}
     campanhas = {}
+    playlists_do_banco(pasta)
     for cid, pid in PLAYLISTS.items():
+        capa_da_playlist(cid, pid, pasta)
         try:
             eps = itens_playlist(pid)
         except Exception as e:
