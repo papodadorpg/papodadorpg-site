@@ -4,8 +4,8 @@ name: Atualizar dados do site
 # e grava videos.json, episodios.json, mesas.json e as capas. O GitHub Pages republica sozinho a cada commit.
 on:
   schedule:
-    # a cada 2 horas, das 9h17 às 23h17 de Brasília (UTC-3)
-    - cron: "17 0,2,12,14,16,18,20,22 * * *"
+    # uma vez por dia, às 17h17 de Brasília (20h17 UTC)
+    - cron: "17 20 * * *"
   workflow_dispatch: {}
 
 permissions:
