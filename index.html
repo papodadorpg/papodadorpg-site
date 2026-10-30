@@ -313,16 +313,6 @@ button.rede { font: inherit; color: inherit; text-align: left; cursor: pointer; 
 .assinatura strong { color: var(--branco); font-weight: 700; }
 #camp-blog:empty { display: none; }
 #lista-blog:empty { display: none; }
-/* faixa de novidade logo abaixo do menu, para quem chega ver o blog */
-.faixa-blog { background: linear-gradient(100deg, var(--roxo), var(--azul)); border-bottom: 2px solid var(--preto); }
-.chamada-blog { display: flex; align-items: center; gap: 14px 18px; padding-block: 12px; text-decoration: none; color: var(--branco); }
-.chamada-blog .txt { flex: 1; min-width: 0; font-size: 16px; line-height: 1.35; }
-.chamada-blog strong { font-weight: 800; font-size: 17px; }
-.chamada-blog .txt span { color: #e6e9f9; }
-.chamada-blog .btn { padding: 8px 16px; font-size: 14px; flex: none; }
-.chamada-blog:hover .btn { transform: translateY(-1px); }
-@media (max-width: 640px) { .chamada-blog { gap: 10px; padding-block: 10px; } .chamada-blog .txt span, .chamada-blog .selo-novo { display: none; } .chamada-blog strong { font-size: 15px; } .chamada-blog .btn { padding: 7px 12px; font-size: 13px; } }
-.chamada-blog .selo-novo { background: var(--laranja); color: var(--preto); font-weight: 800; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; border: 2px solid var(--preto); }
 
 footer.rodape { border-top: 1px solid var(--linha); padding-block: 32px; color: var(--suave); font-size: 14px; }
 footer.rodape .wrap { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: space-between; }
@@ -337,11 +327,11 @@ footer.rodape img { height: 40px; width: auto; }
   <div class="wrap">
     <a class="marca" href="#inicio" aria-label="Papo Dado RPG, início"><img src="img/logo-horizontal.svg" alt="Papo Dado RPG" width="210" height="34"></a>
     <nav class="menu" aria-label="Seções">
+      <a href="blog/">Blog</a>
       <a href="#agenda">Agenda</a>
       <a href="#mesas">Campanhas</a>
       <a href="#jogue">Jogar</a>
       <a href="#videos">Vídeos</a>
-      <a href="blog/">Blog</a>
       <a href="#sobre">Sobre</a>
       <a href="#comunidade">Comunidade</a>
     </nav>
@@ -351,14 +341,6 @@ footer.rodape img { height: 40px; width: auto; }
 
 <main id="inicio">
   <section class="pagina-campanha" id="pagina-campanha" hidden aria-live="polite"></section>
-
-  <section class="faixa-blog" aria-label="Novidade">
-    <a class="chamada-blog wrap" href="blog/">
-      <span class="selo-novo">Novo</span>
-      <span class="txt"><strong>O blog do Papo Dado chegou!</strong> <span>Bastidores das mesas, dicas de mestre, resenhas e novidades do canal.</span></span>
-      <span class="btn btn-play">Ler o blog →</span>
-    </a>
-  </section>
 
   <section class="heroi">
     <div class="wrap">
@@ -378,6 +360,16 @@ footer.rodape img { height: 40px; width: auto; }
         <div class="ou" id="prox-ou"></div>
         <a class="btn btn-play" id="prox-btn" href="https://www.youtube.com/@papodadorpg/streams" target="_blank" rel="noopener">Abrir o canal</a>
       </aside>
+    </div>
+  </section>
+
+  <section class="bloco alt" id="blog">
+    <div class="wrap">
+      <div class="cab-secao">
+        <div><div class="rotulo">Blog</div><h2>Do outro lado do escudo</h2></div>
+        <a class="btn btn-linha" href="blog/">Ver todos os posts</a>
+      </div>
+      <div class="posts" id="lista-blog"></div>
     </div>
   </section>
 
@@ -474,17 +466,7 @@ footer.rodape img { height: 40px; width: auto; }
     </div>
   </section>
 
-  <section class="bloco" id="blog">
-    <div class="wrap">
-      <div class="cab-secao">
-        <div><div class="rotulo">Blog</div><h2>Do outro lado do escudo</h2></div>
-        <a class="btn btn-linha" href="blog/">Ver todos os posts</a>
-      </div>
-      <div class="posts" id="lista-blog"></div>
-    </div>
-  </section>
-
-  <section class="bloco alt" id="sobre">
+  <section class="bloco" id="sobre">
     <div class="wrap sobre">
       <div class="texto">
         <div class="rotulo">Sobre</div>
@@ -519,7 +501,7 @@ footer.rodape img { height: 40px; width: auto; }
     </div>
   </section>
 
-  <section class="bloco" id="comunidade">
+  <section class="bloco alt" id="comunidade">
     <div class="wrap">
       <div class="cab-secao">
         <div><div class="rotulo">Comunidade</div><h2>Entra pra mesa com a gente</h2></div>
