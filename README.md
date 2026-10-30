@@ -9,7 +9,7 @@ Site do canal Papo Dado RPG. É uma página única (`index.html`) que lê três 
 | `mesas.json` | mesas públicas do Henrique, vagas, datas, preço | MesaQuest |
 
 Esses arquivos são atualizados sozinhos pelo GitHub Actions (`.github/workflows/atualizar-dados.yml`),
-a cada 2 horas das 9h às 23h (Brasília). Para rodar na hora: aba **Actions** → *Atualizar dados do site* → **Run workflow**.
+uma vez por dia, às 17h17 (Brasília). Para rodar na hora: aba **Actions** → *Atualizar dados do site* → **Run workflow**.
 
 ## Onde mexer no `index.html`
 
