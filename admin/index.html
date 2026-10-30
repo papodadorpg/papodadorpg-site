@@ -323,7 +323,7 @@ dialog::backdrop { background: rgba(0, 0, 0, .6); }
         <p class="msg" id="msg-blog" role="status"></p>
         <div class="lista-posts" id="lista-posts"></div>
       </div>
-      <form id="blog-editor" class="grade" hidden>
+      <form id="blog-editor" class="grade" novalidate hidden>
         <div class="cab" style="margin-bottom:0">
           <div><button type="button" class="link-btn" id="post-voltar">← Todos os posts</button><h2 id="post-titulo-ed" style="margin-top:6px">Novo post</h2></div>
           <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-linha" id="post-ver" target="_blank" rel="noopener" hidden>Ver no site</a><button type="button" class="btn btn-perigo" id="post-excluir" hidden>Excluir</button><button type="submit" class="btn btn-play" id="post-salvar">Salvar</button></div>
@@ -345,7 +345,7 @@ dialog::backdrop { background: rgba(0, 0, 0, .6); }
                 <label><input type="radio" name="pub" value="agora"> Publicar agora</label>
                 <label><input type="radio" name="pub" value="agendar"> Agendar</label>
               </div>
-              <input type="datetime-local" id="p-quando" step="300" hidden aria-label="Data e hora da publicação">
+              <input type="datetime-local" id="p-quando" step="60" hidden aria-label="Data e hora da publicação">
               <span class="dica" id="p-quando-dica" hidden>Horário de Brasília. O post entra no ar sozinho.</span>
             </div>
             <div class="painel grade capa-post-ed" style="gap:10px">
