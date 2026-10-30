@@ -107,3 +107,8 @@ select cron.unschedule(jobid) from cron.job where jobname = 'blog-agendados';
 select cron.schedule('blog-agendados', '*/10 * * * *', 'select public.blog_agendados()');
 
 -- resultado das últimas chamadas ao GitHub (para conferir): select id, status_code, content from net._http_response order by id desc limit 5;
+
+-- ============ DESTAQUE NA HOME ============
+-- 1, 2 ou 3 = vaga fixa na página inicial (1 = card grande). Vazio = entra só se estiver entre os mais recentes.
+alter table public.posts add column if not exists destaque smallint check (destaque between 1 and 3);
+create unique index if not exists posts_destaque_unico on public.posts (destaque) where destaque is not null;
