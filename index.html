@@ -822,7 +822,7 @@ async function montarMesaQuest() {
       </div>
     </article>`;
   }).join('');
-  document.getElementById('fonte-mq').textContent = 'Vagas e datas sincronizadas automaticamente com o MesaQuest várias vezes ao dia.';
+  document.getElementById('fonte-mq').textContent = 'Vagas e datas sincronizadas automaticamente com o MesaQuest todos os dias.';
   const precos = itens.map((x) => parseFloat(String(x.preco).replace(/[^\d,]/g, '').replace(',', '.'))).filter((n) => n > 0);
   if (precos.length) {
     const fmt = (n) => n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
