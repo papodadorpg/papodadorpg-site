@@ -194,6 +194,7 @@ dialog::backdrop { background: rgba(0, 0, 0, .6); }
     <label><span>Repita a senha</span><input type="password" id="senha-2" autocomplete="new-password" minlength="8" required></label>
     <p class="dica">Pelo menos 8 caracteres.</p>
     <button class="btn btn-play" type="submit">Salvar senha e entrar</button>
+    <button class="link-btn" type="button" id="senha-voltar" hidden>Voltar ao painel</button>
     <p class="msg" id="msg-senha" role="status"></p>
   </form>
 </section>
@@ -208,7 +209,7 @@ dialog::backdrop { background: rgba(0, 0, 0, .6); }
         <button role="tab" data-aba="agenda" aria-selected="false">Agenda</button>
         <button role="tab" data-aba="historico" aria-selected="false">Histórico</button>
       </nav>
-      <div class="quem"><span id="quem"></span><button class="btn btn-linha btn-mini" id="sair">Sair</button></div>
+      <div class="quem"><span id="quem"></span><button class="btn btn-linha btn-mini" id="trocar-senha">Trocar senha</button><button class="btn btn-linha btn-mini" id="sair">Sair</button></div>
     </div>
   </header>
 
@@ -379,24 +380,27 @@ $('form-senha').addEventListener('submit', async (e) => {
   const { error } = await sb.auth.updateUser({ password: s1 });
   if (error) return aviso('msg-senha', error.message, 'erro');
   history.replaceState(null, '', location.pathname);
+  precisaSenha = false; $('senha-1').value = $('senha-2').value = ''; aviso('msg-senha', '');
   entrar();
 });
 $('sair').addEventListener('click', async () => { await sb.auth.signOut(); location.reload(); });
+$('trocar-senha').addEventListener('click', () => { precisaSenha = true; $('senha-voltar').hidden = false; entrar(); });
+$('senha-voltar').addEventListener('click', () => { precisaSenha = false; entrar(); });
 
+// convite ou "esqueci a senha": antes de abrir o painel, a pessoa cria a senha
+let precisaSenha = tipoLink === 'invite' || tipoLink === 'recovery';
 let USUARIO = null, iniciado = false;
 async function entrar() {
   const { data } = await sb.auth.getSession();
   USUARIO = data.session?.user || null;
   if (!USUARIO) { mostrar('tela-login'); if (erroLink) aviso('msg-login', `O link não funcionou (${erroLink}). Peça um novo convite ou use "Esqueci a senha".`, 'erro'); return; }
-  if (tipoLink === 'invite' || tipoLink === 'recovery') {
-    if (!$('tela-senha').dataset.feito) { $('tela-senha').dataset.feito = 1; $('senha-email').textContent = USUARIO.email; mostrar('tela-senha'); return; }
-  }
+  if (precisaSenha) { $('senha-email').textContent = USUARIO.email; mostrar('tela-senha'); return; }
   $('quem').textContent = USUARIO.email;
   mostrar('app');
   if (!iniciado) { iniciado = true; abrirAba(location.hash.replace('#', '') || 'acessos'); }
 }
 sb.auth.onAuthStateChange((evento) => {
-  if (evento === 'PASSWORD_RECOVERY') { $('senha-email').textContent = ''; mostrar('tela-senha'); return; }
+  if (evento === 'PASSWORD_RECOVERY') { precisaSenha = true; setTimeout(entrar, 0); return; }
   if (evento === 'SIGNED_IN' || evento === 'SIGNED_OUT') setTimeout(entrar, 0);
 });
 
