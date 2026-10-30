@@ -1,14 +1,20 @@
 {
- "atualizado": "2026-10-30T14:35:47+00:00",
+ "atualizado": "2026-10-30T15:21:41+00:00",
  "aovivo": [],
  "agendadas": [],
  "itens": [
   {
+   "id": "O6PwFOn_cjQ",
+   "titulo": "Highlights O Que Restou de Nós - Episódio 02 | Sem Saída",
+   "data": "2026-10-30T15:00:41+00:00",
+   "capa": "img/yt/O6PwFOn_cjQ.jpg",
+   "capa_grande": "img/yt/O6PwFOn_cjQ-g.webp"
+  },
+  {
    "id": "Pl_8J0rVKBA",
    "titulo": "Terra Devastada O Que Restou de Nós - Episódio 02 | Sem Saída",
    "data": "2026-10-29T21:44:43+00:00",
-   "capa": "img/yt/Pl_8J0rVKBA.jpg",
-   "capa_grande": "img/yt/Pl_8J0rVKBA-g.webp"
+   "capa": "img/yt/Pl_8J0rVKBA.jpg"
   },
   {
    "id": "WbAiRu9vfrI",
@@ -33,12 +39,6 @@
    "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 11 | Encarcerados",
    "data": "2026-10-28T19:19:21+00:00",
    "capa": "img/yt/9zwZK7lWpoE.jpg"
-  },
-  {
-   "id": "MbKTLSVHOUg",
-   "titulo": "Highlights Príncipes do Apocalipse - Episódio 10 | Perigos Noturnos",
-   "data": "2026-10-28T14:35:47+00:00",
-   "capa": "img/yt/MbKTLSVHOUg.jpg"
   }
  ],
  "shorts": [
