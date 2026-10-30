@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="generator" content="gerar_blog.py">
+<title>Página não encontrada · Papo Dado RPG</title>
+<meta name="description" content="Página não encontrada.">
+<meta name="theme-color" content="#0E1426">
+<link rel="canonical" href="https://papodadorpg.com.br/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Papo Dado RPG">
+<meta property="og:title" content="Página não encontrada · Papo Dado RPG">
+<meta property="og:description" content="Página não encontrada.">
+<meta property="og:url" content="https://papodadorpg.com.br/">
+<meta property="og:image" content="https://papodadorpg.com.br/img/og.jpg">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://papodadorpg.com.br/img/og.jpg">
+<link rel="icon" href="/img/icone.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Blog do Papo Dado RPG" href="/blog/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&display=swap">
+<link rel="stylesheet" href="/blog/blog.css">
+<meta name="robots" content="noindex">
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+</head>
+<body>
+<div class="faixa" aria-hidden="true"></div>
+<header class="topo"><div class="wrap">
+  <a class="marca" href="/" aria-label="Papo Dado RPG, início"><img src="/img/logo-horizontal.svg" alt="Papo Dado RPG" width="210" height="34"></a>
+  <nav class="menu" aria-label="Seções">
+    <a class="so-largo" href="/#agenda">Agenda</a><a class="so-largo" href="/#mesas">Campanhas</a><a href="/#jogue">Jogar</a><a href="/blog/" aria-current="page">Blog</a>
+  </nav>
+  <a class="btn btn-play" href="https://www.youtube.com/@papodadorpg?sub_confirmation=1" target="_blank" rel="noopener">Inscrever-se</a>
+</div></header>
+
+<main id="conteudo">
+  <div class="wrap estreito cab-blog" id="nao-achou" hidden>
+    <div class="rotulo">Erro 404</div><h1>Essa página rolou 1 no dado</h1>
+    <p>Não encontramos o que você procurava. <a href="/">Voltar ao site</a> ou <a href="/blog/">ver o blog</a>.</p>
+  </div>
+</main>
+<footer class="rodape"><div class="wrap">
+  <img src="/img/icone.svg" alt="" width="40" height="40">
+  <span>© Papo Dado RPG · O seu canal de RPG diário</span>
+  <a href="/">Voltar ao site</a>
+</div></footer>
+<script src="/blog/blog.js"></script>
+<script>
+// post recém-publicado (a página própria fica pronta em instantes): mostra direto do Supabase
+(async function () {
+  const m = location.pathname.match(/^\/blog\/([a-z0-9-]+)\/?$/);
+  const naoAchou = () => { document.getElementById('nao-achou').hidden = false; BlogPD.rastro(); };
+  if (!m) return naoAchou();
+  try {
+    const [p] = await BlogPD.listar({ slug: m[1], conteudo: true });
+    if (!p) return naoAchou();
+    let nome = '';
+    if (p.campanha) { try { nome = (await BlogPD.sbGet(`campanhas?select=dados&id=eq.${encodeURIComponent(p.campanha)}`))[0]?.dados?.nome || ''; } catch { /* ignora */ } }
+    document.title = `${p.titulo} · Blog do Papo Dado RPG`;
+    document.getElementById('conteudo').innerHTML = BlogPD.artigo(p, nome);
+    BlogPD.rastro();
+  } catch { naoAchou(); }
+})();
+</script>
+</body>
+</html>

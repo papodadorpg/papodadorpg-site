@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="generator" content="gerar_blog.py">
+<title>Blog · Papo Dado RPG</title>
+<meta name="description" content="Bastidores, dicas de mestre, resenhas e novidades das mesas do Papo Dado RPG.">
+<meta name="theme-color" content="#0E1426">
+<link rel="canonical" href="https://papodadorpg.com.br/blog/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Papo Dado RPG">
+<meta property="og:title" content="Blog · Papo Dado RPG">
+<meta property="og:description" content="Bastidores, dicas de mestre, resenhas e novidades das mesas do Papo Dado RPG.">
+<meta property="og:url" content="https://papodadorpg.com.br/blog/">
+<meta property="og:image" content="https://papodadorpg.com.br/img/og.jpg">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://papodadorpg.com.br/img/og.jpg">
+<link rel="icon" href="/img/icone.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Blog do Papo Dado RPG" href="/blog/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&display=swap">
+<link rel="stylesheet" href="/blog/blog.css">
+</head>
+<body>
+<div class="faixa" aria-hidden="true"></div>
+<header class="topo"><div class="wrap">
+  <a class="marca" href="/" aria-label="Papo Dado RPG, início"><img src="/img/logo-horizontal.svg" alt="Papo Dado RPG" width="210" height="34"></a>
+  <nav class="menu" aria-label="Seções">
+    <a class="so-largo" href="/#agenda">Agenda</a><a class="so-largo" href="/#mesas">Campanhas</a><a href="/#jogue">Jogar</a><a href="/blog/" aria-current="page">Blog</a>
+  </nav>
+  <a class="btn btn-play" href="https://www.youtube.com/@papodadorpg?sub_confirmation=1" target="_blank" rel="noopener">Inscrever-se</a>
+</div></header>
+
+<main class="wrap">
+  <div class="cab-blog"><div class="rotulo">Blog</div><h1>Do outro lado do escudo</h1>
+    <p>Bastidores das mesas, dicas de mestre, resenhas e novidades do Papo Dado RPG.</p></div>
+  <div class="filtros" id="filtros" hidden><button type="button" data-cat="" aria-pressed="true">Todos</button></div>
+  <div class="posts" id="posts"><p class="vazio">Nenhum post ainda. Volte em breve!</p></div>
+</main>
+<footer class="rodape"><div class="wrap">
+  <img src="/img/icone.svg" alt="" width="40" height="40">
+  <span>© Papo Dado RPG · O seu canal de RPG diário</span>
+  <a href="/">Voltar ao site</a>
+</div></footer>
+<script src="/blog/blog.js"></script>
+<script>
+// a lista já vem pronta; aqui ela é atualizada pelo Supabase (posts que acabaram de sair) e filtrada por categoria
+(function () {
+  const caixa = document.getElementById('posts'), filtros = document.getElementById('filtros');
+  let cat = new URLSearchParams(location.search).get('categoria') || '';
+  function aplicar() {
+    filtros.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.cat === cat)));
+    caixa.querySelectorAll('.post-card').forEach((c) => { c.hidden = !!cat && !(c.dataset.cats || '').split('|').includes(cat); });
+  }
+  filtros.addEventListener('click', (ev) => {
+    const b = ev.target.closest('button'); if (!b) return;
+    cat = b.dataset.cat; history.replaceState(null, '', cat ? `?categoria=${encodeURIComponent(cat)}` : location.pathname); aplicar();
+  });
+  BlogPD.listar().then((posts) => {
+    if (!posts.length) return;
+    caixa.innerHTML = posts.map(BlogPD.card).join('');
+    const todas = [...new Set(posts.flatMap((p) => p.categorias || []))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+    filtros.hidden = !todas.length;
+    filtros.innerHTML = '<button type="button" data-cat="" aria-pressed="true">Todos</button>' + todas.map((c) => `<button type="button" data-cat="${BlogPD.esc(c)}" aria-pressed="false">${BlogPD.esc(c)}</button>`).join('');
+    aplicar();
+  }).catch(() => {});
+  aplicar();
+  BlogPD.rastro();
+})();
+</script>
+</body>
+</html>

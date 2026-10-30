@@ -296,6 +296,23 @@ body.modo-campanha main > section:not(#pagina-campanha) { display: none; }
 /* Pix como botão */
 button.rede { font: inherit; color: inherit; text-align: left; cursor: pointer; width: 100%; }
 
+/* Blog (cards iguais aos de /blog/) */
+.posts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 980px) { .posts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .posts { grid-template-columns: 1fr; } }
+.post-card { background: var(--superficie); border: 2px solid var(--preto); outline: 1px solid var(--linha); border-radius: var(--raio); overflow: hidden; display: flex; flex-direction: column; text-decoration: none; min-width: 0; }
+.post-card:hover { outline-color: var(--suave); }
+.post-card .capa { aspect-ratio: 16/9; background: var(--bg) linear-gradient(135deg, var(--roxo), var(--azul)); border-bottom: 2px solid var(--preto); }
+.post-card .capa img { width: 100%; height: 100%; object-fit: cover; }
+.post-card .corpo { padding: 14px 16px 18px; display: grid; gap: 8px; align-content: start; flex: 1; }
+.post-card h3 { margin: 0; font-size: 20px; line-height: 1.2; font-weight: 800; text-wrap: balance; }
+.post-card p { margin: 0; color: #d3d8ea; font-size: 15px; }
+.post-card .cats { display: flex; gap: 6px; flex-wrap: wrap; }
+.assinatura { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--suave); }
+.assinatura img, .assinatura .sem-foto { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid var(--preto); background: var(--laranja); flex: none; }
+.assinatura strong { color: var(--branco); font-weight: 700; }
+#camp-blog:empty { display: none; }
+
 footer.rodape { border-top: 1px solid var(--linha); padding-block: 32px; color: var(--suave); font-size: 14px; }
 footer.rodape .wrap { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: space-between; }
 footer.rodape img { height: 40px; width: auto; }
@@ -313,6 +330,7 @@ footer.rodape img { height: 40px; width: auto; }
       <a href="#mesas">Campanhas</a>
       <a href="#jogue">Jogar</a>
       <a href="#videos">Vídeos</a>
+      <a href="blog/">Blog</a>
       <a href="#sobre">Sobre</a>
       <a href="#comunidade">Comunidade</a>
     </nav>
@@ -437,6 +455,16 @@ footer.rodape img { height: 40px; width: auto; }
     </div>
   </section>
 
+  <section class="bloco" id="blog" hidden>
+    <div class="wrap">
+      <div class="cab-secao">
+        <div><div class="rotulo">Blog</div><h2>Do outro lado do escudo</h2></div>
+        <a class="btn btn-linha" href="blog/">Ver todos os posts</a>
+      </div>
+      <div class="posts" id="lista-blog"></div>
+    </div>
+  </section>
+
   <section class="bloco" id="sobre">
     <div class="wrap sobre">
       <div class="texto">
@@ -521,6 +549,7 @@ footer.rodape img { height: 40px; width: auto; }
   </div>
 </footer>
 
+<script src="blog/blog.js"></script>
 <script>
 // ================= DADOS (edite aqui) =================
 const COR = { ciano: '#00BAFC', azul: '#005DFB', roxo: '#7020F9', vermelho: '#FB0F3A', laranja: '#FD7601' };
@@ -963,6 +992,7 @@ function montarPagina(id) {
       <div class="videos">${hl.map((h) => `<a class="video" href="${assistir(h.id)}" target="_blank" rel="noopener">
         <div class="capa">${h.capa ? `<img src="${esc(h.capa)}" alt="" loading="lazy">` : ''}<span class="play" aria-hidden="true"></span></div>
         <div class="txt"><strong>${esc(tituloEp(h.titulo))}</strong><span>Resumo${durTxt(h.duracao) ? ` em ${durTxt(h.duracao)}` : ''}</span></div></a>`).join('')}</div></div>` : ''}
+    <div class="camp-bloco" id="camp-blog"></div>
     ${!m.playlist ? `<div class="camp-bloco"><div class="camp-ultima" style="grid-template-columns:1fr"><div>
       <div class="rotulo">Estreia</div><h3>${ativa ? `${DIAS[diaSemanaBR(ativa.proxima)]}, ${dataCurta(ativa.proxima).split(', ')[1]}, às ${horaTxt(horaBR(ativa.proxima))}` : 'Em breve'}</h3>
       <p>Os episódios vão aparecer aqui assim que a campanha estrear. Ative o sino no YouTube ou adicione a estreia à sua agenda para não perder.</p></div></div></div>` : `
@@ -972,6 +1002,29 @@ function montarPagina(id) {
         : `<p><a class="btn btn-linha" href="${playlistUrl(m)}" target="_blank" rel="noopener">Ver a lista no YouTube</a></p>`}
     </div>`}
   </div>`;
+  blogDaCampanha(id);
+}
+
+// ================= BLOG (posts publicados no Supabase pelo /admin) =================
+async function montarBlog() {
+  if (!window.BlogPD) return;
+  try {
+    const posts = await BlogPD.listar({ limite: 3 });
+    if (!posts.length) return;
+    document.getElementById('lista-blog').innerHTML = posts.map(BlogPD.card).join('');
+    document.getElementById('blog').hidden = false;
+    // mantém o fundo alternado entre as seções
+    document.getElementById('sobre').classList.add('alt');
+    document.getElementById('comunidade').classList.remove('alt');
+  } catch { /* sem blog: a seção continua escondida */ }
+}
+async function blogDaCampanha(id) {
+  if (!window.BlogPD) return;
+  try {
+    const posts = await BlogPD.listar({ campanha: id, limite: 6 });
+    const alvo = document.getElementById('camp-blog');
+    if (alvo && posts.length) alvo.innerHTML = `<div class="rotulo">No blog</div><h2>Posts sobre esta campanha</h2><div class="posts">${posts.map(BlogPD.card).join('')}</div>`;
+  } catch { /* ignora */ }
 }
 
 function rota() {
@@ -1060,7 +1113,7 @@ const Rastro = (() => {
   const rotaAtual = () => (location.hash.startsWith('#/') ? location.hash.slice(1).split('?')[0] : location.pathname || '/').slice(0, 120);
   const AREAS = [['.topo', 'Menu'], ['.heroi', 'Topo (próxima live)'], ['#agenda', 'Agenda'], ['#lista-encerradas', 'Campanhas encerradas'],
     ['#mesas', 'Campanhas no ar'], ['#pagina-campanha', 'Página de campanha'], ['.faq', 'FAQ'], ['#jogue', 'Jogue com a gente'],
-    ['#lista-shorts', 'Shorts'], ['#shorts', 'Shorts'], ['#videos', 'Vídeos'], ['#sobre', 'Sobre'], ['#comunidade', 'Comunidade e apoio'], ['.rodape', 'Rodapé']];
+    ['#blog', 'Blog (página inicial)'], ['#lista-shorts', 'Shorts'], ['#shorts', 'Shorts'], ['#videos', 'Vídeos'], ['#sobre', 'Sobre'], ['#comunidade', 'Comunidade e apoio'], ['.rodape', 'Rodapé']];
   const areaDe = (el) => AREAS.find(([sel]) => el.closest(sel))?.[1] || 'Outros';
   const limpa = (t) => String(t || '').replace(/\s+/g, ' ').trim();
   function alvoDe(el) {
@@ -1112,6 +1165,7 @@ carregarYT().then(() => { montarProxima(); montarVideos(); montarShorts(); });
 setInterval(montarProxima, 60000);
 setInterval(() => carregarYT().then(() => { montarProxima(); montarVideos(); montarShorts(); }), 15 * 60000);
 montarMesaQuest();
+montarBlog();
 </script>
 </body>
 </html>

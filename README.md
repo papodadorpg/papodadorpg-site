@@ -5,14 +5,24 @@ Site do canal Papo Dado RPG. É uma página única (`index.html`) mais a área r
 ## Admin (papodadorpg.com.br/admin/)
 
 Login só com e-mail e senha (sem Google), em um projeto Supabase (plano gratuito). O cadastro público é desligado:
-só entra quem for convidado em **Supabase → Authentication → Users → Invite user**. Quem é convidado vira admin.
+só entra quem for convidado na aba **Admins** do painel. Quem é convidado vira admin.
 
 - **Acessos:** pessoas, visitas, páginas e cliques por área em 7, 14, 28, 90 dias ou período escolhido.
   O site grava cada visita e clique de forma anônima (código aleatório no navegador, sem nome, e-mail ou IP).
 - **Agenda:** criar/editar/encerrar campanhas, mudar horário, cancelar ou remarcar uma data. Vale na hora no site.
+- **Blog:** editor visual (títulos, listas, imagens, vídeos do YouTube), capa, autor, categorias, campanha relacionada,
+  rascunho / publicar agora / agendar. O post aparece no site na hora (página inicial, /blog/ e página da campanha).
+- **Admins:** convidar e remover quem entra no admin (Edge Function `admins` no Supabase, em `supabase/functions/admins/`).
 - **Histórico:** quem mudou o quê.
 
-O banco está descrito em `supabase/schema.sql` (tabelas, regras de segurança e a função do painel).
+O banco está descrito em `supabase/schema.sql` (agenda, acessos, painel) e `supabase/blog.sql` (posts, imagens, agendamento).
+
+### Páginas do blog
+Cada post publicado ganha `blog/<endereço>/index.html` (Google e prévia no WhatsApp), gerado por `scripts/gerar_blog.py`
+no workflow **Gerar páginas do blog** (`.github/workflows/blog.yml`). Ao publicar, o Supabase pede ao GitHub para rodar esse
+workflow usando o token guardado no Vault do Supabase com o nome `github_token` (token "fine-grained" do GitHub só com
+*Actions: read and write* neste repositório). Posts agendados são conferidos a cada 10 minutos. Sem token, as páginas
+são geradas na atualização diária. Enquanto a página não existe, o `404.html` mostra o post direto do Supabase.
 `config.json` tem o endereço do projeto e a chave pública ("anon"), que é feita para ficar no navegador.
 
 ## Dados automáticos
