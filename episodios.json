@@ -1,0 +1,1888 @@
+{
+ "atualizado": "2026-10-30T06:25:01+00:00",
+ "campanhas": {
+  "strahd": {
+   "playlist": "PLu-hxXZl-KUQqPuVdQ4vg71gQH-ODurab",
+   "episodios": [
+    {
+     "id": "urppRIsfSp4",
+     "titulo": "D&D 2024 Campanha Maldição de Strahd - Episódio 01 (Parte 01) | Bem-vindos à Baróvia",
+     "duracao": "1:44:53"
+    },
+    {
+     "id": "8W8bbcdDeOg",
+     "titulo": "D&D 2024 Campanha Maldição de Strahd - Episódio 01 (Parte 02) | Bem-vindos à Baróvia",
+     "duracao": "1:11:29"
+    },
+    {
+     "id": "67bwGGzyfho",
+     "titulo": "D&D 2024 Campanha Maldição de Strahd - Episódio 02 | Doru",
+     "duracao": "3:05:35"
+    },
+    {
+     "id": "LHRaqrsLkOw",
+     "titulo": "D&D 2024 Campanha Maldição de Strahd - Episódio 03 | Encontro com o Diabo",
+     "duracao": "2:48:20"
+    },
+    {
+     "id": "4IMZhJho-8E",
+     "titulo": "D&D 2024 Campanha Maldição de Strahd - Episódio 04 | A Mansão Durst",
+     "duracao": "2:48:14"
+    },
+    {
+     "id": "H3n0nqUpJcQ",
+     "titulo": "D&D 2024 Campanha Maldição de Strahd - Episódio 05 | Bocas Demais, Carne de Menos",
+     "duracao": "2:44:33"
+    },
+    {
+     "id": "k8eUuHjhlsI",
+     "titulo": "D&D 2024 Campanha Maldição de Strahd - Episódio 06 | Precisamos Midyr o Perigo!",
+     "duracao": "3:11:03"
+    },
+    {
+     "id": "m-rf9L7AjSQ",
+     "titulo": "D&D 2024 Campanha Maldição de Strahd - Episódio 07 | A Casa da Morte",
+     "duracao": "3:09:32"
+    },
+    {
+     "id": "b_7-Jeqvd8U",
+     "titulo": "D&D 2024 Campanha Maldição de Strahd - Episódio 08 | Entre Vinganças e Acordos",
+     "duracao": "3:20:06"
+    },
+    {
+     "id": "KJrBFRbwRJo",
+     "titulo": "D&D 2024 Campanha Maldição de Strahd - Episódio 09 | Encruzilhada",
+     "duracao": "2:59:14"
+    },
+    {
+     "id": "41Jvd0JyZlQ",
+     "titulo": "D&D 2024 Campanha Maldição de Strahd - Episódio 10 | As Cartas do Destino",
+     "duracao": "3:21:27"
+    },
+    {
+     "id": "m5hWn5BApQ8",
+     "titulo": "D&D 2024 Campanha Maldição de Strahd - Episódio 11 | Terrores da Baróvia",
+     "duracao": "2:57:39"
+    },
+    {
+     "id": "52cD-nua6bU",
+     "titulo": "D&D 2024 Campanha Maldição de Strahd - Episódio 12 | O Velho Móiossos",
+     "duracao": "2:48:42"
+    },
+    {
+     "id": "LpOktGtsMBk",
+     "titulo": "D&D 2024 Campanha Maldição de Strahd - Episódio 13 | A Estrada para Vallaki",
+     "duracao": "2:53:02"
+    },
+    {
+     "id": "XzrsbCYLj84",
+     "titulo": "D&D 2024 Campanha Maldição de Strahd - Episódio 14 | Nem Tudo É O Que Parece",
+     "duracao": "3:05:28"
+    },
+    {
+     "id": "DCQcG0Ma2po",
+     "titulo": "D&D 2024 Campanha Maldição de Strahd - Episódio 15 | A Festa de Volenta",
+     "duracao": "4:03:21"
+    },
+    {
+     "id": "shBZjt26BYw",
+     "titulo": "D&D 2024 Campanha Maldição de Strahd - Episódio 16 | Tudo Vai Ficar Bem",
+     "duracao": "2:45:44"
+    },
+    {
+     "id": "n9EaAwGFhEU",
+     "titulo": "D&D 2024 Campanha Maldição de Strahd - Episódio 17 | O Estranho na Carroça",
+     "duracao": "2:57:33"
+    },
+    {
+     "id": "JszxUyu9AdA",
+     "titulo": "D&D 2024 Campanha Maldição de Strahd - Episódio 18 | Wachterhaus",
+     "duracao": "3:18:19"
+    },
+    {
+     "id": "VlbkcLqpEyk",
+     "titulo": "D&D 2024 Campanha Maldição de Strahd - Episódio 19 | Sorte ou Azar?",
+     "duracao": "3:56:07"
+    },
+    {
+     "id": "2n9idTOiqxM",
+     "titulo": "D&D 2024 Campanha Maldição de Strahd - Episódio 20 | O Festival de Santo Andral",
+     "duracao": "3:27:34"
+    },
+    {
+     "id": "SOxRrnCts8U",
+     "titulo": "D&D 2024 Campanha Maldição de Strahd - Episódio 21 | O Herdeiro do Crepúsculo",
+     "duracao": "2:39:16"
+    },
+    {
+     "id": "x8peUrHQt-U",
+     "titulo": "D&D 5.5 Maldição de Strahd - Episódio 22 | O Silvado de Argynvost",
+     "duracao": "2:54:25"
+    },
+    {
+     "id": "zwIAuZjg1eE",
+     "titulo": "D&D 5.5 Maldição de Strahd - Episódio 23 | De Braços Bem Abertos",
+     "duracao": "2:49:37"
+    },
+    {
+     "id": "iByrDW3VI3I",
+     "titulo": "D&D 5.5 Maldição de Strahd - Episódio 24 | O Bom Filho À Casa Torna",
+     "duracao": "3:34:23"
+    },
+    {
+     "id": "ypguBmJjCdY",
+     "titulo": "D&D 5.5 Maldição de Strahd - Episódio 25 | O Senhor do Silvado",
+     "duracao": "3:07:49"
+    },
+    {
+     "id": "c2dBcVKfE5E",
+     "titulo": "D&D 5.5 Maldição de Strahd - Episódio 26 | A Bruxa do Pântano",
+     "duracao": "4:40:57"
+    },
+    {
+     "id": "8Ez6eDAX4mA",
+     "titulo": "D&D 5.5 Maldição de Strahd - Episódio 27 | O Conto dos von Zarovich",
+     "duracao": "2:56:09"
+    },
+    {
+     "id": "SG1nvHCSVAs",
+     "titulo": "D&D 5.5 Maldição de Strahd - Episódio 28 | A Luz de Um Novo Dia",
+     "duracao": "3:27:14"
+    },
+    {
+     "id": "40_zFwjZFpk",
+     "titulo": "D&D 5.5 Maldição de Strahd - Episódio 29 | Entre as Chamas",
+     "duracao": "3:33:35"
+    },
+    {
+     "id": "8TUHYHEe6nE",
+     "titulo": "D&D 5.5 Maldição de Strahd - Episódio 30 | A Torre de Khazan",
+     "duracao": "3:58:39"
+    },
+    {
+     "id": "_ugnijkyRzA",
+     "titulo": "D&D 5.5 Maldição de Strahd - Episódio 31 | Colheita Maldita",
+     "duracao": "4:30:13"
+    },
+    {
+     "id": "J5ESUQXlqOU",
+     "titulo": "D&D 5.5 Maldição de Strahd - Episódio 32 | Folclore Antigo",
+     "duracao": "3:40:25"
+    },
+    {
+     "id": "EmJszb4Fyfc",
+     "titulo": "D&D 5.5 Maldição de Strahd - Episódio 33 | A Colina Yester",
+     "duracao": "4:19:19"
+    },
+    {
+     "id": "C2zuGhRxgMQ",
+     "titulo": "D&D 5.5 Maldição de Strahd - Episódio 34 | Um Convite Especial",
+     "duracao": "2:40:14"
+    },
+    {
+     "id": "iF-Y6CC3Yxk",
+     "titulo": "D&D 5.5 Maldição de Strahd - Episódio 35 | A Abadia de Santa Markóvia",
+     "duracao": "4:16:06"
+    }
+   ]
+  },
+  "vecna": {
+   "playlist": "PLu-hxXZl-KUQ459n-TxtK6seaKrQ6csTM",
+   "episodios": [
+    {
+     "id": "MPFFniii4sY",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 01 | As Catacumbas de Neverwinter",
+     "duracao": "2:35:55"
+    },
+    {
+     "id": "gaDgdNp1zeg",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 02 | Novos Interesses",
+     "duracao": "2:44:03"
+    },
+    {
+     "id": "cZ7NIyTalBc",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 03 | Punhos, Presas e Poesia",
+     "duracao": "2:46:55"
+    },
+    {
+     "id": "JOoslbuEZa4",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 04 | Os Donos da Cidade",
+     "duracao": "2:42:41"
+    },
+    {
+     "id": "-QWJ2iUBl-Y",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 05 | As Criptas dos Mehir",
+     "duracao": "2:47:43"
+    },
+    {
+     "id": "BIspSTwp2Z4",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 07 | Os Espíritos Protetores",
+     "duracao": "3:13:45"
+    },
+    {
+     "id": "qIkkfzvy-zQ",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 08 | O Olho Que Tudo Vê",
+     "duracao": "2:55:41"
+    },
+    {
+     "id": "QDz-UCsgJuo",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 09 | A Cripta dos Segredos",
+     "duracao": "2:43:29"
+    },
+    {
+     "id": "3UF-RCX3FYo",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 10 | Revelem seus Segredos!",
+     "duracao": "3:20:05"
+    },
+    {
+     "id": "_-QTXjAl6J8",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 11 | Encontro com a Morte",
+     "duracao": "3:52:55"
+    },
+    {
+     "id": "rPUWvhCtwIc",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 12 | Uma Luz no Fim do Túnel",
+     "duracao": "2:35:08"
+    },
+    {
+     "id": "bQGUQuxGJWc",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 13 | Um Pouco de Água, Um Pouco de Fogo",
+     "duracao": "3:11:00"
+    },
+    {
+     "id": "6vfdWX6wBME",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 14 | À Porta dos Segredos",
+     "duracao": "3:23:35"
+    },
+    {
+     "id": "UmT1qbZV0h4",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 15 | Noite Eterna",
+     "duracao": "3:01:49"
+    },
+    {
+     "id": "3J9b3P9h-tM",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 16 | Os Campeões de Neverwinter",
+     "duracao": "3:05:18"
+    },
+    {
+     "id": "7inVVA0Sx7U",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 17 | Na Borda da Teia",
+     "duracao": "3:37:06"
+    },
+    {
+     "id": "g5bHjj2__cM",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 18 | Velhos Conhecidos",
+     "duracao": "2:39:54"
+    },
+    {
+     "id": "HA_Lj6kEAKo",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 19 | Através do Mar Astral",
+     "duracao": "2:42:37"
+    },
+    {
+     "id": "AtKg_MybPhk",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 20 | O Coração do Titã",
+     "duracao": "3:09:12"
+    },
+    {
+     "id": "QkcPbMxY0j4",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 21 | Terra da Lamentação",
+     "duracao": "3:02:23"
+    },
+    {
+     "id": "nDxrk6l57Ho",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 22 | Guerreiros da Fé",
+     "duracao": "3:14:31"
+    },
+    {
+     "id": "Clu093CytNg",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 23 | Landro",
+     "duracao": "3:42:47"
+    },
+    {
+     "id": "sO_YkFI_ons",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 24 | Encontro Inesperado",
+     "duracao": "3:11:00"
+    },
+    {
+     "id": "WGSjMtIxYnc",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 25 | Comando Neural",
+     "duracao": "2:30:57"
+    },
+    {
+     "id": "mg4WaSSpQLI",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 26 | A Casa da Morte",
+     "duracao": "3:28:14"
+    },
+    {
+     "id": "opOQ7rTPQx0",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 27 | Em Nome de Foltos!",
+     "duracao": "2:59:32"
+    },
+    {
+     "id": "gwrT1dHWoOc",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 28 | O Senhor da Casa da Morte",
+     "duracao": "3:02:04"
+    },
+    {
+     "id": "HI0AdlOYMuk",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 29 | Rupturas Interplanares",
+     "duracao": "2:24:20"
+    },
+    {
+     "id": "rKPXGk7f6y4",
+     "titulo": "D&D 2024 Campanha Vecna À Beira da Ruína - Episódio 30 | A Árvore Peylon",
+     "duracao": "2:43:01"
+    },
+    {
+     "id": "aRn_Nqz_WW0",
+     "titulo": "D&D 5.5 Vecna À Beira da Ruína - Ep. 31 | Pelo Bem Maior",
+     "duracao": "2:26:51"
+    },
+    {
+     "id": "6G7loA_LHGk",
+     "titulo": "D&D 5.5 Vecna À Beira da Ruína - Ep. 32 | O Cofre das Três Luas",
+     "duracao": "2:32:08"
+    },
+    {
+     "id": "uThvgPr7u1M",
+     "titulo": "D&D 5.5 Vecna À Beira da Ruína - Episódio 33 | Tudo (Quase) Dando Errado",
+     "duracao": "2:59:03"
+    },
+    {
+     "id": "uYp5lVacBjQ",
+     "titulo": "D&D 5.5 Vecna À Beira da Ruína - Episódio 34 | O Trono dos Mortos",
+     "duracao": "2:40:54"
+    },
+    {
+     "id": "LUb_IheOzUg",
+     "titulo": "D&D 5.5 Vecna À Beira da Ruína - Episódio 35 | À Espreita da Morte",
+     "duracao": "2:37:06"
+    },
+    {
+     "id": "kBzX5AsdtmM",
+     "titulo": "D&D 5.5 Vecna À Beira da Ruína - Episódio 36 | O Guardião da Lua",
+     "duracao": "3:00:18"
+    },
+    {
+     "id": "9ZWFl5kU8cE",
+     "titulo": "D&D 5.5 Vecna À Beira da Ruína - Episódio 37 | O Ritual das Três Luas",
+     "duracao": "3:09:08"
+    },
+    {
+     "id": "5f32Sn79HOU",
+     "titulo": "D&D 5.5 Vecna À Beira da Ruína - Episódio 38 | A Ameaça da Lua",
+     "duracao": "3:24:43"
+    },
+    {
+     "id": "oyWHMFxLMcs",
+     "titulo": "D&D 5.5 Vecna À Beira da Ruína - Episódio 39 | Uma Nova Esperança",
+     "duracao": "3:13:40"
+    },
+    {
+     "id": "bCVMGGMdvok",
+     "titulo": "D&D 5.5 Vecna À Beira da Ruína - Episódio 40 | A Fúria do Kraken",
+     "duracao": "3:06:49"
+    },
+    {
+     "id": "WNLTYCSNQ0M",
+     "titulo": "D&D 5.5 Vecna À Beira da Ruína - Episódio 41 | A Tumba das Almas Perdidas",
+     "duracao": "3:27:57"
+    },
+    {
+     "id": "6cslUF_pbHM",
+     "titulo": "D&D 5.5 Vecna À Beira da Ruína - Episódio 42 | De Volta",
+     "duracao": "3:13:22"
+    },
+    {
+     "id": "Kda3f26JaGo",
+     "titulo": "D&D 5.5 Vecna À Beira da Ruína - Episódio 43 | Nem Tudo É O Que Parece",
+     "duracao": "3:03:25"
+    }
+   ]
+  },
+  "principes": {
+   "playlist": "PLu-hxXZl-KUSc5pqaRL-ecT4mdzA2TwoD",
+   "episodios": [
+    {
+     "id": "hj7_kzENb-I",
+     "titulo": "D&D 5.5 Príncipes do Apocalipse - Sessão Zero",
+     "duracao": "1:45:44"
+    },
+    {
+     "id": "73UY8kKstTo",
+     "titulo": "D&D 5.5 Príncipes do Apocalipse - Ep. 01 | Bem-vindos ao Apocalipse",
+     "duracao": "3:06:01"
+    },
+    {
+     "id": "vt50674BfvE",
+     "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 02 | O Grupo de Extermínio!",
+     "duracao": "3:04:54"
+    },
+    {
+     "id": "d8N1U5GS_kU",
+     "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 03 | Água Mole em Pedra Dura...",
+     "duracao": "3:32:02"
+    },
+    {
+     "id": "j7EkvY8pODI",
+     "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 04 | Bem-vindos a Lariço Vermelho",
+     "duracao": "3:17:02"
+    },
+    {
+     "id": "pUF8xZxPHZ4",
+     "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 05 | Problemas na Estrada",
+     "duracao": "3:10:14"
+    },
+    {
+     "id": "FZ1C1k1pLZI",
+     "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 06 | Desencavando Mistérios",
+     "duracao": "4:02:51"
+    },
+    {
+     "id": "a-3lymhqdqU",
+     "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 07 | Colinas Sumber",
+     "duracao": "3:49:00"
+    },
+    {
+     "id": "fN5h_Ix2XgM",
+     "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 08 | O Monastério da Pedra Sagrada",
+     "duracao": "4:16:57"
+    },
+    {
+     "id": "eyQPRPXVv_w",
+     "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 09 | Fuga Brutal",
+     "duracao": "3:03:52"
+    },
+    {
+     "id": "UQNYWgpoDYE",
+     "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 10 | Perigos Noturnos",
+     "duracao": "4:45:28"
+    },
+    {
+     "id": "9zwZK7lWpoE",
+     "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 11 | Encarcerados",
+     "duracao": "3:36:28"
+    }
+   ]
+  },
+  "saltmarsh": {
+   "playlist": "PLu-hxXZl-KUR73qFR7vgoOk1Lmz_9EMQ0",
+   "episodios": [
+    {
+     "id": "D8A1VmoU6jg",
+     "titulo": "D&D 2024 Campanha Fantasmas de Saltmarsh - Episódio 01 | A Casa Mal-Assombrada",
+     "duracao": "3:21:54"
+    },
+    {
+     "id": "4-cbRfgC-04",
+     "titulo": "D&D 2024 Campanha Fantasmas de Saltmarsh - Episódio 02 | Ossos do Ofício",
+     "duracao": "3:07:35"
+    },
+    {
+     "id": "jIgwvjOxuPM",
+     "titulo": "D&D 2024 Campanha Fantasmas de Saltmarsh - Episódio 03 | Malditas Pragas!",
+     "duracao": "3:08:25"
+    },
+    {
+     "id": "_D5asDqzL5Q",
+     "titulo": "D&D 2024 Campanha Fantasmas de Saltmarsh - Episódio 04 | Sanbalet",
+     "duracao": "2:58:21"
+    },
+    {
+     "id": "-PBb6JTMZAE",
+     "titulo": "D&D 2024 Campanha Fantasmas de Saltmarsh - Episódio 05 | Trocando Ideia",
+     "duracao": "3:05:40"
+    },
+    {
+     "id": "fOQa6pkYDXA",
+     "titulo": "D&D 2024 Campanha Fantasmas de Saltmarsh - Episódio 06 | O Sequestro da Dona Marieta",
+     "duracao": "3:07:21"
+    },
+    {
+     "id": "vvpiG4jd2R8",
+     "titulo": "D&D 2024 Campanha Fantasmas de Saltmarsh - Episódio 07 | O Fantasma do Mar",
+     "duracao": "3:15:11"
+    },
+    {
+     "id": "e-5oTtUlgZU",
+     "titulo": "D&D 2024 Campanha Fantasmas de Saltmarsh - Episódio 08 | Consequências",
+     "duracao": "3:01:29"
+    },
+    {
+     "id": "O81pPVzJYPY",
+     "titulo": "D&D 2024 Campanha Fantasmas de Saltmarsh - Episódio 09 | Relaxa, Eu Tenho Um Plano!",
+     "duracao": "2:53:57"
+    },
+    {
+     "id": "crZhPk6UMes",
+     "titulo": "D&D 2024 Campanha Fantasmas de Saltmarsh - Episódio 10 | Pântano dos Lagartos",
+     "duracao": "3:02:02"
+    },
+    {
+     "id": "X1Tc8RRWC5w",
+     "titulo": "D&D 2024 Campanha Fantasmas de Saltmarsh - Episódio 11 | Em Nome do Rei",
+     "duracao": "2:56:55"
+    },
+    {
+     "id": "2o458Xok88Y",
+     "titulo": "D&D 2024 Campanha Fantasmas de Saltmarsh - Episódio 12 | No Covil dos Homens-Lagartos",
+     "duracao": "4:04:50"
+    },
+    {
+     "id": "JlSb10NcF7E",
+     "titulo": "D&D 2024 Campanha Fantasmas de Saltmarsh - Episódio 13 | Acordo Real",
+     "duracao": "2:55:54"
+    },
+    {
+     "id": "cEg7A2xG7iY",
+     "titulo": "D&D 2024 Campanha Fantasmas de Saltmarsh - Episódio 14 | Temos Um Outro Plano",
+     "duracao": "3:53:29"
+    },
+    {
+     "id": "CW2u9_WWz-g",
+     "titulo": "D&D 2024 Campanha Fantasmas de Saltmarsh - Episódio 15 | É só isso...",
+     "duracao": "2:58:03"
+    },
+    {
+     "id": "9j2rEsExpGI",
+     "titulo": "D&D 2024 Campanha Fantasmas de Saltmarsh - Episódio 16 | O Imperador das Ondas",
+     "duracao": "3:16:22"
+    },
+    {
+     "id": "IEmFWmiYsZA",
+     "titulo": "D&D 2024 Campanha Fantasmas de Saltmarsh - Episódio 17 | Orlumbor",
+     "duracao": "2:59:50"
+    },
+    {
+     "id": "P0FzA6ZHw6k",
+     "titulo": "D&D 2024 Campanha Fantasmas de Saltmarsh - Episódio 18 | Indo pro Buraco",
+     "duracao": "3:01:52"
+    },
+    {
+     "id": "nskPumcmVnU",
+     "titulo": "D&D 2024 Campanha Fantasmas de Saltmarsh - Episódio 19 | Bons Ventos nos Trazem",
+     "duracao": "4:47:35"
+    },
+    {
+     "id": "q1xYdt9i9vo",
+     "titulo": "D&D 2024 Campanha Fantasmas de Saltmarsh - Episódio 20 | Lá e de Volta Outra Vez",
+     "duracao": "2:59:19"
+    },
+    {
+     "id": "qmGgU-Jqa9Y",
+     "titulo": "D&D 2024 Campanha Fantasmas de Saltmarsh - Episódio 21 | E se tivéssemos uma bola de fogo?",
+     "duracao": "4:21:41"
+    },
+    {
+     "id": "4v76BNcSVCo",
+     "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Ep. 22 | Dá uma mão pro pai",
+     "duracao": "2:52:40"
+    },
+    {
+     "id": "ZI_-1DWAUfY",
+     "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Ep. 23 | Contra Todas as Chances",
+     "duracao": "3:27:54"
+    },
+    {
+     "id": "6wwXDF_Td70",
+     "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 24 | As Portas dos Desesperados",
+     "duracao": "3:38:13"
+    },
+    {
+     "id": "0tvZ4Bz5aPw",
+     "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 25 | A Cidade dos Esplendores",
+     "duracao": "3:33:34"
+    },
+    {
+     "id": "req7ssKrOcI",
+     "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 26 | Guerra de Gangues",
+     "duracao": "4:01:34"
+    },
+    {
+     "id": "95qtyGKifR0",
+     "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 27 | Revelações Seladas",
+     "duracao": "3:00:05"
+    },
+    {
+     "id": "ryRBivdVbRY",
+     "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 28 | Algo Não Cheira bem",
+     "duracao": "4:07:37"
+    },
+    {
+     "id": "Nhld2F0MdOQ",
+     "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 29 | Jogos Mentais",
+     "duracao": "3:06:00"
+    },
+    {
+     "id": "u5yWycDpT-k",
+     "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 30 | Além da Parede",
+     "duracao": "3:16:00"
+    },
+    {
+     "id": "owXbAwUuZ_s",
+     "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 31 | Provação",
+     "duracao": "3:43:33"
+    },
+    {
+     "id": "9k-kkl6kgkQ",
+     "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 32 | Amarrando as Pontas",
+     "duracao": "1:55:16"
+    },
+    {
+     "id": "xTXouPPjq-A",
+     "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 33 | O Plano",
+     "duracao": "3:57:30"
+    }
+   ]
+  },
+  "avernus": {
+   "playlist": "PLu-hxXZl-KUQmEmAz7tpsUA4Cwkn7Hf0E",
+   "episodios": [
+    {
+     "id": "8ajBbPSsU64",
+     "titulo": "D&D 2024 Campanha Descida ao Avernus - Episódio 01 | Portão de Baldur",
+     "duracao": "3:32:50"
+    },
+    {
+     "id": "cc79rxWw6CA",
+     "titulo": "D&D 2024 Campanha Descida ao Avernus - Episódio 02 | A Casa de Banho",
+     "duracao": "2:51:51"
+    },
+    {
+     "id": "FK1GdC7K1pc",
+     "titulo": "D&D 2024 Campanha Descida ao Avernus - Episódio 03 | A Masmorra dos Três Mortos",
+     "duracao": "3:24:39"
+    },
+    {
+     "id": "P3pcJRHCf3M",
+     "titulo": "D&D 2024 Campanha Descida ao Avernus - Episódio 04 | Em Nome de Bane!",
+     "duracao": "3:15:53"
+    },
+    {
+     "id": "jJc2CmVQwZQ",
+     "titulo": "D&D 2024 Campanha Descida ao Avernus - Episódio 05 | A Morte Lhe Cai Bem",
+     "duracao": "3:10:35"
+    },
+    {
+     "id": "_BbX5Hhj0b0",
+     "titulo": "D&D 2024 Campanha Descida ao Avernus - Episódio 06 | A Lanterna Baixa",
+     "duracao": "3:49:36"
+    },
+    {
+     "id": "eaSwGuTy_4Y",
+     "titulo": "D&D 2024 Campanha Descida ao Avernus - Episódio 07 | Vila Vanthampur",
+     "duracao": "3:25:24"
+    },
+    {
+     "id": "rvApU0a2Qos",
+     "titulo": "D&D 2024 Campanha Descida ao Avernus - Episódio 08 | Segredos de Família",
+     "duracao": "3:02:38"
+    },
+    {
+     "id": "L90-SrQbQUQ",
+     "titulo": "D&D 2024 Campanha Descida ao Avernus - Episódio 09 | O Alto Observador",
+     "duracao": "4:08:46"
+    },
+    {
+     "id": "xAsbdp2GQ2E",
+     "titulo": "D&D 2024 Campanha Descida ao Avernus - Episódio 10 | O Sacrifício Final",
+     "duracao": "4:14:08"
+    },
+    {
+     "id": "fCFa_lh4uYk",
+     "titulo": "D&D 2024 Campanha Descida ao Avernus - Episódio 11 | Estrada para o Inferno",
+     "duracao": "3:07:59"
+    },
+    {
+     "id": "OiWXMHA6BfY",
+     "titulo": "D&D 2024 Campanha Descida ao Avernus - Episódio 12 | A Torre de Traxigor",
+     "duracao": "1:56:53"
+    },
+    {
+     "id": "e3eoul_-jdM",
+     "titulo": "D&D 2024 Campanha Descida ao Avernus - Episódio 13 | Bem-vindos a Hellturel",
+     "duracao": "3:45:54"
+    },
+    {
+     "id": "q0C6uSyzITw",
+     "titulo": "D&D 2024 Campanha Descida ao Avernus - Episódio 14 | O Pedágio",
+     "duracao": "3:03:29"
+    },
+    {
+     "id": "7Kng7jpziGg",
+     "titulo": "D&D 2024 Campanha Descida ao Avernus - Episódio 15 | O Grande Salão",
+     "duracao": "3:19:23"
+    },
+    {
+     "id": "OS9Zm3D6VDE",
+     "titulo": "D&D 2024 Campanha Descida ao Avernus - Episódio 16 | Caminhos Separados",
+     "duracao": "3:35:46"
+    },
+    {
+     "id": "lACo5gopUKU",
+     "titulo": "D&D 2024 Campanha Descida ao Avernus - Episódio 17 | Marés de Caos",
+     "duracao": "4:10:01"
+    },
+    {
+     "id": "LkT0ldIvb7I",
+     "titulo": "D&D 2024 Campanha Descida ao Avernus - Episódio 18 | Descida Ao Avernus",
+     "duracao": "3:07:54"
+    },
+    {
+     "id": "xF7NeOZmaR0",
+     "titulo": "D&D 2024 Campanha Descida ao Avernus - Episódio 19 | O Ferro-velho da Maggie Louca",
+     "duracao": "2:57:03"
+    },
+    {
+     "id": "htxu9HnGweg",
+     "titulo": "D&D 2024 Campanha Descida ao Avernus - Episódio 20 | Corrida de Máquinas Infernais",
+     "duracao": "3:31:09"
+    },
+    {
+     "id": "3YZXwZvQpS0",
+     "titulo": "D&D 5.5 Campanha Descida ao Avernus - Episódio 21 | As Memórias de Lulu",
+     "duracao": "2:53:22"
+    },
+    {
+     "id": "BFye2BSqpE0",
+     "titulo": "D&D 5.5 Descida ao Avernus - Ep. 22 | A Colina de Haruman",
+     "duracao": "2:51:01"
+    },
+    {
+     "id": "d4KdAdayjtQ",
+     "titulo": "D&D 5.5 Descida ao Avernus - Episódio 23 | Lulu precisa de nós!",
+     "duracao": "4:57:12"
+    },
+    {
+     "id": "cJsin0aKxk4",
+     "titulo": "D&D 5.5 Descida ao Avernus - Episódio 24 | Aquele maldito Sorriso",
+     "duracao": "3:40:47"
+    },
+    {
+     "id": "42ab19zErFo",
+     "titulo": "D&D 5.5 Descida ao Avernus - Episódio 25 | Corações Partidos",
+     "duracao": "3:48:47"
+    },
+    {
+     "id": "8KU54G4QBYY",
+     "titulo": "D&D 5.5 Descida ao Avernus - Episódio 26 | Trocas e Acordos",
+     "duracao": "3:34:18"
+    },
+    {
+     "id": "jCY1r9cNdlQ",
+     "titulo": "D&D 5.5 Descida ao Avernus - Episódio 27 | A Torre de Arkhan",
+     "duracao": "5:39:31"
+    },
+    {
+     "id": "gF1sg3wKWv8",
+     "titulo": "D&D 5.5 Descida ao Avernus - Episódio 28 | A Cripta dos Cavaleiros do Inferno",
+     "duracao": "4:19:57"
+    },
+    {
+     "id": "iEa5zeKF6jY",
+     "titulo": "D&D 5.5 Descida ao Avernus - Episódio 29 | De Frente com Olianthus",
+     "duracao": "3:57:09"
+    },
+    {
+     "id": "vNpLHK3K7xc",
+     "titulo": "D&D 5.5 Descida ao Avernus - Episódio 30 | De Volta ao Início",
+     "duracao": "2:44:26"
+    },
+    {
+     "id": "L2222761zfo",
+     "titulo": "D&D 5.5 Descida ao Avernus - Episódio 31 | Incursão à Torre de Urm",
+     "duracao": "3:16:53"
+    },
+    {
+     "id": "gVjfisZ-SCw",
+     "titulo": "D&D 5.5 Descida ao Avernus - Episódio 32 | Espelho, Espelho Meu...",
+     "duracao": "2:57:38"
+    },
+    {
+     "id": "WbAiRu9vfrI",
+     "titulo": "D&D 5.5 Descida ao Avernus - Episódio 33 | A Crosta",
+     "duracao": "3:04:29"
+    }
+   ]
+  },
+  "restou": {
+   "playlist": "PLHowpbWJeP2Y",
+   "episodios": [
+    {
+     "id": "3hzkNzXEh4I",
+     "titulo": "Terra Devastada O Que Restou de Nós - Sessão Zero",
+     "duracao": "1:59:06"
+    },
+    {
+     "id": "oZGlpPL-d9M",
+     "titulo": "Terra Devastada O Que Restou de Nós - Episódio 01 | O Começo",
+     "duracao": "3:04:43"
+    },
+    {
+     "id": "Pl_8J0rVKBA",
+     "titulo": "Terra Devastada O Que Restou de Nós - Episódio 02 | Sem Saída",
+     "duracao": "3:11:48"
+    }
+   ]
+  },
+  "mar": {
+   "playlist": "PLu-hxXZl-KUQ2GeNESYZAC_zAfivACpPy",
+   "episodios": [
+    {
+     "id": "2hug7sypVqk",
+     "titulo": "D&D 2024 Campanha Além do Mar Sem Fim - Sessão Zero",
+     "duracao": "2:39:28"
+    },
+    {
+     "id": "zl21Q6dsrgk",
+     "titulo": "D&D 2024 Campanha Além do Mar Sem Fim - Episódio 01 | Bem-vindos à Lusitânia",
+     "duracao": "2:48:37"
+    },
+    {
+     "id": "KMb90n3btpI",
+     "titulo": "D&D 2024 Campanha Além do Mar Sem Fim - Episódio 02 | Terra Corrompida",
+     "duracao": "3:49:08"
+    },
+    {
+     "id": "aQYDSeS1Er0",
+     "titulo": "D&D 2024 Campanha Além do Mar Sem Fim - Episódio 03 | Badajoz",
+     "duracao": "3:02:44"
+    },
+    {
+     "id": "B6OZFJF8ohY",
+     "titulo": "D&D 2024 Campanha Além do Mar Sem Fim - Episódio 04 | Um Sonho de Liberdade",
+     "duracao": "4:02:02"
+    },
+    {
+     "id": "TZnwY6ZJ1IE",
+     "titulo": "D&D 2024 Campanha Além do Mar Sem Fim - Episódio 05 | O Último Suspiro",
+     "duracao": "3:28:30"
+    },
+    {
+     "id": "FTlH8h2ZxTs",
+     "titulo": "D&D 2024 Campanha Além do Mar Sem Fim - Episódio 06 | Navegando Sobre o Mar Sem Fim",
+     "duracao": "5:16:47"
+    },
+    {
+     "id": "jB_W7HwPUmQ",
+     "titulo": "D&D 2024 Campanha Além do Mar Sem Fim - Episódio 07 | Cemanáhuac",
+     "duracao": "3:11:12"
+    },
+    {
+     "id": "6fu4bqTrkcs",
+     "titulo": "D&D 2024 Campanha Além do Mar Sem Fim - Episódio 08 | A Selva dos Mortos",
+     "duracao": "2:45:48"
+    },
+    {
+     "id": "hju6bOjZ0JI",
+     "titulo": "D&D 5.5 Além do Mar Sem Fim - Ep. 09 | Guerreiros Imortais",
+     "duracao": "2:50:09"
+    },
+    {
+     "id": "OzJOjadwbN0",
+     "titulo": "D&D 5.5 Além do Mar Sem Fim - Ep. 10 | As Provações de Coatl",
+     "duracao": "2:57:31"
+    },
+    {
+     "id": "rDhMIaSW8Uw",
+     "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 11 | As Montanhas Incandenscentes",
+     "duracao": "3:28:55"
+    },
+    {
+     "id": "xK-hakDD3xE",
+     "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 12 | A Busca pelo Templo das Serpentes",
+     "duracao": "3:26:10"
+    },
+    {
+     "id": "MhdZjjOCf-k",
+     "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 13 | A Morada da Serpente",
+     "duracao": "3:46:54"
+    },
+    {
+     "id": "OCKK6Wh2sss",
+     "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 14 | Presas e Escamas",
+     "duracao": "3:33:17"
+    },
+    {
+     "id": "iGn-Znd382M",
+     "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 15 | Sacrifício",
+     "duracao": "3:53:56"
+    },
+    {
+     "id": "wMUME8JcFrI",
+     "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 16 | Nein! Nein! Nein!",
+     "duracao": "5:01:49"
+    },
+    {
+     "id": "ISJyMLwyMbc",
+     "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 17 | A Lagoa de Atl-tlan",
+     "duracao": "3:15:18"
+    },
+    {
+     "id": "ty-zLt1SXPI",
+     "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 18 | O Reino no Fundo da Lagoa",
+     "duracao": "2:59:01"
+    },
+    {
+     "id": "Vce4hbCuCHs",
+     "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 19 | A Cria das Profundezas",
+     "duracao": "3:52:03"
+    },
+    {
+     "id": "KsbZBBJkoOQ",
+     "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 20 | Os Cavaleiros do Fundo da Lagoa",
+     "duracao": "3:07:37"
+    },
+    {
+     "id": "iC-YSUpnRW0",
+     "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 21 | O Peso da Consciência",
+     "duracao": "2:52:01"
+    }
+   ]
+  },
+  "odisseia": {
+   "playlist": "PLu-hxXZl-KUQPhlqcaUU3HcjBjRBTzlqG",
+   "episodios": [
+    {
+     "id": "pRNxx_r6koE",
+     "titulo": "D&D 2024 Campanha Odisseia dos Lordes Dragões - Episódio 01 | Destinos Cruzados",
+     "duracao": "3:31:10"
+    },
+    {
+     "id": "Uf1PMcN_gWM",
+     "titulo": "D&D 2024 Campanha Odisseia dos Lordes Dragões - Episódio 02 | Olhe Por Onde Anda",
+     "duracao": "3:23:41"
+    },
+    {
+     "id": "-Ikkjrr3wlE",
+     "titulo": "D&D 2024 Campanha Odisseia dos Lordes Dragões - Episódio 03 | O Javali Corrompido",
+     "duracao": "3:29:51"
+    },
+    {
+     "id": "kmICvd_lLVQ",
+     "titulo": "D&D 2024 Campanha Odisseia dos Lordes Dragões - Episódio 04 | Arrependimentos",
+     "duracao": "3:26:31"
+    },
+    {
+     "id": "mg-FvoWfh8A",
+     "titulo": "D&D 2024 Campanha Odisseia dos Lordes Dragões - Episódio 06 | O Templo da Oráculo",
+     "duracao": "3:52:03"
+    },
+    {
+     "id": "rPgmBV27vAI",
+     "titulo": "D&D 2024 Campanha Odisseia dos Lordes Dragões - Episódio 07 | Farmando Aura",
+     "duracao": "3:17:53"
+    },
+    {
+     "id": "bkcfB16OReA",
+     "titulo": "D&D 2024 Campanha Odisseia dos Lordes Dragões - Episódio 08 | O Santuário dos Dragões",
+     "duracao": "3:33:49"
+    },
+    {
+     "id": "aTCr1ZQdflo",
+     "titulo": "D&D 2024 Campanha Odisseia dos Lordes Dragões - Episódio 09 | Como Uma Deusa",
+     "duracao": "3:19:47"
+    },
+    {
+     "id": "P8oxvsxxinY",
+     "titulo": "D&D 2024 Campanha Odisseia dos Lordes Dragões - Episódio 10 | O Gato, o Polvo e o Caranguejo",
+     "duracao": "3:48:34"
+    },
+    {
+     "id": "7PwCgvugk5k",
+     "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 11 | O Jantar está Servido",
+     "duracao": "3:53:16"
+    },
+    {
+     "id": "KrDJjKkAtJ0",
+     "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 12 | As Cataratas de Arkelon",
+     "duracao": "3:18:21"
+    },
+    {
+     "id": "1ct9Swj2Kdg",
+     "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 13 | Heróis sendo Forjados",
+     "duracao": "4:16:06"
+    },
+    {
+     "id": "TF6e4YSGCQk",
+     "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 14 | O Último Lorde Dragão",
+     "duracao": "2:42:21"
+    },
+    {
+     "id": "03-0jNX37_I",
+     "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 15 | As Mãos do Destino",
+     "duracao": "3:46:01"
+    },
+    {
+     "id": "iB2Pqf_ozi4",
+     "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 16 | A Necrópole de Telamok",
+     "duracao": "5:03:35"
+    },
+    {
+     "id": "RTzuOhGrZOg",
+     "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 17 | Decifra-me ou Te Devoro",
+     "duracao": "3:46:28"
+    },
+    {
+     "id": "5xXWAfrqG8g",
+     "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 18 | O Túmulo Corrompido",
+     "duracao": "3:18:03"
+    },
+    {
+     "id": "FSpMKuNNVzo",
+     "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 19 | O Labirinto de Graxis",
+     "duracao": "3:19:08"
+    },
+    {
+     "id": "qWKEZ8W2Elc",
+     "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 20 | Procurando Graxis",
+     "duracao": "3:36:23"
+    },
+    {
+     "id": "IOWie2osXhE",
+     "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 21 | Os (Quase) Senhores dos Dragões",
+     "duracao": "3:31:11"
+    }
+   ]
+  },
+  "lua": {
+   "playlist": "PLDWqkFFR3FM8",
+   "episodios": [
+    {
+     "id": "3PWUHe_6YLo",
+     "titulo": "D&D 5.5 A Lua Tortuosa - Sessão Zero",
+     "duracao": "3:11:19"
+    },
+    {
+     "id": "DsEg16ZksUE",
+     "titulo": "D&D 5.5 A Lua Tortuosa - Episódio 01 | O Expresso Luz-Fantasma",
+     "duracao": "3:08:49"
+    },
+    {
+     "id": "CG9fLcu6OHg",
+     "titulo": "D&D 5.5 A Lua Tortuosa - Episódio 02 | Através da Mortalha",
+     "duracao": "3:13:14"
+    },
+    {
+     "id": "2GOmZHEcpls",
+     "titulo": "D&D 5.5 A Lua Tortuosa - Episódio 03 | A Loucomotiva Fantasma",
+     "duracao": "3:28:52"
+    },
+    {
+     "id": "qOPlUrvS_vY",
+     "titulo": "D&D 5.5 A Lua Tortuosa - Episódio 04 | Charco de Vime",
+     "duracao": "3:08:18"
+    }
+   ]
+  },
+  "grande-roda": {
+   "playlist": "PLu-hxXZl-KUQLYts_IURzyVUr7HKIMzln",
+   "episodios": [
+    {
+     "id": "j52qbfrcqYU",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 01 | Vocês deveriam estar mortos!",
+     "duracao": "3:16:36"
+    },
+    {
+     "id": "_j4mF359TTw",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 02 | Cinzas, canção e gritos!",
+     "duracao": "3:23:51"
+    },
+    {
+     "id": "R1Sbhl6zXsw",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 03 | Bem-vindes a Sigil!",
+     "duracao": "2:56:20"
+    },
+    {
+     "id": "vNQbIJp7nLw",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 04 | Boleiros Bolados",
+     "duracao": "3:05:09"
+    },
+    {
+     "id": "vIDrc9QvPB8",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 05 | Lady Shemeshka",
+     "duracao": "3:40:44"
+    },
+    {
+     "id": "TEKRPSom_t8",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 06 | O Castelo Ambulante",
+     "duracao": "2:39:12"
+    },
+    {
+     "id": "Ovlu0eCn6Kw",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 07 | De novo e outra vez",
+     "duracao": "3:21:29"
+    },
+    {
+     "id": "JXap7IVCmPo",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 08 | Mimir",
+     "duracao": "2:47:20"
+    },
+    {
+     "id": "6eCanrXoopc",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 10 | Entre o Caos e a Ordem",
+     "duracao": "3:02:09"
+    },
+    {
+     "id": "Yak4MMRnH8E",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 11 | Terminal Concordante",
+     "duracao": "3:15:57"
+    },
+    {
+     "id": "NCzzPtWxKS8",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 12 | A Fuga",
+     "duracao": "3:05:12"
+    },
+    {
+     "id": "UgFjM-hDXlE",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 13 | Julgamento",
+     "duracao": "2:53:33"
+    },
+    {
+     "id": "p5dMHbGh0lU",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 14 | Espelho, espelho meu...",
+     "duracao": "2:57:59"
+    },
+    {
+     "id": "SxBEoMyKJO8",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 15 | O Homem de Lata",
+     "duracao": "2:47:35"
+    },
+    {
+     "id": "ba4rzQQaoG4",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 16 | Reencontros",
+     "duracao": "2:48:02"
+    },
+    {
+     "id": "Lmlav72T6J8",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 17 | Pedra, Pó e Portal",
+     "duracao": "2:59:07"
+    },
+    {
+     "id": "7A8ae6S8dAQ",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 18 | Copa Multiverso",
+     "duracao": "2:45:48"
+    },
+    {
+     "id": "eYJMGS_-ObI",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 19 | Glorium",
+     "duracao": "2:52:33"
+    },
+    {
+     "id": "qNxLPb4hwwg",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 20 | A Grande Tormenta",
+     "duracao": "2:58:47"
+    },
+    {
+     "id": "MhGylBERhRE",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 21 | Celebração Além do Tempo",
+     "duracao": "3:05:01"
+    },
+    {
+     "id": "qZHyaD1y0Q8",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 22 | Explorando Sylvania",
+     "duracao": "3:02:33"
+    },
+    {
+     "id": "cYqaBju_2jY",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 23 | Jogando com a Morte",
+     "duracao": "3:17:58"
+    },
+    {
+     "id": "6ywt2ulgS3o",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 24 | A Caçada Vil",
+     "duracao": "3:14:13"
+    },
+    {
+     "id": "H3UOd-Z4Pbc",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 25 | Paz Interior",
+     "duracao": "3:04:35"
+    },
+    {
+     "id": "NZG4JqRHHj0",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 26 | A Justiça de Excelsior",
+     "duracao": "2:55:45"
+    },
+    {
+     "id": "hDsYnFjVK0c",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 27 | Em Busca da Perfeição",
+     "duracao": "3:04:57"
+    },
+    {
+     "id": "GUIazH2TfTE",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 28 | Rigus",
+     "duracao": "3:23:20"
+    },
+    {
+     "id": "1VeLYHS7Xl4",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 29 | Portal para Aqueronte",
+     "duracao": "3:02:52"
+    },
+    {
+     "id": "GqSKr7xkXjs",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 30 | Toráxica",
+     "duracao": "4:36:20"
+    },
+    {
+     "id": "RfBbbII3EaQ",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 31 | Tocha",
+     "duracao": "2:42:53"
+    },
+    {
+     "id": "a4eXBJus8Vk",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 32 | Cinco Aventureiros e Um Segredo",
+     "duracao": "3:41:34"
+    },
+    {
+     "id": "AmsaW6ZHOE0",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 33 | Desesperança",
+     "duracao": "3:11:12"
+    },
+    {
+     "id": "JQyfRAKR19M",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 34 | Superando Traumas",
+     "duracao": "3:34:54"
+    },
+    {
+     "id": "STmOwNn5DcA",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 35 | Adeus, meu Champion!",
+     "duracao": "3:04:53"
+    },
+    {
+     "id": "RLOPVGfVg-8",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 36 | Sob Nova Direção",
+     "duracao": "3:51:56"
+    },
+    {
+     "id": "IJ6p-kSyv3o",
+     "titulo": "D&D 5ª Edição Campanha Um Giro na Grande Roda - Episódio 37 | Fuga Maldita",
+     "duracao": "3:35:05"
+    },
+    {
+     "id": "-m-KxygEXWc",
+     "titulo": "D&D 5ª Edição Um Giro na Grande Roda - Ep. 38 | Giro Completo",
+     "duracao": "2:39:06"
+    },
+    {
+     "id": "bzUDCF9br7g",
+     "titulo": "D&D 5e Um Giro na Grande Roda - Ep. 39 | Nas Teias do Conhecimento",
+     "duracao": "3:03:32"
+    },
+    {
+     "id": "Xdf6S_g_3Tg",
+     "titulo": "D&D 5e Um Giro na Grande Roda - Episódio 40 | O Deserto de Ferrugem",
+     "duracao": "2:58:08"
+    },
+    {
+     "id": "hbXNNmOhKfI",
+     "titulo": "D&D 5e Um Giro na Grande Roda - Episódio 41 | As Salas de Platina",
+     "duracao": "3:05:55"
+    },
+    {
+     "id": "NsQA8Hm-QV0",
+     "titulo": "D&D 5e Um Giro na Grande Roda - Episódio 42 | Shemeshka (Parte 1)",
+     "duracao": "1:28:25"
+    },
+    {
+     "id": "KSTQ1jZ4CNM",
+     "titulo": "D&D 5e Um Giro na Grande Roda - Episódio 42 | Shemeshka (Parte 2)",
+     "duracao": "1:49:27"
+    },
+    {
+     "id": "fOsP3Uaygs4",
+     "titulo": "D&D 5e Um Giro na Grande Roda - Episódio Final",
+     "duracao": "5:29:51"
+    }
+   ]
+  },
+  "klataros": {
+   "playlist": "PLu-hxXZl-KUTss1LTl90aY8I-7n5QL1oP",
+   "episodios": [
+    {
+     "id": "Wqj_IeOuy8Q",
+     "titulo": "D&D 5ª Edição Campanha O Levante de Klátaros - Episódio 01| Uma Fagulha de Esperança",
+     "duracao": "4:02:45"
+    },
+    {
+     "id": "hCWq71dYlyA",
+     "titulo": "D&D 5ª Edição Campanha O Levante de Klátaros - Episódio 02 | Uma Fagulha de Esperança Parte II",
+     "duracao": "2:29:52"
+    },
+    {
+     "id": "prYzYNPC8-I",
+     "titulo": "D&D 5ª Edição Campanha O Levante de Klátaros - Episódio 03 | Uma Viagem Inesperada",
+     "duracao": "3:52:59"
+    },
+    {
+     "id": "o0Q2CAaXLD0",
+     "titulo": "D&D 5ª Edição Campanha O Levante de Klátaros - Episódio 04 | O Círculo Escondido",
+     "duracao": "3:07:19"
+    },
+    {
+     "id": "BpYoxnO5kcI",
+     "titulo": "D&D 5ª Edição Campanha O Levante de Klátaros - Episódio 05 | Os Segredos Para Cormanthor",
+     "duracao": "3:13:12"
+    },
+    {
+     "id": "1FYQ8SowGfw",
+     "titulo": "D&D 5ª Edição Campanha O Levante de Klátaros - Episódio 06 | A Torre de Khelben",
+     "duracao": "2:50:29"
+    },
+    {
+     "id": "iYoorcWWAfE",
+     "titulo": "D&D 5ª Edição Campanha O Levante de Klátaros - Episódio 07 | A Batalha pelo Forte Norte",
+     "duracao": "2:55:20"
+    },
+    {
+     "id": "9ghyaiaQQxA",
+     "titulo": "D&D 5ª Edição Campanha O Levante de Klátaros - Episódio 08 | O Segredo para o Segundo Forte",
+     "duracao": "3:12:47"
+    },
+    {
+     "id": "og5edoq0HBE",
+     "titulo": "D&D 5ª Edição Campanha O Levante de Klátaros - Episódio 09 | A Batalha pelo Forte Leste",
+     "duracao": "2:36:19"
+    }
+   ]
+  },
+  "kraken": {
+   "playlist": "PLu-hxXZl-KUSczalmCKKq5837JH0BL-NL",
+   "episodios": [
+    {
+     "id": "ql9TtUHOB9A",
+     "titulo": "Dungeons and Dragons 5ª Edição | Aventura O Mundo de Kraken Episódio 05 | O Templo de Escariatus",
+     "duracao": "2:35:01"
+    },
+    {
+     "id": "ziZ2y8sc7y0",
+     "titulo": "D&D 5ª Edição Aventura O Mundo de Kraken - Episódio 06 | A Tumba de Escariatus",
+     "duracao": "2:10:56"
+    },
+    {
+     "id": "Bbqty5rUXds",
+     "titulo": "D&D 5ª Edição Aventura O Mundo de Kraken - Episódio 07 | A Batalha contra Escariatus",
+     "duracao": "3:39:17"
+    },
+    {
+     "id": "jLRkxgF_aQo",
+     "titulo": "D&D 5ª Edição Aventura O Mundo de Kraken - Episódio 08 | A Revelação de Millar",
+     "duracao": "3:14:13"
+    },
+    {
+     "id": "8LAwqDiqCP8",
+     "titulo": "D&D 5ª Edição Aventura O Mundo de Kraken - Episódio 09 | A Longa Batalha contra o Caçador",
+     "duracao": "4:46:55"
+    },
+    {
+     "id": "yeQBvbAc_SA",
+     "titulo": "D&D 5ª Edição Aventura O Mundo de Kraken - Episódio 10 | Um Companheiro Inusitado",
+     "duracao": "3:16:32"
+    },
+    {
+     "id": "kc4vQkocjaw",
+     "titulo": "D&D 5ª Edição Aventura O Mundo de Kraken - Episódio 12 | Dor, Tristeza e Sofrimento",
+     "duracao": "2:38:42"
+    },
+    {
+     "id": "08r84aKcr3s",
+     "titulo": "D&D 5ª Edição Aventura O Mundo de Kraken - Episódio 13 | Travessia Elemental",
+     "duracao": "2:35:16"
+    },
+    {
+     "id": "kc0yWBT77PE",
+     "titulo": "D&D 5ª Edição Aventura O Mundo de Kraken - Episódio 14 | Os Guardiões Elementais Parte I",
+     "duracao": "4:01:24"
+    },
+    {
+     "id": "0_TbmSoH3To",
+     "titulo": "D&D 5ª Edição Aventura O Mundo de Kraken - Episódio 15 | Os Guardiões Elemetais Parte II",
+     "duracao": "4:02:35"
+    },
+    {
+     "id": "E3PTgHI88Z0",
+     "titulo": "D&D 5ª Edição Aventura O Mundo de Kraken - Episódio 16 | O Domínio dos Gigantes",
+     "duracao": "4:02:02"
+    },
+    {
+     "id": "dZMPy77Xbk4",
+     "titulo": "D&D 5ª Edição Aventura O Mundo de Kraken - Episódio 17 | Os Sentinelas do Kraken",
+     "duracao": "2:39:32"
+    },
+    {
+     "id": "Zq7QurQmjik",
+     "titulo": "D&D 5ª Edição Aventura O Mundo de Kraken - Episódio Final",
+     "duracao": "4:06:12"
+    }
+   ]
+  },
+  "strahd-benites": {
+   "playlist": "PLu-hxXZl-KUS44rPcrHFtHu9WHxWnfdbF",
+   "episodios": [
+    {
+     "id": "AZXpNgkriSY",
+     "titulo": "D&D 5ª Edição Campanha A Maldição de Strahd - Episódio 25 | O Hospício de Santa Markova",
+     "duracao": "3:59:15"
+    },
+    {
+     "id": "zcUmp3srjqM",
+     "titulo": "D&D 5ª Edição Campanha A Maldição de Strahd - Episódio 26 | O Covil dos Lobisomens",
+     "duracao": "3:54:25"
+    },
+    {
+     "id": "4HJx3R83bC0",
+     "titulo": "D&D 5ª Edição Campanha A Maldição de Strahd - Episódio 27 | O Bote Estraçalhador de Kiril",
+     "duracao": "3:56:12"
+    },
+    {
+     "id": "AnF4K3oK_54",
+     "titulo": "D&D 5ª Edição Campanha A Maldição de Strahd - Episódio 28 | Emboscada Vistani",
+     "duracao": "3:55:40"
+    },
+    {
+     "id": "c8Q3Xy5rnNs",
+     "titulo": "D&D 5ª Edição Campanha A Maldição de Strahd - Episódio 29 | A Ordem do Dragão de Prata",
+     "duracao": "3:43:25"
+    },
+    {
+     "id": "P-I_O15QYhE",
+     "titulo": "D&D 5ª Edição Campanha A Maldição de Strahd - Episódio 30 | Vladimir Horngaard",
+     "duracao": "4:59:04"
+    },
+    {
+     "id": "BBCqEN_jAPk",
+     "titulo": "D&D 5ª Edição Campanha A Maldição de Strahd - Episódio 31 | Benção Primordial",
+     "duracao": "3:15:57"
+    },
+    {
+     "id": "7MGOzoaPHeo",
+     "titulo": "D&D 5ª Edição Campanha A Maldição de Strahd - Episódio 32 | A Cabana de Baba Lysaga",
+     "duracao": "4:23:36"
+    },
+    {
+     "id": "OybzBAoZtdk",
+     "titulo": "D&D 5ª Edição Campanha A Maldição de Strahd - Episódio 33 | O Farol de Argynvost",
+     "duracao": "3:18:07"
+    },
+    {
+     "id": "L-qfZK7gH48",
+     "titulo": "D&D 5ª Edição Campanha A Maldição de Strahd - Episódio 34 | Elfos Crepusculares",
+     "duracao": "3:16:55"
+    },
+    {
+     "id": "a_TtDBzY8no",
+     "titulo": "D&D 5ª Edição Campanha A Maldição de Strahd - Episódio 35 | A Passagem de Tsolenka",
+     "duracao": "3:58:40"
+    },
+    {
+     "id": "_kAYRP5Yj0o",
+     "titulo": "D&D 5ª Edição Campanha A Maldição de Strahd - Episódio 36 | O Templo de Âmbar Parte 1",
+     "duracao": "1:33:23"
+    },
+    {
+     "id": "85VKo78vPjM",
+     "titulo": "D&D 5ª Edição Campanha A Maldição de Strahd - Episódio 37 | O Templo de Âmbar Parte II",
+     "duracao": "4:41:06"
+    },
+    {
+     "id": "NkWNvpea6_c",
+     "titulo": "D&D 5ª Edição Campanha A Maldição de Strahd - Episódio 38 | Templo de Âmbar Parte III",
+     "duracao": "3:50:01"
+    },
+    {
+     "id": "U85SEdS5o3o",
+     "titulo": "D&D 5ª Edição Campanha A Maldição de Strahd - Episódio 39 | O Dia (da Morte) das Bruxas",
+     "duracao": "3:41:25"
+    },
+    {
+     "id": "eV5v_G2hhNg",
+     "titulo": "D&D 5ª Edição Campanha A Maldição de Strahd - Episódio 40 | A Maldição de Astolfinho",
+     "duracao": "3:17:56"
+    },
+    {
+     "id": "_XjIOUVOdkY",
+     "titulo": "D&D 5ª Edição Campanha A Maldição de Strahd - Episódio 41 | O Sarcófago de Zhudun",
+     "duracao": "4:19:46"
+    },
+    {
+     "id": "FnRVvyhBTTg",
+     "titulo": "D&D 5ª Edição Campanha A Maldição de Strahd - Episódio 42 | A Ruína dos Elfos Crepusculares",
+     "duracao": "3:49:05"
+    },
+    {
+     "id": "QsFzm1OywOY",
+     "titulo": "D&D 5ª Edição Campanha A Maldição de Strahd - Episódio 43 | Sangue, Neve e Cinzas",
+     "duracao": "3:57:42"
+    },
+    {
+     "id": "ecsvzKMnR0o",
+     "titulo": "D&D 5ª Edição Campanha A Maldição de Strahd - Episódio 44 | As Noivas de Strahd",
+     "duracao": "4:18:24"
+    },
+    {
+     "id": "S3jPen2GF-w",
+     "titulo": "D&D 5ª Edição Campanha A Maldição de Strahd - Episódio Final | Um Novo Alvorecer",
+     "duracao": "5:13:48"
+    }
+   ]
+  },
+  "tirania": {
+   "playlist": "PLu-hxXZl-KUQvJ3zRPKzgEv5OzbptrdFX",
+   "episodios": [
+    {
+     "id": "x9lgyBcD0Xk",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 02 | \"Por Archie!\"",
+     "duracao": "2:46:32"
+    },
+    {
+     "id": "jGnIP8ByJZ0",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 03 | Ninho Verde em Chamas!",
+     "duracao": "2:37:14"
+    },
+    {
+     "id": "GsiSi93pzs4",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 04 | Uma Saída Estratégica",
+     "duracao": "2:45:54"
+    },
+    {
+     "id": "dcasTCfrlMU",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 05 | Batalha pelo Templo de Chauntea",
+     "duracao": "2:46:25"
+    },
+    {
+     "id": "mZMldmJVbJs",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 06 | Protejam o Forte!",
+     "duracao": "2:58:22"
+    },
+    {
+     "id": "vPPHK9tuoEI",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 07 | Um Gato de Botas e com um Arco nas Mãos!",
+     "duracao": "2:27:26"
+    },
+    {
+     "id": "EqzutdSyDFA",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 08 | A Fúria da Tempestade",
+     "duracao": "3:03:18"
+    },
+    {
+     "id": "NE6PySq-7h8",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Capítulo 09 | No Rastro dos Invasores",
+     "duracao": "3:02:54"
+    },
+    {
+     "id": "nmgwUYT3BtE",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 10 | Emboscada",
+     "duracao": "3:13:13"
+    },
+    {
+     "id": "VdRmgsrWZaY",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 11 | Abandonos e Reencontros",
+     "duracao": "3:11:09"
+    },
+    {
+     "id": "xqX1zXrlgvM",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 12 | De Volta ao Acampamento",
+     "duracao": "3:30:28"
+    },
+    {
+     "id": "YwGHKzyWrYc",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 14 | Langdedrosa Fúriazul",
+     "duracao": "3:32:21"
+    },
+    {
+     "id": "zvFmVSrF93c",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 15 | Elturel",
+     "duracao": "2:39:24"
+    },
+    {
+     "id": "9ZfEuIeEd6M",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 16 | A Fera do Chiontar",
+     "duracao": "3:33:15"
+    },
+    {
+     "id": "oYLk32HMgfo",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 17 | Bem-vindos a Portão de Baldur",
+     "duracao": "3:13:29"
+    },
+    {
+     "id": "qCXK-Jhj5oE",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 18 | Delírios e Ilusões na Cidade Alta",
+     "duracao": "2:28:17"
+    },
+    {
+     "id": "yXU7-Pa2fsk",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 19 | O Plano",
+     "duracao": "2:36:58"
+    },
+    {
+     "id": "B6_RbZUTjIU",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 20 | As Garras do Troll",
+     "duracao": "3:03:58"
+    },
+    {
+     "id": "xXPZTRF32j0",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 21 | O Gato Quase Bateu as Botas",
+     "duracao": "2:44:02"
+    },
+    {
+     "id": "2q9qAWgJ_KE",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 22 | Aquele que era pra ter sido uma conversa",
+     "duracao": "2:35:24"
+    },
+    {
+     "id": "BTBnhzF9I0g",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 23 | O Novo Pacto de Arual",
+     "duracao": "3:23:05"
+    },
+    {
+     "id": "osGnij8zoI4",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 24 | Conflito de Interesses",
+     "duracao": "3:49:03"
+    },
+    {
+     "id": "qQ1ZnhOqrdU",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 25 | Reviravolta",
+     "duracao": "2:29:57"
+    },
+    {
+     "id": "EGFQCEx2MKA",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 26 | Vingança",
+     "duracao": "4:42:09"
+    },
+    {
+     "id": "8NgledjFE4o",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 27 | Encruzilhada",
+     "duracao": "2:38:07"
+    },
+    {
+     "id": "c2g455TFU2s",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 28 | O Pântano dos Lagartos",
+     "duracao": "3:29:17"
+    },
+    {
+     "id": "kPj7hVcipbk",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 29 | Castelo Naerytar",
+     "duracao": "2:54:36"
+    },
+    {
+     "id": "UUe8tMreB54",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 30 | Rumo Abaixo!",
+     "duracao": "2:50:55"
+    },
+    {
+     "id": "xGWNYXIxfUk",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 31 | Banho de Lama",
+     "duracao": "2:56:27"
+    },
+    {
+     "id": "91s-367ldQw",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 32 | Voaraghamanthar",
+     "duracao": "2:37:03"
+    },
+    {
+     "id": "Yts0_kU3vZg",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 33 | Perdidos",
+     "duracao": "2:43:48"
+    },
+    {
+     "id": "vpkoSKBUPvU",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 34 | O Guardião do Portal",
+     "duracao": "2:27:58"
+    },
+    {
+     "id": "8bg0od5OZVA",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 35 | Os Picos Cinzentos",
+     "duracao": "2:49:26"
+    },
+    {
+     "id": "qB5vAqQr4A4",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 36 | Talis, a Branca",
+     "duracao": "2:59:21"
+    },
+    {
+     "id": "r0zZoFph7H4",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 37 | Final Inesperado",
+     "duracao": "2:52:45"
+    },
+    {
+     "id": "lDzX15RX4nI",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 38 | Parnast",
+     "duracao": "3:15:00"
+    },
+    {
+     "id": "IVGHCst_08c",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 39 | Família Quebrada",
+     "duracao": "3:39:02"
+    },
+    {
+     "id": "WuRapk87aaQ",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 40 | Castelo nas Nuvens",
+     "duracao": "2:58:45"
+    },
+    {
+     "id": "94zGYyF7_-0",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 41 | O Caçador de Nuvens",
+     "duracao": "2:48:33"
+    },
+    {
+     "id": "tsVLR0RDQDw",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 42 | Um Gosto Amargo",
+     "duracao": "2:34:57"
+    },
+    {
+     "id": "cmoqsSJ_4Jo",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 43 | Chegadas e Partidas",
+     "duracao": "2:29:11"
+    },
+    {
+     "id": "NY6MwxaQgxI",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 44 | O Conselho de Águas Profundas",
+     "duracao": "2:45:28"
+    },
+    {
+     "id": "hj230qI2iWw",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 45 | Fortaleza dos Espinhos",
+     "duracao": "2:39:02"
+    },
+    {
+     "id": "KxLZHqY82B4",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 46 | Púrpura Manchado de Sangue",
+     "duracao": "2:42:01"
+    },
+    {
+     "id": "hVuh0EDxkIY",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 47 | O Pântano dos Mortos",
+     "duracao": "2:52:14"
+    },
+    {
+     "id": "npbezq0JBa8",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 48 | O Senhor dos Pântanos",
+     "duracao": "4:00:06"
+    },
+    {
+     "id": "AYvICXthvBw",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 49 | A Floresta Nebulosa",
+     "duracao": "2:34:07"
+    },
+    {
+     "id": "_-ZbjYMVgjQ",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 50 | Purificação Parte 1",
+     "duracao": "3:17:02"
+    },
+    {
+     "id": "yuBTQOE-8Pw",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 51 | Purificação Parte 2",
+     "duracao": "3:29:29"
+    },
+    {
+     "id": "awg7RzjJGXk",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 52 | A Fortaleza de Neronvain",
+     "duracao": "3:09:58"
+    },
+    {
+     "id": "MBzhdQj-mEQ",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 53 | Chuth, a Força da Natureza",
+     "duracao": "2:57:03"
+    },
+    {
+     "id": "myg6YsUgUWk",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 54 | O Conselho Metálico",
+     "duracao": "2:35:31"
+    },
+    {
+     "id": "2W0n97eNSX0",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 55 | O Plano (Quase) Perfeito",
+     "duracao": "2:42:21"
+    },
+    {
+     "id": "nsSsozdogT0",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 56 | Rastro Vermelho",
+     "duracao": "3:07:51"
+    },
+    {
+     "id": "RIyAuhNxK5s",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 57 | Decifra-me ou Te Devoro!",
+     "duracao": "2:51:00"
+    },
+    {
+     "id": "tJb05LngdiY",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 58 | Enfrentando a Morte",
+     "duracao": "3:08:37"
+    },
+    {
+     "id": "rJ6kkYh443k",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 59 | Túmulo Glacial",
+     "duracao": "4:40:50"
+    },
+    {
+     "id": "f4mCTCazHFw",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 60 | Ataque em Águas Profundas",
+     "duracao": "2:45:52"
+    },
+    {
+     "id": "MJP0eAK2EFA",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 61 | Prelúdio",
+     "duracao": "2:27:39"
+    },
+    {
+     "id": "o_VFtCHwF0s",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - Episódio 62 | Klauth, o Velho Rosnado",
+     "duracao": "3:04:21"
+    },
+    {
+     "id": "DEkGN6Aen3I",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - A Ascensão de Tiamat Parte 1",
+     "duracao": "3:00:01"
+    },
+    {
+     "id": "IJdAqn5Atls",
+     "titulo": "Tirania dos Dragões - Encerramento",
+     "duracao": "5:08"
+    },
+    {
+     "id": "3cbnAET0k18",
+     "titulo": "D&D 5ª Edição Campanha Tirania dos Dragões - A Ascensão de Tiamat Parte 2",
+     "duracao": "2:41:27"
+    }
+   ]
+  }
+ },
+ "highlights": [
+  {
+   "id": "4sPRkcO_hZ0",
+   "titulo": "Highlights Descida ao Avernus - Episódio 33 | A Crosta",
+   "duracao": "53:49",
+   "capa": "img/yt/4sPRkcO_hZ0.jpg"
+  },
+  {
+   "id": "8lk8Z5v1e7M",
+   "titulo": "Highlights Príncipes do Apocalipse - Episódio 11 | Encarcerados",
+   "duracao": "55:16",
+   "capa": "img/yt/8lk8Z5v1e7M.jpg"
+  },
+  {
+   "id": "MbKTLSVHOUg",
+   "titulo": "Highlights Príncipes do Apocalipse - Episódio 10 | Perigos Noturnos",
+   "duracao": "44:51",
+   "capa": "img/yt/MbKTLSVHOUg.jpg"
+  },
+  {
+   "id": "FVMAvsdumjs",
+   "titulo": "Highlights Maldição de Strahd - Episódio 35 | A Abadia de Santa Markóvia",
+   "duracao": "58:00",
+   "capa": "img/yt/FVMAvsdumjs.jpg"
+  },
+  {
+   "id": "VinWCCJEBmQ",
+   "titulo": "Highlights Maldição de Strahd - Episódio 34 | Um Convite Especial",
+   "duracao": "51:57",
+   "capa": "img/yt/VinWCCJEBmQ.jpg"
+  },
+  {
+   "id": "Nk69NJB-sLM",
+   "titulo": "Highlights - D&D Além do Mar Sem Fim Ep 21 | O Peso da Consciência",
+   "duracao": "58:57",
+   "capa": "img/yt/Nk69NJB-sLM.jpg"
+  }
+ ]
+}

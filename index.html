@@ -1,0 +1,967 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Papo Dado RPG · O seu canal de RPG diário</title>
+<meta name="description" content="Mesas de RPG ao vivo quase toda noite no YouTube: agenda das lives, campanhas, resumos, Shorts e vagas para jogar com a gente no MesaQuest.">
+<meta name="theme-color" content="#0E1426">
+<link rel="canonical" href="https://papodadorpg.com.br/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Papo Dado RPG">
+<meta property="og:title" content="Papo Dado RPG · O seu canal de RPG diário">
+<meta property="og:description" content="Mesas de RPG ao vivo quase toda noite no YouTube: agenda das lives, campanhas, resumos, Shorts e vagas para jogar com a gente no MesaQuest.">
+<meta property="og:url" content="https://papodadorpg.com.br/">
+<meta property="og:image" content="https://papodadorpg.com.br/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://papodadorpg.com.br/img/og.jpg">
+<link rel="icon" href="img/icone.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&display=swap">
+<style>[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<style>
+/* Layout: faixa de 5 cores no topo, herói com o vitral do banner, seções em fundo escuro "noite de mesa".
+   Cores e fonte saem do Manual da Marca 2026 (dark-first, tema único). */
+:root {
+  --ciano: #00BAFC;   /* Ciano Chat */
+  --azul: #005DFB;    /* Azul Dado */
+  --roxo: #7020F9;    /* Roxo Arcano */
+  --vermelho: #FB0F3A;/* Vermelho Crítico */
+  --laranja: #FD7601; /* Laranja Play (destaque) */
+  --preto: #000000;   /* Preto Contorno */
+  --branco: #FFFFFF;  /* Branco Letra */
+  --bg: #0E1426;      /* fundo do banner */
+  --bg2: #121a30;
+  --superficie: #171f38;
+  --linha: #26304f;
+  --suave: #a7b0cc;
+  --fonte: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --raio: 14px;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body { margin: 0; background: var(--bg); color: var(--branco); font-family: var(--fonte); font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+:focus-visible { outline: 3px solid var(--laranja); outline-offset: 3px; border-radius: 6px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
+
+.faixa { height: 6px; background: linear-gradient(90deg, var(--ciano) 0 20%, var(--azul) 20% 40%, var(--roxo) 40% 60%, var(--vermelho) 60% 80%, var(--laranja) 80% 100%); }
+.wrap { max-width: 1160px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+
+/* Cabeçalho */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+header.topo { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--linha); }
+header.topo .wrap { display: flex; align-items: center; gap: 24px; padding-block: 12px; }
+header.topo .marca img { height: 34px; width: auto; }
+nav.menu { display: flex; gap: 22px; margin-left: auto; font-weight: 500; font-size: 15px; }
+nav.menu a { text-decoration: none; color: var(--suave); }
+nav.menu a:hover { color: var(--branco); }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; border-radius: 999px; font-weight: 700; text-decoration: none; border: 2px solid var(--preto); font-size: 15px; white-space: nowrap; }
+.btn-play { background: var(--laranja); color: var(--preto); box-shadow: 0 3px 0 var(--preto); }
+.btn-play:hover { transform: translateY(-1px); box-shadow: 0 4px 0 var(--preto); }
+.btn-linha { border-color: var(--linha); color: var(--branco); background: transparent; }
+.btn-linha:hover { border-color: var(--suave); }
+@media (max-width: 860px) { nav.menu { display: none; } header.topo .btn { margin-left: auto; } }
+
+/* Herói */
+.heroi { position: relative; background: var(--bg) url("img/hero.webp") center / cover no-repeat; border-bottom: 1px solid var(--linha); }
+.heroi::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 75% at 32% 50%, rgba(14, 20, 38, .82), rgba(14, 20, 38, 0) 70%); pointer-events: none; }
+.heroi .wrap { position: relative; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center; padding-block: clamp(48px, 9vw, 110px); }
+.heroi .logo-grande { width: min(440px, 100%); height: auto; filter: drop-shadow(0 10px 30px rgba(0,0,0,.45)); }
+.heroi p.chamada { font-size: clamp(18px, 2.2vw, 22px); color: #dfe4f3; max-width: 34ch; margin: 22px 0 28px; text-wrap: pretty; }
+.heroi .acoes { display: flex; gap: 12px; flex-wrap: wrap; }
+.proxima { background: rgba(10, 14, 28, .82); border: 2px solid var(--preto); outline: 1px solid var(--linha); border-radius: var(--raio); padding: 22px; backdrop-filter: blur(6px); min-width: 0; }
+.rotulo { text-transform: uppercase; letter-spacing: .12em; font-size: 12px; font-weight: 700; color: var(--laranja); }
+.proxima h2 { margin: 6px 0 4px; font-size: 26px; line-height: 1.15; font-weight: 800; text-wrap: balance; }
+.proxima .quando { font-size: 17px; color: var(--suave); }
+.proxima .ou { color: var(--suave); font-size: 14px; margin-top: 6px; }
+.aovivo { display: inline-flex; align-items: center; gap: 8px; background: var(--vermelho); color: var(--branco); font-weight: 800; font-size: 13px; letter-spacing: .08em; padding: 4px 10px; border-radius: 999px; border: 2px solid var(--preto); }
+.aovivo::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--branco); animation: pulso 1.2s infinite; }
+@keyframes pulso { 50% { opacity: .3; } }
+.proxima .btn { margin-top: 16px; }
+.prox-capa { position: relative; display: grid; place-items: center; aspect-ratio: 16 / 9; margin-bottom: 16px; border: 2px solid var(--preto); border-radius: 10px; overflow: hidden; background: var(--preto); }
+.prox-capa img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.prox-capa .play { transition: transform .15s; }
+.prox-capa:hover .play { transform: scale(1.08); }
+@media (max-width: 860px) { .heroi .wrap { grid-template-columns: 1fr; } }
+
+/* Seções */
+section.bloco { padding-block: clamp(56px, 8vw, 96px); }
+section.bloco.alt { background: var(--bg2); border-block: 1px solid var(--linha); }
+.cab-secao { display: flex; align-items: end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
+.cab-secao h2 { margin: 6px 0 0; font-size: clamp(30px, 4.4vw, 46px); line-height: 1.05; font-weight: 800; letter-spacing: -.01em; text-wrap: balance; }
+.cab-secao p { margin: 0; color: var(--suave); max-width: 48ch; }
+
+/* Agenda */
+.semana { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; }
+.dia { background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio); padding: 14px 12px; min-height: 180px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.dia.hoje { border: 2px solid var(--laranja); box-shadow: 0 0 0 4px color-mix(in srgb, var(--laranja) 18%, transparent); }
+.dia h3 { margin: 0; font-size: 15px; font-weight: 800; display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+.dia h3 .tag-hoje { font-size: 11px; background: var(--laranja); color: var(--preto); padding: 2px 8px; border-radius: 999px; letter-spacing: .06em; }
+.slot { border-left: 4px solid var(--cor, var(--laranja)); padding: 2px 0 2px 10px; }
+.slot .hora { font-variant-numeric: tabular-nums; font-weight: 800; font-size: 20px; line-height: 1.1; }
+.slot .nomes { font-size: 14px; line-height: 1.35; margin-top: 2px; }
+.slot .nomes span { display: block; }
+.slot .ritmo { font-size: 12px; color: var(--suave); margin-top: 4px; }
+.slot.off { --cor: var(--linha); }
+.slot.off .hora { font-size: 16px; color: #dfe4f3; }
+.vazio { color: var(--suave); font-size: 14px; margin-top: auto; margin-bottom: auto; }
+.nota { margin-top: 18px; color: var(--suave); font-size: 14px; }
+@media (max-width: 980px) { .semana { grid-template-columns: repeat(2, minmax(0, 1fr)); } .dia { min-height: 0; } .dia.semlive { display: none; } }
+@media (max-width: 520px) { .semana { grid-template-columns: 1fr; } }
+
+/* Campanhas */
+.mesas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 980px) { .mesas { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .mesas { grid-template-columns: 1fr; } }
+.cab-secao.sub { margin-top: clamp(56px, 7vw, 80px); margin-bottom: 24px; }
+.cab-secao.sub h3 { margin: 6px 0 0; font-size: clamp(24px, 3vw, 32px); line-height: 1.1; font-weight: 800; text-wrap: balance; }
+.mesas.encerradas { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 980px) { .mesas.encerradas { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .mesas.encerradas { grid-template-columns: 1fr; } }
+.encerradas .mesa .corpo { padding: 14px 16px 16px; gap: 8px; }
+.encerradas .mesa h3 { font-size: 18px; }
+.encerradas .mesa p { font-size: 14px; }
+.chip.status { font-weight: 800; border-color: var(--preto); }
+.chip.status.finalizada { background: var(--ciano); color: var(--preto); }
+.chip.status.cancelada, .chip.status.encerrada { background: #2a3150; color: #cfd5ea; border-color: var(--linha); }
+.mesa { background: var(--superficie); border: 2px solid var(--preto); outline: 1px solid var(--linha); border-radius: var(--raio); overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.mesa .vitral { aspect-ratio: 16 / 7; width: 100%; display: block; background: var(--preto); }
+.mesa .topo-capa { position: relative; border-bottom: 2px solid var(--preto); }
+/* Capas do MesaQuest têm proporções variadas: a imagem aparece inteira e o fundo é ela mesma, desfocada */
+.mesa .capa-mq-box { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: var(--preto); }
+.mesa .capa-mq-box .fundo { position: absolute; inset: -20px; width: calc(100% + 40px); height: calc(100% + 40px); object-fit: cover; filter: blur(18px) brightness(.55); }
+.mesa .capa-mq-box .capa-mq { position: relative; width: 100%; height: 100%; object-fit: contain; display: block; }
+.mesa .capa-pl { aspect-ratio: 16 / 9; width: 100%; height: auto; object-fit: cover; display: block; background: var(--preto); }
+.mesa .topo-capa a { display: block; }
+.chip.selo-vagas { font-weight: 800; border-color: var(--preto); background: var(--ciano); color: var(--preto); }
+.chip.selo-vagas.lotada { background: #2a3150; border-color: var(--linha); color: #cfd5ea; }
+.mesa .proxima-sessao { font-size: 14px; color: var(--suave); }
+.mesa .proxima-sessao strong { color: var(--branco); font-variant-numeric: tabular-nums; }
+.mesa .acoes-mesa { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.mesa .acoes-mesa .btn { padding: 9px 16px; font-size: 14px; }
+.mesa .preco { font-size: 13px; color: var(--suave); }
+.fonte-mq { margin-top: 18px; color: var(--suave); font-size: 13px; }
+.fonte-mq a { color: var(--ciano); }
+.mesa .corpo { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.mesa h3 { margin: 0; font-size: 22px; line-height: 1.15; font-weight: 800; text-wrap: balance; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 999px; background: var(--bg); border: 1px solid var(--linha); color: #dfe4f3; white-space: nowrap; }
+.chip.dia-chip { background: var(--cor); color: var(--texto-cor, var(--branco)); border-color: var(--preto); }
+.mesa p { margin: 0; color: #d3d8ea; font-size: 15px; }
+.mesa .links { display: flex; gap: 14px; margin-top: auto; border-top: 1px solid var(--linha); padding-top: 10px; font-size: 14px; font-weight: 700; }
+.mesa .links a { color: var(--laranja); text-decoration: none; }
+.mesa .links a:hover { text-decoration: underline; }
+
+/* Marcação de conteúdo a preencher (só no rascunho) */
+.preencher { outline: 1.5px dashed color-mix(in srgb, var(--ciano) 70%, transparent); outline-offset: 2px; border-radius: 4px; }
+.preencher::after { content: " a preencher"; font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--ciano); margin-left: 4px; }
+
+/* Vídeos */
+.videos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 860px) { .videos { grid-template-columns: 1fr; } }
+.video { text-decoration: none; background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio); overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.video:hover { border-color: var(--suave); }
+.video .capa { aspect-ratio: 16 / 9; background: var(--preto); position: relative; display: grid; place-items: center; }
+.video .capa img { width: 100%; height: 100%; object-fit: cover; }
+.video .capa .play, .prox-capa .play { position: absolute; width: 58px; height: 58px; border-radius: 50%; background: var(--laranja); border: 3px solid var(--preto); display: grid; place-items: center; }
+.video .capa .play::before, .prox-capa .play::before { content: ""; border-left: 18px solid var(--preto); border-top: 11px solid transparent; border-bottom: 11px solid transparent; margin-left: 5px; }
+.video .txt { padding: 14px 16px; display: grid; gap: 4px; }
+.video .txt strong { font-size: 17px; line-height: 1.25; }
+.video .txt span { color: var(--suave); font-size: 14px; }
+
+/* Sobre */
+.sobre { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: start; }
+@media (max-width: 860px) { .sobre { grid-template-columns: 1fr; } }
+.sobre .texto p { margin: 0 0 16px; color: #d3d8ea; max-width: 62ch; }
+.marcos { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 0; border-left: 3px solid var(--linha); }
+.marcos li { padding: 0 0 18px 18px; position: relative; }
+.marcos li::before { content: ""; position: absolute; left: -9px; top: 6px; width: 15px; height: 15px; background: var(--laranja); border: 3px solid var(--preto); transform: rotate(45deg); }
+.marcos strong { display: block; font-variant-numeric: tabular-nums; }
+.marcos span { color: var(--suave); font-size: 15px; }
+.fundadores { display: grid; gap: 14px; }
+.pessoa { display: grid; grid-template-columns: 76px 1fr; gap: 16px; align-items: center; background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio); padding: 16px; }
+.pessoa .avatar { width: 76px; height: 76px; border-radius: 50%; border: 3px solid var(--preto); display: grid; place-items: center; font-weight: 800; font-size: 26px; color: var(--preto); }
+img.avatar { object-fit: cover; padding: 0; }
+.perfil-mq { display: inline-block; margin-top: 8px; font-size: 13px; font-weight: 700; color: var(--ciano); text-decoration: none; }
+.perfil-mq:hover { text-decoration: underline; }
+.pessoa h3 { margin: 0; font-size: 20px; }
+.pessoa .papel { color: var(--laranja); font-weight: 700; font-size: 14px; }
+.pessoa p { margin: 4px 0 0; color: var(--suave); font-size: 14px; }
+
+/* Comunidade */
+.redes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 860px) { .redes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .redes { grid-template-columns: 1fr; } }
+.rede { display: flex; gap: 14px; align-items: center; padding: 18px; border-radius: var(--raio); text-decoration: none; border: 2px solid var(--preto); background: var(--superficie); outline: 1px solid var(--linha); min-width: 0; }
+.rede:hover { outline-color: var(--suave); }
+.rede .ico { width: 48px; height: 48px; flex: none; border-radius: 12px; border: 2px solid var(--preto); display: grid; place-items: center; }
+.rede .ico svg { width: 24px; height: 24px; }
+.rede strong { display: block; font-size: 17px; }
+.rede span { color: var(--suave); font-size: 14px; overflow-wrap: anywhere; }
+.rede.destaque { background: var(--laranja); color: var(--preto); outline-color: var(--preto); }
+.rede.destaque span { color: #2a1300; }
+.contato { margin-top: 22px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; color: var(--suave); }
+.contato code { font-family: var(--fonte); background: var(--superficie); border: 1px solid var(--linha); padding: 6px 12px; border-radius: 8px; color: var(--branco); user-select: all; }
+.contato button { font: inherit; font-size: 14px; font-weight: 700; padding: 6px 12px; border-radius: 8px; background: transparent; color: var(--branco); border: 1px solid var(--linha); cursor: pointer; }
+
+/* Cards de campanha: link para a página, última sessão e menu de agenda */
+.mesa h3 a { text-decoration: none; }
+.mesa h3 a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.ultima { display: grid; grid-template-columns: 96px 1fr; gap: 12px; align-items: center; text-decoration: none; background: var(--bg); border: 1px solid var(--linha); border-left: 4px solid var(--cor, var(--laranja)); border-radius: 10px; padding: 8px 10px 8px 8px; }
+.ultima:hover { border-color: var(--suave); }
+.ultima .rotulo { display: block; font-size: 11px; }
+.ultima strong { display: block; font-size: 14px; line-height: 1.3; margin-top: 2px; }
+.ultima .sub { display: block; font-size: 12px; color: var(--suave); margin-top: 2px; }
+.mini { position: relative; display: grid; place-items: center; aspect-ratio: 16 / 9; border-radius: 6px; overflow: hidden; background: var(--preto); }
+.mini img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.mini .play { position: relative; width: 28px; height: 28px; border-radius: 50%; background: var(--laranja); border: 2px solid var(--preto); display: grid; place-items: center; }
+.mini .play::before { content: ""; border-left: 9px solid var(--preto); border-top: 6px solid transparent; border-bottom: 6px solid transparent; margin-left: 3px; }
+.mesa .links { align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.menu-agenda { position: relative; }
+.menu-agenda summary { list-style: none; cursor: pointer; color: var(--ciano); font-weight: 700; font-size: 14px; }
+.menu-agenda summary::-webkit-details-marker { display: none; }
+.menu-agenda .opcoes { position: absolute; right: 0; bottom: calc(100% + 8px); z-index: 5; display: grid; gap: 2px; min-width: 220px; padding: 6px; background: var(--bg); border: 2px solid var(--preto); outline: 1px solid var(--linha); border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,.45); }
+.menu-agenda .opcoes a { color: var(--branco) !important; padding: 8px 10px; border-radius: 6px; font-size: 14px; }
+.menu-agenda .opcoes a:hover { background: var(--superficie); }
+.pagina-campanha .menu-agenda .opcoes { bottom: auto; top: calc(100% + 8px); left: 0; right: auto; }
+.pagina-campanha .menu-agenda summary { display: inline-flex; padding: 11px 20px; border-radius: 999px; border: 2px solid var(--linha); color: var(--branco); font-size: 15px; }
+.nota a { color: var(--ciano); }
+
+/* Página de campanha (#/campanha/<id>) */
+body.modo-campanha main > section:not(#pagina-campanha) { display: none; }
+.pagina-campanha { padding-block: clamp(28px, 5vw, 56px) clamp(56px, 8vw, 96px); }
+.voltar { display: inline-block; margin-bottom: 20px; color: var(--suave); text-decoration: none; font-weight: 700; font-size: 15px; }
+.voltar:hover { color: var(--branco); }
+.camp-topo { display: grid; grid-template-columns: 1.05fr .95fr; gap: 36px; align-items: center; }
+@media (max-width: 860px) { .camp-topo { grid-template-columns: 1fr; gap: 22px; } }
+.camp-capa { border: 2px solid var(--preto); outline: 1px solid var(--linha); border-radius: var(--raio); overflow: hidden; background: var(--preto); }
+.camp-capa img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+.camp-topo h1 { margin: 6px 0 12px; font-size: clamp(32px, 4.6vw, 52px); line-height: 1.02; font-weight: 800; letter-spacing: -.01em; text-wrap: balance; }
+.camp-topo .sinopse { color: #d3d8ea; margin: 14px 0; max-width: 56ch; }
+.camp-topo .sobre-extra { font-size: 15px; color: var(--suave); margin: 10px 0; }
+.camp-topo .proxima-sessao { color: var(--suave); margin-bottom: 18px; }
+.camp-topo .proxima-sessao strong { color: var(--branco); }
+.camp-topo .acoes { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.camp-bloco { margin-top: clamp(40px, 6vw, 64px); }
+.camp-bloco > h2 { margin: 6px 0 18px; font-size: clamp(24px, 3vw, 32px); line-height: 1.1; font-weight: 800; }
+.camp-ultima { display: grid; grid-template-columns: minmax(0, 360px) 1fr; gap: 24px; align-items: center; background: var(--superficie); border: 2px solid var(--preto); outline: 1px solid var(--linha); border-left: 6px solid var(--cor, var(--laranja)); border-radius: var(--raio); padding: 18px; }
+@media (max-width: 700px) { .camp-ultima { grid-template-columns: 1fr; } }
+.camp-ultima .mini { border-radius: 10px; border: 2px solid var(--preto); }
+.camp-ultima .mini .play { width: 58px; height: 58px; border-width: 3px; }
+.camp-ultima .mini .play::before { border-left-width: 18px; border-top-width: 11px; border-bottom-width: 11px; margin-left: 5px; }
+.camp-ultima h3 { margin: 4px 0 8px; font-size: 20px; }
+.camp-ultima p { margin: 0 0 14px; color: #d3d8ea; max-width: 70ch; }
+.episodios { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 18px; counter-reset: ep; }
+@media (max-width: 760px) { .episodios { grid-template-columns: 1fr; } }
+.episodios a { display: grid; grid-template-columns: 36px 1fr auto; gap: 12px; align-items: center; padding: 10px 12px; border-radius: 10px; background: var(--superficie); border: 1px solid var(--linha); text-decoration: none; min-width: 0; }
+.episodios a:hover { border-color: var(--suave); }
+.episodios .n { font-weight: 800; color: var(--laranja); font-variant-numeric: tabular-nums; text-align: right; }
+.episodios .t { font-size: 15px; line-height: 1.3; overflow-wrap: anywhere; }
+.episodios .d { font-size: 13px; color: var(--suave); font-variant-numeric: tabular-nums; }
+.episodios li.novo a { border-color: var(--laranja); }
+.episodios li.novo .t::after { content: "NOVO"; margin-left: 8px; font-size: 10px; font-weight: 800; letter-spacing: .08em; background: var(--laranja); color: var(--preto); padding: 2px 6px; border-radius: 999px; vertical-align: 2px; }
+
+/* Shorts */
+.shorts { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(150px, 180px); gap: 14px; overflow-x: auto; padding-bottom: 10px; scroll-snap-type: x mandatory; }
+.short { scroll-snap-align: start; text-decoration: none; display: grid; gap: 8px; }
+.short .capa { position: relative; aspect-ratio: 9 / 16; border-radius: 12px; overflow: hidden; border: 2px solid var(--preto); outline: 1px solid var(--linha); background: var(--preto); }
+.short .capa img { width: 100%; height: 100%; object-fit: cover; }
+.short .capa::after { content: ""; position: absolute; inset: auto 0 0; height: 40%; background: linear-gradient(transparent, rgba(0,0,0,.7)); }
+.short strong { font-size: 14px; line-height: 1.3; }
+.short:hover .capa { outline-color: var(--suave); }
+
+/* FAQ */
+.faq { display: grid; gap: 10px; max-width: 860px; }
+.faq details { background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio); padding: 14px 18px; }
+.faq details[open] { border-color: var(--suave); }
+.faq summary { cursor: pointer; font-weight: 800; font-size: 17px; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--laranja); font-size: 22px; line-height: 1; }
+.faq details[open] summary::after { content: "−"; }
+.faq p { margin: 10px 0 0; color: #d3d8ea; }
+.faq a { color: var(--ciano); }
+
+/* Pix como botão */
+button.rede { font: inherit; color: inherit; text-align: left; cursor: pointer; width: 100%; }
+
+footer.rodape { border-top: 1px solid var(--linha); padding-block: 32px; color: var(--suave); font-size: 14px; }
+footer.rodape .wrap { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: space-between; }
+footer.rodape img { height: 40px; width: auto; }
+</style>
+</head>
+<body>
+
+<div class="faixa" aria-hidden="true"></div>
+
+<header class="topo">
+  <div class="wrap">
+    <a class="marca" href="#inicio" aria-label="Papo Dado RPG, início"><img src="img/logo-horizontal.svg" alt="Papo Dado RPG" width="210" height="34"></a>
+    <nav class="menu" aria-label="Seções">
+      <a href="#agenda">Agenda</a>
+      <a href="#mesas">Campanhas</a>
+      <a href="#jogue">Jogar</a>
+      <a href="#videos">Vídeos</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#comunidade">Comunidade</a>
+    </nav>
+    <a class="btn btn-play" href="https://www.youtube.com/@papodadorpg?sub_confirmation=1" target="_blank" rel="noopener">Inscrever-se</a>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="pagina-campanha" id="pagina-campanha" hidden aria-live="polite"></section>
+
+  <section class="heroi">
+    <div class="wrap">
+      <div>
+        <img class="logo-grande" src="img/logo-principal.svg" alt="Papo Dado RPG: o seu canal de RPG diário" width="440" height="225">
+        <p class="chamada">Mesas de RPG ao vivo quase toda noite, com cortes e conteúdo novo todo dia. Puxa uma cadeira: o dado já vai rolar.</p>
+        <div class="acoes">
+          <a class="btn btn-play" href="https://www.youtube.com/@papodadorpg/streams" target="_blank" rel="noopener">Assistir no YouTube</a>
+          <a class="btn btn-linha" href="#agenda">Ver a agenda</a>
+        </div>
+      </div>
+      <aside class="proxima" id="proxima" aria-live="polite">
+        <a class="prox-capa" id="prox-capa" href="https://www.youtube.com/@papodadorpg/streams" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true" hidden><img id="prox-img" src="data:," alt=""><span class="play"></span></a>
+        <div class="rotulo" id="prox-rotulo">Próxima live</div>
+        <h2 id="prox-nome">Carregando…</h2>
+        <div class="quando" id="prox-quando"></div>
+        <div class="ou" id="prox-ou"></div>
+        <a class="btn btn-play" id="prox-btn" href="https://www.youtube.com/@papodadorpg/streams" target="_blank" rel="noopener">Abrir o canal</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="bloco" id="agenda">
+    <div class="wrap">
+      <div class="cab-secao">
+        <div><div class="rotulo">Agenda</div><h2>Toda semana na mesa</h2></div>
+        <p>Horários de Brasília. Cada campanha é quinzenal: quando duas aparecem no mesmo dia, elas se revezam a cada semana.</p>
+      </div>
+      <div class="semana" id="semana"></div>
+      <p class="nota">Mudou algum horário? Os avisos saem primeiro na comunidade do WhatsApp e no Instagram. Quer as lives no seu calendário? Use o botão “＋ Agenda” em cada campanha.</p>
+    </div>
+  </section>
+
+  <section class="bloco alt" id="mesas">
+    <div class="wrap">
+      <div class="cab-secao">
+        <div><div class="rotulo">Campanhas</div><h2>No ar no canal</h2></div>
+        <p>As campanhas que vão ao ar nas nossas lives. Clique numa campanha para ver os episódios e o resumo da última sessão.</p>
+      </div>
+      <div class="mesas" id="lista-campanhas"></div>
+
+      <div class="cab-secao sub" id="encerradas">
+        <div><div class="rotulo">Já encerradas</div><h3>Para maratonar do começo ao fim</h3></div>
+        <p>Campanhas que chegaram ao fim, com todos os episódios nas playlists do canal.</p>
+      </div>
+      <div class="mesas encerradas" id="lista-encerradas"></div>
+    </div>
+  </section>
+
+  <section class="bloco" id="jogue" hidden>
+    <div class="wrap">
+      <div class="cab-secao">
+        <div><div class="rotulo">Jogue com a gente</div><h2>Mesas abertas no MesaQuest</h2></div>
+        <p>Quer sentar na mesa em vez de só assistir? Estas são as nossas mesas no MesaQuest. Quando tem vaga, é só entrar.</p>
+      </div>
+      <div class="mesas" id="lista-mesaquest"></div>
+      <p class="fonte-mq" id="fonte-mq"></p>
+
+      <div class="cab-secao sub" id="faq">
+        <div><div class="rotulo">Dúvidas</div><h3>Como jogar com a gente</h3></div>
+        <p>O que todo mundo pergunta antes de sentar na mesa.</p>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>Como faço para jogar numa mesa do Papo Dado?</summary>
+          <p>As nossas mesas ficam no MesaQuest. Escolha uma mesa com vaga logo acima, clique em “Quero jogar” e faça a inscrição por lá. Se a mesa estiver completa, abra a página dela no MesaQuest para acompanhar quando abrir vaga.</p>
+        </details>
+        <details>
+          <summary>Quanto custa?</summary>
+          <p>As mesas são mensais e o pagamento é feito pelo MesaQuest. <span id="faq-precos">O valor de cada mesa aparece no card dela.</span></p>
+        </details>
+        <details>
+          <summary>Preciso ter experiência com RPG?</summary>
+          <p>Não. A maioria das nossas mesas é para todos os níveis. Quando uma mesa pede mais experiência, o card mostra o nível (por exemplo, “Intermediário”).</p>
+        </details>
+        <details>
+          <summary>De quanto em quanto tempo são as sessões?</summary>
+          <p>Cada campanha joga a cada duas semanas, à noite, em sessões de cerca de 3 horas. Os dias e horários (de Brasília) estão na agenda lá em cima.</p>
+        </details>
+        <details>
+          <summary>As sessões vão ao ar no canal?</summary>
+          <p>As campanhas da seção “No ar no canal” são transmitidas ao vivo no YouTube, então quem joga nelas participa da live. Às sextas temos as mesas em off, jogadas longe das câmeras.</p>
+        </details>
+        <details>
+          <summary>As mesas são online?</summary>
+          <p>Sim. Nas mesas do canal jogamos no Foundry VTT, com áudio e vídeo pelo VDO Ninja. Os detalhes de cada mesa, como regras e ferramentas, estão na página dela no MesaQuest.</p>
+        </details>
+        <details>
+          <summary>Como fico sabendo das próximas lives?</summary>
+          <p>Ative o sino no <a href="https://www.youtube.com/@papodadorpg?sub_confirmation=1" target="_blank" rel="noopener">YouTube</a>, entre na <a href="https://chat.whatsapp.com/LYzLC9d44L94uWD2me76nR" target="_blank" rel="noopener">comunidade do WhatsApp</a> ou adicione as campanhas ao seu calendário pelo botão “Agenda”.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco alt" id="videos">
+    <div class="wrap">
+      <div class="cab-secao">
+        <div><div class="rotulo">Vídeos</div><h2>Últimas do canal</h2></div>
+        <a class="btn btn-linha" href="https://www.youtube.com/@papodadorpg/videos" target="_blank" rel="noopener">Ver todos no YouTube</a>
+      </div>
+      <div class="videos" id="lista-videos"></div>
+
+      <div class="cab-secao sub" id="shorts">
+        <div><div class="rotulo">Shorts</div><h3>Os cortes de cada dia</h3></div>
+        <a class="btn btn-linha" href="https://www.youtube.com/@papodadorpg/shorts" target="_blank" rel="noopener">Ver todos os Shorts</a>
+      </div>
+      <div class="shorts" id="lista-shorts"></div>
+    </div>
+  </section>
+
+  <section class="bloco" id="sobre">
+    <div class="wrap sobre">
+      <div class="texto">
+        <div class="rotulo">Sobre</div>
+        <div class="cab-secao" style="margin-bottom:20px"><h2>Um dado que conversa</h2></div>
+        <p>O Papo Dado RPG começou como um podcast: o primeiro episódio do Papo Dado Cast foi ao ar no Spotify em janeiro de 2024. Pouco depois, ele virou um programa semanal de entrevistas no YouTube, em que Henrique e Elisinha recebiam criadores de conteúdo, influenciadores e personalidades do RPG. Foi isso que trouxe visibilidade ao canal.</p>
+        <p>Ainda em 2024 vieram as primeiras mesas ao vivo: O Mundo de Kraken, com o Mestre Maikediz, e Maldição de Strahd, com o Mestre Benites, com Henrique e Elisinha do lado dos jogadores. As duas já rolavam em off, e até presencialmente entre amigos, antes de chegar ao canal.</p>
+        <p>Em 2025 o Henrique se tornou mestre profissional e o número de mesas no canal cresceu muito. Em 2026 foi a vez da Elisinha, que passou a mestrar pelo MesaQuest e se especializou em Tales from the Loop. Hoje o Papo Dado é um canal de transmissões e conteúdo de RPG todo dia.</p>
+        <p>O nome diz o que a gente faz: rolar dado e conversar. O d20 de vitral do nosso símbolo é o RPG, o balão de fala é o papo que sempre acompanha a mesa, e a face laranja no centro é o play, que aparece aqui todo dia.</p>
+        <ul class="marcos">
+          <li><strong>Janeiro de 2024</strong><span>Estreia do Papo Dado Cast no Spotify.</span></li>
+          <li><strong>2024</strong><span>O podcast vira programa semanal de entrevistas no YouTube.</span></li>
+          <li><strong>2024</strong><span>Primeiras lives: O Mundo de Kraken (Mestre Maikediz) e Maldição de Strahd (Mestre Benites).</span></li>
+          <li><strong>2025</strong><span>Henrique vira mestre profissional e as mesas no canal se multiplicam.</span></li>
+          <li><strong>2026</strong><span>Elisinha passa a mestrar pelo MesaQuest, a marca ganha nova identidade visual e o canal chega a dez campanhas ao vivo, com conteúdo todo dia.</span></li>
+        </ul>
+      </div>
+      <div class="fundadores">
+        <div class="rotulo">Quem faz</div>
+        <div class="pessoa">
+          <img class="avatar" src="img/henrique.webp" alt="Henrique Müller" width="76" height="76" style="background:var(--laranja)">
+          <div><h3>Henrique Müller</h3><div class="papel">Criador do canal e mestre</div>
+            <p>Mestre e jogador há mais de 20 anos, joga “pela historinha”: o foco é narrativa, construção de mundo e desenvolvimento dos personagens. Também é cofundador do MesaQuest.</p>
+            <a class="perfil-mq" href="https://mesaquest.com.br/usuario/henrique-muller-papo-dado-rpg-jlg6npor" target="_blank" rel="noopener">★ 10,0 · 58 avaliações no MesaQuest</a></div>
+        </div>
+        <div class="pessoa">
+          <img class="avatar" src="img/elisinha.webp" alt="Elisinha Müller" width="76" height="76" style="background:var(--ciano)">
+          <div><h3>Elisinha Müller</h3><div class="papel">Cocriadora do canal e mestra</div>
+            <p>Mestra de Tales From the Loop e jogadora de D&amp;D há mais de 6 anos. Adora sistemas novos e narrativos e mesas que mexem com a emoção dos jogadores. Também é cofundadora do MesaQuest.</p>
+            <a class="perfil-mq" href="https://mesaquest.com.br/usuario/elisinha-muller-papo-dado-rpg-hbkerhe7" target="_blank" rel="noopener">★ 10,0 · 33 avaliações no MesaQuest</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco alt" id="comunidade">
+    <div class="wrap">
+      <div class="cab-secao">
+        <div><div class="rotulo">Comunidade</div><h2>Entra pra mesa com a gente</h2></div>
+        <p>Avisos de live, bastidores, enquetes e conversa sobre RPG todo dia.</p>
+      </div>
+      <div class="redes">
+        <a class="rede destaque" href="https://chat.whatsapp.com/LYzLC9d44L94uWD2me76nR" id="link-whatsapp" target="_blank" rel="noopener">
+          <span class="ico" style="background:var(--branco)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#000" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.5c.1.2 1.6 2.5 3.9 3.5 1.5.6 2 .7 2.8.6.4-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.2Z"/></svg></span>
+          <span><strong>Comunidade no WhatsApp</strong><span>Toque para entrar</span></span>
+        </a>
+        <a class="rede" href="https://www.youtube.com/@papodadorpg" target="_blank" rel="noopener">
+          <span class="ico" style="background:var(--vermelho)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8ZM10 15V9l5.2 3L10 15Z"/></svg></span>
+          <span><strong>YouTube</strong><span>@papodadorpg</span></span>
+        </a>
+        <a class="rede" href="https://www.instagram.com/papodadorpg/" target="_blank" rel="noopener">
+          <span class="ico" style="background:var(--roxo)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12 7.3a4.7 4.7 0 1 0 0 9.4 4.7 4.7 0 0 0 0-9.4Zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm6-7.9a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0ZM21.4 8c0-1.7-.5-3.2-1.7-4.4C18.5 2.4 17 2 15.3 2H8.7C7 2 5.5 2.4 4.3 3.6 3.1 4.8 2.6 6.3 2.6 8v8c0 1.7.5 3.2 1.7 4.4C5.5 21.6 7 22 8.7 22h6.6c1.7 0 3.2-.4 4.4-1.6 1.2-1.2 1.7-2.7 1.7-4.4V8Zm-2.2 10.6a3.4 3.4 0 0 1-1.9 1.9c-1.3.5-4.4.4-5.3.4s-4 .1-5.3-.4a3.4 3.4 0 0 1-1.9-1.9c-.5-1.3-.4-4.4-.4-5.6s-.1-4.3.4-5.6A3.4 3.4 0 0 1 6.7 5.5C8 5 11.1 5.1 12 5.1s4-.1 5.3.4a3.4 3.4 0 0 1 1.9 1.9c.5 1.3.4 4.4.4 5.6s.1 4.3-.4 5.6Z"/></svg></span>
+          <span><strong>Instagram</strong><span>@papodadorpg</span></span>
+        </a>
+        <a class="rede" href="https://www.tiktok.com/@papodadorpg" target="_blank" rel="noopener">
+          <span class="ico" style="background:var(--ciano)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#000" d="M16.6 2h-3.3v13.4a2.9 2.9 0 1 1-2-2.8V9.2a6.2 6.2 0 1 0 5.3 6.2V8.6a7.9 7.9 0 0 0 4.4 1.4V6.7a4.5 4.5 0 0 1-4.4-4.7Z"/></svg></span>
+          <span><strong>TikTok</strong><span>@papodadorpg</span></span>
+        </a>
+        <a class="rede" href="https://www.youtube.com/@papodadorpg/join" target="_blank" rel="noopener">
+          <span class="ico" style="background:var(--laranja)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#000" d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.6 1.2 4.3 2.4.7-1.2 2.2-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21Z"/></svg></span>
+          <span><strong>Seja membro</strong><span>Apoie pelo YouTube</span></span>
+        </a>
+        <button type="button" class="rede" id="copiar-pix" data-chave="papodadorpg@gmail.com">
+          <span class="ico" style="background:var(--azul)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12 2 2 7l10 5 10-5-10-5Zm0 12.2L4.2 10.3 2 11.4l10 5 10-5-2.2-1.1-7.8 3.9Zm0 4.3-7.8-3.9L2 15.7l10 5 10-5-2.2-1.1-7.8 3.9Z"/></svg></span>
+          <span><strong>Apoie com Pix</strong><span id="pix-txt">Chave: papodadorpg@gmail.com · toque para copiar</span></span>
+        </button>
+      </div>
+      <div class="contato">
+        <span>Parcerias e imprensa:</span>
+        <code id="email">papodadorpg@gmail.com</code>
+        <button type="button" id="copiar">Copiar e-mail</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <img src="img/icone.svg" alt="" width="40" height="40">
+    <span>© <span id="ano">2026</span> Papo Dado RPG · O seu canal de RPG diário</span>
+    <a href="#inicio">Voltar ao topo</a>
+  </div>
+</footer>
+
+<script>
+// ================= DADOS (edite aqui) =================
+const COR = { ciano: '#00BAFC', azul: '#005DFB', roxo: '#7020F9', vermelho: '#FB0F3A', laranja: '#FD7601' };
+const TEXTO_SOBRE = { ciano: '#000', laranja: '#000', azul: '#fff', roxo: '#fff', vermelho: '#fff' };
+const TZ = 'America/Sao_Paulo';
+const DURACAO_H = 3;
+const DIAS = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+const DIAS_CURTO = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+// Dias sem live com aviso próprio (0 = domingo ... 6 = sábado)
+const DIAS_OFF = { 5: { titulo: 'Mesas em off', texto: 'Dia de jogar longe das câmeras. Sem live, mas os dados rolam.' } };
+
+// LIVES: a agenda do canal. Independe do MesaQuest (uma mesa pode ser privada lá e ainda assim ir ao ar aqui).
+// "ref" = data e hora de uma sessão qualquer (Brasília); "cada" = intervalo em dias entre as lives.
+// "playlist" = id da playlist no YouTube; a capa fica em img/pl/<id da live>.webp (sem playlist e sem "capa: true", o card usa o vitral).
+// "sobre" (opcional) = parágrafos extras mostrados na página da campanha.
+// Campanha nova: "ref" = data da estreia; até lá o card mostra "Estreia".
+const LIVES = [
+  { id: 'strahd', playlist: 'PLu-hxXZl-KUQqPuVdQ4vg71gQH-ODurab', nome: 'Maldição de Strahd', ref: '2026-11-09T20:00', cada: 14, cor: 'vermelho', sistema: 'D&D 5.5', mestre: 'Henrique Müller',
+    sinopse: 'Terror gótico em Baróvia, um vale preso nas brumas e governado pelo vampiro Strahd von Zarovich.' },
+  { id: 'vecna', playlist: 'PLu-hxXZl-KUQ459n-TxtK6seaKrQ6csTM', nome: 'Vecna À Beira da Ruína', ref: '2026-11-02T20:45', cada: 14, cor: 'roxo', sistema: 'D&D 5.5', mestre: 'Henrique Müller',
+    sinopse: 'Uma jornada pelo multiverso para impedir que o arquilich Vecna refaça a realidade à sua imagem.' },
+  { id: 'principes', playlist: 'PLu-hxXZl-KUSc5pqaRL-ecT4mdzA2TwoD', nome: 'Príncipes do Apocalipse', ref: '2026-11-10T20:00', cada: 14, cor: 'ciano', sistema: 'D&D 5.5', mestre: 'Henrique Müller',
+    sinopse: 'Cultos elementais despertam no Vale Dessarin e ameaçam soterrar, afogar, queimar e varrer o Norte.' },
+  { id: 'saltmarsh', playlist: 'PLu-hxXZl-KUR73qFR7vgoOk1Lmz_9EMQ0', nome: 'Fantasmas de Saltmarsh', ref: '2026-11-04T20:00', cada: 14, cor: 'azul', sistema: 'D&D 5.5', mestre: 'Henrique Müller',
+    sinopse: 'Contrabandistas, naufrágios e mistérios do mar na pequena cidade portuária de Saltmarsh.' },
+  { id: 'avernus', playlist: 'PLu-hxXZl-KUQmEmAz7tpsUA4Cwkn7Hf0E', nome: 'Descida ao Avernus', ref: '2026-11-11T20:00', cada: 14, cor: 'laranja', sistema: 'D&D 5.5', mestre: 'Henrique Müller',
+    sinopse: 'De Baldur’s Gate ao primeiro círculo dos Nove Infernos, onde a Guerra Sangrenta nunca acaba.' },
+  { id: 'restou', playlist: 'PLHowpbWJeP2Y', nome: 'O Que Restou de Nós', ref: '2026-11-12T21:00', cada: 14, cor: 'azul', sistema: 'Terra Devastada', mestre: 'Henrique Müller',
+    sinopse: 'Sobreviver ao fim do mundo é apenas o começo.' },
+  { id: 'mar', playlist: 'PLu-hxXZl-KUQ2GeNESYZAC_zAfivACpPy', nome: 'Além do Mar Sem Fim', ref: '2026-11-05T21:00', cada: 14, cor: 'ciano', sistema: 'D&D 5.5 · autoral', mestre: 'Henrique Müller',
+    sinopse: 'Lusitânia, 1390: uma epidemia que transforma os mortos espalha o desespero pela Ibéria.' },
+  { id: 'odisseia', playlist: 'PLu-hxXZl-KUQPhlqcaUU3HcjBjRBTzlqG', nome: 'Odisseia dos Lordes Dragões', ref: '2026-10-31T20:00', cada: 14, cor: 'laranja', sistema: 'D&D 5.5', mestre: 'Henrique Müller',
+    sinopse: 'Uma epopeia de inspiração grega na terra de Thylea, onde heróis desafiam deuses, titãs e o próprio destino.' },
+  { id: 'contos', capa: true, nome: 'Contos dos Reinos Esquecidos', ref: '2026-11-03T20:00', cada: 14, cor: 'vermelho', sistema: 'D&D 5.5', mestre: 'Henrique Müller',
+    sinopse: 'Das masmorras de Tales from the Yawning Portal às terras de Thay em Arcana Unleashed: Deadfall. Duas campanhas lendárias, uma única jornada até o nível 20.',
+    sobre: [
+      'Nas profundezas de antigas ruínas, tesouros esquecidos aguardam aqueles que possuem coragem suficiente para encontrá-los. Mas algumas portas foram trancadas por bons motivos... e nem todos os segredos deveriam ser revelados.',
+      'Conforme as expedições avançam, símbolos desconhecidos, vestígios de magia ancestral e rumores sobre uma organização misteriosa parecem conectar acontecimentos que, à primeira vista, não têm relação alguma.',
+      'É aí que a história mergulha nas terras de Thay, onde os Magos Vermelhos disputam forças arcanas capazes de alterar o destino do mundo, e os aventureiros precisarão enfrentar a sombra de Szass Tam antes que seus planos mergulhem Faerûn numa catástrofe.',
+    ] },
+  { id: 'lua', playlist: 'PLDWqkFFR3FM8', nome: 'A Lua Tortuosa', ref: '2026-11-07T22:00', cada: 14, cor: 'roxo', sistema: 'D&D 5.5', mestre: 'Henrique Müller',
+    sinopse: 'O Expresso Luz-Fantasma só tem passagem de ida para além da Mortalha.' },
+];
+
+// ENCERRADAS: campanhas que terminaram e têm playlist no canal (mais recentes primeiro). Canceladas não entram.
+// capa em img/pl/<id>.webp; "status": finalizada | cancelada | encerrada; "mestre" só quando não é o Henrique.
+const ENCERRADAS = [
+  { id: 'grande-roda', nome: 'Um Giro na Grande Roda', playlist: 'PLu-hxXZl-KUQLYts_IURzyVUr7HKIMzln', sistema: 'D&D 5e', videos: 43, status: 'finalizada',
+    sinopse: 'Forças além da compreensão começam a remodelar a realidade, e os heróis são lançados em um jogo cósmico onde o destino pode ser dobrado.' },
+  { id: 'klataros', nome: 'O Levante de Klátaros', playlist: 'PLu-hxXZl-KUTss1LTl90aY8I-7n5QL1oP', sistema: 'D&D 5e', videos: 9, status: 'finalizada', mestre: 'Maicon',
+    sinopse: 'De volta do Mundo de Kraken, o grupo encontra Faerûn à beira da devastação, ameaçada mais uma vez pelo demônio Klátaros.' },
+  { id: 'kraken', nome: 'O Mundo de Kraken', playlist: 'PLu-hxXZl-KUSczalmCKKq5837JH0BL-NL', sistema: 'D&D 5e · autoral', videos: 13, status: 'finalizada', mestre: 'Maicon',
+    sinopse: 'Presos em um mundo-prisão, os aventureiros enfrentam desafios em ambientes diferentes enquanto são caçados por um demônio chamado Caçador.' },
+  { id: 'strahd-benites', nome: 'A Maldição de Strahd', playlist: 'PLu-hxXZl-KUS44rPcrHFtHu9WHxWnfdbF', sistema: 'D&D 5e', videos: 21, status: 'finalizada', mestre: 'Benites',
+    sinopse: 'Arrancados de casa por uma névoa sobrenatural, os heróis acordam em Baróvia e precisam desafiar o vampiro Strahd von Zarovich para escapar.' },
+  { id: 'tirania', nome: 'Tirania dos Dragões', playlist: 'PLu-hxXZl-KUQvJ3zRPKzgEv5OzbptrdFX', sistema: 'D&D 5e', videos: 63, status: 'finalizada',
+    sinopse: 'Cultos secretos, conspirações antigas e criaturas aladas de poder devastador ameaçam o reino, e um grupo improvável de heróis decide enfrentá-los.' },
+];
+const STATUS_TXT = { finalizada: 'Finalizada', cancelada: 'Cancelada', encerrada: 'Encerrada' };
+
+let EPISODIOS = null; // episodios.json: episódios de cada playlist + highlights
+
+const VIDEOS_ATALHOS = [
+  { titulo: 'Lives completas', sub: 'Todas as sessões, do começo ao fim', url: 'https://www.youtube.com/@papodadorpg/streams', cor: 'vermelho' },
+  { titulo: 'Cortes e Shorts', sub: 'Os melhores momentos das mesas', url: 'https://www.youtube.com/@papodadorpg/shorts', cor: 'laranja' },
+  { titulo: 'Playlists por campanha', sub: 'Assista uma mesa em ordem', url: 'https://www.youtube.com/@papodadorpg/playlists', cor: 'azul' },
+];
+
+// ================= UTILIDADES =================
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const sistemaCurto = (s) => (s || '').replace(/Dungeons & Dragons 5\.5e.*/i, 'D&D 5.5').replace(/Dungeons & Dragons 5e.*/i, 'D&D 5e');
+const partesBR = (d) => Object.fromEntries(new Intl.DateTimeFormat('en-US', { timeZone: TZ, weekday: 'short', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(d).map((p) => [p.type, p.value]));
+const diaSemanaBR = (d) => ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(partesBR(d).weekday);
+const horaBR = (d) => { const p = partesBR(d); return `${p.hour}:${p.minute}`; };
+const horaTxt = (h) => (h.endsWith(':00') ? h.slice(0, 2) + 'h' : h.replace(':', 'h')).replace(/^0/, '');
+const dataCurta = (d) => { const p = partesBR(d); return `${DIAS_CURTO[diaSemanaBR(d)].toLowerCase()}, ${p.day}/${p.month}`; };
+const deBrasilia = (iso) => new Date(iso + ':00-03:00'); // Brasília sem horário de verão
+const norm = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+// Resumos (highlights) da campanha na playlist "Highlights Campanhas D&D", do episódio mais recente para o mais antigo
+const numEp = (t) => { const m = String(t).match(/Ep(?:is[oó]dio)?\.?\s*(\d+)/i); return m ? +m[1] : 0; };
+const resumosDe = (m) => (EPISODIOS?.highlights || []).filter((h) => norm(h.titulo).includes(norm(m.nome))).sort((a, b) => numEp(b.titulo) - numEp(a.titulo));
+const durTxt = (d) => { const p = String(d || '').split(':').map(Number); if (p.length < 2 || p.some(isNaN)) return ''; const min = p.length === 3 ? p[0] * 60 + p[1] : p[0]; return min >= 60 ? `${Math.floor(min / 60)}h${String(min % 60).padStart(2, '0')}` : `${min} min`; };
+const paginaUrl = (m) => `#/campanha/${m.id}`;
+// Título curto do episódio: "Episódio 33 · A Crosta"
+function tituloEp(t) {
+  const m = String(t).match(/(Epis[oó]dio\s*(?:\d+|Final)|\bEp\.?\s*\d+|Sess[aã]o Zero).*/i);
+  const s = m ? m[0] : (t.includes(' - ') ? t.split(' - ').slice(1).join(' - ') : t);
+  return s.replace(/^Ep\.?\s*(\d+)/i, (_, n) => `Episódio ${n.padStart(2, '0')}`).replace(/\s*\|\s*/, ' · ').trim();
+}
+// Agenda: Google Agenda (repete a cada 2 semanas) e Outlook (só a próxima)
+const utcCompacto = (d) => d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+function googleAgendaUrl(m) {
+  const ini = m.proxima, fim = new Date(ini.getTime() + DURACAO_H * 3600000);
+  const q = new URLSearchParams({ action: 'TEMPLATE', text: `${m.nome} · live no Papo Dado RPG`, dates: `${utcCompacto(ini)}/${utcCompacto(fim)}`,
+    details: `Live de ${m.nome} no YouTube: https://www.youtube.com/@papodadorpg/streams`, location: 'https://www.youtube.com/@papodadorpg', ctz: TZ });
+  if (m.cada) q.set('recur', `RRULE:FREQ=WEEKLY;INTERVAL=${Math.round(m.cada / 7)}`);
+  return `https://calendar.google.com/calendar/render?${q}`;
+}
+// Outlook não aceita repetição pelo link: adiciona só a próxima live
+function outlookUrl(m) {
+  const ini = m.proxima, fim = new Date(ini.getTime() + DURACAO_H * 3600000);
+  const q = new URLSearchParams({ path: '/calendar/action/compose', rru: 'addevent', subject: `${m.nome} · live no Papo Dado RPG`,
+    startdt: ini.toISOString(), enddt: fim.toISOString(), body: 'Live no YouTube: https://www.youtube.com/@papodadorpg/streams', location: 'https://www.youtube.com/@papodadorpg' });
+  return `https://outlook.live.com/calendar/0/deeplink/compose?${q}`;
+}
+const menuAgenda = (m) => `<details class="menu-agenda"><summary>＋ Agenda</summary><div class="opcoes">
+  <a href="${googleAgendaUrl(m)}" target="_blank" rel="noopener">Google Agenda (repete a cada 2 semanas)</a>
+  <a href="${outlookUrl(m)}" target="_blank" rel="noopener">Outlook (próxima live)</a></div></details>`;
+
+// Sessões da live: a anterior (para "ao vivo agora") e a próxima
+function sessoes(live) {
+  const passo = live.cada * 86400000, ref = deBrasilia(live.ref).getTime(), agora = Date.now();
+  if (agora < ref + DURACAO_H * 3600000) return { proxima: new Date(ref), anterior: new Date(ref - passo), estreia: true };
+  let prox = ref + Math.ceil((agora - DURACAO_H * 3600000 - ref) / passo) * passo;
+  return { proxima: new Date(prox), anterior: new Date(prox - passo) };
+}
+
+// ================= VITRAL (faces com contorno preto, como o d20 da marca) =================
+function rng(seed) { let s = 0; for (const c of seed) s = (s * 31 + c.charCodeAt(0)) >>> 0; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }
+function vitral(seed, corBase) {
+  const r = rng(seed), W = 320, H = 140, cols = 6, lins = 3, pts = [];
+  for (let y = 0; y <= lins; y++) for (let x = 0; x <= cols; x++) {
+    const bx = x === 0 || x === cols, by = y === 0 || y === lins;
+    pts.push([x * W / cols + (bx ? 0 : (r() - .5) * 34), y * H / lins + (by ? 0 : (r() - .5) * 26)]);
+  }
+  const p = (x, y) => pts[y * (cols + 1) + x];
+  const paleta = [COR[corBase], COR[corBase], COR[corBase], ...Object.values(COR)];
+  let faces = '';
+  for (let y = 0; y < lins; y++) for (let x = 0; x < cols; x++) {
+    const a = p(x, y), b = p(x + 1, y), c = p(x, y + 1), d = p(x + 1, y + 1);
+    for (const t of ((x + y) % 2 ? [[a, b, d], [a, d, c]] : [[a, b, c], [b, d, c]])) {
+      faces += `<path d="M${t.map((q) => q.map((n) => n.toFixed(1)).join(' ')).join('L')}Z" fill="${paleta[Math.floor(r() * paleta.length)]}" style="filter:brightness(${(1 + r() * .45 - .2).toFixed(2)})"/>`;
+    }
+  }
+  return `<svg class="vitral" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g stroke="#000" stroke-width="3.5" stroke-linejoin="round">${faces}</g></svg>`;
+}
+
+// ================= LIVES: agenda, próxima live e campanhas =================
+let AGENDA = [];
+function prepararLives() {
+  AGENDA = LIVES.map((l) => {
+    const s = sessoes(l);
+    return { ...l, ...s, estreia: !!(s.estreia && !l.playlist), dia: diaSemanaBR(s.proxima), hora: horaBR(s.proxima) };
+  });
+}
+
+function montarAgenda() {
+  const hoje = diaSemanaBR(new Date());
+  document.getElementById('semana').innerHTML = [1, 2, 3, 4, 5, 6, 0].map((d) => {
+    const doDia = AGENDA.filter((m) => m.dia === d).sort((a, b) => a.hora.localeCompare(b.hora) || a.proxima - b.proxima);
+    const corpo = doDia.map((m) => `<div class="slot" style="--cor:${COR[m.cor]}">
+        <div class="hora">${horaTxt(m.hora)}</div>
+        <div class="nomes"><span>${esc(m.nome)}</span></div>
+        <div class="ritmo">Próxima: ${dataCurta(m.proxima).split(', ')[1]}${m.cada === 14 ? ' · quinzenal' : ''}</div></div>`).join('')
+      || (DIAS_OFF[d]
+        ? `<div class="slot off"><div class="hora">${DIAS_OFF[d].titulo}</div><div class="ritmo">${DIAS_OFF[d].texto}</div></div>`
+        : '<div class="vazio">Sem live. Dia de cortes e conteúdo no canal.</div>');
+    return `<div class="dia${d === hoje ? ' hoje' : ''}${doDia.length || DIAS_OFF[d] ? '' : ' semlive'}">
+      <h3>${DIAS[d]}${d === hoje ? '<span class="tag-hoje">HOJE</span>' : ''}</h3>${corpo}</div>`;
+  }).join('');
+}
+
+// ================= HERÓI: live agendada no YouTube > último vídeo (videos.json) =================
+let YT = null; // conteúdo do videos.json: { atualizado, aovivo, agendadas, itens }
+async function carregarYT() {
+  try { const r = await fetch('videos.json', { cache: 'no-store' }); if (r.ok) YT = await r.json(); } catch { /* mantém o que já tinha */ }
+}
+const assistir = (id) => `https://www.youtube.com/watch?v=${encodeURIComponent(id)}`;
+
+// "Hoje, 20h · começa em 2h15" / "Amanhã, 20h" / "Sábado, 31/10, 20h"
+function quandoTxt(d) {
+  const agora = Date.now(), p = partesBR(d), pHoje = partesBR(new Date()), pAmanha = partesBR(new Date(agora + 86400000));
+  const mesmoDia = (a) => a.day === p.day && a.month === p.month;
+  const dia = mesmoDia(pHoje) ? 'Hoje' : mesmoDia(pAmanha) ? 'Amanhã' : `${DIAS[diaSemanaBR(d)]}, ${p.day}/${p.month}`;
+  const delta = Math.max(0, Math.round((d.getTime() - agora) / 60000)), h = Math.floor(delta / 60), mm = delta % 60;
+  return `${dia}, ${horaTxt(horaBR(d))}${h < 24 ? ` · começa em ${h ? h + 'h' + String(mm).padStart(2, '0') : mm + ' min'}` : ''}`;
+}
+
+function pintarHeroi({ rotulo, nome, quando = '', aoVivo = false, ou = '', botao, link, capa }) {
+  const $ = (id) => document.getElementById(id);
+  $('prox-rotulo').textContent = rotulo;
+  $('prox-nome').textContent = nome;
+  if (aoVivo) $('prox-quando').innerHTML = '<span class="aovivo">AO VIVO AGORA</span>'; else $('prox-quando').textContent = quando;
+  $('prox-ou').textContent = ou;
+  $('prox-btn').textContent = botao;
+  $('prox-btn').href = link;
+  const a = $('prox-capa');
+  a.hidden = !capa;
+  if (capa) { a.href = link; if ($('prox-img').getAttribute('src') !== capa) $('prox-img').src = capa; }
+}
+
+function montarProxima() {
+  prepararLives();
+  const agora = Date.now(), JANELA = DURACAO_H * 3600000;
+  const canal = 'https://www.youtube.com/@papodadorpg/streams';
+
+  if (YT) {
+    // 1) transmitindo agora (só confia se a coleta for recente) ou agendada que já começou
+    const fresco = YT.atualizado && agora - new Date(YT.atualizado).getTime() < JANELA;
+    const agendadas = (YT.agendadas || []).filter((a) => new Date(a.inicio).getTime() + JANELA > agora)
+      .sort((a, b) => a.inicio.localeCompare(b.inicio));
+    const noAr = (fresco && YT.aovivo?.[0]) || agendadas.find((a) => new Date(a.inicio).getTime() <= agora);
+    if (noAr) {
+      return pintarHeroi({ rotulo: 'Ao vivo no YouTube', nome: noAr.titulo, aoVivo: true, botao: 'Assistir ao vivo', link: assistir(noAr.id), capa: noAr.capa });
+    }
+    // 2) próxima live agendada no YouTube
+    const prox = agendadas[0];
+    if (prox) {
+      const depois = agendadas[1];
+      return pintarHeroi({
+        rotulo: 'Próxima live', nome: prox.titulo, quando: quandoTxt(new Date(prox.inicio)),
+        ou: depois ? `Depois: ${depois.titulo}, ${dataCurta(new Date(depois.inicio))} às ${horaTxt(horaBR(new Date(depois.inicio)))}` : '',
+        botao: 'Ativar lembrete', link: assistir(prox.id), capa: prox.capa,
+      });
+    }
+    // 3) sem live agendada: último vídeo lançado
+    const ult = YT.itens?.[0];
+    if (ult) {
+      return pintarHeroi({ rotulo: 'Último vídeo', nome: ult.titulo, quando: `Lançado ${dataCurta(new Date(ult.data))}`,
+        botao: 'Assistir agora', link: assistir(ult.id), capa: ult.capa_grande || ult.capa });
+    }
+  }
+
+  // Sem videos.json: usa a agenda fixa do canal
+  const futuras = [...AGENDA].sort((a, b) => a.proxima - b.proxima);
+  const primeira = futuras[0];
+  if (!primeira) return pintarHeroi({ rotulo: 'No canal', nome: 'Lives de RPG quase toda noite', botao: 'Abrir o canal', link: canal });
+  const juntas = futuras.filter((m) => m.proxima.getTime() === primeira.proxima.getTime());
+  pintarHeroi({ rotulo: 'Próxima live', nome: juntas.map((m) => m.nome).join(' e '), quando: quandoTxt(primeira.proxima), botao: 'Abrir o canal', link: canal });
+}
+
+const playlistUrl = (m) => (m.playlist ? `https://www.youtube.com/playlist?list=${encodeURIComponent(m.playlist)}` : 'https://www.youtube.com/@papodadorpg/playlists');
+
+function montarEncerradas() {
+  document.getElementById('lista-encerradas').innerHTML = ENCERRADAS.map((m) => `
+    <article class="mesa">
+      <div class="topo-capa"><a href="${paginaUrl(m)}" tabindex="-1"><img class="capa-pl" src="img/pl/${m.id}.webp" alt="Capa da playlist ${esc(m.nome)}" loading="lazy" width="854" height="480"></a></div>
+      <div class="corpo">
+        <h3><a href="${paginaUrl(m)}">${esc(m.nome)}</a></h3>
+        <div class="meta">
+          <span class="chip status ${m.status}">${STATUS_TXT[m.status]}</span>
+          <span class="chip">${esc(m.sistema)}</span>
+          <span class="chip">${m.videos} vídeos</span>
+          ${m.mestre ? `<span class="chip">Mestre ${esc(m.mestre)}</span>` : ''}
+        </div>
+        <p>${esc(m.sinopse)}</p>
+        <div class="links"><a href="${paginaUrl(m)}">Ver os episódios →</a></div>
+      </div>
+    </article>`).join('');
+}
+
+function montarCampanhas() {
+  document.getElementById('lista-campanhas').innerHTML = [...AGENDA].sort((a, b) => a.proxima - b.proxima).map((m) => `
+    <article class="mesa" style="--cor:${COR[m.cor]};--texto-cor:${TEXTO_SOBRE[m.cor]}">
+      <div class="topo-capa">${m.playlist || m.capa
+        ? `<a href="${paginaUrl(m)}" tabindex="-1"><img class="capa-pl" src="img/pl/${m.id}.webp" alt="Capa de ${esc(m.nome)}" loading="lazy" width="854" height="480"></a>`
+        : vitral(m.id, m.cor)}</div>
+      <div class="corpo">
+        <h3><a href="${paginaUrl(m)}">${esc(m.nome)}</a></h3>
+        <div class="meta">
+          ${m.estreia ? '<span class="chip status finalizada">Estreia</span>' : ''}
+          <span class="chip dia-chip">${DIAS_CURTO[m.dia]} · ${horaTxt(m.hora)}</span>
+          ${m.sistema ? `<span class="chip">${esc(m.sistema)}</span>` : ''}
+          <span class="chip">${m.cada === 14 ? 'Quinzenal' : 'Semanal'}</span>
+        </div>
+        <p class="${m.sinopse ? '' : 'preencher'}">${esc(m.sinopse || 'Sinopse curta da campanha, em uma ou duas frases.')}</p>
+        ${(() => { const r = resumosDe(m)[0]; return r ? `<a class="ultima" href="${assistir(r.id)}" target="_blank" rel="noopener">
+          ${r.capa ? `<span class="mini"><img src="${esc(r.capa)}" alt="" loading="lazy"><span class="play" aria-hidden="true"></span></span>` : ''}
+          <span><span class="rotulo">Na última sessão</span><strong>${esc(tituloEp(r.titulo))}</strong><span class="sub">Resumo${durTxt(r.duracao) ? ` em ${durTxt(r.duracao)}` : ''} · assistir</span></span></a>` : ''; })()}
+        <div class="proxima-sessao">${m.estreia ? 'Estreia' : 'Próxima live'}: <strong>${dataCurta(m.proxima)} às ${horaTxt(m.hora)}</strong></div>
+        <div class="links"><a href="${paginaUrl(m)}">${m.estreia ? 'Ver a campanha' : 'Todos os episódios'} →</a>${menuAgenda(m)}</div>
+      </div>
+    </article>`).join('');
+}
+
+// ================= MESAQUEST: só mesas listadas, vindas do mesas.json do servidor =================
+async function montarMesaQuest() {
+  const secao = document.getElementById('jogue');
+  let dados = null;
+  try { const r = await fetch('mesas.json', { cache: 'no-store' }); if (r.ok) dados = await r.json(); } catch { /* sem dados */ }
+  const itens = (dados?.itens || []).filter((x) => new Date(x.inicio).getTime() > Date.now() - DURACAO_H * 3600000);
+  if (!itens.length) { secao.hidden = true; return; }
+  secao.hidden = false;
+  const comVaga = (x) => !x.lotada && x.vagas > 0;
+  // Horário combinado com o grupo que ainda não foi mudado no MesaQuest: slug -> "HH:MM" (Brasília)
+  const HORA_REAL = { 'o-que-restou-de-nos-terra-devastada-w610fhf1': '21:00' };
+  itens.sort((a, b) => (comVaga(b) - comVaga(a)) || a.inicio.localeCompare(b.inicio));
+  const cores = Object.keys(COR);
+  document.getElementById('lista-mesaquest').innerHTML = itens.map((x, i) => {
+    const vaga = comVaga(x);
+    const d = HORA_REAL[x.slug] ? deBrasilia(`${x.inicio.slice(0, 10)}T${HORA_REAL[x.slug]}`) : new Date(x.inicio);
+    return `
+    <article class="mesa" style="--cor:${COR[cores[i % cores.length]]}">
+      <div class="topo-capa">${x.capa ? `<div class="capa-mq-box"><img class="fundo" src="${esc(x.capa)}" alt="" aria-hidden="true" loading="lazy"><img class="capa-mq" src="${esc(x.capa)}" alt="Capa da mesa ${esc(x.nome.replace(/\[[^\]]*\]\s*/, ''))}" loading="lazy"></div>` : vitral(x.slug, cores[i % cores.length])}</div>
+      <div class="corpo">
+        <h3>${esc(x.nome.replace(/\[[^\]]*\]\s*/, ''))}</h3>
+        <div class="meta">
+          <span class="chip selo-vagas${vaga ? '' : ' lotada'}">${vaga ? `${x.vagas} ${x.vagas === 1 ? 'vaga aberta' : 'vagas abertas'}` : 'Mesa completa'}</span>
+          <span class="chip">${esc(sistemaCurto(x.sistema))}</span>
+          ${x.nivel ? `<span class="chip">${esc(x.nivel)}</span>` : ''}
+          <span class="chip">Mestre: ${esc(x.mestre)}</span>
+        </div>
+        <p>${esc(x.descricao)}</p>
+        <div class="proxima-sessao">Próxima sessão: <strong>${dataCurta(d)} às ${horaTxt(horaBR(d))}</strong></div>
+        <div class="acoes-mesa">${vaga
+          ? `<a class="btn btn-play" href="${esc(x.url)}" target="_blank" rel="noopener">Quero jogar</a><span class="preco">${esc(x.preco)}</span>`
+          : `<a class="btn btn-linha" href="${esc(x.url)}" target="_blank" rel="noopener">Ver a mesa</a>`}</div>
+      </div>
+    </article>`;
+  }).join('');
+  document.getElementById('fonte-mq').textContent = 'Vagas e datas sincronizadas automaticamente com o MesaQuest várias vezes ao dia.';
+  const precos = itens.map((x) => parseFloat(String(x.preco).replace(/[^\d,]/g, '').replace(',', '.'))).filter((n) => n > 0);
+  if (precos.length) {
+    const fmt = (n) => n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+    const [min, max] = [Math.min(...precos), Math.max(...precos)];
+    document.getElementById('faq-precos').textContent = min === max ? `Hoje elas custam ${fmt(min)} por mês.` : `Hoje os valores vão de ${fmt(min)} a ${fmt(max)} por mês, conforme a mesa.`;
+  }
+}
+
+// ================= VÍDEOS (videos.json gerado no servidor a partir do feed do canal) =================
+function montarVideos() {
+  const alvo = document.getElementById('lista-videos');
+  const lista = (YT?.itens || []).slice(0, 6);
+  alvo.innerHTML = lista?.length
+    ? lista.map((v) => `
+      <a class="video" href="https://www.youtube.com/watch?v=${esc(v.id)}" target="_blank" rel="noopener">
+        <div class="capa"><img src="${esc(v.capa || `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`)}" alt="" loading="lazy"><span class="play" aria-hidden="true"></span></div>
+        <div class="txt"><strong>${esc(v.titulo)}</strong><span>${dataCurta(new Date(v.data))}</span></div>
+      </a>`).join('')
+    : VIDEOS_ATALHOS.map((v) => `
+      <a class="video" href="${v.url}" target="_blank" rel="noopener">
+        <div class="capa">${vitral(v.titulo, v.cor)}<span class="play" aria-hidden="true"></span></div>
+        <div class="txt"><strong>${v.titulo}</strong><span>${v.sub}</span></div>
+      </a>`).join('');
+}
+
+// ================= SHORTS =================
+function montarShorts() {
+  const lista = (YT?.shorts || []).filter((x) => x.capa).slice(0, 8);
+  const sec = document.getElementById('shorts'), alvo = document.getElementById('lista-shorts');
+  sec.hidden = alvo.hidden = !lista.length;
+  alvo.innerHTML = lista.map((v) => `
+    <a class="short" href="https://www.youtube.com/shorts/${esc(v.id)}" target="_blank" rel="noopener">
+      <div class="capa"><img src="${esc(v.capa)}" alt="" loading="lazy" width="270" height="480"></div>
+      <strong>${esc(v.titulo.replace(/\s*#\S+/g, '').trim())}</strong>
+    </a>`).join('');
+}
+
+// ================= PÁGINA DE CAMPANHA (#/campanha/<id>) =================
+async function carregarExtras() {
+  const pegar = async (arq) => { try { const r = await fetch(arq, { cache: 'no-store' }); return r.ok ? await r.json() : null; } catch { return null; } };
+  EPISODIOS = await pegar('episodios.json');
+}
+
+function montarPagina(id) {
+  const ativa = AGENDA.find((m) => m.id === id);
+  const m = ativa || ENCERRADAS.find((x) => x.id === id);
+  const alvo = document.getElementById('pagina-campanha');
+  if (!m) { location.hash = '#mesas'; return; }
+  const eps = EPISODIOS?.campanhas?.[id]?.episodios || [];
+  const primeiro = eps[0], todos = ativa ? resumosDe(ativa) : [], r = todos[0], hl = todos.slice(1, 4);
+  const assistirInicio = primeiro ? `${assistir(primeiro.id)}&list=${encodeURIComponent(m.playlist)}` : playlistUrl(m);
+  document.title = `${m.nome} · Papo Dado RPG`;
+  alvo.style.setProperty('--cor', ativa ? COR[ativa.cor] : 'var(--laranja)');
+  alvo.innerHTML = `<div class="wrap">
+    <a class="voltar" href="#${ativa ? 'mesas' : 'encerradas'}">← Todas as campanhas</a>
+    <div class="camp-topo">
+      <div class="camp-capa">${m.playlist || m.capa ? `<img src="img/pl/${m.id}.webp" alt="Capa de ${esc(m.nome)}" width="854" height="480">` : vitral(m.id, ativa?.cor || 'laranja')}</div>
+      <div>
+        <div class="rotulo">${ativa?.estreia ? 'Nova campanha' : ativa ? 'No ar no canal' : 'Campanha finalizada'}</div>
+        <h1>${esc(m.nome)}</h1>
+        <div class="meta">
+          ${ativa ? `<span class="chip dia-chip" style="--cor:${COR[ativa.cor]};--texto-cor:${TEXTO_SOBRE[ativa.cor]}">${DIAS[ativa.dia]} · ${horaTxt(ativa.hora)}</span><span class="chip">Quinzenal</span>` : `<span class="chip status ${m.status}">${STATUS_TXT[m.status]}</span>`}
+          ${m.sistema ? `<span class="chip">${esc(m.sistema)}</span>` : ''}
+          ${eps.length || m.videos ? `<span class="chip">${eps.length || m.videos} vídeos</span>` : ''}
+          ${m.mestre && m.mestre !== 'Henrique Müller' ? `<span class="chip">Mestre ${esc(m.mestre)}</span>` : ''}
+        </div>
+        <p class="sinopse">${esc(m.sinopse)}</p>
+        ${(m.sobre || []).map((t) => `<p class="sinopse sobre-extra">${esc(t)}</p>`).join('')}
+        ${ativa ? `<div class="proxima-sessao">${ativa.estreia ? 'Estreia' : 'Próxima live'}: <strong>${quandoTxt(ativa.proxima)}</strong></div>` : ''}
+        <div class="acoes">
+          ${m.playlist ? `<a class="btn btn-play" href="${assistirInicio}" target="_blank" rel="noopener">Assistir do começo</a>
+          <a class="btn btn-linha" href="${playlistUrl(m)}" target="_blank" rel="noopener">Playlist no YouTube</a>` : `<a class="btn btn-play" href="https://www.youtube.com/@papodadorpg?sub_confirmation=1" target="_blank" rel="noopener">Inscrever-se no canal</a>`}
+          ${ativa ? menuAgenda(ativa) : ''}
+        </div>
+      </div>
+    </div>
+    ${r ? `<div class="camp-bloco"><div class="camp-ultima">
+      <a class="mini" href="${assistir(r.id)}" target="_blank" rel="noopener" tabindex="-1">${r.capa ? `<img src="${esc(r.capa)}" alt="" loading="lazy">` : ''}<span class="play" aria-hidden="true"></span></a>
+      <div>
+        <div class="rotulo">Na última sessão</div>
+        <h3>${esc(tituloEp(r.titulo))}</h3>
+        <p>Perdeu a live? Os melhores momentos do episódio${durTxt(r.duracao) ? ` em ${durTxt(r.duracao)}` : ''}, sem pausa nem discussão de regra.</p>
+        <a class="btn btn-play" href="${assistir(r.id)}" target="_blank" rel="noopener">Assistir ao resumo</a>
+      </div>
+    </div></div>` : ''}
+    ${hl.length ? `<div class="camp-bloco"><div class="rotulo">Resumos anteriores</div><h2>Para pegar o fio da história</h2>
+      <div class="videos">${hl.map((h) => `<a class="video" href="${assistir(h.id)}" target="_blank" rel="noopener">
+        <div class="capa">${h.capa ? `<img src="${esc(h.capa)}" alt="" loading="lazy">` : ''}<span class="play" aria-hidden="true"></span></div>
+        <div class="txt"><strong>${esc(tituloEp(h.titulo))}</strong><span>Resumo${durTxt(h.duracao) ? ` em ${durTxt(h.duracao)}` : ''}</span></div></a>`).join('')}</div></div>` : ''}
+    ${!m.playlist ? `<div class="camp-bloco"><div class="camp-ultima" style="grid-template-columns:1fr"><div>
+      <div class="rotulo">Estreia</div><h3>${ativa ? `${DIAS[ativa.dia]}, ${dataCurta(ativa.proxima).split(', ')[1]}, às ${horaTxt(ativa.hora)}` : 'Em breve'}</h3>
+      <p>Os episódios vão aparecer aqui assim que a campanha estrear. Ative o sino no YouTube ou adicione a estreia à sua agenda para não perder.</p></div></div></div>` : `
+    <div class="camp-bloco"><div class="rotulo">Episódios</div><h2>${eps.length ? `${eps.length} vídeos, do primeiro ao mais recente` : 'Episódios'}</h2>
+      ${eps.length ? `<ol class="episodios">${eps.map((e, i) => `<li${ativa && i === eps.length - 1 ? ' class="novo"' : ''}><a href="${assistir(e.id)}&list=${encodeURIComponent(m.playlist)}" target="_blank" rel="noopener">
+        <span class="n">${i + 1}</span><span class="t">${esc(tituloEp(e.titulo))}</span><span class="d">${esc(e.duracao)}</span></a></li>`).join('')}</ol>`
+        : `<p><a class="btn btn-linha" href="${playlistUrl(m)}" target="_blank" rel="noopener">Ver a lista no YouTube</a></p>`}
+    </div>`}
+  </div>`;
+}
+
+function rota() {
+  const m = location.hash.match(/^#\/campanha\/([\w-]+)/);
+  const pag = document.getElementById('pagina-campanha');
+  if (m) {
+    document.body.classList.add('modo-campanha');
+    pag.hidden = false;
+    montarPagina(m[1]);
+    window.scrollTo(0, 0);
+  } else if (!pag.hidden) {
+    document.body.classList.remove('modo-campanha');
+    pag.hidden = true;
+    document.title = 'Papo Dado RPG · O seu canal de RPG diário';
+    const alvo = location.hash && document.getElementById(location.hash.slice(1));
+    if (alvo) alvo.scrollIntoView();
+  }
+}
+window.addEventListener('hashchange', rota);
+
+// ================= CONTATO =================
+document.getElementById('copiar').addEventListener('click', async (e) => {
+  const alvo = document.getElementById('email');
+  try { await navigator.clipboard.writeText(alvo.textContent.trim()); e.target.textContent = 'Copiado'; }
+  catch { const s = getSelection(), r = document.createRange(); r.selectNodeContents(alvo); s.removeAllRanges(); s.addRange(r); e.target.textContent = 'Selecionado: Ctrl+C'; }
+  setTimeout(() => (e.target.textContent = 'Copiar e-mail'), 2500);
+});
+document.getElementById('copiar-pix').addEventListener('click', async (e) => {
+  const botao = e.currentTarget, txt = document.getElementById('pix-txt'), chave = botao.dataset.chave;
+  try { await navigator.clipboard.writeText(chave); txt.textContent = 'Chave Pix copiada! Obrigado pelo apoio.'; }
+  catch { txt.textContent = `Chave Pix: ${chave}`; }
+  setTimeout(() => (txt.textContent = `Chave: ${chave} · toque para copiar`), 3500);
+});
+document.getElementById('ano').textContent = new Date().getFullYear();
+
+prepararLives(); montarAgenda(); montarCampanhas(); montarEncerradas(); rota();
+carregarExtras().then(() => { montarCampanhas(); if (location.hash.startsWith('#/campanha/')) montarPagina(location.hash.split('/')[2]); });
+carregarYT().then(() => { montarProxima(); montarVideos(); montarShorts(); });
+setInterval(montarProxima, 60000);
+setInterval(() => carregarYT().then(() => { montarProxima(); montarVideos(); montarShorts(); }), 15 * 60000);
+montarMesaQuest();
+</script>
+</body>
+</html>
