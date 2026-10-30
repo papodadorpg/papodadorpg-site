@@ -1,0 +1,48 @@
+name: Atualizar dados do site
+
+# Lê o canal do YouTube (lives agendadas, últimos vídeos, Shorts, playlists) e as mesas do MesaQuest,
+# e grava videos.json, episodios.json, mesas.json e as capas. O GitHub Pages republica sozinho a cada commit.
+on:
+  schedule:
+    # a cada 2 horas, das 9h17 às 23h17 de Brasília (UTC-3)
+    - cron: "17 0,2,12,14,16,18,20,22 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: atualizar-dados
+  cancel-in-progress: false
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar Pillow (para converter as capas)
+        run: pip install --quiet pillow
+
+      - name: YouTube (lives, vídeos, Shorts e episódios)
+        run: python3 -I scripts/atualizar_videos.py . || echo "::warning::Não deu para ler o YouTube agora; os dados anteriores foram mantidos."
+
+      - name: MesaQuest (vagas e datas)
+        run: python3 -I scripts/atualizar_mesas.py . || echo "::warning::Não deu para ler o MesaQuest agora; os dados anteriores foram mantidos."
+
+      - name: Salvar se algo mudou
+        run: |
+          git config user.name "papodado-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add videos.json episodios.json mesas.json img
+          if git diff --cached --quiet; then
+            echo "Sem mudanças."
+          else
+            git commit -m "Atualiza dados do site"
+            git push
+          fi
