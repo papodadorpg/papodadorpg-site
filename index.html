@@ -316,28 +316,28 @@ button.rede { font: inherit; color: inherit; text-align: left; cursor: pointer; 
 /* destaques do blog na página inicial (estilo revista) */
 .destaques { display: grid; gap: 18px; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); grid-auto-rows: minmax(240px, auto); }
 .destaques.n1 { grid-template-columns: 1fr; }
-.destaque { position: relative; display: flex; align-items: flex-end; min-height: 240px; overflow: hidden; text-decoration: none; color: var(--branco);
+.dest-post { position: relative; display: flex; align-items: flex-end; min-height: 240px; overflow: hidden; text-decoration: none; color: var(--branco);
   border-radius: var(--raio); border: 1px solid var(--linha); background: linear-gradient(135deg, var(--roxo), var(--azul)); isolation: isolate; }
-.destaque.grande { grid-row: span 2; min-height: 500px; }
-.destaques.n1 .destaque.grande { min-height: 440px; }
-.destaques.n2 .destaque { grid-row: span 2; }
-.destaque .fundo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .4s ease; }
-.destaque::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, rgba(7, 10, 24, .96) 0%, rgba(7, 10, 24, .72) 38%, rgba(7, 10, 24, .1) 72%, transparent 100%); }
-.destaque:hover .fundo { transform: scale(1.04); }
-.destaque:hover { border-color: var(--suave); }
-.destaque .info-dest { padding: 18px 20px 20px; display: grid; gap: 10px; justify-items: start; max-width: 640px; }
-.destaque.grande .info-dest { padding: 28px 30px 30px; gap: 14px; }
-.destaque .cat { background: var(--laranja); color: var(--preto); font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; }
-.destaque h3 { margin: 0; font-size: 18px; line-height: 1.15; font-weight: 800; text-transform: uppercase; letter-spacing: .01em; text-wrap: balance; }
-.destaque.grande h3 { font-size: clamp(26px, 3.2vw, 40px); line-height: 1.05; }
-.destaque p { margin: 0; color: #d9def0; font-size: 16px; max-width: 52ch; }
-.destaque .autoria { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 13px; color: #c3c9dd; }
-.destaque .autoria img { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; border: 2px solid var(--preto); }
-.destaque .autoria span:first-of-type { color: var(--branco); font-weight: 700; }
+.dest-post.grande { grid-row: span 2; min-height: 500px; }
+.destaques.n1 .dest-post.grande { min-height: 440px; }
+.destaques.n2 .dest-post { grid-row: span 2; }
+.dest-post .fundo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .4s ease; }
+.dest-post::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, rgba(7, 10, 24, .96) 0%, rgba(7, 10, 24, .72) 38%, rgba(7, 10, 24, .1) 72%, transparent 100%); }
+.dest-post:hover .fundo { transform: scale(1.04); }
+.dest-post:hover { border-color: var(--suave); }
+.dest-post .info-dest { padding: 18px 20px 20px; display: grid; gap: 10px; justify-items: start; max-width: 640px; }
+.dest-post.grande .info-dest { padding: 28px 30px 30px; gap: 14px; }
+.dest-post .cat { background: var(--laranja); color: var(--preto); font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; }
+.dest-post h3 { margin: 0; font-size: 18px; line-height: 1.15; font-weight: 800; text-transform: uppercase; letter-spacing: .01em; text-wrap: balance; }
+.dest-post.grande h3 { font-size: clamp(26px, 3.2vw, 40px); line-height: 1.05; }
+.dest-post p { margin: 0; color: #d9def0; font-size: 16px; max-width: 52ch; }
+.dest-post .autoria { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 13px; color: #c3c9dd; }
+.dest-post .autoria img { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; border: 2px solid var(--preto); }
+.dest-post .autoria span:first-of-type { color: var(--branco); font-weight: 700; }
 @media (max-width: 760px) {
   .destaques, .destaques.n1 { grid-template-columns: 1fr; grid-auto-rows: auto; }
-  .destaque.grande, .destaques.n2 .destaque { grid-row: auto; min-height: 400px; }
-  .destaque { min-height: 230px; }
+  .dest-post.grande, .destaques.n2 .dest-post { grid-row: auto; min-height: 400px; }
+  .dest-post { min-height: 230px; }
 }
 
 footer.rodape { border-top: 1px solid var(--linha); padding-block: 32px; color: var(--suave); font-size: 14px; }
@@ -1036,7 +1036,12 @@ function montarPagina(id) {
 async function montarBlog() {
   if (!window.BlogPD) return;
   try {
-    const posts = await BlogPD.listar({ limite: 3, conteudo: true });
+    // primeiro os fixados no admin (na ordem escolhida); as vagas que sobram ficam com os mais recentes
+    const [fixados, recentes] = await Promise.all([
+      BlogPD.sbGet('posts?select=id,slug,titulo,resumo,capa_url,autor,categorias,campanha,publicar_em,conteudo&destaque=not.is.null&order=destaque.asc&limit=3').catch(() => []),
+      BlogPD.listar({ limite: 3, conteudo: true }),
+    ]);
+    const posts = [...fixados, ...recentes.filter((p) => !fixados.some((f) => f.id === p.id))].slice(0, 3);
     if (!posts.length) return;
     const caixa = document.getElementById('lista-blog');
     caixa.className = `destaques n${posts.length}`;
@@ -1048,7 +1053,7 @@ function destaqueBlog(p, grande) {
   const palavras = String(p.conteudo || '').replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
   const minutos = Math.max(1, Math.round(palavras / 200));
   const foto = { 'Henrique Müller': 'img/henrique.webp', 'Elisinha Müller': 'img/elisinha.webp' }[p.autor];
-  return `<a class="destaque${grande ? ' grande' : ''}" href="${BlogPD.urlPost(p)}">
+  return `<a class="dest-post${grande ? ' grande' : ''}" href="${BlogPD.urlPost(p)}">
     ${p.capa_url ? `<img class="fundo" src="${esc(p.capa_url)}" alt="" loading="lazy">` : ''}
     <div class="info-dest">
       ${p.categorias?.[0] ? `<span class="cat">${esc(p.categorias[0])}</span>` : ''}
