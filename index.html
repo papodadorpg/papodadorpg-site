@@ -145,6 +145,8 @@ section.bloco.alt { background: var(--bg2); border-block: 1px solid var(--linha)
 .mesa .proxima-sessao { font-size: 14px; color: var(--suave); }
 .mesa .proxima-sessao strong { color: var(--branco); font-variant-numeric: tabular-nums; }
 .mesa .ficha { font-size: 14px; color: var(--suave); display: grid; gap: 2px; }
+.aviso-sessao { color: var(--laranja); font-weight: 700; }
+.menu a.link-admin { color: var(--laranja); }
 .mesa .ficha strong { color: var(--branco); font-weight: 700; }
 .chip.selo-live { border-color: var(--preto); background: var(--vermelho, #e5484d); color: var(--branco); }
 .mesa .acoes-mesa { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
@@ -581,6 +583,14 @@ const STATUS_TXT = { finalizada: 'Finalizada', cancelada: 'Cancelada', encerrada
 
 let EPISODIOS = null; // episodios.json: episódios de cada playlist + highlights
 
+// ================= SUPABASE (agenda editável pelo /admin e contagem de acessos) =================
+// A chave "anon" é pública por natureza: as regras do banco só deixam o site LER a agenda e GRAVAR acessos.
+const SB = { url: 'https://oumhibikfxorrknthbqb.supabase.co', chave: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91bWhpYmlrZnhvcnJrbnRoYnFiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzODcyNDIsImV4cCI6MjEwODk2MzI0Mn0.JlgqDluN1BEHBAGGpbcVw-wVowlcl_x0EjU2E4e-zns' };
+const sbOk = /^https:\/\/[a-z0-9]+\.supabase\.co$/.test(SB.url);
+// Exceções da agenda: { campanha, data: 'AAAA-MM-DD' (dia normal da sessão), acao: 'cancelada' | 'remarcada', novo_inicio: 'AAAA-MM-DDTHH:MM' }
+let EXCECOES = [];
+const logadoAdmin = () => { try { return Object.keys(localStorage).some((k) => /^sb-.+-auth-token$/.test(k)); } catch { return false; } };
+
 const VIDEOS_ATALHOS = [
   { titulo: 'Lives completas', sub: 'Todas as sessões, do começo ao fim', url: 'https://www.youtube.com/@papodadorpg/streams', cor: 'vermelho' },
   { titulo: 'Cortes e Shorts', sub: 'Os melhores momentos das mesas', url: 'https://www.youtube.com/@papodadorpg/shorts', cor: 'laranja' },
@@ -628,13 +638,33 @@ const menuAgenda = (m) => `<details class="menu-agenda"><summary>＋ Agenda</sum
   <a href="${googleAgendaUrl(m)}" target="_blank" rel="noopener">Google Agenda (repete a cada 2 semanas)</a>
   <a href="${outlookUrl(m)}" target="_blank" rel="noopener">Outlook (próxima live)</a></div></details>`;
 
-// Sessões da live: a anterior (para "ao vivo agora") e a próxima
+// Sessões da live: a anterior (para "ao vivo agora") e a próxima, já com cancelamentos e remarcações do /admin.
+// "regular" = próxima data no ritmo normal (define o dia e o horário fixos na agenda).
+const diaBR = (d) => new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
 function sessoes(live) {
-  const passo = live.cada * 86400000, ref = deBrasilia(live.ref).getTime(), agora = Date.now();
-  if (agora < ref + DURACAO_H * 3600000) return { proxima: new Date(ref), anterior: new Date(ref - passo), estreia: true };
-  let prox = ref + Math.ceil((agora - DURACAO_H * 3600000 - ref) / passo) * passo;
-  return { proxima: new Date(prox), anterior: new Date(prox - passo) };
+  const passo = live.cada * 86400000, ref = deBrasilia(live.ref).getTime(), agora = Date.now(), J = DURACAO_H * 3600000;
+  const estreia = agora < ref + J;
+  const base = estreia ? ref : ref + Math.ceil((agora - J - ref) / passo) * passo;
+  const exc = Object.fromEntries(EXCECOES.filter((e) => e.campanha === live.id).map((e) => [e.data, e]));
+  const efetivas = [], canceladas = [];
+  for (let k = -2; k <= 10; k++) {
+    const t = base + k * passo, e = exc[diaBR(new Date(t))];
+    if (e?.acao === 'cancelada') canceladas.push(t);
+    else if (e?.acao === 'remarcada' && e.novo_inicio) efetivas.push({ t: deBrasilia(e.novo_inicio).getTime(), remarcada: true, nota: e.nota });
+    else efetivas.push({ t });
+  }
+  efetivas.sort((a, b) => a.t - b.t);
+  const i = efetivas.findIndex((x) => x.t + J > agora);
+  const prox = efetivas[i] || { t: base }, ant = efetivas[i - 1] || { t: prox.t - passo };
+  return {
+    proxima: new Date(prox.t), anterior: new Date(ant.t), regular: new Date(base), estreia: estreia && prox.t === ref,
+    remarcada: !!prox.remarcada, nota: prox.nota || '', canceladas: canceladas.filter((t) => t + J > agora && t < prox.t).map((t) => new Date(t)),
+  };
 }
+const avisoSessao = (m) => [m.remarcada ? 'remarcada' : '', ...m.canceladas.map((d) => `sem live em ${dataCurta(d).split(', ')[1]}`)].filter(Boolean).join(' · ');
+// capa: enviada pelo /admin (capa_url) > capa da playlist em img/pl/ > nada (o card usa o vitral)
+const capaDe = (m) => m.capa_url || (m.playlist || m.capa ? `img/pl/${m.id}.webp` : '');
+const imgFalha = `onerror="this.onerror=null;this.src='img/og.jpg'"`;
 
 // ================= VITRAL (faces com contorno preto, como o d20 da marca) =================
 function rng(seed) { let s = 0; for (const c of seed) s = (s * 31 + c.charCodeAt(0)) >>> 0; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }
@@ -661,7 +691,7 @@ let AGENDA = [];
 function prepararLives() {
   AGENDA = LIVES.map((l) => {
     const s = sessoes(l);
-    return { ...l, ...s, estreia: !!(s.estreia && !l.playlist), dia: diaSemanaBR(s.proxima), hora: horaBR(s.proxima) };
+    return { ...l, ...s, estreia: !!(s.estreia && !l.playlist), dia: diaSemanaBR(s.regular), hora: horaBR(s.regular) };
   });
 }
 
@@ -672,7 +702,7 @@ function montarAgenda() {
     const corpo = doDia.map((m) => `<div class="slot" style="--cor:${COR[m.cor]}">
         <div class="hora">${horaTxt(m.hora)}</div>
         <div class="nomes"><span>${esc(m.nome)}</span></div>
-        <div class="ritmo">Próxima: ${dataCurta(m.proxima).split(', ')[1]}${m.cada === 14 ? ' · quinzenal' : ''}</div></div>`).join('')
+        <div class="ritmo">Próxima: ${dataCurta(m.proxima).split(', ')[1]}${m.remarcada ? ` às ${horaTxt(horaBR(m.proxima))}` : ''}${m.cada === 14 ? ' · quinzenal' : ''}${avisoSessao(m) ? `<br><strong class="aviso-sessao">${esc(avisoSessao(m))}</strong>` : ''}</div></div>`).join('')
       || (DIAS_OFF[d]
         ? `<div class="slot off"><div class="hora">${DIAS_OFF[d].titulo}</div><div class="ritmo">${DIAS_OFF[d].texto}</div></div>`
         : '<div class="vazio">Sem live. Dia de cortes e conteúdo no canal.</div>');
@@ -755,13 +785,13 @@ const playlistUrl = (m) => (m.playlist ? `https://www.youtube.com/playlist?list=
 function montarEncerradas() {
   document.getElementById('lista-encerradas').innerHTML = ENCERRADAS.map((m) => `
     <article class="mesa">
-      <div class="topo-capa"><a href="${paginaUrl(m)}" tabindex="-1"><img class="capa-pl" src="img/pl/${m.id}.webp" alt="Capa da playlist ${esc(m.nome)}" loading="lazy" width="854" height="480"></a></div>
+      <div class="topo-capa">${capaDe(m) ? `<a href="${paginaUrl(m)}" tabindex="-1"><img class="capa-pl" src="${esc(capaDe(m))}" ${imgFalha} alt="Capa da playlist ${esc(m.nome)}" loading="lazy" width="854" height="480"></a>` : vitral(m.id, 'laranja')}</div>
       <div class="corpo">
         <h3><a href="${paginaUrl(m)}">${esc(m.nome)}</a></h3>
         <div class="meta">
-          <span class="chip status ${m.status}">${STATUS_TXT[m.status]}</span>
-          <span class="chip">${esc(m.sistema)}</span>
-          <span class="chip">${m.videos} vídeos</span>
+          <span class="chip status ${m.status || 'finalizada'}">${STATUS_TXT[m.status] || 'Finalizada'}</span>
+          ${m.sistema ? `<span class="chip">${esc(m.sistema)}</span>` : ''}
+          ${(EPISODIOS?.campanhas?.[m.id]?.episodios?.length || m.videos) ? `<span class="chip">${EPISODIOS?.campanhas?.[m.id]?.episodios?.length || m.videos} vídeos</span>` : ''}
           ${m.mestre ? `<span class="chip">Mestre ${esc(m.mestre)}</span>` : ''}
         </div>
         <p>${esc(m.sinopse)}</p>
@@ -773,8 +803,8 @@ function montarEncerradas() {
 function montarCampanhas() {
   document.getElementById('lista-campanhas').innerHTML = [...AGENDA].sort((a, b) => a.proxima - b.proxima).map((m) => `
     <article class="mesa" style="--cor:${COR[m.cor]};--texto-cor:${TEXTO_SOBRE[m.cor]}">
-      <div class="topo-capa">${m.playlist || m.capa
-        ? `<a href="${paginaUrl(m)}" tabindex="-1"><img class="capa-pl" src="img/pl/${m.id}.webp" alt="Capa de ${esc(m.nome)}" loading="lazy" width="854" height="480"></a>`
+      <div class="topo-capa">${capaDe(m)
+        ? `<a href="${paginaUrl(m)}" tabindex="-1"><img class="capa-pl" src="${esc(capaDe(m))}" ${imgFalha} alt="Capa de ${esc(m.nome)}" loading="lazy" width="854" height="480"></a>`
         : vitral(m.id, m.cor)}</div>
       <div class="corpo">
         <h3><a href="${paginaUrl(m)}">${esc(m.nome)}</a></h3>
@@ -788,7 +818,7 @@ function montarCampanhas() {
         ${(() => { const r = resumosDe(m)[0]; return r ? `<a class="ultima" href="${assistir(r.id)}" target="_blank" rel="noopener">
           ${r.capa ? `<span class="mini"><img src="${esc(r.capa)}" alt="" loading="lazy"><span class="play" aria-hidden="true"></span></span>` : ''}
           <span><span class="rotulo">Na última sessão</span><strong>${esc(tituloEp(r.titulo))}</strong><span class="sub">Resumo${durTxt(r.duracao) ? ` em ${durTxt(r.duracao)}` : ''} · assistir</span></span></a>` : ''; })()}
-        <div class="proxima-sessao">${m.estreia ? 'Estreia' : 'Próxima live'}: <strong>${dataCurta(m.proxima)} às ${horaTxt(m.hora)}</strong></div>
+        <div class="proxima-sessao">${m.estreia ? 'Estreia' : 'Próxima live'}: <strong>${dataCurta(m.proxima)} às ${horaTxt(horaBR(m.proxima))}</strong>${avisoSessao(m) ? ` <span class="aviso-sessao">(${esc(avisoSessao(m))})</span>` : ''}</div>
         <div class="links"><a href="${paginaUrl(m)}">${m.estreia ? 'Ver a campanha' : 'Todos os episódios'} →</a>${menuAgenda(m)}</div>
       </div>
     </article>`).join('');
@@ -900,19 +930,19 @@ function montarPagina(id) {
   alvo.innerHTML = `<div class="wrap">
     <a class="voltar" href="#${ativa ? 'mesas' : 'encerradas'}">← Todas as campanhas</a>
     <div class="camp-topo">
-      <div class="camp-capa">${m.playlist || m.capa ? `<img src="img/pl/${m.id}.webp" alt="Capa de ${esc(m.nome)}" width="854" height="480">` : vitral(m.id, ativa?.cor || 'laranja')}</div>
+      <div class="camp-capa">${capaDe(m) ? `<img src="${esc(capaDe(m))}" ${imgFalha} alt="Capa de ${esc(m.nome)}" width="854" height="480">` : vitral(m.id, ativa?.cor || 'laranja')}</div>
       <div>
         <div class="rotulo">${ativa?.estreia ? 'Nova campanha' : ativa ? 'No ar no canal' : 'Campanha finalizada'}</div>
         <h1>${esc(m.nome)}</h1>
         <div class="meta">
-          ${ativa ? `<span class="chip dia-chip" style="--cor:${COR[ativa.cor]};--texto-cor:${TEXTO_SOBRE[ativa.cor]}">${DIAS[ativa.dia]} · ${horaTxt(ativa.hora)}</span><span class="chip">Quinzenal</span>` : `<span class="chip status ${m.status}">${STATUS_TXT[m.status]}</span>`}
+          ${ativa ? `<span class="chip dia-chip" style="--cor:${COR[ativa.cor]};--texto-cor:${TEXTO_SOBRE[ativa.cor]}">${DIAS[ativa.dia]} · ${horaTxt(ativa.hora)}</span><span class="chip">${ativa.cada === 7 ? 'Semanal' : ativa.cada === 14 ? 'Quinzenal' : `A cada ${ativa.cada} dias`}</span>` : `<span class="chip status ${m.status || 'finalizada'}">${STATUS_TXT[m.status] || 'Finalizada'}</span>`}
           ${m.sistema ? `<span class="chip">${esc(m.sistema)}</span>` : ''}
           ${eps.length || m.videos ? `<span class="chip">${eps.length || m.videos} vídeos</span>` : ''}
           ${m.mestre && m.mestre !== 'Henrique Müller' ? `<span class="chip">Mestre ${esc(m.mestre)}</span>` : ''}
         </div>
         <p class="sinopse">${esc(m.sinopse)}</p>
         ${(m.sobre || []).map((t) => `<p class="sinopse sobre-extra">${esc(t)}</p>`).join('')}
-        ${ativa ? `<div class="proxima-sessao">${ativa.estreia ? 'Estreia' : 'Próxima live'}: <strong>${quandoTxt(ativa.proxima)}</strong></div>` : ''}
+        ${ativa ? `<div class="proxima-sessao">${ativa.estreia ? 'Estreia' : 'Próxima live'}: <strong>${quandoTxt(ativa.proxima)}</strong>${avisoSessao(ativa) ? ` <span class="aviso-sessao">(${esc(avisoSessao(ativa))})</span>` : ''}</div>` : ''}
         <div class="acoes">
           ${m.playlist ? `<a class="btn btn-play" href="${assistirInicio}" target="_blank" rel="noopener">Assistir do começo</a>
           <a class="btn btn-linha" href="${playlistUrl(m)}" target="_blank" rel="noopener">Playlist no YouTube</a>` : `<a class="btn btn-play" href="https://www.youtube.com/@papodadorpg?sub_confirmation=1" target="_blank" rel="noopener">Inscrever-se no canal</a>`}
@@ -934,7 +964,7 @@ function montarPagina(id) {
         <div class="capa">${h.capa ? `<img src="${esc(h.capa)}" alt="" loading="lazy">` : ''}<span class="play" aria-hidden="true"></span></div>
         <div class="txt"><strong>${esc(tituloEp(h.titulo))}</strong><span>Resumo${durTxt(h.duracao) ? ` em ${durTxt(h.duracao)}` : ''}</span></div></a>`).join('')}</div></div>` : ''}
     ${!m.playlist ? `<div class="camp-bloco"><div class="camp-ultima" style="grid-template-columns:1fr"><div>
-      <div class="rotulo">Estreia</div><h3>${ativa ? `${DIAS[ativa.dia]}, ${dataCurta(ativa.proxima).split(', ')[1]}, às ${horaTxt(ativa.hora)}` : 'Em breve'}</h3>
+      <div class="rotulo">Estreia</div><h3>${ativa ? `${DIAS[diaSemanaBR(ativa.proxima)]}, ${dataCurta(ativa.proxima).split(', ')[1]}, às ${horaTxt(horaBR(ativa.proxima))}` : 'Em breve'}</h3>
       <p>Os episódios vão aparecer aqui assim que a campanha estrear. Ative o sino no YouTube ou adicione a estreia à sua agenda para não perder.</p></div></div></div>` : `
     <div class="camp-bloco"><div class="rotulo">Episódios</div><h2>${eps.length ? `${eps.length} vídeos, do primeiro ao mais recente` : 'Episódios'}</h2>
       ${eps.length ? `<ol class="episodios">${eps.map((e, i) => `<li${ativa && i === eps.length - 1 ? ' class="novo"' : ''}><a href="${assistir(e.id)}&list=${encodeURIComponent(m.playlist)}" target="_blank" rel="noopener">
@@ -977,8 +1007,107 @@ document.getElementById('copiar-pix').addEventListener('click', async (e) => {
 });
 document.getElementById('ano').textContent = new Date().getFullYear();
 
+// ================= AGENDA DO BANCO (o que foi editado no /admin; sem banco, valem as listas acima) =================
+async function sbGet(caminho) {
+  const r = await fetch(`${SB.url}/rest/v1/${caminho}`, { headers: { apikey: SB.chave, Authorization: `Bearer ${SB.chave}` }, cache: 'no-store' });
+  if (!r.ok) throw new Error(`Supabase ${r.status}`);
+  return r.json();
+}
+async function carregarAgenda() {
+  if (!sbOk) return false;
+  try {
+    const desde = diaBR(new Date(Date.now() - 90 * 86400000));
+    const [camps, excs] = await Promise.all([
+      sbGet('campanhas?select=id,ativa,ordem,dados&order=ordem,id'),
+      sbGet(`excecoes?select=campanha,data,acao,novo_inicio,nota&data=gte.${desde}`),
+    ]);
+    const ativas = camps.filter((c) => c.ativa && c.dados?.nome && c.dados?.ref && c.dados?.cada).map((c) => ({ ...c.dados, id: c.id }));
+    if (!ativas.length) return false;
+    LIVES.splice(0, LIVES.length, ...ativas);
+    ENCERRADAS.splice(0, ENCERRADAS.length, ...camps.filter((c) => !c.ativa && c.dados?.nome).map((c) => ({ ...c.dados, id: c.id })));
+    EXCECOES = excs;
+    return true;
+  } catch (e) { console.warn('agenda do banco indisponível', e); return false; }
+}
+const remontar = () => { prepararLives(); montarAgenda(); montarCampanhas(); montarEncerradas(); montarProxima(); if (location.hash.startsWith('#/campanha/')) montarPagina(location.hash.split('/')[2]); };
+
+// ================= ACESSOS: contagem anônima (código aleatório no navegador; sem nome, e-mail ou IP) =================
+const Rastro = (() => {
+  const robo = navigator.webdriver || /bot|crawl|spider|slurp|preview|lighthouse|headless|facebookexternalhit|whatsapp/i.test(navigator.userAgent);
+  const local = location.protocol === 'file:' || /^(localhost|127\.|192\.168\.|10\.)/.test(location.hostname);
+  const ativo = sbOk && !robo && !local && !logadoAdmin(); // admins logados não entram na conta
+  const ler = (k) => { try { return localStorage.getItem(k); } catch { return null; } };
+  const gravar = (k, v) => { try { localStorage.setItem(k, v); } catch { /* navegação privada */ } };
+  const uuid = () => (crypto.randomUUID ? crypto.randomUUID()
+    : '10000000-1000-4000-8000-100000000000'.replace(/[018]/g, (c) => (c ^ (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))).toString(16)));
+  let visitante = ler('pd_v');
+  if (!visitante) { visitante = uuid(); gravar('pd_v', visitante); }
+  let visita = null, nova = false;
+  try { const s = JSON.parse(ler('pd_s') || 'null'); if (s && Date.now() - s.t < 30 * 60000) visita = s.id; } catch { /* ignora */ }
+  if (!visita) { visita = uuid(); nova = true; }
+  const ua = navigator.userAgent;
+  const aparelho = /iPad|Tablet/i.test(ua) ? 'tablet' : /Mobi|Android|iPhone/i.test(ua) ? 'celular' : 'computador';
+  const NOMES = [[/youtube|youtu\.be/, 'YouTube'], [/instagram/, 'Instagram'], [/whatsapp|wa\.me/, 'WhatsApp'], [/facebook|fb\./, 'Facebook'],
+    [/tiktok/, 'TikTok'], [/discord/, 'Discord'], [/mesaquest/, 'MesaQuest'], [/google\./, 'Google'], [/bing\./, 'Bing'], [/(^|\.)t\.co$|twitter|(^|\.)x\.com/, 'X (Twitter)']];
+  function origem() {
+    const p = new URLSearchParams(location.search), utm = p.get('utm_source') || p.get('ref');
+    let h = '';
+    try { h = new URL(document.referrer).hostname.replace(/^(www|m|l|lm)\./, ''); } catch { /* sem referrer */ }
+    const fonte = utm || (h && h !== location.hostname.replace(/^www\./, '') ? h : '');
+    if (!fonte) return null;
+    return (NOMES.find(([re]) => re.test(fonte.toLowerCase()))?.[1] || fonte).slice(0, 80);
+  }
+  const rotaAtual = () => (location.hash.startsWith('#/') ? location.hash.slice(1).split('?')[0] : location.pathname || '/').slice(0, 120);
+  const AREAS = [['.topo', 'Menu'], ['.heroi', 'Topo (próxima live)'], ['#agenda', 'Agenda'], ['#lista-encerradas', 'Campanhas encerradas'],
+    ['#mesas', 'Campanhas no ar'], ['#pagina-campanha', 'Página de campanha'], ['.faq', 'FAQ'], ['#jogue', 'Jogue com a gente'],
+    ['#lista-shorts', 'Shorts'], ['#shorts', 'Shorts'], ['#videos', 'Vídeos'], ['#sobre', 'Sobre'], ['#comunidade', 'Comunidade e apoio'], ['.rodape', 'Rodapé']];
+  const areaDe = (el) => AREAS.find(([sel]) => el.closest(sel))?.[1] || 'Outros';
+  const limpa = (t) => String(t || '').replace(/\s+/g, ' ').trim();
+  function alvoDe(el) {
+    let t = limpa(el.dataset.alvo || el.getAttribute('aria-label') || el.querySelector('strong')?.textContent || el.textContent || el.querySelector('img')?.alt);
+    if (t.length > 60) t = t.slice(0, 57) + '…';
+    const cartao = el.closest('article, .slot, .pessoa');
+    const titulo = limpa(cartao?.querySelector('h3')?.textContent);
+    return (titulo && !t.includes(titulo) ? `${t} · ${titulo}` : t).slice(0, 120) || '(sem texto)';
+  }
+  function destinoDe(el) {
+    const href = el.getAttribute('href');
+    if (!href) return null;
+    if (href.startsWith('#')) return href.slice(0, 120);
+    try { const u = new URL(href, location.href); return (u.hostname === location.hostname ? u.pathname : u.hostname.replace(/^www\./, '')).slice(0, 120); } catch { return null; }
+  }
+  let ultimaPagina = null;
+  function enviar(ev) {
+    if (!ativo) return;
+    gravar('pd_s', JSON.stringify({ id: visita, t: Date.now() }));
+    fetch(`${SB.url}/rest/v1/eventos`, {
+      method: 'POST', keepalive: true,
+      headers: { apikey: SB.chave, Authorization: `Bearer ${SB.chave}`, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+      body: JSON.stringify({ visitante, visita, aparelho, ...ev }),
+    }).catch(() => { /* sem rede: ignora */ });
+  }
+  function pagina() {
+    const p = rotaAtual();
+    if (p === ultimaPagina) return;
+    const primeira = ultimaPagina === null;
+    ultimaPagina = p;
+    enviar({ tipo: 'pagina', pagina: p, origem: primeira && nova ? origem() : null });
+  }
+  document.addEventListener('click', (e) => {
+    const el = e.target.closest('a, button, summary');
+    if (!el) return;
+    enviar({ tipo: 'clique', pagina: rotaAtual(), area: areaDe(el), alvo: alvoDe(el), destino: destinoDe(el) });
+  }, true);
+  window.addEventListener('hashchange', pagina);
+  return { pagina };
+})();
+
+if (logadoAdmin()) document.querySelector('.menu').insertAdjacentHTML('beforeend', '<a class="link-admin" href="admin/">Admin</a>');
+
 prepararLives(); montarAgenda(); montarCampanhas(); montarEncerradas(); rota();
-carregarExtras().then(() => { montarCampanhas(); if (location.hash.startsWith('#/campanha/')) montarPagina(location.hash.split('/')[2]); });
+Rastro.pagina();
+carregarAgenda().then((ok) => { if (ok) remontar(); });
+carregarExtras().then(() => { montarCampanhas(); montarEncerradas(); if (location.hash.startsWith('#/campanha/')) montarPagina(location.hash.split('/')[2]); });
 carregarYT().then(() => { montarProxima(); montarVideos(); montarShorts(); });
 setInterval(montarProxima, 60000);
 setInterval(() => carregarYT().then(() => { montarProxima(); montarVideos(); montarShorts(); }), 15 * 60000);
