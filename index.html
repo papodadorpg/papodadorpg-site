@@ -312,6 +312,14 @@ button.rede { font: inherit; color: inherit; text-align: left; cursor: pointer; 
 .assinatura img, .assinatura .sem-foto { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid var(--preto); background: var(--laranja); flex: none; }
 .assinatura strong { color: var(--branco); font-weight: 700; }
 #camp-blog:empty { display: none; }
+#lista-blog:empty { display: none; }
+.chamada-blog { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; padding: 22px 26px; text-decoration: none; color: var(--branco);
+  background: linear-gradient(120deg, var(--roxo), var(--azul)); border: 2px solid var(--preto); outline: 1px solid var(--linha); border-radius: var(--raio); }
+.chamada-blog:hover { outline-color: var(--suave); }
+.chamada-blog .txt { display: grid; gap: 4px; flex: 1; min-width: 240px; }
+.chamada-blog strong { font-size: clamp(20px, 2.4vw, 26px); font-weight: 800; line-height: 1.15; }
+.chamada-blog .txt span { color: #e6e9f9; font-size: 16px; }
+.chamada-blog .selo-novo { background: var(--laranja); color: var(--preto); font-weight: 800; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; border: 2px solid var(--preto); }
 
 footer.rodape { border-top: 1px solid var(--linha); padding-block: 32px; color: var(--suave); font-size: 14px; }
 footer.rodape .wrap { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: space-between; }
@@ -455,17 +463,23 @@ footer.rodape img { height: 40px; width: auto; }
     </div>
   </section>
 
-  <section class="bloco" id="blog" hidden>
+  <section class="bloco" id="blog">
     <div class="wrap">
       <div class="cab-secao">
         <div><div class="rotulo">Blog</div><h2>Do outro lado do escudo</h2></div>
         <a class="btn btn-linha" href="blog/">Ver todos os posts</a>
       </div>
+      <a class="chamada-blog" href="blog/">
+        <span class="selo-novo">Novo</span>
+        <span class="txt"><strong>O blog do Papo Dado chegou</strong>
+          <span>Bastidores das mesas, dicas de mestre, resenhas e novidades do canal, escritos pelo Henrique e pela Elisinha.</span></span>
+        <span class="btn btn-play">Ler o blog →</span>
+      </a>
       <div class="posts" id="lista-blog"></div>
     </div>
   </section>
 
-  <section class="bloco" id="sobre">
+  <section class="bloco alt" id="sobre">
     <div class="wrap sobre">
       <div class="texto">
         <div class="rotulo">Sobre</div>
@@ -500,7 +514,7 @@ footer.rodape img { height: 40px; width: auto; }
     </div>
   </section>
 
-  <section class="bloco alt" id="comunidade">
+  <section class="bloco" id="comunidade">
     <div class="wrap">
       <div class="cab-secao">
         <div><div class="rotulo">Comunidade</div><h2>Entra pra mesa com a gente</h2></div>
@@ -1012,11 +1026,7 @@ async function montarBlog() {
     const posts = await BlogPD.listar({ limite: 3 });
     if (!posts.length) return;
     document.getElementById('lista-blog').innerHTML = posts.map(BlogPD.card).join('');
-    document.getElementById('blog').hidden = false;
-    // mantém o fundo alternado entre as seções
-    document.getElementById('sobre').classList.add('alt');
-    document.getElementById('comunidade').classList.remove('alt');
-  } catch { /* sem blog: a seção continua escondida */ }
+  } catch { /* sem posts: fica só a chamada para o blog */ }
 }
 async function blogDaCampanha(id) {
   if (!window.BlogPD) return;
