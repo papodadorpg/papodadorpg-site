@@ -29,9 +29,6 @@ jobs:
       - name: Instalar Pillow (para converter as capas)
         run: pip install --quiet pillow
 
-      - name: Publicar arquivos guardados no Supabase (uso único)
-        run: python3 -I scripts/publicar_tmp.py .
-
       - name: YouTube (lives, vídeos, Shorts e episódios)
         run: python3 -I scripts/atualizar_videos.py . || echo "::warning::Não deu para ler o YouTube agora; os dados anteriores foram mantidos."
 
@@ -42,7 +39,7 @@ jobs:
         run: |
           git config user.name "papodado-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
+          git add videos.json episodios.json mesas.json img
           if git diff --cached --quiet; then
             echo "Sem mudanças."
           else
