@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-10-30T06:25:01+00:00",
+ "atualizado": "2026-10-30T14:35:47+00:00",
  "aovivo": [],
  "agendadas": [],
  "itens": [
@@ -17,31 +17,36 @@
    "capa": "img/yt/WbAiRu9vfrI.jpg"
   },
   {
+   "id": "4sPRkcO_hZ0",
+   "titulo": "Highlights Descida ao Avernus - Episódio 33 | A Crosta",
+   "data": "2026-10-29T15:35:47+00:00",
+   "capa": "img/yt/4sPRkcO_hZ0.jpg"
+  },
+  {
+   "id": "8lk8Z5v1e7M",
+   "titulo": "Highlights Príncipes do Apocalipse - Episódio 11 | Encarcerados",
+   "data": "2026-10-29T14:35:47+00:00",
+   "capa": "img/yt/8lk8Z5v1e7M.jpg"
+  },
+  {
    "id": "9zwZK7lWpoE",
    "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 11 | Encarcerados",
    "data": "2026-10-28T19:19:21+00:00",
    "capa": "img/yt/9zwZK7lWpoE.jpg"
   },
   {
-   "id": "iF-Y6CC3Yxk",
-   "titulo": "D&D 5.5 Maldição de Strahd - Episódio 35 | A Abadia de Santa Markóvia",
-   "data": "2026-10-27T06:25:01+00:00",
-   "capa": "img/yt/iF-Y6CC3Yxk.jpg"
-  },
-  {
-   "id": "iC-YSUpnRW0",
-   "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 21 | O Peso da Consciência",
-   "data": "2026-10-23T06:25:01+00:00",
-   "capa": "img/yt/iC-YSUpnRW0.jpg"
-  },
-  {
-   "id": "xTXouPPjq-A",
-   "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 33 | O Plano",
-   "data": "2026-10-22T06:25:01+00:00",
-   "capa": "img/yt/xTXouPPjq-A.jpg"
+   "id": "MbKTLSVHOUg",
+   "titulo": "Highlights Príncipes do Apocalipse - Episódio 10 | Perigos Noturnos",
+   "data": "2026-10-28T14:35:47+00:00",
+   "capa": "img/yt/MbKTLSVHOUg.jpg"
   }
  ],
  "shorts": [
+  {
+   "id": "t1U1bkDDbtw",
+   "titulo": "Só queria uma lembrança feliz",
+   "capa": "img/yt/t1U1bkDDbtw-s.webp"
+  },
   {
    "id": "jHxI4hH5WKA",
    "titulo": "Salvo pelo cinto de segurança",
@@ -76,11 +81,6 @@
    "id": "QcfaolNBqaM",
    "titulo": "Soninho sem culpa 😌",
    "capa": "img/yt/QcfaolNBqaM-s.webp"
-  },
-  {
-   "id": "PTQknF-u7TM",
-   "titulo": "Frase DE FICANTES 😍 #rpg #dungeonsanddragons #dnd",
-   "capa": "img/yt/PTQknF-u7TM-s.webp"
   }
  ]
 }
