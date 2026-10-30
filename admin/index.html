@@ -165,7 +165,9 @@ dialog::backdrop { background: rgba(0, 0, 0, .6); }
 .selo.publicado { background: var(--ok); color: #000; border-color: #000; }
 .selo.agendado { background: var(--laranja); color: #000; border-color: #000; }
 .selo.rascunho { color: var(--suave); }
+.selo.home { background: var(--azul); color: #fff; border-color: #000; }
 .linha-post .info .selo.publicado, .linha-post .info .selo.agendado, td .selo { color: #000; }
+.linha-post .info .selo.home { color: #fff; }
 .editor-post { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 18px; align-items: start; }
 .editor-post .principal { display: grid; gap: 12px; }
 .editor-post .lateral { display: grid; gap: 14px; position: sticky; top: 84px; }
@@ -363,6 +365,11 @@ dialog::backdrop { background: rgba(0, 0, 0, .6); }
               <h3>Categorias</h3>
               <div class="chips-cat" id="p-cats"></div>
               <input id="p-cat-nova" placeholder="Nova categoria + Enter" maxlength="30">
+            </div>
+            <div class="painel grade" style="gap:10px">
+              <h3>Destaque na home</h3>
+              <select id="p-destaque"><option value="">Não fixar</option><option value="1">1º lugar (card grande)</option><option value="2">2º lugar</option><option value="3">3º lugar</option></select>
+              <span class="dica" id="p-destaque-dica">A home mostra 3 posts: primeiro os fixados, na ordem escolhida; as vagas que sobram ficam com os mais recentes.</span>
             </div>
             <div class="painel grade" style="gap:10px">
               <h3>Campanha relacionada</h3>
@@ -845,13 +852,14 @@ const CATS_PADRAO = ['Novidades', 'Bastidores', 'Dicas de mestre', 'Resenhas', '
 let POSTS = [], POST = null, QUILL = null, CATS = new Set(), CAPA_POST = null, SLUG_MEXIDO = false;
 const isoBR = (local) => new Date(`${local}:00-03:00`).toISOString(); // "AAAA-MM-DDTHH:MM" de Brasília -> ISO
 function situacao(p) {
-  if (p.status !== 'publicado') return '<span class="selo rascunho">Rascunho</span>';
-  return new Date(p.publicar_em) > new Date() ? `<span class="selo agendado">Agendado · ${esc(quandoBR(new Date(p.publicar_em)))}</span>` : `<span class="selo publicado">Publicado · ${esc(quandoHist(p.publicar_em).slice(0, 8))}</span>`;
+  const casa = p.destaque ? `<span class="selo home">Home · ${p.destaque}º</span>` : '';
+  if (p.status !== 'publicado') return `<span class="selo rascunho">Rascunho</span>${casa}`;
+  return new Date(p.publicar_em) > new Date() ? `<span class="selo agendado">Agendado · ${esc(quandoBR(new Date(p.publicar_em)))}</span>${casa}` : `<span class="selo publicado">Publicado · ${esc(quandoHist(p.publicar_em).slice(0, 8))}</span>${casa}`;
 }
 async function carregarPosts() {
   $('blog-editor').hidden = true; $('blog-lista').hidden = false;
   aviso('msg-blog', 'Carregando…');
-  const { data, error } = await sb.from('posts').select('id,slug,titulo,resumo,capa_url,autor,categorias,campanha,status,publicar_em,atualizado_em').order('atualizado_em', { ascending: false });
+  const { data, error } = await sb.from('posts').select('id,slug,titulo,resumo,capa_url,autor,categorias,campanha,status,publicar_em,atualizado_em,destaque').order('atualizado_em', { ascending: false });
   if (error) return aviso('msg-blog', `Erro ao carregar: ${error.message}`, 'erro');
   aviso('msg-blog', '');
   POSTS = data;
@@ -958,6 +966,12 @@ async function abrirPost(id) {
   $('p-autor').value = conhecido ? (p?.autor || (USUARIO?.email?.includes('elis') ? 'Elisinha Müller' : 'Henrique Müller')) : '';
   $('p-autor-outro').value = conhecido ? '' : p.autor; $('p-autor-outro').hidden = conhecido;
   $('p-campanha').value = p?.campanha || '';
+  $('p-destaque').value = p?.destaque ? String(p.destaque) : '';
+  [...$('p-destaque').options].forEach((o) => {
+    if (!o.value) return;
+    const dono = POSTS.find((x) => x.destaque === +o.value && x.id !== p?.id);
+    o.textContent = `${o.value}º lugar${o.value === '1' ? ' (card grande)' : ''}${dono ? ` · hoje: ${dono.titulo.slice(0, 32)}${dono.titulo.length > 32 ? '…' : ''}` : ''}`;
+  });
   const publicado = p?.status === 'publicado';
   $('l-manter').hidden = !publicado;
   if (publicado) $('l-manter-txt').textContent = new Date(p.publicar_em) > new Date() ? `Manter agendado (${quandoBR(new Date(p.publicar_em))})` : `Continuar publicado (desde ${quandoHist(p.publicar_em).slice(0, 8)})`;
@@ -991,15 +1005,22 @@ $('blog-editor').addEventListener('submit', async (e) => {
   const conteudo = QUILL.getSemanticHTML().replace(/&nbsp;/g, ' ')
     .replace(/<a href="(https:\/\/www\.youtube-nocookie\.com\/embed\/[\w-]{11})"[^>]*>[^<]*<\/a>/g, '<iframe class="ql-video" frameborder="0" allowfullscreen="true" src="$1"></iframe>');
   const linha = { slug: slugPost, titulo: $('p-titulo').value.trim(), resumo: $('p-resumo').value.trim() || null, capa_url: CAPA_POST, conteudo,
-    autor, categorias: [...CATS], campanha: $('p-campanha').value || null, status, publicar_em };
+    autor, categorias: [...CATS], campanha: $('p-campanha').value || null, status, publicar_em, destaque: $('p-destaque').value ? +$('p-destaque').value : null };
   if (!linha.titulo) return aviso('msg-post', 'Dê um título ao post.', 'erro');
   $('post-salvar').disabled = true; aviso('msg-post', 'Salvando…');
+  // a vaga na home é de um post só: quem estava nela sai
+  if (linha.destaque) {
+    let liberar = sb.from('posts').update({ destaque: null }).eq('destaque', linha.destaque);
+    if (POST) liberar = liberar.neq('id', POST.id);
+    const { error: e1 } = await liberar;
+    if (e1) { $('post-salvar').disabled = false; return aviso('msg-post', `Erro ao salvar: ${e1.message}`, 'erro'); }
+  }
   const q = POST ? sb.from('posts').update(linha).eq('id', POST.id).select().single() : sb.from('posts').insert(linha).select().single();
   const { data, error } = await q;
   $('post-salvar').disabled = false;
   if (error) return aviso('msg-post', error.code === '23505' ? 'Já existe um post com esse endereço. Mude o endereço.' : `Erro ao salvar: ${error.message}`, 'erro');
   const extra = await gerarPaginas(POST?.status === 'publicado' || status === 'publicado');
-  const msg = status === 'rascunho' ? 'Rascunho salvo.' : new Date(publicar_em) > new Date() ? `Agendado para ${quandoBR(new Date(publicar_em))}. Entra no ar sozinho.` : `Publicado!${extra}`;
+  const msg = status === 'rascunho' ? `Rascunho salvo.${linha.destaque ? ' Ele entra na home quando for publicado.' : ''}` : new Date(publicar_em) > new Date() ? `Agendado para ${quandoBR(new Date(publicar_em))}. Entra no ar sozinho.` : `Publicado!${extra}`;
   await carregarPosts();
   aviso('msg-blog', msg, 'ok');
   void data;
@@ -1066,9 +1087,9 @@ function descreve(h) {
     if (h.acao === 'delete') return 'Excluiu o post';
     const a = h.antes || {}, d = h.depois || {};
     if (a.status !== d.status) return d.status === 'publicado' ? 'Publicou o post' : 'Voltou o post para rascunho';
-    const mud = ['titulo', 'resumo', 'conteudo', 'capa_url', 'autor', 'categorias', 'campanha', 'slug', 'publicar_em']
+    const mud = ['titulo', 'resumo', 'conteudo', 'capa_url', 'autor', 'categorias', 'campanha', 'slug', 'publicar_em', 'destaque']
       .filter((k) => JSON.stringify(a[k]) !== JSON.stringify(d[k]))
-      .map((k) => ({ titulo: 'título', resumo: 'linha fina', conteudo: 'texto', capa_url: 'capa', autor: 'autor', categorias: 'categorias', campanha: 'campanha', slug: 'endereço', publicar_em: 'data de publicação' })[k]);
+      .map((k) => ({ titulo: 'título', resumo: 'linha fina', conteudo: 'texto', capa_url: 'capa', autor: 'autor', categorias: 'categorias', campanha: 'campanha', slug: 'endereço', publicar_em: 'data de publicação', destaque: 'destaque na home' })[k]);
     return mud.length ? `Editou o post (${mud.join(', ')})` : 'Salvou o post sem mudanças';
   }
   if (h.acao === 'insert') return 'Criou a campanha';
