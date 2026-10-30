@@ -5,16 +5,22 @@ Uso: python3 -I atualizar_mesas.py <pasta_saida>
 Escreve <pasta_saida>/mesas.json e as capas em <pasta_saida>/img/mq/<slug>.webp.
 Sai com código 2 (sem escrever nada) se não conseguir ler nenhuma mesa.
 
-Quais mesas: as do perfil do mestre + as já presentes no mesas.json anterior + SEMENTES.
-Entram só as públicas, do mestre, com próxima sessão no futuro (ou começada há menos de 3 h).
+Quais mesas: as dos perfis dos mestres + as já presentes no mesas.json anterior + SEMENTES.
+Entram só as públicas, do Henrique ou da Elisinha, com próxima sessão no futuro (ou começada há menos de 3 h).
+Tipo, frequência, duração e ferramentas vêm da API do MesaQuest (se ela falhar, a mesa entra sem esses campos).
 """
 import html as htmllib, json, os, re, sys, urllib.request
 from datetime import datetime, timedelta, timezone
 from html.parser import HTMLParser
 
 SITE = "https://mesaquest.com.br"
-PERFIL = f"{SITE}/usuario/henrique-muller-papo-dado-rpg-jlg6npor"
-MESTRE = "Henrique Müller"
+API = "https://api.mesaquest.com.br"
+PERFIS = [f"{SITE}/usuario/henrique-muller-papo-dado-rpg-jlg6npor", f"{SITE}/usuario/elisinha-muller-papo-dado-rpg-hbkerhe7"]
+MESTRES = ("Henrique Müller", "Elisinha Müller")
+TIPOS = {"CAMPAIGN": "Campanha", "ADVENTURE": "Aventura", "ONE_SHOT": "One-shot"}
+FREQUENCIAS = {"WEEKLY": "Semanal", "BIWEEKLY": "Quinzenal", "MONTHLY": "Mensal"}
+# mesa com VDO Ninja nas ferramentas = vai ao ar no canal
+FERRAMENTA_DE_LIVE = "VDO Ninja"
 SEMENTES = [
     "odisseia-dos-lordes-dragoes-4x844vrw", "vecna-a-beira-da-ruina-e998t6hx", "fantasmas-de-saltmarsh-507ts3gb",
     "autoral-alem-do-mar-sem-fim-rasf80y8", "a-lua-tortuosa-sbvs0xqf", "maldicao-de-strahd-9ddz7grj",
@@ -85,11 +91,39 @@ def resumir(texto, limite=220):
 
 
 def slugs_do_perfil():
+    slugs = []
+    for perfil in PERFIS:
+        try:
+            slugs += re.findall(r'href="/mesas/([a-z0-9-]+)', baixar(perfil))
+        except Exception as e:
+            print(f"perfil não lido ({perfil}): {e}", file=sys.stderr)
+    return slugs
+
+
+def minutos(hhmm):
+    h, m = map(int, hhmm.split(":"))
+    return h * 60 + m
+
+
+def detalhes(slug):
+    """Tipo, frequência, duração e ferramentas da mesa, pela API pública do MesaQuest."""
     try:
-        return re.findall(r'href="/mesas/([a-z0-9-]+)', baixar(PERFIL))
+        d = json.loads(baixar(f"{API}/game-tables/{slug}"))
     except Exception as e:
-        print(f"perfil não lido: {e}", file=sys.stderr)
-        return []
+        print(f"{slug}: API sem detalhes ({e})", file=sys.stderr)
+        return {}
+    t = d.get("table") or {}
+    dur = (d.get("nextSession") or {}).get("durationMinutes")
+    if not dur and t.get("startTime") and t.get("endTime"):
+        dur = (minutos(t["endTime"]) - minutos(t["startTime"])) % (24 * 60)
+    ferramentas = [p.get("name", "").strip() for p in t.get("platforms") or [] if p.get("name")]
+    return {
+        "tipo": TIPOS.get(t.get("type"), ""),
+        "frequencia": FREQUENCIAS.get(t.get("periodicity"), ""),
+        "duracao_min": round(dur / 30) * 30 if dur else None,  # 2h59 -> 3h
+        "ferramentas": ferramentas,
+        "ao_vivo": FERRAMENTA_DE_LIVE in ferramentas,
+    }
 
 
 def ler_mesa(slug):
@@ -174,8 +208,9 @@ def main():
             continue
         lidas += 1
         inicio = datetime.fromisoformat(m["inicio"]) if m.get("inicio") else None
-        if MESTRE not in m["mestre"] or m["_privada"] or m["_cancelada"] or not inicio or inicio < AGORA - timedelta(hours=3):
+        if not any(n in m["mestre"] for n in MESTRES) or m["_privada"] or m["_cancelada"] or not inicio or inicio < AGORA - timedelta(hours=3):
             continue
+        m.update(detalhes(slug))
         m["capa"] = salvar_capa(m, pasta)
         itens.append({k: v for k, v in m.items() if not k.startswith("_")})
 
@@ -187,7 +222,8 @@ def main():
     with open(os.path.join(pasta, "mesas.json"), "w", encoding="utf8") as f:
         json.dump(saida, f, ensure_ascii=False, indent=1)
     for x in itens:
-        print(f"{x['inicio'][:16]}  {x['vagas']} vagas{' (lotada)' if x['lotada'] else ''}  {x['preco']}  {x['nome']}")
+        extra = f"{x.get('tipo', '')} {x.get('frequencia', '')} {x.get('duracao_min') or '?'}min {'live' if x.get('ao_vivo') else 'off'} {'/'.join(x.get('ferramentas', []))}"
+        print(f"{x['inicio'][:16]}  {x['vagas']} vagas{' (lotada)' if x['lotada'] else ''}  {x['preco']}  {x['mestre']}  {x['nome']}  [{extra}]")
 
 
 if __name__ == "__main__":
