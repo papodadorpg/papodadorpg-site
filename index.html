@@ -144,6 +144,9 @@ section.bloco.alt { background: var(--bg2); border-block: 1px solid var(--linha)
 .chip.selo-vagas.lotada { background: #2a3150; border-color: var(--linha); color: #cfd5ea; }
 .mesa .proxima-sessao { font-size: 14px; color: var(--suave); }
 .mesa .proxima-sessao strong { color: var(--branco); font-variant-numeric: tabular-nums; }
+.mesa .ficha { font-size: 14px; color: var(--suave); display: grid; gap: 2px; }
+.mesa .ficha strong { color: var(--branco); font-weight: 700; }
+.chip.selo-live { border-color: var(--preto); background: var(--vermelho, #e5484d); color: var(--branco); }
 .mesa .acoes-mesa { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
 .mesa .acoes-mesa .btn { padding: 9px 16px; font-size: 14px; }
 .mesa .preco { font-size: 13px; color: var(--suave); }
@@ -370,7 +373,7 @@ footer.rodape img { height: 40px; width: auto; }
     <div class="wrap">
       <div class="cab-secao">
         <div><div class="rotulo">Jogue com a gente</div><h2>Mesas abertas no MesaQuest</h2></div>
-        <p>Quer sentar na mesa em vez de só assistir? Estas são as nossas mesas no MesaQuest. Quando tem vaga, é só entrar.</p>
+        <p>Quer sentar na mesa em vez de só assistir? Estas são as mesas do Henrique e da Elisinha no MesaQuest. Quando tem vaga, é só entrar. Valores, regras e tudo o que está incluso ficam na página de cada mesa.</p>
       </div>
       <div class="mesas" id="lista-mesaquest"></div>
       <p class="fonte-mq" id="fonte-mq"></p>
@@ -386,23 +389,27 @@ footer.rodape img { height: 40px; width: auto; }
         </details>
         <details>
           <summary>Quanto custa?</summary>
-          <p>As mesas são mensais e o pagamento é feito pelo MesaQuest. <span id="faq-precos">O valor de cada mesa aparece no card dela.</span></p>
+          <p>Depende da mesa. Nas campanhas, o valor é mensal; one-shots e aventuras curtas têm valor único. O pagamento é feito pelo MesaQuest. <span id="faq-precos"></span> Para ver o valor exato, o tipo de mesa e o que está incluso, abra a página da mesa no MesaQuest (botão “Quero jogar” ou “Ver a mesa”).</p>
+        </details>
+        <details>
+          <summary>Quais sistemas vocês mestram?</summary>
+          <p>O Henrique mestra D&amp;D e Terra Devastada. A Elisinha mestra Tales from the Loop. O sistema de cada mesa aparece no card dela.</p>
         </details>
         <details>
           <summary>Preciso ter experiência com RPG?</summary>
           <p>Não. A maioria das nossas mesas é para todos os níveis. Quando uma mesa pede mais experiência, o card mostra o nível (por exemplo, “Intermediário”).</p>
         </details>
         <details>
-          <summary>De quanto em quanto tempo são as sessões?</summary>
-          <p>Cada campanha joga a cada duas semanas, à noite, em sessões de cerca de 3 horas. Os dias e horários (de Brasília) estão na agenda lá em cima.</p>
+          <summary>Com que frequência são as sessões e quanto tempo duram?</summary>
+          <p>As campanhas do canal jogam a cada duas semanas, à noite, em sessões de cerca de 3 horas. Algumas mesas têm sessões mais longas: as da Elisinha, por exemplo, podem chegar a 4 horas. A frequência e a duração de cada mesa aparecem no card dela, e os dias e horários (de Brasília) das lives estão na agenda lá em cima.</p>
         </details>
         <details>
           <summary>As sessões vão ao ar no canal?</summary>
-          <p>As campanhas da seção “No ar no canal” são transmitidas ao vivo no YouTube, então quem joga nelas participa da live. Às sextas temos as mesas em off, jogadas longe das câmeras.</p>
+          <p>Só algumas. As campanhas da seção “No ar no canal” são transmitidas ao vivo no YouTube, então quem joga nelas participa da live. As mesas da Elisinha e as mesas em off do Henrique, às sextas, não são transmitidas: é só o grupo jogando, longe das câmeras. No card de cada mesa aparece se ela é “Ao vivo no canal” ou “Sem transmissão”.</p>
         </details>
         <details>
-          <summary>As mesas são online?</summary>
-          <p>Sim. Nas mesas do canal jogamos no Foundry VTT, com áudio e vídeo pelo VDO Ninja. Os detalhes de cada mesa, como regras e ferramentas, estão na página dela no MesaQuest.</p>
+          <summary>As mesas são online? Que ferramentas vocês usam?</summary>
+          <p>Sim, todas são online. Como mesa virtual usamos o Foundry VTT e o WorldCraft. As chamadas são pelo Discord ou pelo Google Meet, e nas mesas transmitidas o áudio e o vídeo passam pelo VDO Ninja. As ferramentas de cada mesa aparecem no card dela e na página dela no MesaQuest.</p>
         </details>
         <details>
           <summary>Como fico sabendo das próximas lives?</summary>
@@ -450,13 +457,13 @@ footer.rodape img { height: 40px; width: auto; }
         <div class="pessoa">
           <img class="avatar" src="img/henrique.webp" alt="Henrique Müller" width="76" height="76" style="background:var(--laranja)">
           <div><h3>Henrique Müller</h3><div class="papel">Criador do canal e mestre</div>
-            <p>Mestre e jogador há mais de 20 anos, joga “pela historinha”: o foco é narrativa, construção de mundo e desenvolvimento dos personagens. Também é cofundador do MesaQuest.</p>
+            <p>Mestre e jogador há mais de 20 anos, joga “pela historinha”: o foco é narrativa, construção de mundo e desenvolvimento dos personagens. Mestra D&amp;D e Terra Devastada. Também é cofundador do MesaQuest.</p>
             <a class="perfil-mq" href="https://mesaquest.com.br/usuario/henrique-muller-papo-dado-rpg-jlg6npor" target="_blank" rel="noopener">★ 10,0 · 58 avaliações no MesaQuest</a></div>
         </div>
         <div class="pessoa">
           <img class="avatar" src="img/elisinha.webp" alt="Elisinha Müller" width="76" height="76" style="background:var(--ciano)">
           <div><h3>Elisinha Müller</h3><div class="papel">Cocriadora do canal e mestra</div>
-            <p>Mestra de Tales From the Loop e jogadora de D&amp;D há mais de 6 anos. Adora sistemas novos e narrativos e mesas que mexem com a emoção dos jogadores. Também é cofundadora do MesaQuest.</p>
+            <p>Mestra de Tales From the Loop e jogadora de D&amp;D há mais de 6 anos. Adora sistemas novos e narrativos e mesas que mexem com a emoção dos jogadores. As mesas dela não são transmitidas. Também é cofundadora do MesaQuest.</p>
             <a class="perfil-mq" href="https://mesaquest.com.br/usuario/elisinha-muller-papo-dado-rpg-hbkerhe7" target="_blank" rel="noopener">★ 10,0 · 33 avaliações no MesaQuest</a></div>
         </div>
       </div>
@@ -788,6 +795,13 @@ function montarCampanhas() {
 }
 
 // ================= MESAQUEST: só mesas listadas, vindas do mesas.json do servidor =================
+const nomeFerramenta = (n) => ({ worldcraft: 'WorldCraft', whatsapp: 'WhatsApp', 'google meet': 'Google Meet' })[String(n).toLowerCase()] || n;
+const duracaoTxt = (min) => { if (!min) return ''; const h = Math.floor(min / 60), m = min % 60; return m ? `${h}h${String(m).padStart(2, '0')}` : `${h}h`; };
+// "Campanha quinzenal · sessões de 3h"
+const fichaMesa = (x) => [
+  [x.tipo, (x.frequencia || '').toLowerCase()].filter(Boolean).join(' '),
+  x.duracao_min ? `sessões de ${duracaoTxt(x.duracao_min)}` : '',
+].filter(Boolean).join(' · ');
 async function montarMesaQuest() {
   const secao = document.getElementById('jogue');
   let dados = null;
@@ -812,10 +826,15 @@ async function montarMesaQuest() {
           <span class="chip selo-vagas${vaga ? '' : ' lotada'}">${vaga ? `${x.vagas} ${x.vagas === 1 ? 'vaga aberta' : 'vagas abertas'}` : 'Mesa completa'}</span>
           <span class="chip">${esc(sistemaCurto(x.sistema))}</span>
           ${x.nivel ? `<span class="chip">${esc(x.nivel)}</span>` : ''}
-          <span class="chip">Mestre: ${esc(x.mestre)}</span>
+          ${'ao_vivo' in x ? `<span class="chip${x.ao_vivo ? ' selo-live' : ''}">${x.ao_vivo ? 'Ao vivo no canal' : 'Sem transmissão'}</span>` : ''}
+          <span class="chip">${/elisinha/i.test(x.mestre) ? 'Mestra' : 'Mestre'}: ${esc(x.mestre)}</span>
         </div>
         <p>${esc(x.descricao)}</p>
-        <div class="proxima-sessao">Próxima sessão: <strong>${dataCurta(d)} às ${horaTxt(horaBR(d))}</strong></div>
+        <div class="ficha">
+          ${fichaMesa(x) ? `<span>${esc(fichaMesa(x))}</span>` : ''}
+          ${x.ferramentas?.length ? `<span>Ferramentas: <strong>${esc(x.ferramentas.map(nomeFerramenta).join(', '))}</strong></span>` : ''}
+          <span>Próxima sessão: <strong>${dataCurta(d)} às ${horaTxt(horaBR(d))}</strong></span>
+        </div>
         <div class="acoes-mesa">${vaga
           ? `<a class="btn btn-play" href="${esc(x.url)}" target="_blank" rel="noopener">Quero jogar</a><span class="preco">${esc(x.preco)}</span>`
           : `<a class="btn btn-linha" href="${esc(x.url)}" target="_blank" rel="noopener">Ver a mesa</a>`}</div>
@@ -823,11 +842,13 @@ async function montarMesaQuest() {
     </article>`;
   }).join('');
   document.getElementById('fonte-mq').textContent = 'Vagas e datas sincronizadas automaticamente com o MesaQuest todos os dias.';
-  const precos = itens.map((x) => parseFloat(String(x.preco).replace(/[^\d,]/g, '').replace(',', '.'))).filter((n) => n > 0);
+  // faixa de preço só das campanhas (valor mensal); one-shots e aventuras ficam de fora
+  const precos = itens.filter((x) => (x.tipo || 'Campanha') === 'Campanha' && /m[eê]s/i.test(x.preco || ''))
+    .map((x) => parseFloat(String(x.preco).replace(/[^\d,]/g, '').replace(',', '.'))).filter((n) => n > 0);
   if (precos.length) {
     const fmt = (n) => n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
     const [min, max] = [Math.min(...precos), Math.max(...precos)];
-    document.getElementById('faq-precos').textContent = min === max ? `Hoje elas custam ${fmt(min)} por mês.` : `Hoje os valores vão de ${fmt(min)} a ${fmt(max)} por mês, conforme a mesa.`;
+    document.getElementById('faq-precos').textContent = min === max ? `Hoje as campanhas custam ${fmt(min)} por mês.` : `Hoje as campanhas vão de ${fmt(min)} a ${fmt(max)} por mês.`;
   }
 }
 
