@@ -66,6 +66,8 @@ label > span { font-weight: 700; }
 main { padding: 28px 0 60px; }
 .cab { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
 .painel { background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio); padding: 20px; }
+.atualizar-yt { display: flex; justify-content: space-between; align-items: center; gap: 14px 20px; flex-wrap: wrap; }
+.atualizar-yt > div { display: grid; gap: 4px; min-width: 0; flex: 1 1 320px; }
 .grade { display: grid; gap: 16px; }
 
 /* filtros de período */
@@ -308,6 +310,13 @@ dialog::backdrop { background: rgba(0, 0, 0, .6); }
         <button class="btn btn-play" id="nova-camp">+ Nova campanha</button>
       </div>
       <p class="msg" id="msg-agenda" role="status"></p>
+      <div class="painel atualizar-yt">
+        <div><strong>Lives e vídeos do YouTube</strong>
+          <span class="dica">O site busca as lives novas sozinho uma vez por dia. Criou ou mudou uma live e não quer esperar? Clique em atualizar.</span>
+          <span class="dica" id="ult-atualizacao"></span></div>
+        <button class="btn btn-linha" id="atualizar-agora" type="button">Atualizar agora</button>
+      </div>
+      <p class="msg" id="msg-atualizar" role="status"></p>
       <h3>No ar no canal</h3>
       <div class="lista-camp" id="lista-ativas"></div>
       <h3 style="margin-top:12px">Encerradas</h3>
@@ -677,6 +686,7 @@ async function carregarAgenda() {
   ]);
   if (c.error || e.error) return aviso('msg-agenda', `Erro ao carregar: ${(c.error || e.error).message}`, 'erro');
   aviso('msg-agenda', '');
+  ultimaAtualizacao();
   CAMPS = c.data; EXC = e.data;
   pintarAgenda();
 }
@@ -712,6 +722,30 @@ function pintarAgenda() {
 }
 document.addEventListener('click', (e) => { const b = e.target.closest('[data-editar]'); if (b) abrirEditor(CAMPS.find((c) => c.id === b.dataset.editar)); });
 $('nova-camp').addEventListener('click', () => abrirEditor(null));
+
+// ---------- atualizar lives e vídeos do YouTube agora ----------
+async function ultimaAtualizacao() {
+  try {
+    const d = await (await fetch(`../videos.json?t=${Date.now()}`, { cache: 'no-store' })).json();
+    $('ult-atualizacao').textContent = `Última atualização do site: ${quandoBR(new Date(d.atualizado))}`;
+    return d.atualizado;
+  } catch { return null; }
+}
+$('atualizar-agora').addEventListener('click', async () => {
+  const b = $('atualizar-agora'); b.disabled = true;
+  aviso('msg-atualizar', 'Pedindo a atualização…');
+  const antes = await ultimaAtualizacao();
+  const { data, error } = await sb.rpc('disparar_dados');
+  if (error || data === 'sem_token') { b.disabled = false; return aviso('msg-atualizar', error ? `Não deu certo: ${error.message}` : 'Falta configurar o token do GitHub no Supabase.', 'erro'); }
+  aviso('msg-atualizar', data === 'ja_pedido' ? 'Já tem uma atualização a caminho. Em cerca de 2 minutos as lives aparecem no site.' : 'Pedido enviado! Em cerca de 2 minutos as lives aparecem no site.', 'ok');
+  // confere sozinho por até 5 minutos e avisa quando o site mudar
+  for (let i = 0; i < 20; i++) {
+    await new Promise((ok) => setTimeout(ok, 15000));
+    const agora = await ultimaAtualizacao();
+    if (agora && agora !== antes) { aviso('msg-atualizar', 'Pronto, o site já está com as lives e vídeos mais recentes.', 'ok'); break; }
+  }
+  b.disabled = false;
+});
 
 // ---------- editor ----------
 let EDITANDO = null, CAPA_URL = null;
