@@ -10,6 +10,7 @@ só entra quem for convidado na aba **Admins** do painel. Quem é convidado vira
 - **Acessos:** pessoas, visitas, páginas e cliques por área em 7, 14, 28, 90 dias ou período escolhido.
   O site grava cada visita e clique de forma anônima (código aleatório no navegador, sem nome, e-mail ou IP).
 - **Agenda:** criar/editar/encerrar campanhas, mudar horário, cancelar ou remarcar uma data. Vale na hora no site.
+  O botão **Atualizar agora** busca na hora as lives e vídeos novos do YouTube (função `disparar_dados` no Supabase).
 - **Blog:** editor visual (títulos, listas, imagens, vídeos do YouTube), capa, autor, categorias, campanha relacionada,
   rascunho / publicar agora / agendar. O post aparece no site na hora (página inicial, /blog/ e página da campanha).
 - **Admins:** convidar e remover quem entra no admin (Edge Function `admins` no Supabase, em `supabase/functions/admins/`).
@@ -34,7 +35,8 @@ são geradas na atualização diária. Enquanto a página não existe, o `404.ht
 | `mesas.json` | mesas públicas do Henrique e da Elisinha, vagas, datas, preço | MesaQuest |
 
 Atualizados pelo GitHub Actions (`.github/workflows/atualizar-dados.yml`) uma vez por dia, às 17h17 (Brasília).
-Para rodar na hora: aba **Actions** → *Atualizar dados do site* → **Run workflow**.
+Para rodar na hora: botão **Atualizar agora** na aba Agenda do admin (ou aba **Actions** → *Atualizar dados do site* → **Run workflow**).
+O agendamento do GitHub costuma atrasar algumas horas; live criada à tarde pode só aparecer no dia seguinte sem o botão.
 Campanha nova com playlist: a capa é baixada para `img/pl/<código>.webp` na próxima atualização (ou envie uma capa pelo admin).
 
 ## Reserva no `index.html`
