@@ -1,29 +1,6 @@
 {
- "atualizado": "2026-10-31T22:40:54+00:00",
+ "atualizado": "2026-10-31T23:23:51+00:00",
  "itens": [
-  {
-   "slug": "odisseia-dos-lordes-dragoes-4x844vrw",
-   "nome": "Odisseia dos Lordes Dragões",
-   "url": "https://mesaquest.com.br/mesas/odisseia-dos-lordes-dragoes-4x844vrw",
-   "mestre": "Henrique Müller",
-   "sistema": "Dungeons & Dragons 5.5e (2024)",
-   "descricao": "“O tempo dos heróis chegou. A eternidade observa.” “Na alvorada dos tempos, juramentos foram feitos. Juramentos que moldaram reinos, acalmaram tempestades e contiveram a ira dos deuses. Mas juramentos são frágeis. E o…",
-   "inicio": "2026-10-31T20:00:00-03:00",
-   "fim": "2026-10-31T23:00:00-03:00",
-   "vagas": 0,
-   "lotada": true,
-   "preco": "R$ 100,00/mês",
-   "nivel": "Todos os níveis",
-   "tipo": "Campanha",
-   "frequencia": "Quinzenal",
-   "duracao_min": 180,
-   "ferramentas": [
-    "Foundry VTT",
-    "VDO Ninja"
-   ],
-   "ao_vivo": true,
-   "capa": "img/mq/odisseia-dos-lordes-dragoes-4x844vrw.webp"
-  },
   {
    "slug": "vecna-a-beira-da-ruina-e998t6hx",
    "nome": "Vecna À Beira da Ruína",
@@ -231,6 +208,29 @@
    ],
    "ao_vivo": true,
    "capa": "img/mq/o-que-restou-de-nos-terra-devastada-w610fhf1.webp"
+  },
+  {
+   "slug": "odisseia-dos-lordes-dragoes-4x844vrw",
+   "nome": "Odisseia dos Lordes Dragões",
+   "url": "https://mesaquest.com.br/mesas/odisseia-dos-lordes-dragoes-4x844vrw",
+   "mestre": "Henrique Müller",
+   "sistema": "Dungeons & Dragons 5.5e (2024)",
+   "descricao": "“O tempo dos heróis chegou. A eternidade observa.” “Na alvorada dos tempos, juramentos foram feitos. Juramentos que moldaram reinos, acalmaram tempestades e contiveram a ira dos deuses. Mas juramentos são frágeis. E o…",
+   "inicio": "2026-11-14T20:00:00-03:00",
+   "fim": "2026-11-14T23:00:00-03:00",
+   "vagas": 0,
+   "lotada": true,
+   "preco": "R$ 100,00/mês",
+   "nivel": "Todos os níveis",
+   "tipo": "Campanha",
+   "frequencia": "Quinzenal",
+   "duracao_min": 180,
+   "ferramentas": [
+    "Foundry VTT",
+    "VDO Ninja"
+   ],
+   "ao_vivo": true,
+   "capa": "img/mq/odisseia-dos-lordes-dragoes-4x844vrw.webp"
   }
  ]
 }
