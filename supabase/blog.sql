@@ -112,3 +112,33 @@ select cron.schedule('blog-agendados', '*/10 * * * *', 'select public.blog_agend
 -- 1, 2 ou 3 = vaga fixa na página inicial (1 = card grande). Vazio = entra só se estiver entre os mais recentes.
 alter table public.posts add column if not exists destaque smallint check (destaque between 1 and 3);
 create unique index if not exists posts_destaque_unico on public.posts (destaque) where destaque is not null;
+
+-- ============ ATUALIZAR LIVES E VÍDEOS AGORA ============
+-- Botão "Atualizar agora" na aba Agenda do admin: pede ao GitHub para rodar o workflow "atualizar-dados.yml"
+-- (YouTube, MesaQuest e blog) na hora, sem esperar a atualização diária.
+create or replace function public.disparar_dados() returns text
+language plpgsql security definer set search_path = public, extensions as $$
+declare
+  tok text;
+  ultimo timestamptz;
+begin
+  if not public.is_admin() then raise exception 'sem permissão'; end if;
+  select decrypted_secret into tok from vault.decrypted_secrets where name = 'github_token' limit 1;
+  if tok is null or tok = '' then return 'sem_token'; end if;
+  select quando into ultimo from public.controle where chave = 'dados_disparo';
+  if ultimo is not null and ultimo > now() - interval '2 minutes' then return 'ja_pedido'; end if;
+  insert into public.controle (chave, valor, quando) values ('dados_disparo', 'ok', now())
+    on conflict (chave) do update set quando = now();
+  perform net.http_post(
+    url := 'https://api.github.com/repos/papodadorpg/papodadorpg-site/actions/workflows/atualizar-dados.yml/dispatches',
+    body := jsonb_build_object('ref', 'main'),
+    headers := jsonb_build_object(
+      'Authorization', 'Bearer ' || tok,
+      'Accept', 'application/vnd.github+json',
+      'X-GitHub-Api-Version', '2022-11-28',
+      'User-Agent', 'papodadorpg-supabase',
+      'Content-Type', 'application/json'));
+  return 'ok';
+end $$;
+revoke all on function public.disparar_dados() from public, anon;
+grant execute on function public.disparar_dados() to authenticated;
