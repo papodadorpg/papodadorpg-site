@@ -120,7 +120,6 @@ def cabeca(titulo, descricao, url, imagem, tipo="website", extra=""):
   <nav class="menu" aria-label="Seções">
     <a class="so-largo" href="/#agenda">Agenda</a><a class="so-largo" href="/#mesas">Campanhas</a><a href="/#jogue">Jogar</a><a href="/blog/" aria-current="page">Blog</a>
   </nav>
-  <a class="btn btn-play" href="https://www.youtube.com/@papodadorpg?sub_confirmation=1" target="_blank" rel="noopener">Inscrever-se</a>
 </div></header>
 """
 
