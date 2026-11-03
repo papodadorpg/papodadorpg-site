@@ -1,29 +1,6 @@
 {
- "atualizado": "2026-11-01T23:35:59+00:00",
+ "atualizado": "2026-11-03T02:18:34+00:00",
  "itens": [
-  {
-   "slug": "vecna-a-beira-da-ruina-e998t6hx",
-   "nome": "Vecna À Beira da Ruína",
-   "url": "https://mesaquest.com.br/mesas/vecna-a-beira-da-ruina-e998t6hx",
-   "mestre": "Henrique Müller",
-   "sistema": "Dungeons & Dragons 5.5e (2024)",
-   "descricao": "\"Quando a própria realidade começa a ruir, até os deuses seguram o fôlego.\" Algo está terrivelmente errado no tecido do multiverso. Sinais sutis — e outros nem tanto — indicam que forças antigas, esquecidas e perigosas…",
-   "inicio": "2026-11-02T20:00:00-03:00",
-   "fim": "2026-11-02T23:00:00-03:00",
-   "vagas": 0,
-   "lotada": true,
-   "preco": "R$ 100,00/mês",
-   "nivel": "Todos os níveis",
-   "tipo": "Campanha",
-   "frequencia": "Quinzenal",
-   "duracao_min": 180,
-   "ferramentas": [
-    "Foundry VTT",
-    "VDO Ninja"
-   ],
-   "ao_vivo": true,
-   "capa": "img/mq/vecna-a-beira-da-ruina-e998t6hx.webp"
-  },
   {
    "slug": "contos-dos-reinos-esquecidos-ja99t4h7",
    "nome": "Contos dos Reinos Esquecidos",
@@ -254,6 +231,29 @@
    ],
    "ao_vivo": true,
    "capa": "img/mq/odisseia-dos-lordes-dragoes-4x844vrw.webp"
+  },
+  {
+   "slug": "vecna-a-beira-da-ruina-e998t6hx",
+   "nome": "Vecna À Beira da Ruína",
+   "url": "https://mesaquest.com.br/mesas/vecna-a-beira-da-ruina-e998t6hx",
+   "mestre": "Henrique Müller",
+   "sistema": "Dungeons & Dragons 5.5e (2024)",
+   "descricao": "\"Quando a própria realidade começa a ruir, até os deuses seguram o fôlego.\" Algo está terrivelmente errado no tecido do multiverso. Sinais sutis — e outros nem tanto — indicam que forças antigas, esquecidas e perigosas…",
+   "inicio": "2026-11-16T20:00:00-03:00",
+   "fim": "2026-11-16T23:00:00-03:00",
+   "vagas": 0,
+   "lotada": true,
+   "preco": "R$ 100,00/mês",
+   "nivel": "Todos os níveis",
+   "tipo": "Campanha",
+   "frequencia": "Quinzenal",
+   "duracao_min": 180,
+   "ferramentas": [
+    "Foundry VTT",
+    "VDO Ninja"
+   ],
+   "ao_vivo": true,
+   "capa": "img/mq/vecna-a-beira-da-ruina-e998t6hx.webp"
   }
  ]
 }
