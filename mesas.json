@@ -1,29 +1,6 @@
 {
- "atualizado": "2026-11-03T02:18:34+00:00",
+ "atualizado": "2026-11-04T00:36:54+00:00",
  "itens": [
-  {
-   "slug": "contos-dos-reinos-esquecidos-ja99t4h7",
-   "nome": "Contos dos Reinos Esquecidos",
-   "url": "https://mesaquest.com.br/mesas/contos-dos-reinos-esquecidos-ja99t4h7",
-   "mestre": "Henrique Müller",
-   "sistema": "Dungeons & Dragons 5.5e (2024)",
-   "descricao": "A campanha — Toda lenda tem um começo! Nas profundezas de antigas ruínas, tesouros esquecidos aguardam aqueles que possuem coragem suficiente para encontrá-los. Mas algumas portas foram trancadas por bons motivos... e…",
-   "inicio": "2026-11-03T20:00:00-03:00",
-   "fim": "2026-11-03T23:00:00-03:00",
-   "vagas": 0,
-   "lotada": true,
-   "preco": "R$ 160,00/mês",
-   "nivel": "Todos os níveis",
-   "tipo": "Campanha",
-   "frequencia": "Quinzenal",
-   "duracao_min": 180,
-   "ferramentas": [
-    "Foundry VTT",
-    "VDO Ninja"
-   ],
-   "ao_vivo": true,
-   "capa": "img/mq/contos-dos-reinos-esquecidos-ja99t4h7.webp"
-  },
   {
    "slug": "fantasmas-de-saltmarsh-507ts3gb",
    "nome": "Fantasmas de Saltmarsh",
@@ -254,6 +231,29 @@
    ],
    "ao_vivo": true,
    "capa": "img/mq/vecna-a-beira-da-ruina-e998t6hx.webp"
+  },
+  {
+   "slug": "contos-dos-reinos-esquecidos-ja99t4h7",
+   "nome": "Contos dos Reinos Esquecidos",
+   "url": "https://mesaquest.com.br/mesas/contos-dos-reinos-esquecidos-ja99t4h7",
+   "mestre": "Henrique Müller",
+   "sistema": "Dungeons & Dragons 5.5e (2024)",
+   "descricao": "A campanha — Toda lenda tem um começo! Nas profundezas de antigas ruínas, tesouros esquecidos aguardam aqueles que possuem coragem suficiente para encontrá-los. Mas algumas portas foram trancadas por bons motivos... e…",
+   "inicio": "2026-11-17T20:00:00-03:00",
+   "fim": "2026-11-17T23:00:00-03:00",
+   "vagas": 0,
+   "lotada": true,
+   "preco": "R$ 160,00/mês",
+   "nivel": "Todos os níveis",
+   "tipo": "Campanha",
+   "frequencia": "Quinzenal",
+   "duracao_min": 180,
+   "ferramentas": [
+    "Foundry VTT",
+    "VDO Ninja"
+   ],
+   "ao_vivo": true,
+   "capa": "img/mq/contos-dos-reinos-esquecidos-ja99t4h7.webp"
   }
  ]
 }

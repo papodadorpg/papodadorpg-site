@@ -1,14 +1,26 @@
 {
- "atualizado": "2026-11-03T02:18:24+00:00",
- "aovivo": [],
+ "atualizado": "2026-11-04T00:36:45+00:00",
+ "aovivo": [
+  {
+   "id": "oOCuZmtT7E0",
+   "titulo": "D&D 5.5 Contos dos Reinos Esquecidos - Episódio 01",
+   "capa": "img/yt/oOCuZmtT7E0-g.webp"
+  }
+ ],
  "agendadas": [],
  "itens": [
+  {
+   "id": "cM2rmk4sGFQ",
+   "titulo": "Highlights Odisseia dos Lordes Dragões - Episódio 22 | O Brilho do Sol Outra Vez",
+   "data": "2026-11-03T15:36:45+00:00",
+   "capa": "img/yt/cM2rmk4sGFQ.jpg",
+   "capa_grande": "img/yt/cM2rmk4sGFQ-g.webp"
+  },
   {
    "id": "kMenGCxPCjM",
    "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 22 | O Brilho do Sol Outra Vez",
    "data": "2026-11-01T03:35:52+00:00",
-   "capa": "img/yt/kMenGCxPCjM.jpg",
-   "capa_grande": "img/yt/kMenGCxPCjM-g.webp"
+   "capa": "img/yt/kMenGCxPCjM.jpg"
   },
   {
    "id": "O6PwFOn_cjQ",
@@ -33,15 +45,14 @@
    "titulo": "Highlights Descida ao Avernus - Episódio 33 | A Crosta",
    "data": "2026-10-29T15:35:47+00:00",
    "capa": "img/yt/4sPRkcO_hZ0.jpg"
-  },
-  {
-   "id": "8lk8Z5v1e7M",
-   "titulo": "Highlights Príncipes do Apocalipse - Episódio 11 | Encarcerados",
-   "data": "2026-10-29T14:35:47+00:00",
-   "capa": "img/yt/8lk8Z5v1e7M.jpg"
   }
  ],
  "shorts": [
+  {
+   "id": "1ZHB1DLCxdw",
+   "titulo": "Só queriam ajudar a árvore",
+   "capa": "img/yt/1ZHB1DLCxdw-s.webp"
+  },
   {
    "id": "t1U1bkDDbtw",
    "titulo": "Só queria uma lembrança feliz",
@@ -76,11 +87,6 @@
    "id": "M0Vk3OflQFg",
    "titulo": "Você já passou por isso?",
    "capa": "img/yt/M0Vk3OflQFg-s.webp"
-  },
-  {
-   "id": "QcfaolNBqaM",
-   "titulo": "Soninho sem culpa 😌",
-   "capa": "img/yt/QcfaolNBqaM-s.webp"
   }
  ]
 }
