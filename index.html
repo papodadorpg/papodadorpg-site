@@ -766,7 +766,7 @@ function montarAgenda() {
   }).join('');
 }
 
-// ================= HERÓI: live agendada no YouTube > último vídeo (videos.json) =================
+// ================= HERÓI: ao vivo > próxima live (YouTube ou agenda do site) > último vídeo =================
 let YT = null; // conteúdo do videos.json: { atualizado, aovivo, agendadas, itens }
 async function carregarYT() {
   try { const r = await fetch('videos.json', { cache: 'no-store' }); if (r.ok) YT = await r.json(); } catch { /* mantém o que já tinha */ }
@@ -792,13 +792,27 @@ function pintarHeroi({ rotulo, nome, quando = '', aoVivo = false, ou = '', botao
   $('prox-btn').href = link;
   const a = $('prox-capa');
   a.hidden = !capa;
-  if (capa) { a.href = link; if ($('prox-img').getAttribute('src') !== capa) $('prox-img').src = capa; }
+  if (capa) { a.href = link; $('prox-img').onerror = () => { a.hidden = true; }; if ($('prox-img').getAttribute('src') !== capa) $('prox-img').src = capa; }
+}
+
+// Próxima live pela agenda do site (admin), para quando ela ainda não foi programada no YouTube
+function heroiDaAgenda(futuras, canal) {
+  const primeira = futuras[0];
+  const juntas = futuras.filter((m) => m.proxima.getTime() === primeira.proxima.getTime());
+  const depois = futuras.find((m) => m.proxima.getTime() > primeira.proxima.getTime());
+  const uma = juntas.length === 1;
+  pintarHeroi({
+    rotulo: 'Próxima live', nome: juntas.map((m) => m.nome).join(' e '), quando: quandoTxt(primeira.proxima),
+    ou: depois ? `Depois: ${depois.nome}, ${dataCurta(depois.proxima)} às ${horaTxt(horaBR(depois.proxima))}` : '',
+    botao: uma ? 'Ver a campanha' : 'Abrir o canal', link: uma ? paginaUrl(primeira) : canal, capa: uma ? capaDe(primeira) : '',
+  });
 }
 
 function montarProxima() {
   prepararLives();
   const agora = Date.now(), JANELA = DURACAO_H * 3600000;
   const canal = 'https://www.youtube.com/@papodadorpg/streams';
+  const futuras = [...AGENDA].sort((a, b) => a.proxima - b.proxima);
 
   if (YT) {
     // 1) transmitindo agora (só confia se a coleta for recente) ou agendada que já começou
@@ -809,9 +823,9 @@ function montarProxima() {
     if (noAr) {
       return pintarHeroi({ rotulo: 'Ao vivo no YouTube', nome: noAr.titulo, aoVivo: true, botao: 'Assistir ao vivo', link: assistir(noAr.id), capa: noAr.capa });
     }
-    // 2) próxima live agendada no YouTube
+    // 2) próxima live: a programada no YouTube (tem capa e lembrete), a não ser que a agenda do site tenha uma antes
     const prox = agendadas[0];
-    if (prox) {
+    if (prox && (!futuras.length || new Date(prox.inicio).getTime() <= futuras[0].proxima.getTime() + 2 * 3600000)) {
       const depois = agendadas[1];
       return pintarHeroi({
         rotulo: 'Próxima live', nome: prox.titulo, quando: quandoTxt(new Date(prox.inicio)),
@@ -819,7 +833,8 @@ function montarProxima() {
         botao: 'Ativar lembrete', link: assistir(prox.id), capa: prox.capa,
       });
     }
-    // 3) sem live agendada: último vídeo lançado
+    if (futuras.length) return heroiDaAgenda(futuras, canal);
+    // 3) sem nenhuma live na agenda: último vídeo lançado
     const ult = (YT.itens || []).find((v) => !ehResumo(v));
     if (ult) {
       return pintarHeroi({ rotulo: 'Último vídeo', nome: ult.titulo, quando: `Lançado ${dataCurta(new Date(ult.data))}`,
@@ -827,12 +842,9 @@ function montarProxima() {
     }
   }
 
-  // Sem videos.json: usa a agenda fixa do canal
-  const futuras = [...AGENDA].sort((a, b) => a.proxima - b.proxima);
-  const primeira = futuras[0];
-  if (!primeira) return pintarHeroi({ rotulo: 'No canal', nome: 'Lives de RPG quase toda noite', botao: 'Abrir o canal', link: canal });
-  const juntas = futuras.filter((m) => m.proxima.getTime() === primeira.proxima.getTime());
-  pintarHeroi({ rotulo: 'Próxima live', nome: juntas.map((m) => m.nome).join(' e '), quando: quandoTxt(primeira.proxima), botao: 'Abrir o canal', link: canal });
+  // Sem videos.json: usa só a agenda do site
+  if (!futuras.length) return pintarHeroi({ rotulo: 'No canal', nome: 'Lives de RPG quase toda noite', botao: 'Abrir o canal', link: canal });
+  heroiDaAgenda(futuras, canal);
 }
 
 const playlistUrl = (m) => (m.playlist ? `https://www.youtube.com/playlist?list=${encodeURIComponent(m.playlist)}` : 'https://www.youtube.com/@papodadorpg/playlists');
