@@ -1,20 +1,32 @@
 {
- "atualizado": "2026-11-04T00:36:45+00:00",
+ "atualizado": "2026-11-05T00:53:46+00:00",
  "aovivo": [
   {
-   "id": "oOCuZmtT7E0",
-   "titulo": "D&D 5.5 Contos dos Reinos Esquecidos - Episódio 01",
-   "capa": "img/yt/oOCuZmtT7E0-g.webp"
+   "id": "weDsw42Q438",
+   "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 34",
+   "capa": "img/yt/weDsw42Q438-g.webp"
   }
  ],
  "agendadas": [],
  "itens": [
   {
+   "id": "4I2NFrWO6KY",
+   "titulo": "Highlights Contos dos Reinos Esquecidos - Episódio 01 | O Mistério de Conyberry",
+   "data": "2026-11-04T15:53:46+00:00",
+   "capa": "img/yt/4I2NFrWO6KY.jpg",
+   "capa_grande": "img/yt/4I2NFrWO6KY-g.webp"
+  },
+  {
+   "id": "oOCuZmtT7E0",
+   "titulo": "D&D 5.5 Contos dos Reinos Esquecidos - Episódio 01 | O Mistério de Conyberry",
+   "data": "2026-11-04T02:53:46+00:00",
+   "capa": "img/yt/oOCuZmtT7E0.jpg"
+  },
+  {
    "id": "cM2rmk4sGFQ",
    "titulo": "Highlights Odisseia dos Lordes Dragões - Episódio 22 | O Brilho do Sol Outra Vez",
    "data": "2026-11-03T15:36:45+00:00",
-   "capa": "img/yt/cM2rmk4sGFQ.jpg",
-   "capa_grande": "img/yt/cM2rmk4sGFQ-g.webp"
+   "capa": "img/yt/cM2rmk4sGFQ.jpg"
   },
   {
    "id": "kMenGCxPCjM",
@@ -33,21 +45,14 @@
    "titulo": "Terra Devastada O Que Restou de Nós - Episódio 02 | Sem Saída",
    "data": "2026-10-29T21:44:43+00:00",
    "capa": "img/yt/Pl_8J0rVKBA.jpg"
-  },
-  {
-   "id": "WbAiRu9vfrI",
-   "titulo": "D&D 5.5 Descida ao Avernus - Episódio 33 | A Crosta",
-   "data": "2026-10-29T18:39:34+00:00",
-   "capa": "img/yt/WbAiRu9vfrI.jpg"
-  },
-  {
-   "id": "4sPRkcO_hZ0",
-   "titulo": "Highlights Descida ao Avernus - Episódio 33 | A Crosta",
-   "data": "2026-10-29T15:35:47+00:00",
-   "capa": "img/yt/4sPRkcO_hZ0.jpg"
   }
  ],
  "shorts": [
+  {
+   "id": "KlefpFNFHMk",
+   "titulo": "Tiro de canhão numa pessoa",
+   "capa": "img/yt/KlefpFNFHMk-s.webp"
+  },
   {
    "id": "1ZHB1DLCxdw",
    "titulo": "Só queriam ajudar a árvore",
@@ -82,11 +87,6 @@
    "id": "8Vy1yHk1jxc",
    "titulo": "Você já viu 7 críticos em uma sessão? #rpg #dnd #criticos",
    "capa": "img/yt/8Vy1yHk1jxc-s.webp"
-  },
-  {
-   "id": "M0Vk3OflQFg",
-   "titulo": "Você já passou por isso?",
-   "capa": "img/yt/M0Vk3OflQFg-s.webp"
   }
  ]
 }

@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-04T00:36:45+00:00",
+ "atualizado": "2026-11-05T00:53:46+00:00",
  "campanhas": {
   "strahd": {
    "playlist": "PLu-hxXZl-KUQqPuVdQ4vg71gQH-ODurab",
@@ -633,6 +633,11 @@
      "id": "xTXouPPjq-A",
      "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 33 | O Plano",
      "duracao": "3:57:30"
+    },
+    {
+     "id": "weDsw42Q438",
+     "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 34",
+     "duracao": ""
     }
    ]
   },
@@ -1900,6 +1905,12 @@
    "titulo": "Highlights - D&D Além do Mar Sem Fim Ep 21 | O Peso da Consciência",
    "duracao": "58:57",
    "capa": "img/yt/Nk69NJB-sLM.jpg"
+  },
+  {
+   "id": "4I2NFrWO6KY",
+   "titulo": "Highlights Contos dos Reinos Esquecidos - Episódio 01 | O Mistério de Conyberry",
+   "duracao": "55:13",
+   "capa": "img/yt/4I2NFrWO6KY.jpg"
   }
  ]
 }

@@ -1,29 +1,6 @@
 {
- "atualizado": "2026-11-04T00:36:54+00:00",
+ "atualizado": "2026-11-05T00:53:54+00:00",
  "itens": [
-  {
-   "slug": "fantasmas-de-saltmarsh-507ts3gb",
-   "nome": "Fantasmas de Saltmarsh",
-   "url": "https://mesaquest.com.br/mesas/fantasmas-de-saltmarsh-507ts3gb",
-   "mestre": "Henrique Müller",
-   "sistema": "Dungeons & Dragons 5.5e (2024)",
-   "descricao": "⚓ \"Ouçam, marujos... deixem que um velho lhes conte sobre Saltmarsh...\" “Reúnam-se, reúnam-se... Tragam o rum, e não interrompam, se quiserem dormir em paz esta noite.” O velho ergueu a caneca com mãos trêmulas…",
-   "inicio": "2026-11-04T20:00:00-03:00",
-   "fim": "2026-11-04T23:00:00-03:00",
-   "vagas": 0,
-   "lotada": true,
-   "preco": "R$ 100,00/mês",
-   "nivel": "Todos os níveis",
-   "tipo": "Campanha",
-   "frequencia": "Quinzenal",
-   "duracao_min": 180,
-   "ferramentas": [
-    "Foundry VTT",
-    "VDO Ninja"
-   ],
-   "ao_vivo": true,
-   "capa": "img/mq/fantasmas-de-saltmarsh-507ts3gb.webp"
-  },
   {
    "slug": "autoral-alem-do-mar-sem-fim-rasf80y8",
    "nome": "[Autoral] Além do Mar Sem Fim",
@@ -171,7 +148,7 @@
    "descricao": "O mundo ainda não acabou. As pessoas ainda trabalham, discutem no trânsito, fazem planos e acreditam que amanhã será apenas mais um dia. Mas algo não parece certo. Esta crônica começa nos primeiros momentos de uma crise…",
    "inicio": "2026-11-12T20:00:00-03:00",
    "fim": "2026-11-12T23:00:00-03:00",
-   "vagas": 3,
+   "vagas": 2,
    "lotada": false,
    "preco": "R$ 160,00/mês",
    "nivel": "Todos os níveis",
@@ -208,6 +185,30 @@
    ],
    "ao_vivo": true,
    "capa": "img/mq/odisseia-dos-lordes-dragoes-4x844vrw.webp"
+  },
+  {
+   "slug": "operacao-ceia-k3dt7fgh",
+   "nome": "Operação Ceia",
+   "url": "https://mesaquest.com.br/mesas/operacao-ceia-k3dt7fgh",
+   "mestre": "Elisinha Müller",
+   "sistema": "Tales From the Loop",
+   "descricao": "Boulder City, Nevada. Véspera de Natal, 1986. A casa da vó June tá cheia. Tem especial de Natal na TV, torta esfriando na cozinha e tia Linda ensaiando a foto de família porque, segundo ela, alguém piscou em todas as do…",
+   "inicio": "2026-11-15T21:00:00-03:00",
+   "fim": "2026-11-16T00:00:00-03:00",
+   "vagas": 3,
+   "lotada": false,
+   "preco": "R$ 60,00 (pagamento único)",
+   "nivel": "Todos os níveis",
+   "tipo": "One-shot",
+   "frequencia": "",
+   "duracao_min": 180,
+   "ferramentas": [
+    "Discord",
+    "Worldcraft",
+    "Whatsapp"
+   ],
+   "ao_vivo": false,
+   "capa": "img/mq/operacao-ceia-k3dt7fgh.webp"
   },
   {
    "slug": "vecna-a-beira-da-ruina-e998t6hx",
@@ -254,6 +255,29 @@
    ],
    "ao_vivo": true,
    "capa": "img/mq/contos-dos-reinos-esquecidos-ja99t4h7.webp"
+  },
+  {
+   "slug": "fantasmas-de-saltmarsh-507ts3gb",
+   "nome": "Fantasmas de Saltmarsh",
+   "url": "https://mesaquest.com.br/mesas/fantasmas-de-saltmarsh-507ts3gb",
+   "mestre": "Henrique Müller",
+   "sistema": "Dungeons & Dragons 5.5e (2024)",
+   "descricao": "⚓ \"Ouçam, marujos... deixem que um velho lhes conte sobre Saltmarsh...\" “Reúnam-se, reúnam-se... Tragam o rum, e não interrompam, se quiserem dormir em paz esta noite.” O velho ergueu a caneca com mãos trêmulas…",
+   "inicio": "2026-11-18T20:00:00-03:00",
+   "fim": "2026-11-18T23:00:00-03:00",
+   "vagas": 0,
+   "lotada": true,
+   "preco": "R$ 100,00/mês",
+   "nivel": "Todos os níveis",
+   "tipo": "Campanha",
+   "frequencia": "Quinzenal",
+   "duracao_min": 180,
+   "ferramentas": [
+    "Foundry VTT",
+    "VDO Ninja"
+   ],
+   "ao_vivo": true,
+   "capa": "img/mq/fantasmas-de-saltmarsh-507ts3gb.webp"
   }
  ]
 }
