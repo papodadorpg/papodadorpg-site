@@ -1,20 +1,14 @@
 {
- "atualizado": "2026-11-05T00:53:46+00:00",
- "aovivo": [
-  {
-   "id": "weDsw42Q438",
-   "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 34",
-   "capa": "img/yt/weDsw42Q438-g.webp"
-  }
- ],
+ "atualizado": "2026-11-05T01:58:37+00:00",
+ "aovivo": [],
  "agendadas": [],
  "itens": [
   {
-   "id": "4I2NFrWO6KY",
-   "titulo": "Highlights Contos dos Reinos Esquecidos - Episódio 01 | O Mistério de Conyberry",
-   "data": "2026-11-04T15:53:46+00:00",
-   "capa": "img/yt/4I2NFrWO6KY.jpg",
-   "capa_grande": "img/yt/4I2NFrWO6KY-g.webp"
+   "id": "weDsw42Q438",
+   "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 34",
+   "data": "2026-11-05T01:48:37+00:00",
+   "capa": "img/yt/weDsw42Q438.jpg",
+   "capa_grande": "img/yt/weDsw42Q438-g.webp"
   },
   {
    "id": "oOCuZmtT7E0",
@@ -23,28 +17,28 @@
    "capa": "img/yt/oOCuZmtT7E0.jpg"
   },
   {
-   "id": "cM2rmk4sGFQ",
-   "titulo": "Highlights Odisseia dos Lordes Dragões - Episódio 22 | O Brilho do Sol Outra Vez",
-   "data": "2026-11-03T15:36:45+00:00",
-   "capa": "img/yt/cM2rmk4sGFQ.jpg"
-  },
-  {
    "id": "kMenGCxPCjM",
    "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 22 | O Brilho do Sol Outra Vez",
    "data": "2026-11-01T03:35:52+00:00",
    "capa": "img/yt/kMenGCxPCjM.jpg"
   },
   {
-   "id": "O6PwFOn_cjQ",
-   "titulo": "Highlights O Que Restou de Nós - Episódio 02 | Sem Saída",
-   "data": "2026-10-30T15:00:41+00:00",
-   "capa": "img/yt/O6PwFOn_cjQ.jpg"
+   "id": "WbAiRu9vfrI",
+   "titulo": "D&D 5.5 Descida ao Avernus - Episódio 33 | A Crosta",
+   "data": "2026-10-30T01:58:37+00:00",
+   "capa": "img/yt/WbAiRu9vfrI.jpg"
   },
   {
    "id": "Pl_8J0rVKBA",
    "titulo": "Terra Devastada O Que Restou de Nós - Episódio 02 | Sem Saída",
    "data": "2026-10-29T21:44:43+00:00",
    "capa": "img/yt/Pl_8J0rVKBA.jpg"
+  },
+  {
+   "id": "9zwZK7lWpoE",
+   "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 11 | Encarcerados",
+   "data": "2026-10-29T01:58:37+00:00",
+   "capa": "img/yt/9zwZK7lWpoE.jpg"
   }
  ],
  "shorts": [
