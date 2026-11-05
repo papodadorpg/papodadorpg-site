@@ -9,12 +9,12 @@ videos.json:
   atualizado  ISO UTC da coleta
   aovivo      [{id, titulo, capa}]                 lives transmitindo agora
   agendadas   [{id, titulo, inicio, capa}]         lives/estreias programadas (inicio em ISO UTC)
-  itens       [{id, titulo, data, capa}]           últimos vídeos e lives encerradas, mais novo primeiro
+  itens       [{id, titulo, data, capa}]           últimos vídeos e lives encerradas, mais novo primeiro (sem os resumos "Highlights")
   shorts      [{id, titulo, capa}]                 últimos Shorts (capa vertical)
 
 Também escreve <pasta_saida>/episodios.json:
   atualizado, campanhas: {id_da_campanha: {playlist, episodios: [{id, titulo, duracao}]}},
-  highlights: [{id, titulo, capa}]   (playlist "Highlights Campanhas D&D")
+  highlights: [{id, titulo, capa}]   (playlist "Highlights Campanhas")
 """
 import json, os, re, sys, urllib.request
 from datetime import datetime, timedelta, timezone
@@ -314,7 +314,8 @@ def main():
         if p["id"] in anterior:
             p["data"] = anterior[p["id"]]
     passados.sort(key=lambda p: p["data"], reverse=True)
-    itens = passados[:6]
+    # resumos ("Highlights ...") só aparecem nas páginas das campanhas, via episodios.json
+    itens = [p for p in passados if not re.match(r"highlights\b", p["titulo"], re.I)][:6]
 
     for it in aovivo + agendadas:
         it["capa"] = salvar_capa(it["id"], pasta, grande=True)
