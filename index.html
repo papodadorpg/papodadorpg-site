@@ -662,7 +662,7 @@ const horaTxt = (h) => (h.endsWith(':00') ? h.slice(0, 2) + 'h' : h.replace(':',
 const dataCurta = (d) => { const p = partesBR(d); return `${DIAS_CURTO[diaSemanaBR(d)].toLowerCase()}, ${p.day}/${p.month}`; };
 const deBrasilia = (iso) => new Date(iso + ':00-03:00'); // Brasília sem horário de verão
 const norm = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
-// Resumos (highlights) da campanha na playlist "Highlights Campanhas D&D", do episódio mais recente para o mais antigo
+// Resumos (highlights) da campanha na playlist "Highlights Campanhas", do episódio mais recente para o mais antigo
 const numEp = (t) => { const m = String(t).match(/Ep(?:is[oó]dio)?\.?\s*(\d+)/i); return m ? +m[1] : 0; };
 const resumosDe = (m) => (EPISODIOS?.highlights || []).filter((h) => norm(h.titulo).includes(norm(m.nome))).sort((a, b) => numEp(b.titulo) - numEp(a.titulo));
 const durTxt = (d) => { const p = String(d || '').split(':').map(Number); if (p.length < 2 || p.some(isNaN)) return ''; const min = p.length === 3 ? p[0] * 60 + p[1] : p[0]; return min >= 60 ? `${Math.floor(min / 60)}h${String(min % 60).padStart(2, '0')}` : `${min} min`; };
@@ -820,7 +820,7 @@ function montarProxima() {
       });
     }
     // 3) sem live agendada: último vídeo lançado
-    const ult = YT.itens?.[0];
+    const ult = (YT.itens || []).find((v) => !ehResumo(v));
     if (ult) {
       return pintarHeroi({ rotulo: 'Último vídeo', nome: ult.titulo, quando: `Lançado ${dataCurta(new Date(ult.data))}`,
         botao: 'Assistir agora', link: assistir(ult.id), capa: ult.capa_grande || ult.capa });
@@ -892,7 +892,8 @@ async function montarMesaQuest() {
   let dados = null;
   try { const r = await fetch('mesas.json', { cache: 'no-store' }); if (r.ok) dados = await r.json(); } catch { /* sem dados */ }
   const itens = (dados?.itens || []).filter((x) => new Date(x.inicio).getTime() > Date.now() - DURACAO_H * 3600000);
-  if (!itens.length) { secao.hidden = true; return; }
+  // sem mesas abertas no momento: o botão do topo leva direto ao perfil do Henrique no MesaQuest
+  if (!itens.length) { secao.hidden = true; Object.assign(document.getElementById('btn-jogue'), { href: 'https://mesaquest.com.br/usuario/henrique-muller-papo-dado-rpg-jlg6npor', target: '_blank', rel: 'noopener' }); return; }
   secao.hidden = false;
   const comVaga = (x) => !x.lotada && x.vagas > 0;
   // Horário combinado com o grupo que ainda não foi mudado no MesaQuest: slug -> "HH:MM" (Brasília)
@@ -938,9 +939,11 @@ async function montarMesaQuest() {
 }
 
 // ================= VÍDEOS (videos.json gerado no servidor a partir do feed do canal) =================
+// resumos (Highlights) ficam só nas páginas das campanhas, fora de "Últimas do canal"
+function ehResumo(v) { return /^highlights\b/i.test(v?.titulo || ''); }
 function montarVideos() {
   const alvo = document.getElementById('lista-videos');
-  const lista = (YT?.itens || []).slice(0, 6);
+  const lista = (YT?.itens || []).filter((v) => !ehResumo(v)).slice(0, 6);
   alvo.innerHTML = lista?.length
     ? lista.map((v) => `
       <a class="video" href="https://www.youtube.com/watch?v=${esc(v.id)}" target="_blank" rel="noopener">
