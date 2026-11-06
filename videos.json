@@ -1,20 +1,27 @@
 {
- "atualizado": "2026-11-06T00:57:57+00:00",
- "aovivo": [
+ "atualizado": "2026-11-06T04:07:46+00:00",
+ "aovivo": [],
+ "agendadas": [
   {
-   "id": "2_lkqUDcyjk",
-   "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 22",
-   "capa": "img/yt/2_lkqUDcyjk-g.webp"
+   "id": "dz0aRA5XK9E",
+   "titulo": "LIVE DE ALMOÇO 🍗 Bate-papo sobre RPG, D&D e mesas ao vivo | Papo Dado RPG",
+   "inicio": "2026-11-06T15:00:00+00:00",
+   "capa": "img/yt/dz0aRA5XK9E-g.webp"
   }
  ],
- "agendadas": [],
  "itens": [
+  {
+   "id": "2_lkqUDcyjk",
+   "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 22 | A Floresta da Lua",
+   "data": "2026-11-06T03:09:46+00:00",
+   "capa": "img/yt/2_lkqUDcyjk.jpg",
+   "capa_grande": "img/yt/2_lkqUDcyjk-g.webp"
+  },
   {
    "id": "weDsw42Q438",
    "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 34 | De Volta ao Lar",
    "data": "2026-11-05T01:48:37+00:00",
-   "capa": "img/yt/weDsw42Q438.jpg",
-   "capa_grande": "img/yt/weDsw42Q438-g.webp"
+   "capa": "img/yt/weDsw42Q438.jpg"
   },
   {
    "id": "oOCuZmtT7E0",
@@ -39,12 +46,6 @@
    "titulo": "Terra Devastada O Que Restou de Nós - Episódio 02 | Sem Saída",
    "data": "2026-10-29T21:44:43+00:00",
    "capa": "img/yt/Pl_8J0rVKBA.jpg"
-  },
-  {
-   "id": "9zwZK7lWpoE",
-   "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 11 | Encarcerados",
-   "data": "2026-10-29T01:58:37+00:00",
-   "capa": "img/yt/9zwZK7lWpoE.jpg"
   }
  ],
  "shorts": [
