@@ -1,29 +1,6 @@
 {
- "atualizado": "2026-11-05T01:58:42+00:00",
+ "atualizado": "2026-11-06T00:58:05+00:00",
  "itens": [
-  {
-   "slug": "autoral-alem-do-mar-sem-fim-rasf80y8",
-   "nome": "[Autoral] Além do Mar Sem Fim",
-   "url": "https://mesaquest.com.br/mesas/autoral-alem-do-mar-sem-fim-rasf80y8",
-   "mestre": "Henrique Müller",
-   "sistema": "Dungeons & Dragons 5.5e (2024)",
-   "descricao": "Lusitânia 1390 d.C. Uma epidemia se espalha aos poucos pela Ibéria, enlouquecendo aqueles acometidos pela doença e transformando em mortos-vivos aqueles que sucumbem a ela. Conduzido pelo desespero e manipulado por…",
-   "inicio": "2026-11-05T21:00:00-03:00",
-   "fim": "2026-11-05T23:59:00-03:00",
-   "vagas": 0,
-   "lotada": true,
-   "preco": "R$ 100,00/mês",
-   "nivel": "Intermediário",
-   "tipo": "Campanha",
-   "frequencia": "Quinzenal",
-   "duracao_min": 180,
-   "ferramentas": [
-    "Foundry VTT",
-    "VDO Ninja"
-   ],
-   "ao_vivo": true,
-   "capa": "img/mq/autoral-alem-do-mar-sem-fim-rasf80y8.webp"
-  },
   {
    "slug": "phandelver-e-abaixo-o-obelisco-despedacado-9cjfc98a",
    "nome": "Phandelver e Abaixo: O Obelisco Despedaçado",
@@ -278,6 +255,29 @@
    ],
    "ao_vivo": true,
    "capa": "img/mq/fantasmas-de-saltmarsh-507ts3gb.webp"
+  },
+  {
+   "slug": "autoral-alem-do-mar-sem-fim-rasf80y8",
+   "nome": "[Autoral] Além do Mar Sem Fim",
+   "url": "https://mesaquest.com.br/mesas/autoral-alem-do-mar-sem-fim-rasf80y8",
+   "mestre": "Henrique Müller",
+   "sistema": "Dungeons & Dragons 5.5e (2024)",
+   "descricao": "Lusitânia 1390 d.C. Uma epidemia se espalha aos poucos pela Ibéria, enlouquecendo aqueles acometidos pela doença e transformando em mortos-vivos aqueles que sucumbem a ela. Conduzido pelo desespero e manipulado por…",
+   "inicio": "2026-11-19T21:00:00-03:00",
+   "fim": "2026-11-19T23:59:00-03:00",
+   "vagas": 0,
+   "lotada": true,
+   "preco": "R$ 100,00/mês",
+   "nivel": "Intermediário",
+   "tipo": "Campanha",
+   "frequencia": "Quinzenal",
+   "duracao_min": 180,
+   "ferramentas": [
+    "Foundry VTT",
+    "VDO Ninja"
+   ],
+   "ao_vivo": true,
+   "capa": "img/mq/autoral-alem-do-mar-sem-fim-rasf80y8.webp"
   }
  ]
 }

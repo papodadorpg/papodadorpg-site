@@ -1,11 +1,17 @@
 {
- "atualizado": "2026-11-05T01:58:37+00:00",
- "aovivo": [],
+ "atualizado": "2026-11-06T00:57:57+00:00",
+ "aovivo": [
+  {
+   "id": "2_lkqUDcyjk",
+   "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 22",
+   "capa": "img/yt/2_lkqUDcyjk-g.webp"
+  }
+ ],
  "agendadas": [],
  "itens": [
   {
    "id": "weDsw42Q438",
-   "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 34",
+   "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 34 | De Volta ao Lar",
    "data": "2026-11-05T01:48:37+00:00",
    "capa": "img/yt/weDsw42Q438.jpg",
    "capa_grande": "img/yt/weDsw42Q438-g.webp"
@@ -43,6 +49,11 @@
  ],
  "shorts": [
   {
+   "id": "83ZoE4fEOo4",
+   "titulo": "A chave... é ela?! | Além do Mar Sem Fim",
+   "capa": "img/yt/83ZoE4fEOo4-s.webp"
+  },
+  {
    "id": "KlefpFNFHMk",
    "titulo": "Tiro de canhão numa pessoa",
    "capa": "img/yt/KlefpFNFHMk-s.webp"
@@ -76,11 +87,6 @@
    "id": "2cgliyJ8Yu0",
    "titulo": "Strahd chega sem bater na porta",
    "capa": "img/yt/2cgliyJ8Yu0-s.webp"
-  },
-  {
-   "id": "8Vy1yHk1jxc",
-   "titulo": "Você já viu 7 críticos em uma sessão? #rpg #dnd #criticos",
-   "capa": "img/yt/8Vy1yHk1jxc-s.webp"
   }
  ]
 }
