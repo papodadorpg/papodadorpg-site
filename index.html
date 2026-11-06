@@ -585,14 +585,17 @@ const DURACAO_H = 3;
 const DIAS = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
 const DIAS_CURTO = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 // Dias sem live com aviso próprio (0 = domingo ... 6 = sábado)
-const DIAS_OFF = { 5: { titulo: 'Mesas em off', texto: 'Dia de jogar longe das câmeras. Sem live, mas os dados rolam.' } };
+const DIAS_OFF = { 5: { titulo: 'Mesas em off', texto: 'À noite a gente joga longe das câmeras, mas os dados rolam.' } };
 
 // LIVES: a agenda do canal. Independe do MesaQuest (uma mesa pode ser privada lá e ainda assim ir ao ar aqui).
 // "ref" = data e hora de uma sessão qualquer (Brasília); "cada" = intervalo em dias entre as lives.
 // "playlist" = id da playlist no YouTube; a capa fica em img/pl/<id da live>.webp (sem playlist e sem "capa: true", o card usa o vitral).
 // "sobre" (opcional) = parágrafos extras mostrados na página da campanha.
 // Campanha nova: "ref" = data da estreia; até lá o card mostra "Estreia".
+// "programa: true" = live fixa que não é campanha (ex.: Live de Almoço): entra na agenda e no herói, mas não na lista de campanhas.
 const LIVES = [
+  { id: 'almoco', programa: true, playlist: 'PLfEO-j05yTCI', nome: 'Live de Almoço', ref: '2026-11-06T12:00', cada: 7, cor: 'laranja', sistema: 'Bate-papo', mestre: 'Henrique Müller',
+    sinopse: 'Toda sexta, ao meio-dia: bate-papo aberto sobre RPG de mesa, D&D, bastidores das campanhas e as perguntas do chat.' },
   { id: 'strahd', playlist: 'PLu-hxXZl-KUQqPuVdQ4vg71gQH-ODurab', nome: 'Maldição de Strahd', ref: '2026-11-09T20:00', cada: 14, cor: 'vermelho', sistema: 'D&D 5.5', mestre: 'Henrique Müller',
     sinopse: 'Terror gótico em Baróvia, um vale preso nas brumas e governado pelo vampiro Strahd von Zarovich.' },
   { id: 'vecna', playlist: 'PLu-hxXZl-KUQ459n-TxtK6seaKrQ6csTM', nome: 'Vecna À Beira da Ruína', ref: '2026-11-02T20:45', cada: 14, cor: 'roxo', sistema: 'D&D 5.5', mestre: 'Henrique Müller',
@@ -758,9 +761,8 @@ function montarAgenda() {
         <div class="hora">${horaTxt(m.hora)}</div>
         <div class="nomes"><span>${esc(m.nome)}</span></div>
         <div class="ritmo">Próxima: ${dataCurta(m.proxima).split(', ')[1]}${m.remarcada ? ` às ${horaTxt(horaBR(m.proxima))}` : ''}${m.cada === 14 ? ' · quinzenal' : ''}${avisoSessao(m) ? `<br><strong class="aviso-sessao">${esc(avisoSessao(m))}</strong>` : ''}</div></div>`).join('')
-      || (DIAS_OFF[d]
-        ? `<div class="slot off"><div class="hora">${DIAS_OFF[d].titulo}</div><div class="ritmo">${DIAS_OFF[d].texto}</div></div>`
-        : '<div class="vazio">Sem live. Dia de cortes e conteúdo no canal.</div>');
+      + (DIAS_OFF[d] ? `<div class="slot off"><div class="hora">${DIAS_OFF[d].titulo}</div><div class="ritmo">${DIAS_OFF[d].texto}</div></div>` : '')
+      || '<div class="vazio">Sem live. Dia de cortes e conteúdo no canal.</div>';
     return `<div class="dia${d === hoje ? ' hoje' : ''}${doDia.length || DIAS_OFF[d] ? '' : ' semlive'}">
       <h3>${DIAS[d]}${d === hoje ? '<span class="tag-hoje">HOJE</span>' : ''}</h3>${corpo}</div>`;
   }).join('');
@@ -804,7 +806,7 @@ function heroiDaAgenda(futuras, canal) {
   pintarHeroi({
     rotulo: 'Próxima live', nome: juntas.map((m) => m.nome).join(' e '), quando: quandoTxt(primeira.proxima),
     ou: depois ? `Depois: ${depois.nome}, ${dataCurta(depois.proxima)} às ${horaTxt(horaBR(depois.proxima))}` : '',
-    botao: uma ? 'Ver a campanha' : 'Abrir o canal', link: uma ? paginaUrl(primeira) : canal, capa: uma ? capaDe(primeira) : '',
+    botao: uma && !primeira.programa ? 'Ver a campanha' : 'Abrir o canal', link: uma && !primeira.programa ? paginaUrl(primeira) : canal, capa: uma ? capaDe(primeira) : '',
   });
 }
 
@@ -868,7 +870,7 @@ function montarEncerradas() {
 }
 
 function montarCampanhas() {
-  document.getElementById('lista-campanhas').innerHTML = [...AGENDA].sort((a, b) => a.proxima - b.proxima).map((m) => `
+  document.getElementById('lista-campanhas').innerHTML = AGENDA.filter((m) => !m.programa).sort((a, b) => a.proxima - b.proxima).map((m) => `
     <article class="mesa" style="--cor:${COR[m.cor]};--texto-cor:${TEXTO_SOBRE[m.cor]}">
       <div class="topo-capa">${capaDe(m)
         ? `<a href="${paginaUrl(m)}" tabindex="-1"><img class="capa-pl" src="${esc(capaDe(m))}" ${imgFalha} alt="Capa de ${esc(m.nome)}" loading="lazy" width="854" height="480"></a>`
