@@ -1,7 +1,74 @@
 {
- "atualizado": "2026-11-07T00:06:42+00:00",
+ "atualizado": "2026-11-07T23:38:08+00:00",
  "aovivo": [],
- "agendadas": [],
+ "agendadas": [
+  {
+   "id": "hh8GNm2vW9Q",
+   "titulo": "D&D 5.5 A Lua Tortuosa - Episódio 05",
+   "inicio": "2026-11-08T01:00:00+00:00",
+   "capa": "img/yt/hh8GNm2vW9Q-g.webp"
+  },
+  {
+   "id": "xNRWvdCG9WM",
+   "titulo": "D&D 5.5 Maldição de Strahd - Episódio 36",
+   "inicio": "2026-11-09T23:00:00+00:00",
+   "capa": "img/yt/xNRWvdCG9WM-g.webp"
+  },
+  {
+   "id": "c-SyK5cUEvQ",
+   "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 12",
+   "inicio": "2026-11-10T23:00:00+00:00",
+   "capa": "img/yt/c-SyK5cUEvQ-g.webp"
+  },
+  {
+   "id": "mkw_LGyRiWw",
+   "titulo": "D&D 5.5 Descida ao Avernus - Episódio 34",
+   "inicio": "2026-11-11T23:00:00+00:00",
+   "capa": "img/yt/mkw_LGyRiWw-g.webp"
+  },
+  {
+   "id": "dmMLS3f2kHU",
+   "titulo": "Terra Devastada O Que Restou de Nós - Episódio 03",
+   "inicio": "2026-11-13T00:00:00+00:00",
+   "capa": "img/yt/dmMLS3f2kHU-g.webp"
+  },
+  {
+   "id": "0-U7K9EssFM",
+   "titulo": "LIVE DE ALMOÇO 🍗 Bate-papo sobre RPG, D&D e mesas ao vivo | Papo Dado RPG",
+   "inicio": "2026-11-13T15:00:00+00:00",
+   "capa": "img/yt/0-U7K9EssFM-g.webp"
+  },
+  {
+   "id": "MoXSwvvDmx0",
+   "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 23",
+   "inicio": "2026-11-14T23:00:00+00:00",
+   "capa": "img/yt/MoXSwvvDmx0-g.webp"
+  },
+  {
+   "id": "9-mlsmFsBwo",
+   "titulo": "D&D 5.5 Vecna À Beira da Ruína - Episódio 44",
+   "inicio": "2026-11-16T23:45:00+00:00",
+   "capa": "img/yt/9-mlsmFsBwo-g.webp"
+  },
+  {
+   "id": "-jwFoH7tbgE",
+   "titulo": "D&D 5.5 Contos dos Reinos Esquecidos - Episódio 02",
+   "inicio": "2026-11-17T23:00:00+00:00",
+   "capa": "img/yt/-jwFoH7tbgE-g.webp"
+  },
+  {
+   "id": "DiNJ5U0nMEs",
+   "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 35",
+   "inicio": "2026-11-18T23:00:00+00:00",
+   "capa": "img/yt/DiNJ5U0nMEs-g.webp"
+  },
+  {
+   "id": "jnQZT1M2bC0",
+   "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 23",
+   "inicio": "2026-11-20T00:00:00+00:00",
+   "capa": "img/yt/jnQZT1M2bC0-g.webp"
+  }
+ ],
  "itens": [
   {
    "id": "dz0aRA5XK9E",
@@ -35,10 +102,10 @@
    "capa": "img/yt/kMenGCxPCjM.jpg"
   },
   {
-   "id": "WbAiRu9vfrI",
-   "titulo": "D&D 5.5 Descida ao Avernus - Episódio 33 | A Crosta",
-   "data": "2026-10-30T01:58:37+00:00",
-   "capa": "img/yt/WbAiRu9vfrI.jpg"
+   "id": "Pl_8J0rVKBA",
+   "titulo": "Terra Devastada O Que Restou de Nós - Episódio 02 | Sem Saída",
+   "data": "2026-10-30T23:38:08+00:00",
+   "capa": "img/yt/Pl_8J0rVKBA.jpg"
   }
  ],
  "shorts": [

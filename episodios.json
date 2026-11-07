@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-07T00:06:42+00:00",
+ "atualizado": "2026-11-07T23:38:08+00:00",
  "campanhas": {
   "strahd": {
    "playlist": "PLu-hxXZl-KUQqPuVdQ4vg71gQH-ODurab",
@@ -183,6 +183,11 @@
      "id": "iF-Y6CC3Yxk",
      "titulo": "D&D 5.5 Maldição de Strahd - Episódio 35 | A Abadia de Santa Markóvia",
      "duracao": "4:16:06"
+    },
+    {
+     "id": "xNRWvdCG9WM",
+     "titulo": "D&D 5.5 Maldição de Strahd - Episódio 36",
+     "duracao": ""
     }
    ]
   },
@@ -398,6 +403,11 @@
      "id": "Kda3f26JaGo",
      "titulo": "D&D 5.5 Vecna À Beira da Ruína - Episódio 43 | Nem Tudo É O Que Parece",
      "duracao": "3:03:25"
+    },
+    {
+     "id": "9-mlsmFsBwo",
+     "titulo": "D&D 5.5 Vecna À Beira da Ruína - Episódio 44",
+     "duracao": ""
     }
    ]
   },
@@ -463,6 +473,11 @@
      "id": "9zwZK7lWpoE",
      "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 11 | Encarcerados",
      "duracao": "3:36:28"
+    },
+    {
+     "id": "c-SyK5cUEvQ",
+     "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 12",
+     "duracao": ""
     }
    ]
   },
@@ -638,6 +653,11 @@
      "id": "weDsw42Q438",
      "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 34 | De Volta ao Lar",
      "duracao": "2:49:14"
+    },
+    {
+     "id": "DiNJ5U0nMEs",
+     "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 35",
+     "duracao": ""
     }
    ]
   },
@@ -808,6 +828,11 @@
      "id": "WbAiRu9vfrI",
      "titulo": "D&D 5.5 Descida ao Avernus - Episódio 33 | A Crosta",
      "duracao": "3:04:29"
+    },
+    {
+     "id": "mkw_LGyRiWw",
+     "titulo": "D&D 5.5 Descida ao Avernus - Episódio 34",
+     "duracao": ""
     }
    ]
   },
@@ -828,6 +853,11 @@
      "id": "Pl_8J0rVKBA",
      "titulo": "Terra Devastada O Que Restou de Nós - Episódio 02 | Sem Saída",
      "duracao": "3:11:46"
+    },
+    {
+     "id": "dmMLS3f2kHU",
+     "titulo": "Terra Devastada O Que Restou de Nós - Episódio 03",
+     "duracao": ""
     }
    ]
   },
@@ -948,6 +978,11 @@
      "id": "2_lkqUDcyjk",
      "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 22 | A Floresta da Lua",
      "duracao": "3:04:41"
+    },
+    {
+     "id": "jnQZT1M2bC0",
+     "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 23",
+     "duracao": ""
     }
    ]
   },
@@ -1058,6 +1093,11 @@
      "id": "kMenGCxPCjM",
      "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 22 | O Brilho do Sol Outra Vez",
      "duracao": "3:43:25"
+    },
+    {
+     "id": "MoXSwvvDmx0",
+     "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 23",
+     "duracao": ""
     }
    ]
   },
@@ -1088,6 +1128,11 @@
      "id": "qOPlUrvS_vY",
      "titulo": "D&D 5.5 A Lua Tortuosa - Episódio 04 | Charco de Vime",
      "duracao": "3:08:18"
+    },
+    {
+     "id": "hh8GNm2vW9Q",
+     "titulo": "D&D 5.5 A Lua Tortuosa - Episódio 05",
+     "duracao": ""
     }
    ]
   },
@@ -1865,9 +1910,29 @@
    "playlist": "PLfEO-j05yTCI",
    "episodios": [
     {
+     "id": "0-U7K9EssFM",
+     "titulo": "LIVE DE ALMOÇO 🍗 Bate-papo sobre RPG, D&D e mesas ao vivo | Papo Dado RPG",
+     "duracao": ""
+    },
+    {
      "id": "dz0aRA5XK9E",
      "titulo": "LIVE DE ALMOÇO 🍗 Bate-papo sobre RPG, D&D e mesas ao vivo | Papo Dado RPG",
-     "duracao": "1:18:58"
+     "duracao": "1:18:36"
+    }
+   ]
+  },
+  "contos": {
+   "playlist": "PLfXrR1KV_gis",
+   "episodios": [
+    {
+     "id": "-jwFoH7tbgE",
+     "titulo": "D&D 5.5 Contos dos Reinos Esquecidos - Episódio 02",
+     "duracao": ""
+    },
+    {
+     "id": "oOCuZmtT7E0",
+     "titulo": "D&D 5.5 Contos dos Reinos Esquecidos - Episódio 01 | O Mistério de Conyberry",
+     "duracao": "3:09:42"
     }
    ]
   }
