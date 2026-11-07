@@ -1,21 +1,20 @@
 {
- "atualizado": "2026-11-06T04:07:46+00:00",
+ "atualizado": "2026-11-07T00:06:42+00:00",
  "aovivo": [],
- "agendadas": [
+ "agendadas": [],
+ "itens": [
   {
    "id": "dz0aRA5XK9E",
    "titulo": "LIVE DE ALMOÇO 🍗 Bate-papo sobre RPG, D&D e mesas ao vivo | Papo Dado RPG",
-   "inicio": "2026-11-06T15:00:00+00:00",
-   "capa": "img/yt/dz0aRA5XK9E-g.webp"
-  }
- ],
- "itens": [
+   "data": "2026-11-06T17:06:42+00:00",
+   "capa": "img/yt/dz0aRA5XK9E.jpg",
+   "capa_grande": "img/yt/dz0aRA5XK9E-g.webp"
+  },
   {
    "id": "2_lkqUDcyjk",
    "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 22 | A Floresta da Lua",
    "data": "2026-11-06T03:09:46+00:00",
-   "capa": "img/yt/2_lkqUDcyjk.jpg",
-   "capa_grande": "img/yt/2_lkqUDcyjk-g.webp"
+   "capa": "img/yt/2_lkqUDcyjk.jpg"
   },
   {
    "id": "weDsw42Q438",
@@ -40,15 +39,14 @@
    "titulo": "D&D 5.5 Descida ao Avernus - Episódio 33 | A Crosta",
    "data": "2026-10-30T01:58:37+00:00",
    "capa": "img/yt/WbAiRu9vfrI.jpg"
-  },
-  {
-   "id": "Pl_8J0rVKBA",
-   "titulo": "Terra Devastada O Que Restou de Nós - Episódio 02 | Sem Saída",
-   "data": "2026-10-29T21:44:43+00:00",
-   "capa": "img/yt/Pl_8J0rVKBA.jpg"
   }
  ],
  "shorts": [
+  {
+   "id": "udwiLXq7DH0",
+   "titulo": "A Cantiga do Homem Torto",
+   "capa": "img/yt/udwiLXq7DH0-s.webp"
+  },
   {
    "id": "83ZoE4fEOo4",
    "titulo": "A chave... é ela?! | Além do Mar Sem Fim",
@@ -83,11 +81,6 @@
    "id": "nxZsHoL_Ip8",
    "titulo": "O 5º crítico no clerigo em duas sessões",
    "capa": "img/yt/nxZsHoL_Ip8-s.webp"
-  },
-  {
-   "id": "2cgliyJ8Yu0",
-   "titulo": "Strahd chega sem bater na porta",
-   "capa": "img/yt/2cgliyJ8Yu0-s.webp"
   }
  ]
 }

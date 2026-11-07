@@ -1,29 +1,6 @@
 {
- "atualizado": "2026-11-06T04:07:55+00:00",
+ "atualizado": "2026-11-07T00:06:50+00:00",
  "itens": [
-  {
-   "slug": "phandelver-e-abaixo-o-obelisco-despedacado-9cjfc98a",
-   "nome": "Phandelver e Abaixo: O Obelisco Despedaçado",
-   "url": "https://mesaquest.com.br/mesas/phandelver-e-abaixo-o-obelisco-despedacado-9cjfc98a",
-   "mestre": "Henrique Müller",
-   "sistema": "Dungeons & Dragons 5.5e (2024)",
-   "descricao": "Costa da Espada, 1491 CV Após aceitarem um serviço aparentemente fácil, o grupo de aventureiros se vê apanhado em uma trama muito maior do que a inicialmente descrita por seu contratante - agora desparecido. Vários…",
-   "inicio": "2026-11-06T20:00:00-03:00",
-   "fim": "2026-11-06T23:00:00-03:00",
-   "vagas": 0,
-   "lotada": true,
-   "preco": "R$ 160,00/mês",
-   "nivel": "Todos os níveis",
-   "tipo": "Campanha",
-   "frequencia": "Quinzenal",
-   "duracao_min": 180,
-   "ferramentas": [
-    "Foundry VTT",
-    "Google Meet"
-   ],
-   "ao_vivo": false,
-   "capa": "img/mq/phandelver-e-abaixo-o-obelisco-despedacado-9cjfc98a.webp"
-  },
   {
    "slug": "a-lua-tortuosa-sbvs0xqf",
    "nome": "A Lua Tortuosa",
@@ -278,6 +255,29 @@
    ],
    "ao_vivo": true,
    "capa": "img/mq/autoral-alem-do-mar-sem-fim-rasf80y8.webp"
+  },
+  {
+   "slug": "phandelver-e-abaixo-o-obelisco-despedacado-9cjfc98a",
+   "nome": "Phandelver e Abaixo: O Obelisco Despedaçado",
+   "url": "https://mesaquest.com.br/mesas/phandelver-e-abaixo-o-obelisco-despedacado-9cjfc98a",
+   "mestre": "Henrique Müller",
+   "sistema": "Dungeons & Dragons 5.5e (2024)",
+   "descricao": "Costa da Espada, 1491 CV Após aceitarem um serviço aparentemente fácil, o grupo de aventureiros se vê apanhado em uma trama muito maior do que a inicialmente descrita por seu contratante - agora desparecido. Vários…",
+   "inicio": "2026-11-20T20:00:00-03:00",
+   "fim": "2026-11-20T23:00:00-03:00",
+   "vagas": 0,
+   "lotada": true,
+   "preco": "R$ 160,00/mês",
+   "nivel": "Todos os níveis",
+   "tipo": "Campanha",
+   "frequencia": "Quinzenal",
+   "duracao_min": 180,
+   "ferramentas": [
+    "Foundry VTT",
+    "Google Meet"
+   ],
+   "ao_vivo": false,
+   "capa": "img/mq/phandelver-e-abaixo-o-obelisco-despedacado-9cjfc98a.webp"
   }
  ]
 }
