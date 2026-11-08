@@ -1,29 +1,6 @@
 {
- "atualizado": "2026-11-07T23:38:18+00:00",
+ "atualizado": "2026-11-08T23:42:34+00:00",
  "itens": [
-  {
-   "slug": "a-lua-tortuosa-sbvs0xqf",
-   "nome": "A Lua Tortuosa",
-   "url": "https://mesaquest.com.br/mesas/a-lua-tortuosa-sbvs0xqf",
-   "mestre": "Henrique Müller",
-   "sistema": "Dungeons & Dragons 5.5e (2024)",
-   "descricao": "Uma locomotiva espectral, o Expresso Luz-Fantasma, rasga a impenetrável e lamuriosa Névoa, transportando almas perdidas até o misterioso e isolado vale de Wickermoor Hollow. Sob o olhar pálido e maligno da Lua Tortuosa…",
-   "inicio": "2026-11-07T22:00:00-03:00",
-   "fim": "2026-11-08T01:00:00-03:00",
-   "vagas": 1,
-   "lotada": false,
-   "preco": "R$ 160,00/mês",
-   "nivel": "Todos os níveis",
-   "tipo": "Campanha",
-   "frequencia": "Quinzenal",
-   "duracao_min": 180,
-   "ferramentas": [
-    "Foundry VTT",
-    "VDO Ninja"
-   ],
-   "ao_vivo": true,
-   "capa": "img/mq/a-lua-tortuosa-sbvs0xqf.webp"
-  },
   {
    "slug": "maldicao-de-strahd-9ddz7grj",
    "nome": "Maldição de Strahd",
@@ -278,6 +255,29 @@
    ],
    "ao_vivo": false,
    "capa": "img/mq/phandelver-e-abaixo-o-obelisco-despedacado-9cjfc98a.webp"
+  },
+  {
+   "slug": "a-lua-tortuosa-sbvs0xqf",
+   "nome": "A Lua Tortuosa",
+   "url": "https://mesaquest.com.br/mesas/a-lua-tortuosa-sbvs0xqf",
+   "mestre": "Henrique Müller",
+   "sistema": "Dungeons & Dragons 5.5e (2024)",
+   "descricao": "Uma locomotiva espectral, o Expresso Luz-Fantasma, rasga a impenetrável e lamuriosa Névoa, transportando almas perdidas até o misterioso e isolado vale de Wickermoor Hollow. Sob o olhar pálido e maligno da Lua Tortuosa…",
+   "inicio": "2026-11-21T22:00:00-03:00",
+   "fim": "2026-11-22T01:00:00-03:00",
+   "vagas": 0,
+   "lotada": true,
+   "preco": "R$ 160,00/mês",
+   "nivel": "Todos os níveis",
+   "tipo": "Campanha",
+   "frequencia": "Quinzenal",
+   "duracao_min": 180,
+   "ferramentas": [
+    "Foundry VTT",
+    "VDO Ninja"
+   ],
+   "ao_vivo": true,
+   "capa": "img/mq/a-lua-tortuosa-sbvs0xqf.webp"
   }
  ]
 }

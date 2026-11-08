@@ -1,13 +1,7 @@
 {
- "atualizado": "2026-11-07T23:38:08+00:00",
+ "atualizado": "2026-11-08T23:42:26+00:00",
  "aovivo": [],
  "agendadas": [
-  {
-   "id": "hh8GNm2vW9Q",
-   "titulo": "D&D 5.5 A Lua Tortuosa - Episódio 05",
-   "inicio": "2026-11-08T01:00:00+00:00",
-   "capa": "img/yt/hh8GNm2vW9Q-g.webp"
-  },
   {
    "id": "xNRWvdCG9WM",
    "titulo": "D&D 5.5 Maldição de Strahd - Episódio 36",
@@ -71,11 +65,17 @@
  ],
  "itens": [
   {
+   "id": "hh8GNm2vW9Q",
+   "titulo": "D&D 5.5 A Lua Tortuosa - Episódio 05 | Havia uma Casa Torta",
+   "data": "2026-11-08T04:42:26+00:00",
+   "capa": "img/yt/hh8GNm2vW9Q.jpg",
+   "capa_grande": "img/yt/hh8GNm2vW9Q-g.webp"
+  },
+  {
    "id": "dz0aRA5XK9E",
    "titulo": "LIVE DE ALMOÇO 🍗 Bate-papo sobre RPG, D&D e mesas ao vivo | Papo Dado RPG",
    "data": "2026-11-06T17:06:42+00:00",
-   "capa": "img/yt/dz0aRA5XK9E.jpg",
-   "capa_grande": "img/yt/dz0aRA5XK9E-g.webp"
+   "capa": "img/yt/dz0aRA5XK9E.jpg"
   },
   {
    "id": "2_lkqUDcyjk",
@@ -100,15 +100,14 @@
    "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 22 | O Brilho do Sol Outra Vez",
    "data": "2026-11-01T03:35:52+00:00",
    "capa": "img/yt/kMenGCxPCjM.jpg"
-  },
-  {
-   "id": "Pl_8J0rVKBA",
-   "titulo": "Terra Devastada O Que Restou de Nós - Episódio 02 | Sem Saída",
-   "data": "2026-10-30T23:38:08+00:00",
-   "capa": "img/yt/Pl_8J0rVKBA.jpg"
   }
  ],
  "shorts": [
+  {
+   "id": "O06QnwTnURc",
+   "titulo": "A bruxa que voltou do Avernus",
+   "capa": "img/yt/O06QnwTnURc-s.webp"
+  },
   {
    "id": "udwiLXq7DH0",
    "titulo": "A Cantiga do Homem Torto",
@@ -143,11 +142,6 @@
    "id": "LkFZSvsH5jg",
    "titulo": "O Diabo ficou preso no espelho",
    "capa": "img/yt/LkFZSvsH5jg-s.webp"
-  },
-  {
-   "id": "nxZsHoL_Ip8",
-   "titulo": "O 5º crítico no clerigo em duas sessões",
-   "capa": "img/yt/nxZsHoL_Ip8-s.webp"
   }
  ]
 }
