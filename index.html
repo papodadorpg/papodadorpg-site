@@ -110,6 +110,11 @@ section.bloco.alt { background: var(--bg2); border-block: 1px solid var(--linha)
 .slot .nomes span { display: block; }
 .slot .ritmo { font-size: 12px; color: var(--suave); margin-top: 4px; }
 .slot.off { --cor: var(--linha); }
+/* sessão do dia: a mesa que joga hoje ganha destaque; a outra da quinzena fica apagada */
+.slot.hoje { background: color-mix(in srgb, var(--cor) 16%, transparent); border-radius: 0 8px 8px 0; padding: 8px 10px; box-shadow: 0 0 0 2px var(--cor); }
+.slot .tag-sessao { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .06em; background: var(--cor); color: var(--texto-cor, var(--preto)); padding: 2px 8px; border-radius: 999px; margin-bottom: 6px; }
+.dia.hoje:has(.slot.hoje) { border-width: 1px; box-shadow: none; padding: 15px 13px; }
+.dia.hoje:has(.slot.hoje) .slot:not(.hoje) { opacity: .5; }
 .slot.off .hora { font-size: 16px; color: #dfe4f3; }
 .vazio { color: var(--suave); font-size: 14px; margin-top: auto; margin-bottom: auto; }
 .nota { margin-top: 18px; color: var(--suave); font-size: 14px; }
@@ -754,11 +759,14 @@ function prepararLives() {
 }
 
 function montarAgenda() {
-  const hoje = diaSemanaBR(new Date());
+  const hoje = diaSemanaBR(new Date()), hojeBR = diaBR(new Date()), agora = Date.now();
+  // a sessão é de hoje se a próxima cai hoje ou se a de hoje já aconteceu (aí a "próxima" já pulou para a outra quinzena)
+  const ehHoje = (m) => diaBR(m.proxima) === hojeBR || diaBR(m.anterior) === hojeBR;
+  const noAr = (m) => agora >= m.proxima.getTime() && agora < m.proxima.getTime() + DURACAO_H * 3600000;
   document.getElementById('semana').innerHTML = [1, 2, 3, 4, 5, 6, 0].map((d) => {
     const doDia = AGENDA.filter((m) => m.dia === d).sort((a, b) => a.hora.localeCompare(b.hora) || a.proxima - b.proxima);
-    const corpo = doDia.map((m) => `<div class="slot" style="--cor:${COR[m.cor]}">
-        <div class="hora">${horaTxt(m.hora)}</div>
+    const corpo = doDia.map((m) => `<div class="slot${ehHoje(m) ? ' hoje' : ''}" style="--cor:${COR[m.cor]};--texto-cor:${TEXTO_SOBRE[m.cor]}">
+        ${ehHoje(m) ? `<span class="tag-sessao">${noAr(m) ? 'AO VIVO AGORA' : diaBR(m.proxima) === hojeBR ? 'É HOJE' : 'ROLOU HOJE'}</span>` : ''}<div class="hora">${horaTxt(m.hora)}</div>
         <div class="nomes"><span>${esc(m.nome)}</span></div>
         <div class="ritmo">Próxima: ${dataCurta(m.proxima).split(', ')[1]}${m.remarcada ? ` às ${horaTxt(horaBR(m.proxima))}` : ''}${m.cada === 14 ? ' · quinzenal' : ''}${avisoSessao(m) ? `<br><strong class="aviso-sessao">${esc(avisoSessao(m))}</strong>` : ''}</div></div>`).join('')
       + (DIAS_OFF[d] ? `<div class="slot off"><div class="hora">${DIAS_OFF[d].titulo}</div><div class="ritmo">${DIAS_OFF[d].texto}</div></div>` : '')
