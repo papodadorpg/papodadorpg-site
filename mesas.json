@@ -1,29 +1,6 @@
 {
- "atualizado": "2026-11-08T23:42:34+00:00",
+ "atualizado": "2026-11-10T02:45:10+00:00",
  "itens": [
-  {
-   "slug": "maldicao-de-strahd-9ddz7grj",
-   "nome": "Maldição de Strahd",
-   "url": "https://mesaquest.com.br/mesas/maldicao-de-strahd-9ddz7grj",
-   "mestre": "Henrique Müller",
-   "sistema": "Dungeons & Dragons 5.5e (2024)",
-   "descricao": "\"Toda névoa leva a Baróvia. E nem todo caminho leva de volta.\" \"Você já ouviu os sinos de uma igreja tocando onde não há vila? Já viu uma estrada se apagar atrás de você? Já sentiu o frio da névoa tocar seus ossos... e…",
-   "inicio": "2026-11-09T20:00:00-03:00",
-   "fim": "2026-11-09T23:00:00-03:00",
-   "vagas": 0,
-   "lotada": true,
-   "preco": "R$ 100,00/mês",
-   "nivel": "Todos os níveis",
-   "tipo": "Campanha",
-   "frequencia": "Quinzenal",
-   "duracao_min": 180,
-   "ferramentas": [
-    "Foundry VTT",
-    "VDO Ninja"
-   ],
-   "ao_vivo": true,
-   "capa": "img/mq/maldicao-de-strahd-9ddz7grj.webp"
-  },
   {
    "slug": "principes-do-apocalipse-0j4ebd57",
    "nome": "Príncipes do Apocalipse",
@@ -126,7 +103,7 @@
    "descricao": "Boulder City, Nevada. Véspera de Natal, 1986. A casa da vó June tá cheia. Tem especial de Natal na TV, torta esfriando na cozinha e tia Linda ensaiando a foto de família porque, segundo ela, alguém piscou em todas as do…",
    "inicio": "2026-11-15T21:00:00-03:00",
    "fim": "2026-11-16T00:00:00-03:00",
-   "vagas": 3,
+   "vagas": 2,
    "lotada": false,
    "preco": "R$ 60,00 (pagamento único)",
    "nivel": "Todos os níveis",
@@ -257,6 +234,29 @@
    "capa": "img/mq/phandelver-e-abaixo-o-obelisco-despedacado-9cjfc98a.webp"
   },
   {
+   "slug": "protocolo-zero-terra-devastada-r1ex8jtr",
+   "nome": "Protocolo Zero | Terra Devastada",
+   "url": "https://mesaquest.com.br/mesas/protocolo-zero-terra-devastada-r1ex8jtr",
+   "mestre": "Henrique Müller",
+   "sistema": "Terra Devastada",
+   "descricao": "O primeiro som é um bip. Depois outro. Você abre os olhos em uma enfermaria desconhecida. As luzes piscam. O ar tem um gosto metálico e há sangue seco no chão. Você não sabe como chegou ali. Não se lembra de seu nome.…",
+   "inicio": "2026-11-21T14:00:00-03:00",
+   "fim": "2026-11-21T19:00:00-03:00",
+   "vagas": 5,
+   "lotada": false,
+   "preco": "R$ 80,00 (pagamento único)",
+   "nivel": "Todos os níveis",
+   "tipo": "One-shot",
+   "frequencia": "",
+   "duracao_min": 300,
+   "ferramentas": [
+    "VDO Ninja",
+    "Worldcraft"
+   ],
+   "ao_vivo": true,
+   "capa": "img/mq/protocolo-zero-terra-devastada-r1ex8jtr.webp"
+  },
+  {
    "slug": "a-lua-tortuosa-sbvs0xqf",
    "nome": "A Lua Tortuosa",
    "url": "https://mesaquest.com.br/mesas/a-lua-tortuosa-sbvs0xqf",
@@ -278,6 +278,29 @@
    ],
    "ao_vivo": true,
    "capa": "img/mq/a-lua-tortuosa-sbvs0xqf.webp"
+  },
+  {
+   "slug": "maldicao-de-strahd-9ddz7grj",
+   "nome": "Maldição de Strahd",
+   "url": "https://mesaquest.com.br/mesas/maldicao-de-strahd-9ddz7grj",
+   "mestre": "Henrique Müller",
+   "sistema": "Dungeons & Dragons 5.5e (2024)",
+   "descricao": "\"Toda névoa leva a Baróvia. E nem todo caminho leva de volta.\" \"Você já ouviu os sinos de uma igreja tocando onde não há vila? Já viu uma estrada se apagar atrás de você? Já sentiu o frio da névoa tocar seus ossos... e…",
+   "inicio": "2026-11-23T20:00:00-03:00",
+   "fim": "2026-11-23T23:00:00-03:00",
+   "vagas": 0,
+   "lotada": true,
+   "preco": "R$ 100,00/mês",
+   "nivel": "Todos os níveis",
+   "tipo": "Campanha",
+   "frequencia": "Quinzenal",
+   "duracao_min": 180,
+   "ferramentas": [
+    "Foundry VTT",
+    "VDO Ninja"
+   ],
+   "ao_vivo": true,
+   "capa": "img/mq/maldicao-de-strahd-9ddz7grj.webp"
   }
  ]
 }
