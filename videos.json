@@ -1,19 +1,13 @@
 {
- "atualizado": "2026-11-10T02:45:01+00:00",
+ "atualizado": "2026-11-11T00:40:27+00:00",
  "aovivo": [
-  {
-   "id": "xNRWvdCG9WM",
-   "titulo": "D&D 5.5 Maldição de Strahd - Episódio 36",
-   "capa": "img/yt/xNRWvdCG9WM-g.webp"
-  }
- ],
- "agendadas": [
   {
    "id": "c-SyK5cUEvQ",
    "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 12",
-   "inicio": "2026-11-10T23:00:00+00:00",
    "capa": "img/yt/c-SyK5cUEvQ-g.webp"
-  },
+  }
+ ],
+ "agendadas": [
   {
    "id": "mkw_LGyRiWw",
    "titulo": "D&D 5.5 Descida ao Avernus - Episódio 34",
@@ -65,11 +59,23 @@
  ],
  "itens": [
   {
+   "id": "VjCYnXMvYz4",
+   "titulo": "MATEI MEU PAI... Casos de Família | Maldição de Strahd Ep. 36 | Highlights D&D 5.5 (Curse of Strahd)",
+   "data": "2026-11-10T15:40:27+00:00",
+   "capa": "img/yt/VjCYnXMvYz4.jpg",
+   "capa_grande": "img/yt/VjCYnXMvYz4-g.webp"
+  },
+  {
+   "id": "xNRWvdCG9WM",
+   "titulo": "D&D 5.5 Maldição de Strahd - Episódio 36 | Casos de Família",
+   "data": "2026-11-10T03:40:27+00:00",
+   "capa": "img/yt/xNRWvdCG9WM.jpg"
+  },
+  {
    "id": "Lx1ryfyf73o",
    "titulo": "O HOMEM TORTO apareceu! A Lua Tortuosa Ep. 05 | Highlights D&D 5.5 de Terror (The Crooked Moon)",
    "data": "2026-11-09T15:45:01+00:00",
-   "capa": "img/yt/Lx1ryfyf73o.jpg",
-   "capa_grande": "img/yt/Lx1ryfyf73o-g.webp"
+   "capa": "img/yt/Lx1ryfyf73o.jpg"
   },
   {
    "id": "hh8GNm2vW9Q",
@@ -88,21 +94,14 @@
    "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 22 | A Floresta da Lua",
    "data": "2026-11-06T03:09:46+00:00",
    "capa": "img/yt/2_lkqUDcyjk.jpg"
-  },
-  {
-   "id": "weDsw42Q438",
-   "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 34 | De Volta ao Lar",
-   "data": "2026-11-05T01:48:37+00:00",
-   "capa": "img/yt/weDsw42Q438.jpg"
-  },
-  {
-   "id": "oOCuZmtT7E0",
-   "titulo": "D&D 5.5 Contos dos Reinos Esquecidos - Episódio 01 | O Mistério de Conyberry",
-   "data": "2026-11-04T02:53:46+00:00",
-   "capa": "img/yt/oOCuZmtT7E0.jpg"
   }
  ],
  "shorts": [
+  {
+   "id": "9x3z4CMk7hs",
+   "titulo": "Mais um crítico no Shatar",
+   "capa": "img/yt/9x3z4CMk7hs-s.webp"
+  },
   {
    "id": "UK_0FPNkzPQ",
    "titulo": "Pega sua arma, pai!",
@@ -137,11 +136,6 @@
    "id": "t1U1bkDDbtw",
    "titulo": "Só queria uma lembrança feliz",
    "capa": "img/yt/t1U1bkDDbtw-s.webp"
-  },
-  {
-   "id": "jHxI4hH5WKA",
-   "titulo": "Salvo pelo cinto de segurança",
-   "capa": "img/yt/jHxI4hH5WKA-s.webp"
   }
  ]
 }

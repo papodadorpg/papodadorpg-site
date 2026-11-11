@@ -1,29 +1,6 @@
 {
- "atualizado": "2026-11-10T02:45:10+00:00",
+ "atualizado": "2026-11-11T00:40:41+00:00",
  "itens": [
-  {
-   "slug": "principes-do-apocalipse-0j4ebd57",
-   "nome": "Príncipes do Apocalipse",
-   "url": "https://mesaquest.com.br/mesas/principes-do-apocalipse-0j4ebd57",
-   "mestre": "Henrique Müller",
-   "sistema": "Dungeons & Dragons 5.5e (2024)",
-   "descricao": "Um terrível perigo se acumula no Norte dos Reinos Esquecidos. No pacato Vale de Dessarin, uma região de fronteira localizada a poucos dias de viagem da grande cidade de Águas Profundas, a própria natureza parece ter…",
-   "inicio": "2026-11-10T20:00:00-03:00",
-   "fim": "2026-11-10T23:00:00-03:00",
-   "vagas": 0,
-   "lotada": true,
-   "preco": "R$ 160,00/mês",
-   "nivel": "Todos os níveis",
-   "tipo": "Campanha",
-   "frequencia": "Quinzenal",
-   "duracao_min": 180,
-   "ferramentas": [
-    "Foundry VTT",
-    "VDO Ninja"
-   ],
-   "ao_vivo": true,
-   "capa": "img/mq/principes-do-apocalipse-0j4ebd57.webp"
-  },
   {
    "slug": "descida-ao-avernus-n9a4dynt",
    "nome": "Descida ao Avernus",
@@ -301,6 +278,29 @@
    ],
    "ao_vivo": true,
    "capa": "img/mq/maldicao-de-strahd-9ddz7grj.webp"
+  },
+  {
+   "slug": "principes-do-apocalipse-0j4ebd57",
+   "nome": "Príncipes do Apocalipse",
+   "url": "https://mesaquest.com.br/mesas/principes-do-apocalipse-0j4ebd57",
+   "mestre": "Henrique Müller",
+   "sistema": "Dungeons & Dragons 5.5e (2024)",
+   "descricao": "Um terrível perigo se acumula no Norte dos Reinos Esquecidos. No pacato Vale de Dessarin, uma região de fronteira localizada a poucos dias de viagem da grande cidade de Águas Profundas, a própria natureza parece ter…",
+   "inicio": "2026-11-24T20:00:00-03:00",
+   "fim": "2026-11-24T23:00:00-03:00",
+   "vagas": 0,
+   "lotada": true,
+   "preco": "R$ 160,00/mês",
+   "nivel": "Todos os níveis",
+   "tipo": "Campanha",
+   "frequencia": "Quinzenal",
+   "duracao_min": 180,
+   "ferramentas": [
+    "Foundry VTT",
+    "VDO Ninja"
+   ],
+   "ao_vivo": true,
+   "capa": "img/mq/principes-do-apocalipse-0j4ebd57.webp"
   }
  ]
 }
