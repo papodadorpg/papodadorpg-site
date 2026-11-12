@@ -1,29 +1,6 @@
 {
- "atualizado": "2026-11-11T00:40:41+00:00",
+ "atualizado": "2026-11-12T01:54:05+00:00",
  "itens": [
-  {
-   "slug": "descida-ao-avernus-n9a4dynt",
-   "nome": "Descida ao Avernus",
-   "url": "https://mesaquest.com.br/mesas/descida-ao-avernus-n9a4dynt",
-   "mestre": "Henrique Müller",
-   "sistema": "Dungeons & Dragons 5.5e (2024)",
-   "descricao": "“Quando as trevas se erguem na cidade e o inferno cresce no horizonte, heróis se forjam… ou se perdem.” Vocês começam suas jornadas nas ruas enevoadas de Baldur's Gate — uma metrópole repleta de ambição, segredos e…",
-   "inicio": "2026-11-11T20:00:00-03:00",
-   "fim": "2026-11-11T23:00:00-03:00",
-   "vagas": 0,
-   "lotada": true,
-   "preco": "R$ 100,00/mês",
-   "nivel": "Todos os níveis",
-   "tipo": "Campanha",
-   "frequencia": "Quinzenal",
-   "duracao_min": 180,
-   "ferramentas": [
-    "Foundry VTT",
-    "VDO Ninja"
-   ],
-   "ao_vivo": true,
-   "capa": "img/mq/descida-ao-avernus-n9a4dynt.webp"
-  },
   {
    "slug": "o-que-restou-de-nos-terra-devastada-w610fhf1",
    "nome": "O Que Restou de Nós - Terra Devastada",
@@ -70,30 +47,6 @@
    ],
    "ao_vivo": true,
    "capa": "img/mq/odisseia-dos-lordes-dragoes-4x844vrw.webp"
-  },
-  {
-   "slug": "operacao-ceia-k3dt7fgh",
-   "nome": "Operação Ceia",
-   "url": "https://mesaquest.com.br/mesas/operacao-ceia-k3dt7fgh",
-   "mestre": "Elisinha Müller",
-   "sistema": "Tales From the Loop",
-   "descricao": "Boulder City, Nevada. Véspera de Natal, 1986. A casa da vó June tá cheia. Tem especial de Natal na TV, torta esfriando na cozinha e tia Linda ensaiando a foto de família porque, segundo ela, alguém piscou em todas as do…",
-   "inicio": "2026-11-15T21:00:00-03:00",
-   "fim": "2026-11-16T00:00:00-03:00",
-   "vagas": 2,
-   "lotada": false,
-   "preco": "R$ 60,00 (pagamento único)",
-   "nivel": "Todos os níveis",
-   "tipo": "One-shot",
-   "frequencia": "",
-   "duracao_min": 180,
-   "ferramentas": [
-    "Discord",
-    "Worldcraft",
-    "Whatsapp"
-   ],
-   "ao_vivo": false,
-   "capa": "img/mq/operacao-ceia-k3dt7fgh.webp"
   },
   {
    "slug": "vecna-a-beira-da-ruina-e998t6hx",
@@ -301,6 +254,29 @@
    ],
    "ao_vivo": true,
    "capa": "img/mq/principes-do-apocalipse-0j4ebd57.webp"
+  },
+  {
+   "slug": "descida-ao-avernus-n9a4dynt",
+   "nome": "Descida ao Avernus",
+   "url": "https://mesaquest.com.br/mesas/descida-ao-avernus-n9a4dynt",
+   "mestre": "Henrique Müller",
+   "sistema": "Dungeons & Dragons 5.5e (2024)",
+   "descricao": "“Quando as trevas se erguem na cidade e o inferno cresce no horizonte, heróis se forjam… ou se perdem.” Vocês começam suas jornadas nas ruas enevoadas de Baldur's Gate — uma metrópole repleta de ambição, segredos e…",
+   "inicio": "2026-11-25T20:00:00-03:00",
+   "fim": "2026-11-25T23:00:00-03:00",
+   "vagas": 0,
+   "lotada": true,
+   "preco": "R$ 100,00/mês",
+   "nivel": "Todos os níveis",
+   "tipo": "Campanha",
+   "frequencia": "Quinzenal",
+   "duracao_min": 180,
+   "ferramentas": [
+    "Foundry VTT",
+    "VDO Ninja"
+   ],
+   "ao_vivo": true,
+   "capa": "img/mq/descida-ao-avernus-n9a4dynt.webp"
   }
  ]
 }
