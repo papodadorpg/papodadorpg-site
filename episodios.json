@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-12T01:53:51+00:00",
+ "atualizado": "2026-11-13T01:04:40+00:00",
  "campanhas": {
   "strahd": {
    "playlist": "PLu-hxXZl-KUQqPuVdQ4vg71gQH-ODurab",
@@ -831,8 +831,8 @@
     },
     {
      "id": "mkw_LGyRiWw",
-     "titulo": "D&D 5.5 Descida ao Avernus - Episódio 34",
-     "duracao": ""
+     "titulo": "D&D 5.5 Descida ao Avernus - Episódio 34 | Sangue, Ossos e Um Macaco Gigante",
+     "duracao": "3:21:51"
     }
    ]
   },
@@ -2015,6 +2015,12 @@
    "titulo": "QUEM CALA CONSENTE... Príncipes do Apocalipse Ep. 12 | Highlights D&D 5.5",
    "duracao": "40:18",
    "capa": "img/yt/mf_03Ukd-d8.jpg"
+  },
+  {
+   "id": "lgszg5MUwhc",
+   "titulo": "VIROU MACACO! Descida ao Avernus Ep. 34 | Highlights D&D 5.5 (Descent into Avernus)",
+   "duracao": "50:55",
+   "capa": "img/yt/lgszg5MUwhc.jpg"
   }
  ]
 }

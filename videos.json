@@ -1,19 +1,7 @@
 {
- "atualizado": "2026-11-12T01:53:51+00:00",
- "aovivo": [
-  {
-   "id": "mkw_LGyRiWw",
-   "titulo": "D&D 5.5 Descida ao Avernus - Episódio 34",
-   "capa": "img/yt/mkw_LGyRiWw-g.webp"
-  }
- ],
+ "atualizado": "2026-11-13T01:04:40+00:00",
+ "aovivo": [],
  "agendadas": [
-  {
-   "id": "dmMLS3f2kHU",
-   "titulo": "Terra Devastada O Que Restou de Nós - Episódio 03",
-   "inicio": "2026-11-13T00:00:00+00:00",
-   "capa": "img/yt/dmMLS3f2kHU-g.webp"
-  },
   {
    "id": "0-U7K9EssFM",
    "titulo": "LIVE DE ALMOÇO 🍗 Bate-papo sobre RPG, D&D e mesas ao vivo | Papo Dado RPG",
@@ -49,15 +37,33 @@
    "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 23",
    "inicio": "2026-11-20T00:00:00+00:00",
    "capa": "img/yt/jnQZT1M2bC0-g.webp"
+  },
+  {
+   "id": "dmMLS3f2kHU",
+   "titulo": "Terra Devastada O Que Restou de Nós - Episódio 03",
+   "inicio": "2026-11-27T00:00:00+00:00",
+   "capa": "img/yt/dmMLS3f2kHU-g.webp"
   }
  ],
  "itens": [
   {
+   "id": "lgszg5MUwhc",
+   "titulo": "VIROU MACACO! Descida ao Avernus Ep. 34 | Highlights D&D 5.5 (Descent into Avernus)",
+   "data": "2026-11-12T14:04:40+00:00",
+   "capa": "img/yt/lgszg5MUwhc.jpg",
+   "capa_grande": "img/yt/lgszg5MUwhc-g.webp"
+  },
+  {
+   "id": "mkw_LGyRiWw",
+   "titulo": "D&D 5.5 Descida ao Avernus - Episódio 34 | Sangue, Ossos e Um Macaco Gigante",
+   "data": "2026-11-12T03:04:40+00:00",
+   "capa": "img/yt/mkw_LGyRiWw.jpg"
+  },
+  {
    "id": "mf_03Ukd-d8",
    "titulo": "QUEM CALA CONSENTE... Príncipes do Apocalipse Ep. 12 | Highlights D&D 5.5",
    "data": "2026-11-11T15:53:51+00:00",
-   "capa": "img/yt/mf_03Ukd-d8.jpg",
-   "capa_grande": "img/yt/mf_03Ukd-d8-g.webp"
+   "capa": "img/yt/mf_03Ukd-d8.jpg"
   },
   {
    "id": "c-SyK5cUEvQ",
@@ -76,21 +82,14 @@
    "titulo": "D&D 5.5 Maldição de Strahd - Episódio 36 | Casos de Família",
    "data": "2026-11-10T03:40:27+00:00",
    "capa": "img/yt/xNRWvdCG9WM.jpg"
-  },
-  {
-   "id": "Lx1ryfyf73o",
-   "titulo": "O HOMEM TORTO apareceu! A Lua Tortuosa Ep. 05 | Highlights D&D 5.5 de Terror (The Crooked Moon)",
-   "data": "2026-11-09T15:45:01+00:00",
-   "capa": "img/yt/Lx1ryfyf73o.jpg"
-  },
-  {
-   "id": "hh8GNm2vW9Q",
-   "titulo": "D&D 5.5 A Lua Tortuosa - Episódio 05 | Havia uma Casa Torta",
-   "data": "2026-11-08T04:42:26+00:00",
-   "capa": "img/yt/hh8GNm2vW9Q.jpg"
   }
  ],
  "shorts": [
+  {
+   "id": "psmBjJyUW7E",
+   "titulo": "Se for a ex, pode! 🤣",
+   "capa": "img/yt/psmBjJyUW7E-s.webp"
+  },
   {
    "id": "Xo9wTeuMBtQ",
    "titulo": "Contrato Infernal",
@@ -125,11 +124,6 @@
    "id": "KlefpFNFHMk",
    "titulo": "Tiro de canhão numa pessoa",
    "capa": "img/yt/KlefpFNFHMk-s.webp"
-  },
-  {
-   "id": "1ZHB1DLCxdw",
-   "titulo": "Só queriam ajudar a árvore",
-   "capa": "img/yt/1ZHB1DLCxdw-s.webp"
   }
  ]
 }

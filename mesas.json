@@ -1,30 +1,6 @@
 {
- "atualizado": "2026-11-12T01:54:05+00:00",
+ "atualizado": "2026-11-13T01:04:51+00:00",
  "itens": [
-  {
-   "slug": "o-que-restou-de-nos-terra-devastada-w610fhf1",
-   "nome": "O Que Restou de Nós - Terra Devastada",
-   "url": "https://mesaquest.com.br/mesas/o-que-restou-de-nos-terra-devastada-w610fhf1",
-   "mestre": "Henrique Müller",
-   "sistema": "Terra Devastada",
-   "descricao": "O mundo ainda não acabou. As pessoas ainda trabalham, discutem no trânsito, fazem planos e acreditam que amanhã será apenas mais um dia. Mas algo não parece certo. Esta crônica começa nos primeiros momentos de uma crise…",
-   "inicio": "2026-11-12T20:00:00-03:00",
-   "fim": "2026-11-12T23:00:00-03:00",
-   "vagas": 2,
-   "lotada": false,
-   "preco": "R$ 160,00/mês",
-   "nivel": "Todos os níveis",
-   "tipo": "Campanha",
-   "frequencia": "Quinzenal",
-   "duracao_min": 180,
-   "ferramentas": [
-    "VDO Ninja",
-    "Worldcraft",
-    "Whatsapp"
-   ],
-   "ao_vivo": true,
-   "capa": "img/mq/o-que-restou-de-nos-terra-devastada-w610fhf1.webp"
-  },
   {
    "slug": "odisseia-dos-lordes-dragoes-4x844vrw",
    "nome": "Odisseia dos Lordes Dragões",
@@ -172,7 +148,7 @@
    "descricao": "O primeiro som é um bip. Depois outro. Você abre os olhos em uma enfermaria desconhecida. As luzes piscam. O ar tem um gosto metálico e há sangue seco no chão. Você não sabe como chegou ali. Não se lembra de seu nome.…",
    "inicio": "2026-11-21T14:00:00-03:00",
    "fim": "2026-11-21T19:00:00-03:00",
-   "vagas": 5,
+   "vagas": 4,
    "lotada": false,
    "preco": "R$ 80,00 (pagamento único)",
    "nivel": "Todos os níveis",
@@ -277,6 +253,30 @@
    ],
    "ao_vivo": true,
    "capa": "img/mq/descida-ao-avernus-n9a4dynt.webp"
+  },
+  {
+   "slug": "o-que-restou-de-nos-terra-devastada-w610fhf1",
+   "nome": "O Que Restou de Nós - Terra Devastada",
+   "url": "https://mesaquest.com.br/mesas/o-que-restou-de-nos-terra-devastada-w610fhf1",
+   "mestre": "Henrique Müller",
+   "sistema": "Terra Devastada",
+   "descricao": "O mundo ainda não acabou. As pessoas ainda trabalham, discutem no trânsito, fazem planos e acreditam que amanhã será apenas mais um dia. Mas algo não parece certo. Esta crônica começa nos primeiros momentos de uma crise…",
+   "inicio": "2026-11-26T20:00:00-03:00",
+   "fim": "2026-11-26T23:00:00-03:00",
+   "vagas": 2,
+   "lotada": false,
+   "preco": "R$ 160,00/mês",
+   "nivel": "Todos os níveis",
+   "tipo": "Campanha",
+   "frequencia": "Quinzenal",
+   "duracao_min": 180,
+   "ferramentas": [
+    "VDO Ninja",
+    "Worldcraft",
+    "Whatsapp"
+   ],
+   "ao_vivo": true,
+   "capa": "img/mq/o-que-restou-de-nos-terra-devastada-w610fhf1.webp"
   }
  ]
 }
