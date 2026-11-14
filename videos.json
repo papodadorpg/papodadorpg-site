@@ -1,13 +1,7 @@
 {
- "atualizado": "2026-11-13T01:04:40+00:00",
+ "atualizado": "2026-11-14T00:53:41+00:00",
  "aovivo": [],
  "agendadas": [
-  {
-   "id": "0-U7K9EssFM",
-   "titulo": "LIVE DE ALMOÇO 🍗 Bate-papo sobre RPG, D&D e mesas ao vivo | Papo Dado RPG",
-   "inicio": "2026-11-13T15:00:00+00:00",
-   "capa": "img/yt/0-U7K9EssFM-g.webp"
-  },
   {
    "id": "MoXSwvvDmx0",
    "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 23",
@@ -47,11 +41,17 @@
  ],
  "itens": [
   {
+   "id": "0-U7K9EssFM",
+   "titulo": "LIVE DE ALMOÇO 🍗 Bate-papo sobre RPG, D&D e mesas ao vivo | Papo Dado RPG",
+   "data": "2026-11-13T16:53:41+00:00",
+   "capa": "img/yt/0-U7K9EssFM.jpg",
+   "capa_grande": "img/yt/0-U7K9EssFM-g.webp"
+  },
+  {
    "id": "lgszg5MUwhc",
    "titulo": "VIROU MACACO! Descida ao Avernus Ep. 34 | Highlights D&D 5.5 (Descent into Avernus)",
    "data": "2026-11-12T14:04:40+00:00",
-   "capa": "img/yt/lgszg5MUwhc.jpg",
-   "capa_grande": "img/yt/lgszg5MUwhc-g.webp"
+   "capa": "img/yt/lgszg5MUwhc.jpg"
   },
   {
    "id": "mkw_LGyRiWw",
@@ -76,15 +76,14 @@
    "titulo": "MATEI MEU PAI... Casos de Família | Maldição de Strahd Ep. 36 | Highlights D&D 5.5 (Curse of Strahd)",
    "data": "2026-11-10T15:40:27+00:00",
    "capa": "img/yt/VjCYnXMvYz4.jpg"
-  },
-  {
-   "id": "xNRWvdCG9WM",
-   "titulo": "D&D 5.5 Maldição de Strahd - Episódio 36 | Casos de Família",
-   "data": "2026-11-10T03:40:27+00:00",
-   "capa": "img/yt/xNRWvdCG9WM.jpg"
   }
  ],
  "shorts": [
+  {
+   "id": "fhoRNmioxVk",
+   "titulo": "Você tem 4h30 pra sair 🧟 | Protocolo Zero, one-shot de Terra Devastada",
+   "capa": "img/yt/fhoRNmioxVk-s.webp"
+  },
   {
    "id": "psmBjJyUW7E",
    "titulo": "Se for a ex, pode! 🤣",
@@ -119,11 +118,6 @@
    "id": "83ZoE4fEOo4",
    "titulo": "A chave... é ela?! | Além do Mar Sem Fim",
    "capa": "img/yt/83ZoE4fEOo4-s.webp"
-  },
-  {
-   "id": "KlefpFNFHMk",
-   "titulo": "Tiro de canhão numa pessoa",
-   "capa": "img/yt/KlefpFNFHMk-s.webp"
   }
  ]
 }
