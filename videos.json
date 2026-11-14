@@ -1,13 +1,13 @@
 {
- "atualizado": "2026-11-14T00:53:41+00:00",
- "aovivo": [],
- "agendadas": [
+ "atualizado": "2026-11-14T23:54:50+00:00",
+ "aovivo": [
   {
    "id": "MoXSwvvDmx0",
    "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 23",
-   "inicio": "2026-11-14T23:00:00+00:00",
    "capa": "img/yt/MoXSwvvDmx0-g.webp"
-  },
+  }
+ ],
+ "agendadas": [
   {
    "id": "9-mlsmFsBwo",
    "titulo": "D&D 5.5 Vecna À Beira da Ruína - Episódio 44",
@@ -72,10 +72,10 @@
    "capa": "img/yt/c-SyK5cUEvQ.jpg"
   },
   {
-   "id": "VjCYnXMvYz4",
-   "titulo": "MATEI MEU PAI... Casos de Família | Maldição de Strahd Ep. 36 | Highlights D&D 5.5 (Curse of Strahd)",
-   "data": "2026-11-10T15:40:27+00:00",
-   "capa": "img/yt/VjCYnXMvYz4.jpg"
+   "id": "xNRWvdCG9WM",
+   "titulo": "D&D 5.5 Maldição de Strahd - Episódio 36 | Casos de Família",
+   "data": "2026-11-10T23:54:50+00:00",
+   "capa": "img/yt/xNRWvdCG9WM.jpg"
   }
  ],
  "shorts": [
@@ -101,7 +101,7 @@
   },
   {
    "id": "UK_0FPNkzPQ",
-   "titulo": "Pega sua arma, pai!",
+   "titulo": "A escolha que ninguém esperava #rpg #dnd",
    "capa": "img/yt/UK_0FPNkzPQ-s.webp"
   },
   {
