@@ -1,12 +1,6 @@
 {
- "atualizado": "2026-11-14T23:54:50+00:00",
- "aovivo": [
-  {
-   "id": "MoXSwvvDmx0",
-   "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 23",
-   "capa": "img/yt/MoXSwvvDmx0-g.webp"
-  }
- ],
+ "atualizado": "2026-11-15T23:57:55+00:00",
+ "aovivo": [],
  "agendadas": [
   {
    "id": "9-mlsmFsBwo",
@@ -41,11 +35,17 @@
  ],
  "itens": [
   {
+   "id": "MoXSwvvDmx0",
+   "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 23 | Conheçam os Lordes Dragões",
+   "data": "2026-11-15T01:57:55+00:00",
+   "capa": "img/yt/MoXSwvvDmx0.jpg",
+   "capa_grande": "img/yt/MoXSwvvDmx0-g.webp"
+  },
+  {
    "id": "0-U7K9EssFM",
    "titulo": "LIVE DE ALMOÇO 🍗 Bate-papo sobre RPG, D&D e mesas ao vivo | Papo Dado RPG",
    "data": "2026-11-13T16:53:41+00:00",
-   "capa": "img/yt/0-U7K9EssFM.jpg",
-   "capa_grande": "img/yt/0-U7K9EssFM-g.webp"
+   "capa": "img/yt/0-U7K9EssFM.jpg"
   },
   {
    "id": "lgszg5MUwhc",
@@ -70,15 +70,14 @@
    "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 12 | E lá vamos nós...",
    "data": "2026-11-11T03:53:51+00:00",
    "capa": "img/yt/c-SyK5cUEvQ.jpg"
-  },
-  {
-   "id": "xNRWvdCG9WM",
-   "titulo": "D&D 5.5 Maldição de Strahd - Episódio 36 | Casos de Família",
-   "data": "2026-11-10T23:54:50+00:00",
-   "capa": "img/yt/xNRWvdCG9WM.jpg"
   }
  ],
  "shorts": [
+  {
+   "id": "NTE6S2Plt1s",
+   "titulo": "O Homem Torto apareceu 🪓 | A Lua Tortuosa (D&D de terror)",
+   "capa": "img/yt/NTE6S2Plt1s-s.webp"
+  },
   {
    "id": "fhoRNmioxVk",
    "titulo": "Você tem 4h30 pra sair 🧟 | Protocolo Zero, one-shot de Terra Devastada",
@@ -113,11 +112,6 @@
    "id": "udwiLXq7DH0",
    "titulo": "A Cantiga do Homem Torto",
    "capa": "img/yt/udwiLXq7DH0-s.webp"
-  },
-  {
-   "id": "83ZoE4fEOo4",
-   "titulo": "A chave... é ela?! | Além do Mar Sem Fim",
-   "capa": "img/yt/83ZoE4fEOo4-s.webp"
   }
  ]
 }
