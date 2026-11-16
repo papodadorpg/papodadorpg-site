@@ -80,18 +80,19 @@ article.post .capa-post img { width: 100%; height: 100%; object-fit: cover; }
 .mais h2 { margin: 6px 0 20px; font-size: 26px; }
 
 /* reações */
-.reacoes { margin: 8px auto 20px; text-align: center; }
+.reacoes { margin: 8px auto 20px; text-align: center; padding-inline: 0; }
 .reacoes-titulo { margin: 0 0 12px; font-weight: 800; font-size: 18px; }
-.reacoes-lista { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
-.reacao { display: inline-flex; align-items: center; gap: 8px; font: inherit; font-size: 14px; font-weight: 700; color: var(--branco); background: var(--superficie); border: 2px solid var(--linha); border-radius: 999px; padding: 7px 13px; cursor: pointer; transition: border-color .15s, background .15s, transform .15s; }
+.reacoes-lista { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; }
+.reacao { display: inline-flex; align-items: center; gap: 5px; font: inherit; font-size: 12.5px; font-weight: 700; color: var(--branco); background: var(--superficie); border: 2px solid var(--linha); border-radius: 999px; padding: 6px 10px; cursor: pointer; transition: border-color .15s, background .15s, transform .15s; }
 .reacao:hover { border-color: var(--suave); transform: translateY(-1px); }
 .reacao[aria-pressed="true"] { border-color: var(--laranja); background: color-mix(in srgb, var(--laranja) 16%, var(--superficie)); box-shadow: 0 3px 0 var(--preto); }
 .reacao:disabled { cursor: wait; }
-.reacao-emoji { font-size: 20px; line-height: 1; }
+.reacao-emoji { font-size: 16px; line-height: 1; }
 .reacao-n { min-width: 1ch; color: var(--laranja); font-variant-numeric: tabular-nums; }
 .reacao-n:empty { display: none; }
 .reacao.pulou .reacao-emoji { animation: pulo .45s ease; }
 @keyframes pulo { 0% { transform: scale(1); } 40% { transform: scale(1.45) rotate(-12deg); } 100% { transform: scale(1); } }
+@media (max-width: 800px) { .reacoes { padding-inline: 16px; } }
 @media (prefers-reduced-motion: reduce) { .reacao, .reacao.pulou .reacao-emoji { transition: none; animation: none; } }
 
 /* comentários */
