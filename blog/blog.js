@@ -70,7 +70,7 @@
   // ================= COMENTÁRIOS =================
   // <section class="comentarios" data-post="<id do post>"> no fim do post. Qualquer leitor comenta só com o nome
   // ou entra com o Google (nome e foto da conta). O admin responde, oculta ou apaga na aba Comentários.
-  const GOOGLE_CLIENT_ID = ''; // cliente OAuth "Papo Dado Blog" no Google Cloud; vazio = sem botão do Google
+  const GOOGLE_CLIENT_ID = '494149024631-6jpl2pvrsfh0evs9u03i8luea2hrn6aj.apps.googleusercontent.com'; // cliente OAuth "Papo Dado Blog" no Google Cloud; vazio = sem botão do Google
   const CAMPOS_C = 'id,resposta_de,nome,texto,do_autor,avatar_url,criado_em';
   const CORES = ['#00BAFC', '#005DFB', '#7020F9', '#FB0F3A', '#FD7601', '#18A558'];
   const dataCurta = (iso) => new Intl.DateTimeFormat('pt-BR', { timeZone: TZ, day: 'numeric', month: 'short', year: 'numeric' }).format(new Date(iso));
@@ -138,7 +138,7 @@
         <label><span>Seu comentário</span><textarea id="com-texto" rows="4" maxlength="2000" required placeholder="O que você achou? Já aconteceu algo parecido na sua mesa?"></textarea></label>
         <label class="isca" aria-hidden="true">Site<input id="com-site" tabindex="-1" autocomplete="off"></label>
         <div class="com-acoes"><button class="btn btn-play" type="submit">Publicar comentário</button><span class="com-msg" id="com-msg" role="status"></span></div>
-        <p class="com-regras">Aqui é mesa de amigos: seja gentil. Comentários ofensivos ou spam são removidos. Não pedimos seu e-mail.</p>
+        <p class="com-regras">Aqui é mesa de amigos: seja gentil. Comentários ofensivos ou spam são removidos. Não pedimos seu e-mail. <a href="/privacidade">Privacidade</a></p>
       </form>`;
     const $c = (s) => caixa.querySelector(s);
     const lista = $c('#lista-com'), form = $c('#form-com'), msg = $c('#com-msg'), conta = $c('#com-conta');
