@@ -33,14 +33,15 @@ begin
   if not admin then
     new.do_autor := false;
     new.status := 'publicado';
-    if auth.uid() is not null then
-      new.user_id := auth.uid();
-      new.nome := coalesce(nullif(btrim(meta ->> 'full_name'), ''), nullif(btrim(meta ->> 'name'), ''), new.nome);
-      new.avatar_url := left(coalesce(meta ->> 'avatar_url', meta ->> 'picture'), 500);
-    else
-      new.user_id := null;
-      new.avatar_url := null;
-    end if;
+  end if;
+  if auth.uid() is not null and not new.do_autor then
+    -- comentário de quem entrou com Google no blog (inclusive um admin): nome e foto vêm da conta
+    new.user_id := auth.uid();
+    new.nome := coalesce(nullif(btrim(meta ->> 'full_name'), ''), nullif(btrim(meta ->> 'name'), ''), new.nome);
+    new.avatar_url := left(coalesce(meta ->> 'avatar_url', meta ->> 'picture'), 500);
+  elsif auth.uid() is null then
+    new.user_id := null;
+    new.avatar_url := null;
   end if;
   new.nome := left(btrim(regexp_replace(new.nome, '\s+', ' ', 'g')), 60);
   new.texto := btrim(regexp_replace(new.texto, '\n{3,}', E'\n\n', 'g'));
