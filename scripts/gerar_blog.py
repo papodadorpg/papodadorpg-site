@@ -107,7 +107,7 @@ def cabeca(titulo, descricao, url, imagem, tipo="website", extra=""):
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="{e(imagem)}">
 <link rel="icon" href="/img/icone.svg" type="image/svg+xml">
-<link rel="alternate" type="application/rss+xml" title="Blog do Papo Dado RPG" href="/blog/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Papo Dado Blog" href="/blog/feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&display=swap">
@@ -161,7 +161,7 @@ def pagina_post(p, outros, nomes_campanha, img):
           "image": p["_og"], "mainEntityOfPage": url, "publisher": {"@type": "Organization", "name": "Papo Dado RPG", "logo": {"@type": "ImageObject", "url": f"{SITE}/img/icone.svg"}}}
     extra = f'<meta property="article:published_time" content="{e(p["publicar_em"])}">\n<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False).replace("</", "<\\/")}</script>\n'
     mais = "".join(card(o) for o in outros)
-    return (cabeca(f"{p['titulo']} · Blog do Papo Dado RPG", descricao, url, p["_og"], "article", extra) + f"""
+    return (cabeca(f"{p['titulo']} · Papo Dado Blog", descricao, url, p["_og"], "article", extra) + f"""
 <main>
   <article class="post wrap estreito">
     <a class="voltar" href="/blog/">← Todos os posts</a>
@@ -172,18 +172,19 @@ def pagina_post(p, outros, nomes_campanha, img):
     <div class="texto">{img.no_texto(limpar(p.get('conteudo')))}</div>
     {camp}
   </article>
+  <section class="comentarios wrap estreito" id="comentarios" data-post="{e(p['id'])}" aria-labelledby="com-titulo"></section>
   {f'<section class="mais"><div class="wrap"><div class="rotulo">Continue lendo</div><h2>Mais do blog</h2><div class="posts">{mais}</div></div></section>' if mais else ''}
 </main>
-""" + RODAPE + "<script>BlogPD.rastro();</script>\n</body>\n</html>\n")
+""" + RODAPE + "<script>BlogPD.comentarios(); BlogPD.rastro();</script>\n</body>\n</html>\n")
 
 
 def pagina_lista(posts):
     cats = sorted({c for p in posts for c in p.get("categorias") or []}, key=str.lower)
     filtros = "".join(f'<button type="button" data-cat="{e(c)}" aria-pressed="false">{e(c)}</button>' for c in cats)
     cards = "".join(card(p) for p in posts) or '<p class="vazio">Nenhum post ainda. Volte em breve!</p>'
-    return (cabeca("Blog · Papo Dado RPG", "Bastidores, dicas de mestre, resenhas e novidades das mesas do Papo Dado RPG.", f"{SITE}/blog/", f"{SITE}/img/og.jpg") + f"""
+    return (cabeca("Papo Dado Blog", "Bastidores, dicas de mestre, resenhas e novidades das mesas do Papo Dado RPG.", f"{SITE}/blog/", f"{SITE}/img/og.jpg") + f"""
 <main class="wrap">
-  <div class="cab-blog"><div class="rotulo">Blog</div><h1>Do outro lado do escudo</h1>
+  <div class="cab-blog"><div class="rotulo">Do outro lado do escudo</div><h1>Papo Dado Blog</h1>
     <p>Bastidores das mesas, dicas de mestre, resenhas e novidades do Papo Dado RPG.</p></div>
   <div class="filtros" id="filtros"{'' if cats else ' hidden'}><button type="button" data-cat="" aria-pressed="true">Todos</button>{filtros}</div>
   <div class="posts" id="posts">{cards}</div>
@@ -238,8 +239,9 @@ def pagina_404():
     if (!p) return naoAchou();
     let nome = '';
     if (p.campanha) { try { nome = (await BlogPD.sbGet(`campanhas?select=dados&id=eq.${encodeURIComponent(p.campanha)}`))[0]?.dados?.nome || ''; } catch { /* ignora */ } }
-    document.title = `${p.titulo} · Blog do Papo Dado RPG`;
-    document.getElementById('conteudo').innerHTML = BlogPD.artigo(p, nome);
+    document.title = `${p.titulo} · Papo Dado Blog`;
+    document.getElementById('conteudo').innerHTML = BlogPD.artigo(p, nome) + BlogPD.caixaComentarios(p.id);
+    BlogPD.comentarios();
     BlogPD.rastro();
   } catch { naoAchou(); }
 })();
@@ -254,7 +256,7 @@ def feed(posts):
 <pubDate>{datetime.fromisoformat(p['publicar_em'].replace('Z', '+00:00')).strftime('%a, %d %b %Y %H:%M:%S +0000')}</pubDate><description>{e(p.get('resumo') or '')}</description></item>
 """ for p in posts[:30])
     return f"""<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0"><channel><title>Blog do Papo Dado RPG</title><link>{SITE}/blog/</link><description>Bastidores, dicas de mestre e novidades do Papo Dado RPG.</description><language>pt-BR</language>
+<rss version="2.0"><channel><title>Papo Dado Blog</title><link>{SITE}/blog/</link><description>Bastidores, dicas de mestre e novidades do Papo Dado RPG.</description><language>pt-BR</language>
 {itens}</channel></rss>
 """
 
