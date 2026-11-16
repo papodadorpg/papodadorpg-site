@@ -18,7 +18,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://papodadorpg.com.br/img/og.jpg">
 <link rel="icon" href="/img/icone.svg" type="image/svg+xml">
-<link rel="alternate" type="application/rss+xml" title="Blog do Papo Dado RPG" href="/blog/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Papo Dado Blog" href="/blog/feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&display=swap">
@@ -58,8 +58,9 @@
     if (!p) return naoAchou();
     let nome = '';
     if (p.campanha) { try { nome = (await BlogPD.sbGet(`campanhas?select=dados&id=eq.${encodeURIComponent(p.campanha)}`))[0]?.dados?.nome || ''; } catch { /* ignora */ } }
-    document.title = `${p.titulo} · Blog do Papo Dado RPG`;
-    document.getElementById('conteudo').innerHTML = BlogPD.artigo(p, nome);
+    document.title = `${p.titulo} · Papo Dado Blog`;
+    document.getElementById('conteudo').innerHTML = BlogPD.artigo(p, nome) + BlogPD.caixaComentarios(p.id);
+    BlogPD.comentarios();
     BlogPD.rastro();
   } catch { naoAchou(); }
 })();
