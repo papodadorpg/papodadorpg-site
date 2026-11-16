@@ -116,6 +116,17 @@ article.post .capa-post img { width: 100%; height: 100%; object-fit: cover; }
 .com-texto { color: #e6e9f4; font-size: 16px; overflow-wrap: anywhere; }
 .com-texto p { margin: 6px 0 0; }
 .com-responder { margin-top: 8px; background: none; border: 0; padding: 0; color: var(--ciano); font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
+.com-rodape { display: flex; gap: 18px; align-items: center; margin-top: 8px; }
+.com-rodape .com-responder { margin-top: 0; }
+.com-curtir { display: inline-flex; align-items: center; gap: 6px; background: none; border: 0; padding: 0; color: var(--suave); font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; font-variant-numeric: tabular-nums; transition: color .15s; }
+.com-curtir svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linejoin: round; }
+.com-curtir:hover { color: var(--branco); }
+.com-curtir[aria-pressed="true"] { color: var(--laranja); }
+.com-curtir[aria-pressed="true"] svg { fill: currentColor; }
+.com-curtir:disabled { cursor: wait; }
+.com-curtir-n:empty { display: none; }
+.com-curtir.pulou svg { animation: pulo .45s ease; }
+@media (prefers-reduced-motion: reduce) { .com-curtir, .com-curtir.pulou svg { transition: none; animation: none; } }
 .com-vazio { color: var(--suave); padding: 18px; border: 1px dashed var(--linha); border-radius: var(--raio); text-align: center; }
 .form-com { display: grid; gap: 14px; background: var(--superficie); border: 2px solid var(--preto); outline: 1px solid var(--linha); border-radius: var(--raio); padding: 20px; }
 .form-titulo { margin: 0; font-size: 20px; }
