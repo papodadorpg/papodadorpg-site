@@ -13,12 +13,14 @@ só entra quem for convidado na aba **Admins** do painel. Quem é convidado vira
   O botão **Atualizar agora** busca na hora as lives e vídeos novos do YouTube (função `disparar_dados` no Supabase).
 - **Blog:** editor visual (títulos, listas, imagens, vídeos do YouTube), capa, autor, categorias, campanha relacionada,
   rascunho / publicar agora / agendar. O post aparece no site na hora (página inicial, /blog/ e página da campanha).
+- **Comentários:** leitores comentam no fim de cada post só com o nome (sem cadastro); aparece na hora. Na aba dá para responder como autor,
+  ocultar ou apagar. Proteções: limite de comentários seguidos, no máximo 2 links, campo-isca contra robôs. Banco em `supabase/comentarios.sql`.
 - **Admins:** convidar e remover quem entra no admin (Edge Function `admins` no Supabase, em `supabase/functions/admins/`).
 - **Histórico:** quem mudou o quê.
 
-O banco está descrito em `supabase/schema.sql` (agenda, acessos, painel) e `supabase/blog.sql` (posts, imagens, agendamento).
+O banco está descrito em `supabase/schema.sql` (agenda, acessos, painel) e `supabase/blog.sql` (posts, imagens, agendamento) e `supabase/comentarios.sql` (comentários do blog).
 
-### Páginas do blog
+### Páginas do blog (Papo Dado Blog)
 Cada post publicado ganha `blog/<endereço>/index.html` (Google e prévia no WhatsApp), gerado por `scripts/gerar_blog.py`
 no workflow **Gerar páginas do blog** (`.github/workflows/blog.yml`). Ao publicar, o Supabase pede ao GitHub para rodar esse
 workflow usando o token guardado no Vault do Supabase com o nome `github_token` (token "fine-grained" do GitHub só com
