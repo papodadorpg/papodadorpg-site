@@ -73,6 +73,7 @@
     ['critico', '🎲', 'Acerto crítico'],
     ['inspirou', '✨', 'Me inspirou'],
     ['util', '🧭', 'Vou usar na mesa'],
+    ['aprendi', '🧠', 'Aprendi algo'],
     ['divertido', '😄', 'Divertido'],
   ];
   async function rpc(nome, args) {
