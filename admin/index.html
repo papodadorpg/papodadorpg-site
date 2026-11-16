@@ -916,12 +916,16 @@ async function carregarPosts() {
   $('blog-editor').hidden = true; $('blog-lista').hidden = false;
   aviso('msg-blog', 'Carregando…');
   const { data, error } = await sb.from('posts').select('id,slug,titulo,resumo,capa_url,autor,categorias,campanha,status,publicar_em,atualizado_em,destaque').order('atualizado_em', { ascending: false });
+  const reac = await sb.from('reacoes').select('post_id,tipo');
+  const EMOJI = { critico: '🎲', inspirou: '✨', util: '🧭', divertido: '😄' }, REAC = {};
+  for (const r of reac.data || []) { REAC[r.post_id] ||= {}; REAC[r.post_id][r.tipo] = (REAC[r.post_id][r.tipo] || 0) + 1; }
+  const reacoesTxt = (id) => Object.entries(REAC[id] || {}).map(([t, n]) => `${EMOJI[t]} ${n}`).join('  ');
   if (error) return aviso('msg-blog', `Erro ao carregar: ${error.message}`, 'erro');
   aviso('msg-blog', '');
   POSTS = data;
   $('lista-posts').innerHTML = POSTS.length ? POSTS.map((p) => `<div class="linha-post">
       ${p.capa_url ? `<img src="${esc(p.capa_url)}" alt="" loading="lazy">` : '<div class="sem-capa"></div>'}
-      <div class="info"><strong>${esc(p.titulo)}</strong><span>${situacao(p)}${esc(p.autor)}${p.categorias?.length ? ` · ${esc(p.categorias.join(', '))}` : ''}</span></div>
+      <div class="info"><strong>${esc(p.titulo)}</strong><span>${situacao(p)}${esc(p.autor)}${p.categorias?.length ? ` · ${esc(p.categorias.join(', '))}` : ''}${reacoesTxt(p.id) ? ` · ${reacoesTxt(p.id)}` : ''}</span></div>
       <button class="btn btn-linha btn-mini" data-post="${p.id}">Editar</button></div>`).join('')
     : '<div class="vazio">Nenhum post ainda. Clique em “+ Novo post” para escrever o primeiro.</div>';
 }
