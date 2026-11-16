@@ -160,11 +160,15 @@
       <div class="com-corpo">
         <div class="com-cab">${quem}<time class="com-data" datetime="${esc(c.criado_em)}" title="${esc(dataHora(c.criado_em))}">${esc(tempo(c.criado_em))}</time></div>
         <div class="com-texto">${corpo}</div>
-        ${respostas ? `<button type="button" class="com-responder" data-responder="${esc(c.id)}" data-nome="${esc(c.nome)}">Responder</button>` : ''}
+        <div class="com-rodape">
+          <button type="button" class="com-curtir" data-curtir="${esc(c.id)}" data-nome="${esc(c.nome)}" aria-pressed="false" aria-label="Curtir o comentário de ${esc(c.nome)}">${CORACAO}<span class="com-curtir-n"></span></button>
+          ${respostas ? `<button type="button" class="com-responder" data-responder="${esc(c.id)}" data-nome="${esc(c.nome)}">Responder</button>` : ''}
+        </div>
         ${respostas && respostas.length ? `<ol class="respostas">${respostas.map((r) => umComentario(r, null)).join('')}</ol>` : ''}
       </div>
     </li>`;
   }
+  const CORACAO = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.4 8 3.4 4.5 6.9 4.5c2.1 0 3.6 1.1 5.1 3 1.5-1.9 3-3 5.1-3 3.5 0 5.5 3.5 4.2 6.8-1.8 4.6-9.3 9.2-9.3 9.2z"/></svg>';
   const ICONE = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm3 5v2h2V9H7zm4 0v2h2V9h-2zm4 0v2h2V9h-2z"/></svg>';
   async function comentarios() {
     const caixa = document.getElementById('comentarios');
@@ -189,6 +193,30 @@
     const nome = $c('#com-nome'), texto = $c('#com-texto'), aviso = $c('#respondendo'), campoNome = $c('#campo-nome');
     nome.value = guardado('pd_nome');
     let respondendo = null, sessao = null;
+    // curtidas: mesmo código de visitante das reações do post (uma curtida por navegador em cada comentário)
+    const eu = visitante() || (window.__pdv ||= `t-${Math.random().toString(36).slice(2, 12)}`);
+    function pintarCurtida(b, n, minha) {
+      b.setAttribute('aria-pressed', String(minha));
+      b.querySelector('.com-curtir-n').textContent = n ? String(n) : '';
+      b.setAttribute('aria-label', `${n ? `${n} ${n === 1 ? 'curtida' : 'curtidas'}. ` : ''}Curtir o comentário de ${b.dataset.nome}`);
+    }
+    async function curtidas() {
+      try {
+        const d = await rpc('curtidas_do_post', { p_post: postId, p_visitante: eu });
+        lista.querySelectorAll('[data-curtir]').forEach((b) => pintarCurtida(b, d.contagem?.[b.dataset.curtir] || 0, (d.minhas || []).includes(b.dataset.curtir)));
+      } catch { /* sem contagem por enquanto */ }
+    }
+    async function curtir(b) {
+      if (b.disabled) return;
+      b.disabled = true;
+      // resposta imediata na tela; a contagem real chega em seguida
+      const marcado = b.getAttribute('aria-pressed') === 'true', n = +b.querySelector('.com-curtir-n').textContent || 0;
+      pintarCurtida(b, Math.max(0, n + (marcado ? -1 : 1)), !marcado);
+      if (!marcado) { b.classList.remove('pulou'); void b.offsetWidth; b.classList.add('pulou'); }
+      try { const d = await rpc('curtir_comentario', { p_comentario: b.dataset.curtir, p_visitante: eu }); pintarCurtida(b, d.n, d.curtido); }
+      catch { pintarCurtida(b, n, marcado); }
+      b.disabled = false;
+    }
 
     const responderA = (id, quem) => {
       respondendo = id; aviso.hidden = !id;
@@ -231,9 +259,11 @@
           : '<li class="com-vazio">Ninguém comentou ainda. Role a iniciativa e seja a primeira pessoa!</li>';
         $c('#com-titulo').textContent = cs.length ? `${cs.length} ${cs.length === 1 ? 'comentário' : 'comentários'} na mesa` : 'Puxe uma cadeira e comente';
         if (location.hash.startsWith('#c-')) document.getElementById(location.hash.slice(1))?.scrollIntoView({ block: 'center' });
+        curtidas();
       } catch { lista.innerHTML = '<li class="com-vazio">Não consegui carregar os comentários agora.</li>'; }
     }
     lista.addEventListener('click', (ev) => {
+      const k = ev.target.closest('[data-curtir]'); if (k) { curtir(k); return; }
       const b = ev.target.closest('[data-responder]'); if (!b) return;
       responderA(b.dataset.responder, b.dataset.nome);
       form.scrollIntoView({ behavior: 'smooth', block: 'center' });
