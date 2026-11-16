@@ -1,4 +1,4 @@
-// Blog do Papo Dado RPG: funções usadas pela página inicial, pela lista do blog, pelas páginas dos posts e pelo 404.
+// Papo Dado Blog: funções usadas pela página inicial, pela lista do blog, pelas páginas dos posts e pelo 404.
 // Os posts ficam no Supabase; a chave "anon" é pública e só enxerga posts publicados.
 (function () {
   const SB = { url: 'https://oumhibikfxorrknthbqb.supabase.co', chave: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91bWhpYmlrZnhvcnJrbnRoYnFiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzODcyNDIsImV4cCI6MjEwODk2MzI0Mn0.JlgqDluN1BEHBAGGpbcVw-wVowlcl_x0EjU2E4e-zns' };
@@ -66,6 +66,94 @@
     </article>`;
   }
 
+
+  // ================= COMENTÁRIOS =================
+  // <section class="comentarios" data-post="<id do post>"> no fim do post. Qualquer leitor comenta com um nome; o admin modera.
+  const CAMPOS_C = 'id,resposta_de,nome,texto,do_autor,criado_em';
+  const dataCurta = (iso) => new Intl.DateTimeFormat('pt-BR', { timeZone: TZ, day: 'numeric', month: 'short', year: 'numeric' }).format(new Date(iso));
+  const guardado = (k, v) => { try { if (v === undefined) return localStorage.getItem(k) || ''; localStorage.setItem(k, v); } catch { /* sem localStorage */ } return ''; };
+  function visitante() {
+    let v = guardado('pd_v');
+    if (!v) { try { v = crypto.randomUUID(); guardado('pd_v', v); } catch { v = ''; } }
+    return v || null;
+  }
+  function caixaComentarios(postId) {
+    return `<section class="comentarios wrap estreito" id="comentarios" data-post="${esc(postId)}" aria-labelledby="com-titulo"></section>`;
+  }
+  function umComentario(c, respostas) {
+    const quem = c.do_autor ? `<strong>${esc(c.nome)}</strong> <span class="selo-autor">Autor</span>` : `<strong>${esc(c.nome)}</strong>`;
+    const corpo = esc(c.texto).split(/\n{2,}/).map((t) => `<p>${t.replace(/\n/g, '<br>')}</p>`).join('');
+    return `<li class="comentario${c.do_autor ? ' do-autor' : ''}" id="c-${esc(c.id)}">
+      <div class="com-cab">${quem}<span class="com-data">${esc(dataCurta(c.criado_em))}</span></div>
+      <div class="com-texto">${corpo}</div>
+      ${respostas ? `<button type="button" class="com-responder" data-responder="${esc(c.id)}" data-nome="${esc(c.nome)}">Responder</button>` : ''}
+      ${respostas && respostas.length ? `<ol class="respostas">${respostas.map((r) => umComentario(r, null)).join('')}</ol>` : ''}
+    </li>`;
+  }
+  async function comentarios() {
+    const caixa = document.getElementById('comentarios');
+    if (!caixa || !caixa.dataset.post) return;
+    const postId = caixa.dataset.post;
+    caixa.innerHTML = `<div class="rotulo">Comentários</div><h2 id="com-titulo">O que você achou?</h2>
+      <ol class="lista-com" id="lista-com"><li class="com-vazio">Carregando os comentários…</li></ol>
+      <form class="form-com" id="form-com" novalidate>
+        <p class="respondendo" id="respondendo" hidden><span></span> <button type="button" id="cancelar-resposta">Cancelar</button></p>
+        <label><span>Seu nome</span><input id="com-nome" maxlength="60" autocomplete="name" required></label>
+        <label><span>Comentário</span><textarea id="com-texto" rows="4" maxlength="2000" required placeholder="Conta pra gente: já passou por isso na sua mesa?"></textarea></label>
+        <label class="isca" aria-hidden="true">Site<input id="com-site" tabindex="-1" autocomplete="off"></label>
+        <div class="com-acoes"><button class="btn btn-play" type="submit">Publicar comentário</button><span class="com-msg" id="com-msg" role="status"></span></div>
+        <p class="com-regras">Seja gentil: comentários ofensivos ou spam são removidos. Não precisa de cadastro e não pedimos e-mail.</p>
+      </form>`;
+    const lista = caixa.querySelector('#lista-com'), form = caixa.querySelector('#form-com'), msg = caixa.querySelector('#com-msg');
+    const nome = caixa.querySelector('#com-nome'), texto = caixa.querySelector('#com-texto'), aviso = caixa.querySelector('#respondendo');
+    nome.value = guardado('pd_nome');
+    let respondendo = null;
+    const responderA = (id, quem) => {
+      respondendo = id; aviso.hidden = !id;
+      if (id) { aviso.querySelector('span').textContent = `Respondendo a ${quem}`; texto.focus(); }
+    };
+    async function carregar() {
+      try {
+        const cs = await sbGet(`comentarios?select=${CAMPOS_C}&post_id=eq.${encodeURIComponent(postId)}&order=criado_em.asc`);
+        const raiz = cs.filter((c) => !c.resposta_de);
+        lista.innerHTML = raiz.length ? raiz.map((c) => umComentario(c, cs.filter((r) => r.resposta_de === c.id))).join('')
+          : '<li class="com-vazio">Ninguém comentou ainda. Que tal ser a primeira pessoa?</li>';
+        const t = caixa.querySelector('#com-titulo');
+        t.textContent = cs.length ? `${cs.length} ${cs.length === 1 ? 'comentário' : 'comentários'}` : 'O que você achou?';
+      } catch { lista.innerHTML = '<li class="com-vazio">Não consegui carregar os comentários agora.</li>'; }
+    }
+    lista.addEventListener('click', (ev) => {
+      const b = ev.target.closest('[data-responder]'); if (!b) return;
+      responderA(b.dataset.responder, b.dataset.nome);
+      form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+    caixa.querySelector('#cancelar-resposta').addEventListener('click', () => responderA(null));
+    form.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      if (caixa.querySelector('#com-site').value) return; // robô
+      const n = nome.value.trim(), t = texto.value.trim();
+      if (n.length < 2) { msg.textContent = 'Escreva seu nome.'; nome.focus(); return; }
+      if (t.length < 2) { msg.textContent = 'Escreva o comentário.'; texto.focus(); return; }
+      const botao = form.querySelector('button[type=submit]');
+      botao.disabled = true; msg.textContent = 'Enviando…';
+      try {
+        const r = await fetch(`${SB.url}/rest/v1/comentarios`, { method: 'POST',
+          headers: { apikey: SB.chave, Authorization: `Bearer ${SB.chave}`, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+          body: JSON.stringify({ post_id: postId, resposta_de: respondendo, nome: n, texto: t, visitante: visitante() }) });
+        if (!r.ok) {
+          const erro = (await r.json().catch(() => ({}))).message || '';
+          throw new Error(erro === 'devagar' ? 'Calma, aventureiro! Espere um pouquinho antes de comentar de novo.'
+            : erro === 'muitos_links' ? 'Use no máximo 2 links por comentário.' : 'Não consegui publicar agora. Tente de novo em instantes.');
+        }
+        guardado('pd_nome', n);
+        texto.value = ''; responderA(null); msg.textContent = 'Comentário publicado. Valeu!';
+        await carregar();
+      } catch (err) { msg.textContent = err.message; }
+      botao.disabled = false;
+    });
+    carregar();
+  }
+
   // Contagem anônima de acessos nas páginas do blog (mesma lógica do site; admins logados não contam)
   function rastro() {
     try {
@@ -96,7 +184,7 @@
       enviar({ tipo: 'pagina', pagina, origem });
       document.addEventListener('click', (e) => {
         const el = e.target.closest('a, button'); if (!el) return;
-        const area = el.closest('.topo') ? 'Menu' : el.closest('article.post') ? 'Blog: post' : el.closest('.mais') ? 'Blog: mais posts' : 'Blog: lista';
+        const area = el.closest('.topo') ? 'Menu' : el.closest('.comentarios') ? 'Blog: comentários' : el.closest('article.post') ? 'Blog: post' : el.closest('.mais') ? 'Blog: mais posts' : 'Blog: lista';
         let alvo = (el.querySelector('h3')?.textContent || el.textContent || '').replace(/\s+/g, ' ').trim();
         if (alvo.length > 80) alvo = alvo.slice(0, 77) + '…';
         let destino = el.getAttribute('href') || null;
@@ -106,5 +194,5 @@
     } catch { /* sem localStorage: não conta */ }
   }
 
-  window.BlogPD = { SB, listar, card, artigo, limpar, esc, dataLonga, urlPost, rastro, sbGet };
+  window.BlogPD = { SB, listar, card, artigo, limpar, esc, dataLonga, urlPost, rastro, sbGet, caixaComentarios, comentarios };
 })();

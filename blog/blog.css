@@ -1,4 +1,4 @@
-/* Blog do Papo Dado RPG: mesmas cores e fonte do site (Manual da Marca 2026, tema escuro). */
+/* Papo Dado Blog: mesmas cores e fonte do site (Manual da Marca 2026, tema escuro). */
 :root {
   --ciano: #00BAFC; --azul: #005DFB; --roxo: #7020F9; --vermelho: #FB0F3A; --laranja: #FD7601;
   --preto: #000; --branco: #fff; --bg: #0E1426; --bg2: #121a30; --superficie: #171f38; --linha: #26304f; --suave: #a7b0cc;
@@ -78,6 +78,34 @@ article.post .capa-post img { width: 100%; height: 100%; object-fit: cover; }
 .campanha-ligada { margin-top: 32px; padding: 16px 18px; background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio); display: flex; justify-content: space-between; gap: 12px; align-items: center; flex-wrap: wrap; }
 .mais { border-top: 1px solid var(--linha); background: var(--bg2); padding-block: 40px 16px; }
 .mais h2 { margin: 6px 0 20px; font-size: 26px; }
+
+/* comentários */
+.comentarios { padding-block: 8px 56px; }
+.comentarios h2 { margin: 6px 0 18px; font-size: 26px; }
+.lista-com, .respostas { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.lista-com { margin-bottom: 28px; }
+.comentario { background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio); padding: 14px 16px; min-width: 0; }
+.comentario.do-autor { border-color: color-mix(in srgb, var(--laranja) 55%, var(--linha)); }
+.respostas { margin-top: 14px; padding-left: 16px; border-left: 3px solid var(--linha); }
+.respostas .comentario { background: var(--bg2); }
+.com-cab { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 15px; }
+.com-data { color: var(--suave); font-size: 13px; }
+.selo-autor { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; padding: 2px 8px; border-radius: 999px; background: var(--laranja); color: var(--preto); }
+.com-texto { color: #e6e9f4; font-size: 16px; overflow-wrap: anywhere; }
+.com-texto p { margin: 6px 0 0; }
+.com-responder { margin-top: 8px; background: none; border: 0; padding: 0; color: var(--ciano); font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
+.com-vazio { color: var(--suave); }
+.form-com { display: grid; gap: 14px; background: var(--superficie); border: 2px solid var(--preto); outline: 1px solid var(--linha); border-radius: var(--raio); padding: 18px; }
+.form-com label { display: grid; gap: 6px; font-size: 14px; font-weight: 700; }
+.form-com input, .form-com textarea { font: inherit; font-size: 16px; color: var(--branco); background: var(--bg); border: 1px solid var(--linha); border-radius: 10px; padding: 10px 12px; width: 100%; resize: vertical; }
+.form-com input:focus, .form-com textarea:focus { border-color: var(--suave); outline: none; }
+.form-com .isca { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.com-acoes { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.com-acoes .btn:disabled { opacity: .6; cursor: wait; }
+.com-msg { color: var(--suave); font-size: 14px; }
+.com-regras { margin: 0; color: var(--suave); font-size: 13px; }
+.respondendo { margin: 0; font-size: 14px; color: var(--suave); }
+.respondendo button { background: none; border: 0; color: var(--ciano); font: inherit; font-weight: 700; cursor: pointer; padding: 0; }
 
 footer.rodape { border-top: 1px solid var(--linha); padding-block: 32px; color: var(--suave); font-size: 14px; }
 footer.rodape .wrap { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: space-between; }
