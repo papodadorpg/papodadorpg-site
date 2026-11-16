@@ -917,7 +917,7 @@ async function carregarPosts() {
   aviso('msg-blog', 'Carregando…');
   const { data, error } = await sb.from('posts').select('id,slug,titulo,resumo,capa_url,autor,categorias,campanha,status,publicar_em,atualizado_em,destaque').order('atualizado_em', { ascending: false });
   const reac = await sb.from('reacoes').select('post_id,tipo');
-  const EMOJI = { critico: '🎲', inspirou: '✨', util: '🧭', divertido: '😄' }, REAC = {};
+  const EMOJI = { critico: '🎲', inspirou: '✨', util: '🧭', aprendi: '🧠', divertido: '😄' }, REAC = {};
   for (const r of reac.data || []) { REAC[r.post_id] ||= {}; REAC[r.post_id][r.tipo] = (REAC[r.post_id][r.tipo] || 0) + 1; }
   const reacoesTxt = (id) => Object.entries(REAC[id] || {}).map(([t, n]) => `${EMOJI[t]} ${n}`).join('  ');
   if (error) return aviso('msg-blog', `Erro ao carregar: ${error.message}`, 'erro');
