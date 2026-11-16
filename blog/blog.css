@@ -80,32 +80,45 @@ article.post .capa-post img { width: 100%; height: 100%; object-fit: cover; }
 .mais h2 { margin: 6px 0 20px; font-size: 26px; }
 
 /* comentários */
-.comentarios { padding-block: 8px 56px; }
-.comentarios h2 { margin: 6px 0 18px; font-size: 26px; }
+.comentarios { position: relative; margin: 8px auto 56px; padding: 28px clamp(18px, 4vw, 32px) 32px; background: var(--bg2); border: 2px solid var(--preto); outline: 1px solid var(--linha); border-radius: var(--raio); overflow: hidden; }
+.comentarios::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 6px; background: linear-gradient(90deg, var(--ciano) 0 20%, var(--azul) 20% 40%, var(--roxo) 40% 60%, var(--vermelho) 60% 80%, var(--laranja) 80% 100%); }
+.com-topo { display: flex; gap: 14px; align-items: center; margin-bottom: 22px; }
+.com-icone { width: 46px; height: 46px; border-radius: 50%; background: var(--laranja); color: var(--preto); display: grid; place-items: center; border: 2px solid var(--preto); box-shadow: 0 3px 0 var(--preto); flex: none; }
+.comentarios h2 { margin: 2px 0 0; font-size: clamp(22px, 3.4vw, 28px); line-height: 1.15; }
 .lista-com, .respostas { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
 .lista-com { margin-bottom: 28px; }
-.comentario { background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio); padding: 14px 16px; min-width: 0; }
-.comentario.do-autor { border-color: color-mix(in srgb, var(--laranja) 55%, var(--linha)); }
-.respostas { margin-top: 14px; padding-left: 16px; border-left: 3px solid var(--linha); }
-.respostas .comentario { background: var(--bg2); }
+.comentario { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio); padding: 14px 16px; min-width: 0; }
+.comentario.do-autor { border-color: color-mix(in srgb, var(--laranja) 60%, var(--linha)); box-shadow: inset 3px 0 0 var(--laranja); }
+.com-avatar { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 18px; color: #fff; border: 2px solid var(--preto); object-fit: cover; text-shadow: 0 1px 2px rgba(0, 0, 0, .35); flex: none; }
+.respostas .comentario { grid-template-columns: 32px minmax(0, 1fr); background: var(--bg); padding: 12px 14px; }
+.respostas .com-avatar { width: 32px; height: 32px; font-size: 15px; }
+.respostas { margin-top: 14px; }
+.com-corpo { min-width: 0; }
 .com-cab { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 15px; }
 .com-data { color: var(--suave); font-size: 13px; }
 .selo-autor { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; padding: 2px 8px; border-radius: 999px; background: var(--laranja); color: var(--preto); }
 .com-texto { color: #e6e9f4; font-size: 16px; overflow-wrap: anywhere; }
 .com-texto p { margin: 6px 0 0; }
 .com-responder { margin-top: 8px; background: none; border: 0; padding: 0; color: var(--ciano); font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
-.com-vazio { color: var(--suave); }
-.form-com { display: grid; gap: 14px; background: var(--superficie); border: 2px solid var(--preto); outline: 1px solid var(--linha); border-radius: var(--raio); padding: 18px; }
+.com-vazio { color: var(--suave); padding: 18px; border: 1px dashed var(--linha); border-radius: var(--raio); text-align: center; }
+.form-com { display: grid; gap: 14px; background: var(--superficie); border: 2px solid var(--preto); outline: 1px solid var(--linha); border-radius: var(--raio); padding: 20px; }
+.form-titulo { margin: 0; font-size: 20px; }
 .form-com label { display: grid; gap: 6px; font-size: 14px; font-weight: 700; }
 .form-com input, .form-com textarea { font: inherit; font-size: 16px; color: var(--branco); background: var(--bg); border: 1px solid var(--linha); border-radius: 10px; padding: 10px 12px; width: 100%; resize: vertical; }
-.form-com input:focus, .form-com textarea:focus { border-color: var(--suave); outline: none; }
+.form-com input:focus, .form-com textarea:focus { border-color: var(--laranja); outline: none; }
 .form-com .isca { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.com-google { display: grid; gap: 10px; padding: 12px 14px; border-radius: 10px; background: var(--bg); border: 1px solid var(--linha); color: var(--suave); font-size: 14px; }
+.com-logado { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 14px; color: var(--suave); }
+.com-logado .com-avatar { width: 32px; height: 32px; font-size: 15px; }
+.com-logado strong { color: var(--branco); }
+.com-logado button { margin-left: auto; background: none; border: 1px solid var(--linha); color: var(--branco); border-radius: 999px; padding: 4px 12px; font: inherit; font-size: 13px; cursor: pointer; }
 .com-acoes { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
 .com-acoes .btn:disabled { opacity: .6; cursor: wait; }
 .com-msg { color: var(--suave); font-size: 14px; }
 .com-regras { margin: 0; color: var(--suave); font-size: 13px; }
 .respondendo { margin: 0; font-size: 14px; color: var(--suave); }
 .respondendo button { background: none; border: 0; color: var(--ciano); font: inherit; font-weight: 700; cursor: pointer; padding: 0; }
+@media (max-width: 600px) { .comentario { grid-template-columns: 32px minmax(0, 1fr); padding: 12px; } .comentario > .com-avatar { width: 32px; height: 32px; font-size: 15px; } }
 
 footer.rodape { border-top: 1px solid var(--linha); padding-block: 32px; color: var(--suave); font-size: 14px; }
 footer.rodape .wrap { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: space-between; }
