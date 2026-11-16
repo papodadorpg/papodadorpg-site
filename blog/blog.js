@@ -67,6 +67,48 @@
   }
 
 
+  // ================= REAÇÕES =================
+  // Só reações positivas. Cada leitor marca quantas quiser (uma de cada) e pode desmarcar; conta pelo código aleatório do navegador.
+  const REACOES = [
+    ['critico', '🎲', 'Acerto crítico'],
+    ['inspirou', '✨', 'Me inspirou'],
+    ['util', '🧭', 'Vou usar na mesa'],
+    ['divertido', '😄', 'Divertido'],
+  ];
+  async function rpc(nome, args) {
+    const r = await fetch(`${SB.url}/rest/v1/rpc/${nome}`, { method: 'POST',
+      headers: { apikey: SB.chave, Authorization: `Bearer ${SB.chave}`, 'Content-Type': 'application/json' }, body: JSON.stringify(args) });
+    if (!r.ok) throw new Error((await r.json().catch(() => ({}))).message || 'erro');
+    return r.json();
+  }
+  async function reacoes(postId, antesDe) {
+    if (!postId || document.getElementById('reacoes')) return;
+    const caixa = document.createElement('section');
+    caixa.className = 'reacoes wrap estreito'; caixa.id = 'reacoes'; caixa.setAttribute('aria-label', 'Reações ao post');
+    caixa.innerHTML = `<p class="reacoes-titulo">Como foi esse post pra você?</p><div class="reacoes-lista">${REACOES.map(([t, e, n]) =>
+      `<button type="button" class="reacao" data-tipo="${t}" aria-pressed="false"><span class="reacao-emoji" aria-hidden="true">${e}</span><span>${n}</span><span class="reacao-n"></span></button>`).join('')}</div>`;
+    antesDe.parentNode.insertBefore(caixa, antesDe);
+    const eu = visitante() || (window.__pdv ||= `t-${Math.random().toString(36).slice(2, 12)}`);
+    const mostrar = (d) => caixa.querySelectorAll('.reacao').forEach((b) => {
+      const n = d.contagem?.[b.dataset.tipo] || 0;
+      b.querySelector('.reacao-n').textContent = n ? String(n) : '';
+      b.setAttribute('aria-pressed', String((d.minhas || []).includes(b.dataset.tipo)));
+    });
+    try { mostrar(await rpc('reacoes_do_post', { p_post: postId, p_visitante: eu })); } catch { /* sem contagem por enquanto */ }
+    caixa.addEventListener('click', async (ev) => {
+      const b = ev.target.closest('.reacao'); if (!b || b.disabled) return;
+      b.disabled = true;
+      // resposta imediata na tela; a contagem real chega em seguida
+      const marcado = b.getAttribute('aria-pressed') === 'true', el = b.querySelector('.reacao-n');
+      b.setAttribute('aria-pressed', String(!marcado));
+      el.textContent = String(Math.max(0, (+el.textContent || 0) + (marcado ? -1 : 1)) || '');
+      if (!marcado) { b.classList.remove('pulou'); void b.offsetWidth; b.classList.add('pulou'); }
+      try { mostrar(await rpc('reagir', { p_post: postId, p_tipo: b.dataset.tipo, p_visitante: eu })); }
+      catch { b.setAttribute('aria-pressed', String(marcado)); }
+      b.disabled = false;
+    });
+  }
+
   // ================= COMENTÁRIOS =================
   // <section class="comentarios" data-post="<id do post>"> no fim do post. Qualquer leitor comenta só com o nome
   // ou entra com o Google (nome e foto da conta). O admin responde, oculta ou apaga na aba Comentários.
@@ -127,6 +169,7 @@
     const caixa = document.getElementById('comentarios');
     if (!caixa || !caixa.dataset.post) return;
     const postId = caixa.dataset.post;
+    reacoes(postId, caixa);
     caixa.innerHTML = `<div class="com-topo"><span class="com-icone">${ICONE}</span><div><div class="rotulo">Comentários</div>
         <h2 id="com-titulo">Puxe uma cadeira e comente</h2></div></div>
       <ol class="lista-com" id="lista-com"><li class="com-vazio">Carregando os comentários…</li></ol>
