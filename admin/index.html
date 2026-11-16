@@ -168,6 +168,16 @@ dialog::backdrop { background: rgba(0, 0, 0, .6); }
 .selo.agendado { background: var(--laranja); color: #000; border-color: #000; }
 .selo.rascunho { color: var(--suave); }
 .selo.home { background: var(--azul); color: #fff; border-color: #000; }
+.novos { display: inline-block; min-width: 20px; padding: 0 6px; border-radius: 999px; background: var(--laranja); color: #000; font-size: 12px; font-weight: 800; text-align: center; }
+.com-item { border-bottom: 1px solid var(--linha); padding: 14px 0; display: grid; gap: 6px; }
+.com-item:last-child { border-bottom: 0; }
+.com-item.oculto { opacity: .55; }
+.com-item.resposta { margin-left: 24px; padding-left: 14px; border-left: 3px solid var(--linha); }
+.com-item .topo-com { display: flex; gap: 8px; flex-wrap: wrap; align-items: baseline; font-size: 14px; color: var(--suave); }
+.com-item .topo-com strong { color: var(--branco); }
+.com-item .txt { white-space: pre-wrap; overflow-wrap: anywhere; }
+.com-item .acoes { display: flex; gap: 8px; flex-wrap: wrap; }
+.com-item textarea { width: 100%; min-height: 80px; }
 .linha-post .info .selo.publicado, .linha-post .info .selo.agendado, td .selo { color: #000; }
 .linha-post .info .selo.home { color: #fff; }
 .editor-post { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 18px; align-items: start; }
@@ -257,6 +267,7 @@ dialog::backdrop { background: rgba(0, 0, 0, .6); }
         <button role="tab" data-aba="acessos" aria-selected="true">Acessos</button>
         <button role="tab" data-aba="agenda" aria-selected="false">Agenda</button>
         <button role="tab" data-aba="blog" aria-selected="false">Blog</button>
+        <button role="tab" data-aba="comentarios" aria-selected="false">Comentários <span class="novos" id="com-novos" hidden></span></button>
         <button role="tab" data-aba="admins" aria-selected="false">Admins</button>
         <button role="tab" data-aba="historico" aria-selected="false">Histórico</button>
       </nav>
@@ -393,6 +404,14 @@ dialog::backdrop { background: rgba(0, 0, 0, .6); }
           </div>
         </div>
       </form>
+    </section>
+
+    <!-- COMENTÁRIOS -->
+    <section id="aba-comentarios" class="grade" hidden>
+      <div class="cab"><div><div class="rotulo">Blog</div><h2>Comentários</h2><div class="dica">Os comentários aparecem no post na hora. Aqui você responde como autor, oculta ou apaga.</div></div>
+        <label style="min-width:200px"><span>Responder como</span><select id="com-autor"><option>Henrique Müller</option><option>Elisinha Müller</option></select></label></div>
+      <p class="msg" id="msg-com" role="status"></p>
+      <div class="painel" id="lista-com"></div>
     </section>
 
     <!-- ADMINS -->
@@ -537,7 +556,7 @@ async function entrar() {
   if (precisaSenha) { $('senha-email').textContent = USUARIO.email; mostrar('tela-senha'); return; }
   $('quem').textContent = USUARIO.email;
   mostrar('app');
-  if (!iniciado) { iniciado = true; abrirAba(location.hash.replace('#', '') || 'acessos'); }
+  if (!iniciado) { iniciado = true; abrirAba(location.hash.replace('#', '') || 'acessos'); contarComentariosNovos(); }
 }
 sb.auth.onAuthStateChange((evento) => {
   if (evento === 'PASSWORD_RECOVERY') { precisaSenha = true; setTimeout(entrar, 0); return; }
@@ -554,9 +573,10 @@ function abrirAba(aba) {
   if (aba === 'agenda') carregarAgenda();
   if (aba === 'historico') carregarHistorico();
   if (aba === 'blog') carregarPosts();
+  if (aba === 'comentarios') carregarComentarios();
   if (aba === 'admins') carregarAdmins();
 }
-const ABAS = ['acessos', 'agenda', 'blog', 'admins', 'historico'];
+const ABAS = ['acessos', 'agenda', 'blog', 'comentarios', 'admins', 'historico'];
 document.querySelectorAll('.abas button').forEach((b) => b.addEventListener('click', () => abrirAba(b.dataset.aba)));
 
 // ================= ACESSOS =================
@@ -1066,6 +1086,75 @@ $('post-excluir').addEventListener('click', async () => {
   const extra = await gerarPaginas(POST.status === 'publicado');
   await carregarPosts();
   aviso('msg-blog', `Post excluído.${extra ? ' A página dele sai do ar em cerca de 1 minuto.' : ''}`, 'ok');
+});
+
+
+// ================= COMENTÁRIOS =================
+const VISTO_COM = 'pd_com_visto';
+const lerVisto = () => { try { return localStorage.getItem(VISTO_COM) || '1970-01-01T00:00:00Z'; } catch { return '1970-01-01T00:00:00Z'; } };
+async function contarComentariosNovos() {
+  const { count } = await sb.from('comentarios').select('id', { count: 'exact', head: true }).eq('do_autor', false).gt('criado_em', lerVisto());
+  $('com-novos').textContent = count || ''; $('com-novos').hidden = !count;
+}
+async function carregarComentarios() {
+  aviso('msg-com', 'Carregando…');
+  const [c, ps] = await Promise.all([sb.from('comentarios').select('id,post_id,resposta_de,nome,texto,do_autor,status,criado_em').order('criado_em', { ascending: false }).limit(300),
+    sb.from('posts').select('id,slug,titulo')]);
+  if (c.error) return aviso('msg-com', `Erro ao carregar: ${c.error.message}`, 'erro');
+  aviso('msg-com', '');
+  const posts = Object.fromEntries((ps.data || []).map((p) => [p.id, p]));
+  const visto = lerVisto();
+  try { localStorage.setItem(VISTO_COM, new Date().toISOString()); } catch { /* ignora */ }
+  $('com-novos').hidden = true;
+  if (!c.data.length) { $('lista-com').innerHTML = '<div class="vazio">Nenhum comentário ainda.</div>'; return; }
+  // agrupa por post (mais recente primeiro) e, dentro do post, comentário + respostas
+  const porPost = new Map();
+  for (const x of c.data) { if (!porPost.has(x.post_id)) porPost.set(x.post_id, []); porPost.get(x.post_id).push(x); }
+  const item = (x) => `<div class="com-item${x.resposta_de ? ' resposta' : ''}${x.status === 'oculto' ? ' oculto' : ''}" data-id="${x.id}" data-post="${x.post_id}">
+      <div class="topo-com"><strong>${esc(x.nome)}</strong>${x.do_autor ? '<span class="selo home">Autor</span>' : ''}${x.status === 'oculto' ? '<span class="selo rascunho">Oculto</span>' : ''}${!x.do_autor && x.criado_em > visto ? '<span class="selo agendado">Novo</span>' : ''}<span>${esc(quandoHist(x.criado_em))}</span></div>
+      <div class="txt">${esc(x.texto)}</div>
+      <div class="acoes">${x.resposta_de ? '' : '<button class="btn btn-linha btn-mini" data-acao="responder">Responder</button>'}
+        <button class="btn btn-linha btn-mini" data-acao="${x.status === 'oculto' ? 'mostrar' : 'ocultar'}">${x.status === 'oculto' ? 'Mostrar' : 'Ocultar'}</button>
+        <button class="btn btn-perigo btn-mini" data-acao="apagar">Apagar</button></div>
+    </div>`;
+  $('lista-com').innerHTML = [...porPost].map(([pid, lista]) => {
+    const p = posts[pid] || { titulo: '(post excluído)', slug: '' };
+    const raiz = lista.filter((x) => !x.resposta_de).sort((a, b) => b.criado_em.localeCompare(a.criado_em));
+    const resp = (id) => lista.filter((x) => x.resposta_de === id).sort((a, b) => a.criado_em.localeCompare(b.criado_em));
+    const orfas = lista.filter((x) => x.resposta_de && !lista.some((y) => y.id === x.resposta_de));
+    return `<div style="margin-bottom:18px"><h3 style="margin:0 0 4px;font-size:18px">${esc(p.titulo)} ${p.slug ? `<a class="dica" href="../blog/${esc(p.slug)}/#comentarios" target="_blank" rel="noopener">ver no site</a>` : ''}</h3>
+      ${raiz.map((x) => item(x) + resp(x.id).map(item).join('')).join('')}${orfas.map(item).join('')}</div>`;
+  }).join('');
+}
+$('lista-com').addEventListener('click', async (e) => {
+  const b = e.target.closest('[data-acao]'); if (!b) return;
+  const el = b.closest('.com-item'), id = el.dataset.id;
+  if (b.dataset.acao === 'responder') {
+    if (el.querySelector('form')) return;
+    el.insertAdjacentHTML('beforeend', `<form class="grade" style="gap:8px"><textarea required maxlength="2000" placeholder="Sua resposta como ${esc($('com-autor').value)}"></textarea>
+      <div class="acoes"><button class="btn btn-play btn-mini" type="submit">Publicar resposta</button><button class="btn btn-linha btn-mini" type="button" data-cancelar>Cancelar</button></div></form>`);
+    const f = el.querySelector('form');
+    f.querySelector('textarea').focus();
+    f.querySelector('[data-cancelar]').addEventListener('click', () => f.remove());
+    f.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      const texto = f.querySelector('textarea').value.trim(); if (texto.length < 2) return;
+      const { error } = await sb.from('comentarios').insert({ post_id: el.dataset.post, resposta_de: id, nome: $('com-autor').value, texto, do_autor: true });
+      if (error) return aviso('msg-com', `Erro ao responder: ${error.message}`, 'erro');
+      await carregarComentarios(); aviso('msg-com', 'Resposta publicada.', 'ok');
+    });
+    return;
+  }
+  if (b.dataset.acao === 'apagar') {
+    if (!confirm('Apagar este comentário (e as respostas dele)? Não dá para desfazer.')) return;
+    const { error } = await sb.from('comentarios').delete().eq('id', id);
+    if (error) return aviso('msg-com', `Erro ao apagar: ${error.message}`, 'erro');
+    await carregarComentarios(); return aviso('msg-com', 'Comentário apagado.', 'ok');
+  }
+  const status = b.dataset.acao === 'ocultar' ? 'oculto' : 'publicado';
+  const { error } = await sb.from('comentarios').update({ status }).eq('id', id);
+  if (error) return aviso('msg-com', `Erro: ${error.message}`, 'erro');
+  await carregarComentarios(); aviso('msg-com', status === 'oculto' ? 'Comentário oculto: não aparece mais no site.' : 'Comentário visível de novo.', 'ok');
 });
 
 // ================= ADMINS =================
