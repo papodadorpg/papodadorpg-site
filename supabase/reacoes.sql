@@ -4,11 +4,14 @@
 
 create table if not exists public.reacoes (
   post_id uuid not null references public.posts(id) on delete cascade,
-  tipo text not null check (tipo in ('critico', 'inspirou', 'util', 'divertido')),
+  tipo text not null check (tipo in ('critico', 'inspirou', 'util', 'aprendi', 'divertido')),
   visitante text not null check (char_length(visitante) between 8 and 64),
   criado_em timestamptz not null default now(),
   primary key (post_id, tipo, visitante)
 );
+-- tipos aceitos (para quem já tinha a tabela antes de "Aprendi algo")
+alter table public.reacoes drop constraint if exists reacoes_tipo_check;
+alter table public.reacoes add constraint reacoes_tipo_check check (tipo in ('critico', 'inspirou', 'util', 'aprendi', 'divertido'));
 create index if not exists reacoes_visitante on public.reacoes (visitante, criado_em desc);
 alter table public.reacoes enable row level security;
 revoke all on public.reacoes from anon, authenticated;
