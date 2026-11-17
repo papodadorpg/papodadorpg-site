@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-15T23:57:55+00:00",
+ "atualizado": "2026-11-17T02:55:26+00:00",
  "campanhas": {
   "strahd": {
    "playlist": "PLu-hxXZl-KUQqPuVdQ4vg71gQH-ODurab",
@@ -406,8 +406,8 @@
     },
     {
      "id": "9-mlsmFsBwo",
-     "titulo": "D&D 5.5 Vecna À Beira da Ruína - Episódio 44",
-     "duracao": ""
+     "titulo": "D&D 5.5 Vecna À Beira da Ruína - Episódio 44 | Partes de Nós",
+     "duracao": "2:44:29"
     }
    ]
   },
@@ -2021,6 +2021,12 @@
    "titulo": "VIROU MACACO! Descida ao Avernus Ep. 34 | Highlights D&D 5.5 (Descent into Avernus)",
    "duracao": "50:55",
    "capa": "img/yt/lgszg5MUwhc.jpg"
+  },
+  {
+   "id": "BhErN7oCt6s",
+   "titulo": "A COROA SERÁ SUA... Odisseia dos Lordes Dragões Ep. 23 | Highlights D&D 5.5",
+   "duracao": "56:51",
+   "capa": "img/yt/BhErN7oCt6s.jpg"
   }
  ]
 }

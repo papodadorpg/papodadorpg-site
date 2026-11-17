@@ -1,51 +1,14 @@
 {
- "atualizado": "2026-11-15T23:57:55+00:00",
+ "atualizado": "2026-11-17T02:55:26+00:00",
  "aovivo": [],
- "agendadas": [
-  {
-   "id": "9-mlsmFsBwo",
-   "titulo": "D&D 5.5 Vecna À Beira da Ruína - Episódio 44",
-   "inicio": "2026-11-16T23:45:00+00:00",
-   "capa": "img/yt/9-mlsmFsBwo-g.webp"
-  },
-  {
-   "id": "-jwFoH7tbgE",
-   "titulo": "D&D 5.5 Contos dos Reinos Esquecidos - Episódio 02",
-   "inicio": "2026-11-17T23:00:00+00:00",
-   "capa": "img/yt/-jwFoH7tbgE-g.webp"
-  },
-  {
-   "id": "DiNJ5U0nMEs",
-   "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 35",
-   "inicio": "2026-11-18T23:00:00+00:00",
-   "capa": "img/yt/DiNJ5U0nMEs-g.webp"
-  },
-  {
-   "id": "jnQZT1M2bC0",
-   "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 23",
-   "inicio": "2026-11-20T00:00:00+00:00",
-   "capa": "img/yt/jnQZT1M2bC0-g.webp"
-  },
-  {
-   "id": "dmMLS3f2kHU",
-   "titulo": "Terra Devastada O Que Restou de Nós - Episódio 03",
-   "inicio": "2026-11-27T00:00:00+00:00",
-   "capa": "img/yt/dmMLS3f2kHU-g.webp"
-  }
- ],
+ "agendadas": [],
  "itens": [
   {
-   "id": "MoXSwvvDmx0",
-   "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 23 | Conheçam os Lordes Dragões",
-   "data": "2026-11-15T01:57:55+00:00",
-   "capa": "img/yt/MoXSwvvDmx0.jpg",
-   "capa_grande": "img/yt/MoXSwvvDmx0-g.webp"
-  },
-  {
-   "id": "0-U7K9EssFM",
-   "titulo": "LIVE DE ALMOÇO 🍗 Bate-papo sobre RPG, D&D e mesas ao vivo | Papo Dado RPG",
-   "data": "2026-11-13T16:53:41+00:00",
-   "capa": "img/yt/0-U7K9EssFM.jpg"
+   "id": "BhErN7oCt6s",
+   "titulo": "A COROA SERÁ SUA... Odisseia dos Lordes Dragões Ep. 23 | Highlights D&D 5.5",
+   "data": "2026-11-16T12:55:26+00:00",
+   "capa": "img/yt/BhErN7oCt6s.jpg",
+   "capa_grande": "img/yt/BhErN7oCt6s-g.webp"
   },
   {
    "id": "lgszg5MUwhc",
@@ -54,25 +17,36 @@
    "capa": "img/yt/lgszg5MUwhc.jpg"
   },
   {
-   "id": "mkw_LGyRiWw",
-   "titulo": "D&D 5.5 Descida ao Avernus - Episódio 34 | Sangue, Ossos e Um Macaco Gigante",
-   "data": "2026-11-12T03:04:40+00:00",
-   "capa": "img/yt/mkw_LGyRiWw.jpg"
-  },
-  {
    "id": "mf_03Ukd-d8",
    "titulo": "QUEM CALA CONSENTE... Príncipes do Apocalipse Ep. 12 | Highlights D&D 5.5",
    "data": "2026-11-11T15:53:51+00:00",
    "capa": "img/yt/mf_03Ukd-d8.jpg"
   },
   {
-   "id": "c-SyK5cUEvQ",
-   "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 12 | E lá vamos nós...",
-   "data": "2026-11-11T03:53:51+00:00",
-   "capa": "img/yt/c-SyK5cUEvQ.jpg"
+   "id": "VjCYnXMvYz4",
+   "titulo": "MATEI MEU PAI... Casos de Família | Maldição de Strahd Ep. 36 | Highlights D&D 5.5 (Curse of Strahd)",
+   "data": "2026-11-11T02:55:26+00:00",
+   "capa": "img/yt/VjCYnXMvYz4.jpg"
+  },
+  {
+   "id": "Lx1ryfyf73o",
+   "titulo": "O HOMEM TORTO apareceu! A Lua Tortuosa Ep. 05 | Highlights D&D 5.5 de Terror (The Crooked Moon)",
+   "data": "2026-11-10T02:55:26+00:00",
+   "capa": "img/yt/Lx1ryfyf73o.jpg"
+  },
+  {
+   "id": "nO3QVCLUDcM",
+   "titulo": "O RPG DESTRUIU o The Game Awards 2025!",
+   "data": "2025-12-22T02:55:26+00:00",
+   "capa": "img/yt/nO3QVCLUDcM.jpg"
   }
  ],
  "shorts": [
+  {
+   "id": "NeYg75m0iYk",
+   "titulo": "Ele bebeu antes de ouvir a explicação 🌳 | Vecna: À Beira da Ruína (D&D)",
+   "capa": "img/yt/NeYg75m0iYk-s.webp"
+  },
   {
    "id": "NTE6S2Plt1s",
    "titulo": "O Homem Torto apareceu 🪓 | A Lua Tortuosa (D&D de terror)",
@@ -107,11 +81,6 @@
    "id": "O06QnwTnURc",
    "titulo": "A bruxa que voltou do Avernus",
    "capa": "img/yt/O06QnwTnURc-s.webp"
-  },
-  {
-   "id": "udwiLXq7DH0",
-   "titulo": "A Cantiga do Homem Torto",
-   "capa": "img/yt/udwiLXq7DH0-s.webp"
   }
  ]
 }
