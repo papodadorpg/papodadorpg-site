@@ -130,7 +130,7 @@ section.bloco.alt { background: var(--bg2); border-block: 1px solid var(--linha)
 .slot.hoje { background: color-mix(in srgb, var(--cor) 16%, transparent); border-radius: 0 8px 8px 0; padding: 8px 10px; box-shadow: 0 0 0 2px var(--cor); }
 .slot .tag-sessao { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .06em; background: var(--cor); color: var(--texto-cor, var(--preto)); padding: 2px 8px; border-radius: 999px; margin-bottom: 6px; }
 .dia.hoje:has(.slot.hoje) { border-width: 1px; box-shadow: none; padding: 15px 13px; }
-.dia.hoje:has(.slot.hoje) .slot:not(.hoje) { opacity: .5; }
+.dia.hoje:has(.slot.hoje) .slot:not(.hoje) { opacity: .75; } /* .75 mantém o texto legível (contraste) */
 .slot.off .hora { font-size: 16px; color: #dfe4f3; }
 .vazio { color: var(--suave); font-size: 14px; margin-top: auto; margin-bottom: auto; }
 .nota { margin-top: 18px; color: var(--suave); font-size: 14px; }
@@ -169,7 +169,14 @@ section.bloco.alt { background: var(--bg2); border-block: 1px solid var(--linha)
 .aviso-sessao { color: var(--laranja); font-weight: 700; }
 .menu a.link-admin { color: var(--laranja); }
 .mesa .ficha strong { color: var(--branco); font-weight: 700; }
-.chip.selo-live { border-color: var(--preto); background: var(--vermelho, #e5484d); color: var(--branco); }
+.chip.selo-live { border-color: var(--preto); background: #E00B33; color: var(--branco); }
+/* chips vermelhos com texto branco: um tom mais escuro que o da marca, para o texto ter contraste suficiente */
+[style*="--cor:#FB0F3A"] .chip.dia-chip, .chip.dia-chip[style*="--cor:#FB0F3A"], .slot[style*="--cor:#FB0F3A"] .tag-sessao { background: #E00B33; }
+/* assinar a agenda do canal (agenda.ics, gerada pelo gerar_campanhas.py) */
+.assinar { display: flex; gap: 14px 24px; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-top: 18px; }
+.assinar .nota { margin: 0; max-width: 62ch; }
+.assinar-agenda summary.btn { color: var(--branco); font-size: 15px; }
+.assinar-agenda .opcoes { left: 0; right: auto; min-width: 260px; }
 .mesa .acoes-mesa { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
 .mesa .acoes-mesa .btn { padding: 9px 16px; font-size: 14px; }
 .mesa .preco { font-size: 13px; color: var(--suave); }
@@ -426,7 +433,13 @@ footer.rodape img { height: 40px; width: auto; }
         <p>Horários de Brasília. Cada campanha é quinzenal: quando duas aparecem no mesmo dia, elas se revezam a cada semana.</p>
       </div>
       <div class="semana" id="semana"></div>
-      <p class="nota">Mudou algum horário? Os avisos saem primeiro na comunidade do WhatsApp e no Instagram. Quer as lives no seu calendário? Use o botão “＋ Agenda” em cada campanha.</p>
+      <div class="assinar">
+        <p class="nota">Assine a agenda uma vez e todas as lives aparecem no seu calendário, com as mudanças de horário e os cancelamentos. Os avisos também saem na comunidade do WhatsApp e no Instagram.</p>
+        <details class="menu-agenda assinar-agenda"><summary class="btn btn-linha">Assinar a agenda do canal</summary><div class="opcoes">
+          <a href="https://calendar.google.com/calendar/render?cid=webcal://papodadorpg.com.br/agenda.ics" target="_blank" rel="noopener">Google Agenda</a>
+          <a href="webcal://papodadorpg.com.br/agenda.ics">Apple (iPhone e Mac) ou Outlook</a>
+          <a href="agenda.ics" download>Baixar o arquivo .ics</a></div></details>
+      </div>
     </div>
   </section>
 
@@ -690,7 +703,8 @@ const norm = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g,
 const numEp = (t) => { const m = String(t).match(/Ep(?:is[oó]dio)?\.?\s*(\d+)/i); return m ? +m[1] : 0; };
 const resumosDe = (m) => (EPISODIOS?.highlights || []).filter((h) => norm(h.titulo).includes(norm(m.nome))).sort((a, b) => numEp(b.titulo) - numEp(a.titulo));
 const durTxt = (d) => { const p = String(d || '').split(':').map(Number); if (p.length < 2 || p.some(isNaN)) return ''; const min = p.length === 3 ? p[0] * 60 + p[1] : p[0]; return min >= 60 ? `${Math.floor(min / 60)}h${String(min % 60).padStart(2, '0')}` : `${min} min`; };
-const paginaUrl = (m) => `#/campanha/${m.id}`;
+let PAGINAS = {}; // campanhas/paginas.json: endereço da página própria de cada campanha (gerada pelo gerar_campanhas.py)
+const paginaUrl = (m) => (PAGINAS[m.id] ? `campanhas/${PAGINAS[m.id]}/` : `#/campanha/${m.id}`);
 // Título curto do episódio: "Episódio 33 · A Crosta"
 function tituloEp(t) {
   const m = String(t).match(/(Epis[oó]dio\s*(?:\d+|Final)|\bEp\.?\s*\d+|Sess[aã]o Zero).*/i);
@@ -1010,7 +1024,7 @@ function montarShorts() {
 // ================= PÁGINA DE CAMPANHA (#/campanha/<id>) =================
 async function carregarExtras() {
   const pegar = async (arq) => { try { const r = await fetch(arq, { cache: 'no-store' }); return r.ok ? await r.json() : null; } catch { return null; } };
-  EPISODIOS = await pegar('episodios.json');
+  [EPISODIOS, PAGINAS] = await Promise.all([pegar('episodios.json'), pegar('campanhas/paginas.json').then((x) => x || {})]);
 }
 
 function montarPagina(id) {
@@ -1089,12 +1103,14 @@ async function montarBlog() {
   } catch { /* sem posts: fica só a chamada para o blog */ }
 }
 // Post em destaque no estilo revista: capa de fundo, texto por cima (o primeiro é o grande)
+// capa em 720 px (img/blog/mini/, gerada pelo gerar_campanhas.py); se ainda não existir, usa a original
+const miniCapa = (u) => { const m = String(u || '').split('/object/public/blog/')[1]; return m ? `img/blog/mini/${decodeURIComponent(m).replace(/[^a-zA-Z0-9._-]+/g, '-').replace(/\.[a-z0-9]+$/i, '')}.webp` : u; };
 function destaqueBlog(p, grande) {
   const palavras = String(p.conteudo || '').replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
   const minutos = Math.max(1, Math.round(palavras / 200));
   const foto = { 'Henrique Müller': 'img/henrique.webp', 'Elisinha Müller': 'img/elisinha.webp' }[p.autor];
   return `<a class="dest-post${grande ? ' grande' : ''}" href="${BlogPD.urlPost(p)}">
-    ${p.capa_url ? `<img class="fundo" src="${esc(p.capa_url)}" alt="" loading="lazy">` : ''}
+    ${p.capa_url ? `<img class="fundo" src="${esc(miniCapa(p.capa_url))}" onerror="this.onerror=null;this.src='${esc(p.capa_url)}'" alt="" loading="lazy">` : ''}
     <div class="info-dest">
       ${p.categorias?.[0] ? `<span class="cat">${esc(p.categorias[0])}</span>` : ''}
       <h3>${esc(p.titulo)}</h3>
@@ -1244,7 +1260,7 @@ if (logadoAdmin()) document.querySelector('.menu').insertAdjacentHTML('beforeend
 prepararLives(); montarAgenda(); montarCampanhas(); montarEncerradas(); rota();
 Rastro.pagina();
 carregarAgenda().then((ok) => { if (ok) remontar(); });
-carregarExtras().then(() => { montarCampanhas(); montarEncerradas(); if (location.hash.startsWith('#/campanha/')) montarPagina(location.hash.split('/')[2]); });
+carregarExtras().then(() => { montarCampanhas(); montarEncerradas(); montarProxima(); if (location.hash.startsWith('#/campanha/')) montarPagina(location.hash.split('/')[2]); });
 carregarYT().then(() => { montarProxima(); montarVideos(); montarShorts(); });
 setInterval(montarProxima, 60000);
 setInterval(() => carregarYT().then(() => { montarProxima(); montarVideos(); montarShorts(); }), 15 * 60000);
