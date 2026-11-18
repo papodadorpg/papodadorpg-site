@@ -285,6 +285,7 @@ body:not(.modo-autor) .so-autor, .modo-autor .so-admin { display: none !importan
         <button role="tab" data-aba="acessos" aria-selected="true">Acessos</button>
         <button role="tab" data-aba="agenda" aria-selected="false">Agenda</button>
         <button role="tab" data-aba="blog" aria-selected="false">Blog <span class="novos" id="blog-revisao" title="Posts esperando aprovação" hidden></span></button>
+        <button role="tab" data-aba="resumos" aria-selected="false">Resumos</button>
         <button role="tab" data-aba="comentarios" aria-selected="false">Comentários <span class="novos" id="com-novos" hidden></span></button>
         <button role="tab" data-aba="admins" aria-selected="false">Admins</button>
         <button role="tab" data-aba="historico" aria-selected="false">Histórico</button>
@@ -423,6 +424,14 @@ body:not(.modo-autor) .so-autor, .modo-autor .so-admin { display: none !importan
           </div>
         </div>
       </form>
+    </section>
+
+    <!-- RESUMOS DOS EPISÓDIOS -->
+    <section id="aba-resumos" class="grade" hidden>
+      <div class="cab"><div><div class="rotulo">Campanhas</div><h2>Resumo dos episódios</h2><div class="dica">Um parágrafo por episódio ajuda quem perdeu a live a pegar o fio da história e faz a campanha aparecer no Google. O resumo entra na página da campanha na próxima atualização do site (todo dia às 17h17, ou na hora pelo botão “Atualizar agora” da aba Agenda).</div></div>
+        <label style="min-width:240px"><span>Campanha</span><select id="res-camp"></select></label></div>
+      <p class="msg" id="msg-res" role="status"></p>
+      <div class="grade" id="lista-res"></div>
     </section>
 
     <!-- COMENTÁRIOS -->
@@ -625,8 +634,9 @@ function abrirAba(aba) {
   if (aba === 'blog') carregarPosts();
   if (aba === 'comentarios') carregarComentarios();
   if (aba === 'admins') carregarAdmins();
+  if (aba === 'resumos') carregarResumos();
 }
-const ABAS = ['acessos', 'agenda', 'blog', 'comentarios', 'admins', 'historico'];
+const ABAS = ['acessos', 'agenda', 'blog', 'resumos', 'comentarios', 'admins', 'historico'];
 document.querySelectorAll('.abas button').forEach((b) => b.addEventListener('click', () => abrirAba(b.dataset.aba)));
 
 // ================= ACESSOS =================
@@ -1251,8 +1261,11 @@ $('lista-com').addEventListener('click', async (e) => {
     f.addEventListener('submit', async (ev) => {
       ev.preventDefault();
       const texto = f.querySelector('textarea').value.trim(); if (texto.length < 2) return;
+      const bt = f.querySelector('button[type=submit]');
+      if (bt.disabled) return; // clique duplo não publica a resposta duas vezes
+      bt.disabled = true; bt.textContent = 'Publicando…';
       const { error } = await sb.from('comentarios').insert({ post_id: el.dataset.post, resposta_de: id, nome: $('com-autor').value, texto, do_autor: true });
-      if (error) return aviso('msg-com', `Erro ao responder: ${error.message}`, 'erro');
+      if (error) { bt.disabled = false; bt.textContent = 'Publicar resposta'; return aviso('msg-com', `Erro ao responder: ${error.message}`, 'erro'); }
       await carregarComentarios(); aviso('msg-com', 'Resposta publicada.', 'ok');
     });
     return;
@@ -1321,6 +1334,47 @@ document.addEventListener('click', async (e) => {
   if (!confirm(`Tirar o acesso de ${b.dataset.email} ao admin?`)) return;
   try { await chamarAdmins({ acao: 'remover', id: b.dataset.remover }); await carregarAdmins(); aviso('msg-admins', `${b.dataset.email} não tem mais acesso.`, 'ok'); }
   catch (err) { aviso('msg-admins', `Não consegui remover: ${err.message}`, 'erro'); }
+});
+
+// ================= RESUMOS DOS EPISÓDIOS (aparecem nas páginas /campanhas/<nome>/) =================
+let EPIS_JSON = null;
+const tituloEpAdm = (t) => { const m = String(t).match(/(Epis[oó]dio\s*(?:\d+|Final)|\bEp\.?\s*\d+|Sess[aã]o Zero).*/i); return (m ? m[0] : t).replace(/\s*\|\s*/, ' · '); };
+async function carregarResumos() {
+  aviso('msg-res', 'Carregando…');
+  if (!CAMPS.length) { const r = await sb.from('campanhas').select('*').order('ordem'); CAMPS = r.data || []; }
+  if (!EPIS_JSON) { try { EPIS_JSON = await (await fetch('../episodios.json', { cache: 'no-store' })).json(); } catch { EPIS_JSON = { campanhas: {} }; } }
+  const com = CAMPS.filter((c) => (EPIS_JSON.campanhas?.[c.id]?.episodios || []).length);
+  const opc = (lista) => lista.map((c) => `<option value="${esc(c.id)}">${esc(c.dados.nome)} (${EPIS_JSON.campanhas[c.id].episodios.length})</option>`).join('');
+  const atual = $('res-camp').value;
+  $('res-camp').innerHTML = `<optgroup label="No ar">${opc(com.filter((c) => c.ativa))}</optgroup><optgroup label="Encerradas">${opc(com.filter((c) => !c.ativa))}</optgroup>`;
+  $('res-camp').value = com.some((c) => c.id === atual) ? atual : (com.find((c) => c.ativa)?.id || com[0]?.id || '');
+  await pintarResumos();
+}
+async function pintarResumos() {
+  const id = $('res-camp').value;
+  if (!id) { $('lista-res').innerHTML = '<div class="vazio">Nenhuma campanha com episódios ainda.</div>'; return aviso('msg-res', ''); }
+  const eps = (EPIS_JSON.campanhas[id]?.episodios || []).map((e, i) => ({ ...e, n: i + 1 })).reverse(); // mais recente primeiro
+  const { data, error } = await sb.from('episodios_resumos').select('video_id,texto').eq('campanha', id);
+  if (error) return aviso('msg-res', `Erro ao carregar: ${error.message}`, 'erro');
+  const R = Object.fromEntries((data || []).map((x) => [x.video_id, x.texto]));
+  aviso('msg-res', `${eps.filter((e) => R[e.id]).length} de ${eps.length} episódios com resumo. Comece pelos mais recentes: são os que mais gente procura.`);
+  $('lista-res').innerHTML = eps.map((e) => `<form class="painel grade" data-video="${esc(e.id)}" style="gap:8px">
+      <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline"><strong>${esc(tituloEpAdm(e.titulo))}</strong><a class="dica" href="https://www.youtube.com/watch?v=${esc(e.id)}" target="_blank" rel="noopener">Ver no YouTube ↗</a></div>
+      <textarea maxlength="3000" style="min-height:90px" placeholder="O que aconteceu neste episódio? De 3 a 6 frases, contando a história sem estragar as surpresas dos próximos.">${esc(R[e.id] || '')}</textarea>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><button class="btn btn-play btn-mini" type="submit">Salvar</button><span class="dica res-st">${R[e.id] ? 'Com resumo' : ''}</span></div></form>`).join('');
+}
+$('res-camp').addEventListener('change', pintarResumos);
+$('lista-res').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const f = e.target.closest('form'), bt = f.querySelector('button[type=submit]'), st = f.querySelector('.res-st');
+  if (bt.disabled) return;
+  const texto = f.querySelector('textarea').value.trim(), video_id = f.dataset.video;
+  bt.disabled = true; st.textContent = 'Salvando…';
+  const { error } = texto
+    ? await sb.from('episodios_resumos').upsert({ video_id, campanha: $('res-camp').value, texto })
+    : await sb.from('episodios_resumos').delete().eq('video_id', video_id);
+  bt.disabled = false;
+  st.textContent = error ? `Erro: ${error.message}` : texto ? 'Salvo. Entra na página da campanha na próxima atualização do site.' : 'Resumo apagado.';
 });
 
 // ================= MEU PERFIL (nome e foto que assinam os posts e as respostas no blog) =================
