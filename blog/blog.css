@@ -166,3 +166,44 @@ article.post .capa-post img { width: 100%; height: 100%; object-fit: cover; }
 footer.rodape { border-top: 1px solid var(--linha); padding-block: 32px; color: var(--suave); font-size: 14px; }
 footer.rodape .wrap { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: space-between; }
 footer.rodape img { height: 40px; width: auto; }
+
+/* ================= PÁGINAS DAS CAMPANHAS (/campanhas/<nome>/, geradas pelo gerar_campanhas.py) ================= */
+.cp { padding-block: 28px 24px; }
+.cp-topo { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 44px); align-items: start; margin-top: 18px; }
+.cp-capa img { width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; border-radius: var(--raio); border: 2px solid var(--preto); outline: 1px solid var(--linha); box-shadow: 0 6px 0 var(--cor, var(--laranja)); display: block; }
+.cp h1 { margin: 6px 0 12px; font-size: clamp(32px, 4.6vw, 52px); line-height: 1.05; font-weight: 800; text-wrap: balance; }
+.cp h2 { margin: 6px 0 14px; font-size: clamp(22px, 3vw, 30px); line-height: 1.15; }
+.cp-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.cp-chips .cp-quando { background: var(--cor, var(--laranja)); color: #fff; border-color: var(--preto); }
+.cp-sinopse { margin: 0 0 12px; color: #e6e9f4; font-size: 17px; line-height: 1.6; }
+.cp-proxima { margin: 4px 0 16px; padding: 10px 14px; border-left: 4px solid var(--cor, var(--laranja)); background: var(--superficie); border-radius: 0 10px 10px 0; color: var(--suave); }
+.cp-proxima strong { color: var(--branco); }
+.cp-acoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+.cp-bloco { margin-top: clamp(36px, 5vw, 56px); }
+.cp-dica { margin: -6px 0 14px; color: var(--suave); }
+.cp-ultima { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: 22px; align-items: center; background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio); padding: 16px; }
+.cp-ultima h2 { font-size: 22px; margin: 4px 0 8px; }
+.cp-ultima p { color: var(--suave); margin: 0 0 14px; }
+.cp-mini { position: relative; display: block; aspect-ratio: 16/9; border-radius: 10px; overflow: hidden; background: var(--bg); }
+.cp-mini img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cp-play { position: absolute; inset: 0; margin: auto; width: 54px; height: 54px; border-radius: 50%; background: var(--laranja); border: 2px solid var(--preto); }
+.cp-play::after { content: ""; position: absolute; left: 21px; top: 16px; border-left: 16px solid var(--preto); border-top: 10px solid transparent; border-bottom: 10px solid transparent; }
+.cp-episodios { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.cp-episodios li { background: var(--superficie); border: 1px solid var(--linha); border-radius: 12px; overflow: hidden; }
+.cp-episodios li.com-resumo { border-left: 4px solid var(--cor, var(--laranja)); }
+.cp-episodios a { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 11px 14px; color: var(--branco); text-decoration: none; }
+.cp-episodios a:hover { background: var(--bg2); }
+.cp-episodios .n { font-weight: 800; color: var(--suave); font-variant-numeric: tabular-nums; text-align: right; }
+.cp-episodios .t { font-weight: 600; overflow-wrap: anywhere; }
+.cp-episodios .d { color: var(--suave); font-size: 14px; font-variant-numeric: tabular-nums; }
+.cp-resumo { padding: 0 16px 12px 60px; color: #d5dbee; font-size: 15px; line-height: 1.6; }
+.cp-resumo p { margin: 0 0 8px; }
+.cp-chamada { display: flex; flex-wrap: wrap; gap: 18px; justify-content: space-between; align-items: center; background: var(--superficie); border: 2px solid var(--preto); outline: 1px solid var(--linha); border-radius: var(--raio); padding: 22px; margin-bottom: 56px; }
+.cp-chamada p { margin: 0; color: var(--suave); max-width: 60ch; }
+.cp-secao { font-size: 24px; margin: 8px 0 16px; }
+@media (max-width: 820px) {
+  .cp-topo, .cp-ultima { grid-template-columns: 1fr; }
+  .cp-resumo { padding-left: 16px; }
+  .cp-episodios a { grid-template-columns: 28px minmax(0, 1fr); }
+  .cp-episodios .d { grid-column: 2; }
+}
