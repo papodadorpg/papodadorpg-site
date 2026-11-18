@@ -1,0 +1,174 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Papo Dado RPG//Agenda das lives//PT-BR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Papo Dado RPG · lives
+X-WR-CALDESC:Todas as lives de RPG do canal Papo Dado RPG. Atualiza sozinha
+  quando muda horário ou data.
+X-WR-TIMEZONE:America/Sao_Paulo
+REFRESH-INTERVAL;VALUE=DURATION:PT12H
+X-PUBLISHED-TTL:PT12H
+BEGIN:VTIMEZONE
+TZID:America/Sao_Paulo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:-0300
+TZOFFSETTO:-0300
+TZNAME:-03
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:strahd@papodadorpg.com.br
+DTSTAMP:20261118T043458Z
+DTSTART;TZID=America/Sao_Paulo:20261109T203000
+DURATION:PT3H
+RRULE:FREQ=WEEKLY;INTERVAL=2
+SUMMARY:Maldição de Strahd · live no Papo Dado RPG
+DESCRIPTION:Terror gótico em Baróvia\, um vale preso nas brumas e governa
+ do pelo vampiro Strahd von Zarovich.\n\nAo vivo no YouTube: https://www.yo
+ utube.com/@papodadorpg/streams\nSobre a campanha: https://papodadorpg.com.
+ br/campanhas/maldicao-de-strahd/
+LOCATION:https://www.youtube.com/@papodadorpg
+URL:https://papodadorpg.com.br/campanhas/maldicao-de-strahd/
+END:VEVENT
+BEGIN:VEVENT
+UID:vecna@papodadorpg.com.br
+DTSTAMP:20261118T043458Z
+DTSTART;TZID=America/Sao_Paulo:20261102T204500
+DURATION:PT3H
+RRULE:FREQ=WEEKLY;INTERVAL=2
+SUMMARY:Vecna À Beira da Ruína · live no Papo Dado RPG
+DESCRIPTION:Uma jornada pelo multiverso para impedir que o arquilich Vecna 
+ refaça a realidade à sua imagem.\n\nAo vivo no YouTube: https://www.yout
+ ube.com/@papodadorpg/streams\nSobre a campanha: https://papodadorpg.com.br
+ /campanhas/vecna-a-beira-da-ruina/
+LOCATION:https://www.youtube.com/@papodadorpg
+URL:https://papodadorpg.com.br/campanhas/vecna-a-beira-da-ruina/
+END:VEVENT
+BEGIN:VEVENT
+UID:principes@papodadorpg.com.br
+DTSTAMP:20261118T043458Z
+DTSTART;TZID=America/Sao_Paulo:20261110T200000
+DURATION:PT3H
+RRULE:FREQ=WEEKLY;INTERVAL=2
+SUMMARY:Príncipes do Apocalipse · live no Papo Dado RPG
+DESCRIPTION:Cultos elementais despertam no Vale Dessarin e ameaçam soterra
+ r\, afogar\, queimar e varrer o Norte.\n\nAo vivo no YouTube: https://www.
+ youtube.com/@papodadorpg/streams\nSobre a campanha: https://papodadorpg.co
+ m.br/campanhas/principes-do-apocalipse/
+LOCATION:https://www.youtube.com/@papodadorpg
+URL:https://papodadorpg.com.br/campanhas/principes-do-apocalipse/
+END:VEVENT
+BEGIN:VEVENT
+UID:saltmarsh@papodadorpg.com.br
+DTSTAMP:20261118T043458Z
+DTSTART;TZID=America/Sao_Paulo:20261104T200000
+DURATION:PT3H
+RRULE:FREQ=WEEKLY;INTERVAL=2
+SUMMARY:Fantasmas de Saltmarsh · live no Papo Dado RPG
+DESCRIPTION:Contrabandistas\, naufrágios e mistérios do mar na pequena ci
+ dade portuária de Saltmarsh.\n\nAo vivo no YouTube: https://www.youtube.c
+ om/@papodadorpg/streams\nSobre a campanha: https://papodadorpg.com.br/camp
+ anhas/fantasmas-de-saltmarsh/
+LOCATION:https://www.youtube.com/@papodadorpg
+URL:https://papodadorpg.com.br/campanhas/fantasmas-de-saltmarsh/
+END:VEVENT
+BEGIN:VEVENT
+UID:avernus@papodadorpg.com.br
+DTSTAMP:20261118T043458Z
+DTSTART;TZID=America/Sao_Paulo:20261111T200000
+DURATION:PT3H
+RRULE:FREQ=WEEKLY;INTERVAL=2
+SUMMARY:Descida ao Avernus · live no Papo Dado RPG
+DESCRIPTION:De Baldur’s Gate ao primeiro círculo dos Nove Infernos\, ond
+ e a Guerra Sangrenta nunca acaba.\n\nAo vivo no YouTube: https://www.youtu
+ be.com/@papodadorpg/streams\nSobre a campanha: https://papodadorpg.com.br/
+ campanhas/descida-ao-avernus/
+LOCATION:https://www.youtube.com/@papodadorpg
+URL:https://papodadorpg.com.br/campanhas/descida-ao-avernus/
+END:VEVENT
+BEGIN:VEVENT
+UID:restou@papodadorpg.com.br
+DTSTAMP:20261118T043458Z
+DTSTART;TZID=America/Sao_Paulo:20261112T210000
+DURATION:PT3H
+RRULE:FREQ=WEEKLY;INTERVAL=2
+SUMMARY:O Que Restou de Nós · live no Papo Dado RPG
+DESCRIPTION:Sobreviver ao fim do mundo é apenas o começo.\n\nAo vivo no Y
+ ouTube: https://www.youtube.com/@papodadorpg/streams\nSobre a campanha: ht
+ tps://papodadorpg.com.br/campanhas/o-que-restou-de-nos/
+LOCATION:https://www.youtube.com/@papodadorpg
+URL:https://papodadorpg.com.br/campanhas/o-que-restou-de-nos/
+END:VEVENT
+BEGIN:VEVENT
+UID:mar@papodadorpg.com.br
+DTSTAMP:20261118T043458Z
+DTSTART;TZID=America/Sao_Paulo:20261105T210000
+DURATION:PT3H
+RRULE:FREQ=WEEKLY;INTERVAL=2
+SUMMARY:Além do Mar Sem Fim · live no Papo Dado RPG
+DESCRIPTION:Lusitânia\, 1390: uma epidemia que transforma os mortos espalh
+ a o desespero pela Ibéria.\n\nAo vivo no YouTube: https://www.youtube.com
+ /@papodadorpg/streams\nSobre a campanha: https://papodadorpg.com.br/campan
+ has/alem-do-mar-sem-fim/
+LOCATION:https://www.youtube.com/@papodadorpg
+URL:https://papodadorpg.com.br/campanhas/alem-do-mar-sem-fim/
+END:VEVENT
+BEGIN:VEVENT
+UID:odisseia@papodadorpg.com.br
+DTSTAMP:20261118T043458Z
+DTSTART;TZID=America/Sao_Paulo:20261031T200000
+DURATION:PT3H
+RRULE:FREQ=WEEKLY;INTERVAL=2
+SUMMARY:Odisseia dos Lordes Dragões · live no Papo Dado RPG
+DESCRIPTION:Uma epopeia de inspiração grega na terra de Thylea\, onde her
+ óis desafiam deuses\, titãs e o próprio destino.\n\nAo vivo no YouTube:
+  https://www.youtube.com/@papodadorpg/streams\nSobre a campanha: https://p
+ apodadorpg.com.br/campanhas/odisseia-dos-lordes-dragoes/
+LOCATION:https://www.youtube.com/@papodadorpg
+URL:https://papodadorpg.com.br/campanhas/odisseia-dos-lordes-dragoes/
+END:VEVENT
+BEGIN:VEVENT
+UID:contos@papodadorpg.com.br
+DTSTAMP:20261118T043458Z
+DTSTART;TZID=America/Sao_Paulo:20261103T200000
+DURATION:PT3H
+RRULE:FREQ=WEEKLY;INTERVAL=2
+SUMMARY:Contos dos Reinos Esquecidos · live no Papo Dado RPG
+DESCRIPTION:Das masmorras de Tales from the Yawning Portal às terras de Th
+ ay em Arcana Unleashed: Deadfall. Duas campanhas lendárias\, uma única j
+ ornada até o nível 20.\n\nAo vivo no YouTube: https://www.youtube.com/@p
+ apodadorpg/streams\nSobre a campanha: https://papodadorpg.com.br/campanhas
+ /contos-dos-reinos-esquecidos/
+LOCATION:https://www.youtube.com/@papodadorpg
+URL:https://papodadorpg.com.br/campanhas/contos-dos-reinos-esquecidos/
+END:VEVENT
+BEGIN:VEVENT
+UID:lua@papodadorpg.com.br
+DTSTAMP:20261118T043458Z
+DTSTART;TZID=America/Sao_Paulo:20261107T220000
+DURATION:PT3H
+RRULE:FREQ=WEEKLY;INTERVAL=2
+SUMMARY:A Lua Tortuosa · live no Papo Dado RPG
+DESCRIPTION:O Expresso Luz-Fantasma só tem passagem de ida para além da M
+ ortalha.\n\nAo vivo no YouTube: https://www.youtube.com/@papodadorpg/strea
+ ms\nSobre a campanha: https://papodadorpg.com.br/campanhas/a-lua-tortuosa/
+LOCATION:https://www.youtube.com/@papodadorpg
+URL:https://papodadorpg.com.br/campanhas/a-lua-tortuosa/
+END:VEVENT
+BEGIN:VEVENT
+UID:almoco@papodadorpg.com.br
+DTSTAMP:20261118T043458Z
+DTSTART;TZID=America/Sao_Paulo:20261106T120000
+DURATION:PT3H
+RRULE:FREQ=WEEKLY;INTERVAL=1
+SUMMARY:Live de Almoço · live no Papo Dado RPG
+DESCRIPTION:Toda sexta\, ao meio-dia: bate-papo aberto sobre RPG de mesa\, 
+ D&D\, bastidores das campanhas e as perguntas do chat.\n\nAo vivo no YouTu
+ be: https://www.youtube.com/@papodadorpg/streams\nSobre a campanha: https:
+ //papodadorpg.com.br/#agenda
+LOCATION:https://www.youtube.com/@papodadorpg
+URL:https://papodadorpg.com.br/#agenda
+END:VEVENT
+END:VCALENDAR
