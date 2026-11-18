@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Privacidade · Papo Dado RPG</title>
-<meta name="description" content="Como o site do Papo Dado RPG trata os dados de quem visita, comenta no blog ou entra com o Google.">
+<meta name="description" content="Cookies e privacidade no site do Papo Dado RPG: o que fica no seu navegador, como contamos visitas e como tratamos os dados de quem comenta no blog.">
 <meta name="theme-color" content="#0E1426">
 <link rel="canonical" href="https://papodadorpg.com.br/privacidade">
 <link rel="icon" href="/img/icone.svg" type="image/svg+xml">
@@ -28,17 +28,43 @@
     <h1>Como cuidamos dos seus dados</h1>
     <p class="linha-fina">O Papo Dado RPG é um canal de RPG ao vivo. Este site guarda o mínimo possível sobre quem passa por aqui, e nada disso é vendido ou repassado a ninguém.</p>
     <div class="texto">
+      <h2>Quem cuida dos dados</h2>
+      <p>O site papodadorpg.com.br é mantido pela equipe do Papo Dado RPG. Para qualquer dúvida ou pedido sobre seus dados, escreva para <a href="mailto:papodadorpg@gmail.com">papodadorpg@gmail.com</a>.</p>
+      <h2>Cookies e o que fica no seu navegador</h2>
+      <p>O site não usa cookies de anúncio nem de rastreamento de outras empresas. Ele guarda poucas informações no próprio navegador (no armazenamento local, que funciona como um cookie):</p>
+      <ul>
+        <li><strong>Escolha sobre a contagem de visitas</strong> (<code>pd_privacidade</code>): lembra se você aceitou ou recusou, para o aviso não aparecer de novo.</li>
+        <li><strong>Código aleatório do navegador</strong> (<code>pd_v</code>): conta visitas sem identificar você e lembra as reações e curtidas que você deu no blog. Também ajuda a barrar spam nos comentários.</li>
+        <li><strong>Visita atual</strong> (<code>pd_s</code>): junta as páginas vistas numa mesma visita; vale por 30 minutos.</li>
+        <li><strong>Seu nome nos comentários</strong> (<code>pd_nome</code>): preenche o campo de nome da próxima vez que você comentar.</li>
+        <li><strong>Login com o Google</strong> (<code>pd-leitor</code>): mantém você conectado para comentar, até clicar em "Sair".</li>
+      </ul>
+      <p>Você pode apagar tudo isso a qualquer momento limpando os dados do site nas configurações do navegador.</p>
       <h2>Visitas ao site</h2>
-      <p>Contamos visitas e cliques de forma anônima, para saber quais páginas e campanhas interessam mais. O navegador recebe um código aleatório; não guardamos seu nome, e-mail ou endereço IP nessa contagem.</p>
-      <h2>Comentários no blog</h2>
-      <p>Para comentar sem entrar com uma conta, você escreve só um nome. O nome e o texto do comentário ficam públicos no post. Também guardamos um código aleatório do seu navegador, que serve apenas para evitar spam. Não pedimos seu e-mail.</p>
+      <p>Contamos visitas e cliques de forma anônima, para saber quais páginas e campanhas interessam mais. Guardamos só o código aleatório, a página, o tipo de aparelho (celular, tablet ou computador) e de onde a visita veio (por exemplo, YouTube ou Instagram). Não guardamos seu nome, e-mail ou endereço IP nessa contagem.</p>
+      <p>Se preferir não ser contado, clique em "Recusar" no aviso de privacidade. A contagem para no mesmo instante e os códigos de visita são apagados. Se depois você reagir a um post ou curtir um comentário, um código novo é criado só para lembrar disso.</p>
+      <p><button type="button" class="btn btn-linha" id="mudar-privacidade">Mudar minha escolha</button></p>
+      <h2>Comentários, reações e curtidas</h2>
+      <p>Para comentar sem entrar com uma conta, você escreve só um nome. O nome e o texto do comentário ficam públicos no post. Junto do comentário guardamos o código aleatório do navegador, que serve apenas para evitar spam. Não pedimos seu e-mail. Reações aos posts e curtidas em comentários são contadas pelo mesmo código, sem identificar quem reagiu.</p>
       <h2>Entrar com o Google</h2>
       <p>Se você preferir entrar com o Google para comentar, recebemos da sua conta o nome, a foto e o endereço de e-mail. O nome e a foto aparecem junto dos seus comentários. O e-mail não é mostrado no site nem usado para enviar mensagens; ele só identifica o seu login. Você pode sair a qualquer momento pelo botão "Sair" na área de comentários.</p>
-      <h2>Onde os dados ficam</h2>
-      <p>Os comentários e os logins ficam guardados no Supabase, o serviço de banco de dados que o site usa. Quando alguém comenta, a equipe do canal recebe um aviso por e-mail com o nome e o texto do comentário, para poder responder.</p>
+      <h2>Quem escreve no blog</h2>
+      <p>Colaboradores convidados para escrever no blog entram com e-mail e senha. Guardamos o e-mail para o login e para avisar quando um post é aprovado ou precisa de ajustes. O nome e a foto que a pessoa escolhe no perfil aparecem assinando os posts.</p>
+      <h2>Serviços usados pelo site</h2>
+      <p>Algumas partes do site dependem de serviços de outras empresas, que recebem dados técnicos da sua conexão (como o endereço IP e o navegador) ao carregar a página, conforme as políticas de cada uma:</p>
+      <ul>
+        <li><strong>Supabase</strong>: banco de dados onde ficam posts, comentários, reações, logins e a contagem de visitas.</li>
+        <li><strong>GitHub Pages</strong>: hospedagem do site.</li>
+        <li><strong>Google</strong>: fontes do site (Google Fonts), botão "Entrar com o Google" nas páginas dos posts e envio dos avisos de comentário por e-mail para a equipe.</li>
+        <li><strong>YouTube</strong>: miniaturas dos vídeos e vídeos incorporados em alguns posts. Ao dar play, valem as regras de privacidade do YouTube.</li>
+        <li><strong>jsDelivr</strong>: entrega algumas bibliotecas usadas pelo blog.</li>
+      </ul>
+      <p>Os botões de compartilhar dos posts são links simples: o WhatsApp, o Facebook ou o Instagram só recebem algo quando você clica e decide compartilhar.</p>
       <h2>Seus direitos</h2>
-      <p>Você pode pedir para ver, corrigir ou apagar seus comentários e os dados do seu login, como prevê a Lei Geral de Proteção de Dados (LGPD). É só escrever para <a href="mailto:papodadorpg@gmail.com">papodadorpg@gmail.com</a>.</p>
-      <p><em>Atualizado em 16 de novembro de 2026.</em></p>
+      <p>Você pode pedir para ver, corrigir ou apagar seus comentários e os dados do seu login, ou tirar dúvidas sobre como tratamos seus dados, como prevê a Lei Geral de Proteção de Dados (LGPD). É só escrever para <a href="mailto:papodadorpg@gmail.com">papodadorpg@gmail.com</a>.</p>
+      <h2>Mudanças nesta página</h2>
+      <p>Se o site passar a usar algo novo, como anúncios, esta página será atualizada antes, e o aviso de privacidade volta a aparecer quando a mudança pedir uma nova escolha.</p>
+      <p><em>Atualizado em 18 de novembro de 2026.</em></p>
     </div>
   </article>
 </main>
