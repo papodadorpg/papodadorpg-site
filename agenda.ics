@@ -20,7 +20,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:strahd@papodadorpg.com.br
-DTSTAMP:20261118T131012Z
+DTSTAMP:20261118T212946Z
 DTSTART;TZID=America/Sao_Paulo:20261109T203000
 DURATION:PT3H
 RRULE:FREQ=WEEKLY;INTERVAL=2
@@ -34,7 +34,7 @@ URL:https://papodadorpg.com.br/campanhas/maldicao-de-strahd/
 END:VEVENT
 BEGIN:VEVENT
 UID:vecna@papodadorpg.com.br
-DTSTAMP:20261118T131012Z
+DTSTAMP:20261118T212946Z
 DTSTART;TZID=America/Sao_Paulo:20261102T204500
 DURATION:PT3H
 RRULE:FREQ=WEEKLY;INTERVAL=2
@@ -48,7 +48,7 @@ URL:https://papodadorpg.com.br/campanhas/vecna-a-beira-da-ruina/
 END:VEVENT
 BEGIN:VEVENT
 UID:principes@papodadorpg.com.br
-DTSTAMP:20261118T131012Z
+DTSTAMP:20261118T212946Z
 DTSTART;TZID=America/Sao_Paulo:20261110T200000
 DURATION:PT3H
 RRULE:FREQ=WEEKLY;INTERVAL=2
@@ -62,7 +62,7 @@ URL:https://papodadorpg.com.br/campanhas/principes-do-apocalipse/
 END:VEVENT
 BEGIN:VEVENT
 UID:saltmarsh@papodadorpg.com.br
-DTSTAMP:20261118T131012Z
+DTSTAMP:20261118T212946Z
 DTSTART;TZID=America/Sao_Paulo:20261104T200000
 DURATION:PT3H
 RRULE:FREQ=WEEKLY;INTERVAL=2
@@ -73,10 +73,11 @@ DESCRIPTION:Contrabandistas\, naufrágios e mistérios do mar na pequena ci
  anhas/fantasmas-de-saltmarsh/
 LOCATION:https://www.youtube.com/@papodadorpg
 URL:https://papodadorpg.com.br/campanhas/fantasmas-de-saltmarsh/
+EXDATE;TZID=America/Sao_Paulo:20261118T200000
 END:VEVENT
 BEGIN:VEVENT
 UID:avernus@papodadorpg.com.br
-DTSTAMP:20261118T131012Z
+DTSTAMP:20261118T212946Z
 DTSTART;TZID=America/Sao_Paulo:20261111T200000
 DURATION:PT3H
 RRULE:FREQ=WEEKLY;INTERVAL=2
@@ -90,7 +91,7 @@ URL:https://papodadorpg.com.br/campanhas/descida-ao-avernus/
 END:VEVENT
 BEGIN:VEVENT
 UID:restou@papodadorpg.com.br
-DTSTAMP:20261118T131012Z
+DTSTAMP:20261118T212946Z
 DTSTART;TZID=America/Sao_Paulo:20261112T210000
 DURATION:PT3H
 RRULE:FREQ=WEEKLY;INTERVAL=2
@@ -103,7 +104,7 @@ URL:https://papodadorpg.com.br/campanhas/o-que-restou-de-nos/
 END:VEVENT
 BEGIN:VEVENT
 UID:mar@papodadorpg.com.br
-DTSTAMP:20261118T131012Z
+DTSTAMP:20261118T212946Z
 DTSTART;TZID=America/Sao_Paulo:20261105T210000
 DURATION:PT3H
 RRULE:FREQ=WEEKLY;INTERVAL=2
@@ -117,7 +118,7 @@ URL:https://papodadorpg.com.br/campanhas/alem-do-mar-sem-fim/
 END:VEVENT
 BEGIN:VEVENT
 UID:odisseia@papodadorpg.com.br
-DTSTAMP:20261118T131012Z
+DTSTAMP:20261118T212946Z
 DTSTART;TZID=America/Sao_Paulo:20261031T200000
 DURATION:PT3H
 RRULE:FREQ=WEEKLY;INTERVAL=2
@@ -131,7 +132,7 @@ URL:https://papodadorpg.com.br/campanhas/odisseia-dos-lordes-dragoes/
 END:VEVENT
 BEGIN:VEVENT
 UID:contos@papodadorpg.com.br
-DTSTAMP:20261118T131012Z
+DTSTAMP:20261118T212946Z
 DTSTART;TZID=America/Sao_Paulo:20261103T200000
 DURATION:PT3H
 RRULE:FREQ=WEEKLY;INTERVAL=2
@@ -146,7 +147,7 @@ URL:https://papodadorpg.com.br/campanhas/contos-dos-reinos-esquecidos/
 END:VEVENT
 BEGIN:VEVENT
 UID:lua@papodadorpg.com.br
-DTSTAMP:20261118T131012Z
+DTSTAMP:20261118T212946Z
 DTSTART;TZID=America/Sao_Paulo:20261107T220000
 DURATION:PT3H
 RRULE:FREQ=WEEKLY;INTERVAL=2
@@ -159,7 +160,7 @@ URL:https://papodadorpg.com.br/campanhas/a-lua-tortuosa/
 END:VEVENT
 BEGIN:VEVENT
 UID:almoco@papodadorpg.com.br
-DTSTAMP:20261118T131012Z
+DTSTAMP:20261118T212946Z
 DTSTART;TZID=America/Sao_Paulo:20261106T120000
 DURATION:PT3H
 RRULE:FREQ=WEEKLY;INTERVAL=1
