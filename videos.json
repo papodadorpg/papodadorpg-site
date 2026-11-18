@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-18T04:34:22+00:00",
+ "atualizado": "2026-11-18T21:31:41+00:00",
  "aovivo": [],
  "agendadas": [
   {
@@ -62,6 +62,11 @@
  ],
  "shorts": [
   {
+   "id": "kBIBDh8jEsY",
+   "titulo": "Joelhos não infinitos",
+   "capa": "img/yt/kBIBDh8jEsY-s.webp"
+  },
+  {
    "id": "v8aQ8IMAWRQ",
    "titulo": "Arruma essa postura",
    "capa": "img/yt/v8aQ8IMAWRQ-s.webp"
@@ -95,11 +100,6 @@
    "id": "9x3z4CMk7hs",
    "titulo": "Mais um crítico no Shatar",
    "capa": "img/yt/9x3z4CMk7hs-s.webp"
-  },
-  {
-   "id": "UK_0FPNkzPQ",
-   "titulo": "A escolha que ninguém esperava #rpg #dnd",
-   "capa": "img/yt/UK_0FPNkzPQ-s.webp"
   }
  ]
 }
