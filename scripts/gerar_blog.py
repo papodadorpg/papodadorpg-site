@@ -135,7 +135,7 @@ RODAPE = """<footer class="rodape"><div class="wrap">
 
 def assinatura(p):
     foto = AUTORES.get(p["autor"])
-    img = f'<img src="{foto}" alt="" width="32" height="32" loading="lazy">' if foto else '<span class="sem-foto" aria-hidden="true"></span>'
+    img = f'<img src="{e(foto)}" alt="" width="32" height="32" loading="lazy">' if foto else '<span class="sem-foto" aria-hidden="true"></span>'
     return f'<span class="assinatura">{img}<span><strong>{e(p["autor"])}</strong> · {e(data_longa(p["publicar_em"]))}</span></span>'
 
 
@@ -272,7 +272,17 @@ def main():
         print(f"Supabase indisponível; blog não foi alterado: {err}", file=sys.stderr)
         sys.exit(0)
 
+    # nome e foto de quem assina vêm do perfil editado no /admin (a lista fixa no topo fica de reserva)
+    try:
+        for pf in json.loads(baixar(f"{cfg['supabase_url']}/rest/v1/rpc/perfis_blog", cab=cab)):
+            if pf.get("nome") and pf.get("foto_url"):
+                AUTORES[pf["nome"]] = pf["foto_url"]
+    except Exception as err:
+        print(f"perfis não lidos (segue com a lista fixa): {err}", file=sys.stderr)
+
     img = Imagens(pasta, f"{cfg['supabase_url']}/storage/v1/object/public/blog/")
+    for nome_autor, foto in list(AUTORES.items()):
+        AUTORES[nome_autor] = img.local(foto)
     for p in posts:
         p["_capa"] = img.local(p.get("capa_url"))
         p["_og"] = img.og(p["slug"], p["_capa"])
