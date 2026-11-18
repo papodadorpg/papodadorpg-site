@@ -92,13 +92,14 @@
     caixa.innerHTML = `<p class="reacoes-titulo">Como foi esse post pra você?</p><div class="reacoes-lista">${REACOES.map(([t, e, n]) =>
       `<button type="button" class="reacao" data-tipo="${t}" aria-pressed="false"><span class="reacao-emoji" aria-hidden="true">${e}</span><span>${n}</span><span class="reacao-n"></span></button>`).join('')}</div>`;
     antesDe.parentNode.insertBefore(caixa, antesDe);
-    const eu = visitante() || (window.__pdv ||= `t-${Math.random().toString(36).slice(2, 12)}`);
+    // o código do navegador só é criado quando a pessoa reage (para quem recusou a contagem de visitas)
+    const eu = () => visitante() || (window.__pdv ||= `t-${Math.random().toString(36).slice(2, 12)}`);
     const mostrar = (d) => caixa.querySelectorAll('.reacao').forEach((b) => {
       const n = d.contagem?.[b.dataset.tipo] || 0;
       b.querySelector('.reacao-n').textContent = n ? String(n) : '';
       b.setAttribute('aria-pressed', String((d.minhas || []).includes(b.dataset.tipo)));
     });
-    try { mostrar(await rpc('reacoes_do_post', { p_post: postId, p_visitante: eu })); } catch { /* sem contagem por enquanto */ }
+    try { mostrar(await rpc('reacoes_do_post', { p_post: postId, p_visitante: guardado('pd_v') || window.__pdv || null })); } catch { /* sem contagem por enquanto */ }
     caixa.addEventListener('click', async (ev) => {
       const b = ev.target.closest('.reacao'); if (!b || b.disabled) return;
       b.disabled = true;
@@ -107,7 +108,7 @@
       b.setAttribute('aria-pressed', String(!marcado));
       el.textContent = String(Math.max(0, (+el.textContent || 0) + (marcado ? -1 : 1)) || '');
       if (!marcado) { b.classList.remove('pulou'); void b.offsetWidth; b.classList.add('pulou'); }
-      try { mostrar(await rpc('reagir', { p_post: postId, p_tipo: b.dataset.tipo, p_visitante: eu })); }
+      try { mostrar(await rpc('reagir', { p_post: postId, p_tipo: b.dataset.tipo, p_visitante: eu() })); }
       catch { b.setAttribute('aria-pressed', String(marcado)); }
       b.disabled = false;
     });
@@ -177,6 +178,7 @@
     const caixa = document.getElementById('comentarios');
     if (!caixa || !caixa.dataset.post) return;
     const postId = caixa.dataset.post;
+    compartilhar();
     reacoes(postId, caixa);
     caixa.innerHTML = `<div class="com-topo"><span class="com-icone">${ICONE}</span><div><div class="rotulo">Comentários</div>
         <h2 id="com-titulo">Puxe uma cadeira e comente</h2></div></div>
@@ -197,7 +199,7 @@
     nome.value = guardado('pd_nome');
     let respondendo = null, sessao = null;
     // curtidas: mesmo código de visitante das reações do post (uma curtida por navegador em cada comentário)
-    const eu = visitante() || (window.__pdv ||= `t-${Math.random().toString(36).slice(2, 12)}`);
+    const eu = () => visitante() || (window.__pdv ||= `t-${Math.random().toString(36).slice(2, 12)}`);
     function pintarCurtida(b, n, minha) {
       b.setAttribute('aria-pressed', String(minha));
       b.querySelector('.com-curtir-n').textContent = n ? String(n) : '';
@@ -205,7 +207,7 @@
     }
     async function curtidas() {
       try {
-        const d = await rpc('curtidas_do_post', { p_post: postId, p_visitante: eu });
+        const d = await rpc('curtidas_do_post', { p_post: postId, p_visitante: guardado('pd_v') || window.__pdv || null });
         lista.querySelectorAll('[data-curtir]').forEach((b) => pintarCurtida(b, d.contagem?.[b.dataset.curtir] || 0, (d.minhas || []).includes(b.dataset.curtir)));
       } catch { /* sem contagem por enquanto */ }
     }
@@ -216,7 +218,7 @@
       const marcado = b.getAttribute('aria-pressed') === 'true', n = +b.querySelector('.com-curtir-n').textContent || 0;
       pintarCurtida(b, Math.max(0, n + (marcado ? -1 : 1)), !marcado);
       if (!marcado) { b.classList.remove('pulou'); void b.offsetWidth; b.classList.add('pulou'); }
-      try { const d = await rpc('curtir_comentario', { p_comentario: b.dataset.curtir, p_visitante: eu }); pintarCurtida(b, d.n, d.curtido); }
+      try { const d = await rpc('curtir_comentario', { p_comentario: b.dataset.curtir, p_visitante: eu() }); pintarCurtida(b, d.n, d.curtido); }
       catch { pintarCurtida(b, n, marcado); }
       b.disabled = false;
     }
@@ -316,7 +318,7 @@
     try {
       const robo = navigator.webdriver || /bot|crawl|spider|slurp|preview|lighthouse|headless|facebookexternalhit|whatsapp/i.test(navigator.userAgent);
       const admin = Object.keys(localStorage).some((k) => /^sb-.+-auth-token$/.test(k));
-      if (robo || admin || /^(localhost|127\.)/.test(location.hostname)) return;
+      if (robo || admin || !contarVisitas() || /^(localhost|127\.)/.test(location.hostname)) return;
       const uuid = () => crypto.randomUUID();
       let v = localStorage.getItem('pd_v'); if (!v) { v = uuid(); localStorage.setItem('pd_v', v); }
       let s = null, nova = false;
@@ -324,6 +326,7 @@
       if (!s) { s = uuid(); nova = true; }
       const ua = navigator.userAgent, aparelho = /iPad|Tablet/i.test(ua) ? 'tablet' : /Mobi|Android|iPhone/i.test(ua) ? 'celular' : 'computador';
       const enviar = (ev) => {
+        if (!contarVisitas()) return; // recusou no aviso de privacidade durante a visita
         localStorage.setItem('pd_s', JSON.stringify({ id: s, t: Date.now() }));
         fetch(`${SB.url}/rest/v1/eventos`, { method: 'POST', keepalive: true,
           headers: { apikey: SB.chave, Authorization: `Bearer ${SB.chave}`, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
@@ -340,7 +343,7 @@
       const pagina = location.pathname.slice(0, 120);
       enviar({ tipo: 'pagina', pagina, origem });
       document.addEventListener('click', (e) => {
-        const el = e.target.closest('a, button'); if (!el) return;
+        const el = e.target.closest('a, button'); if (!el || el.closest('#aviso-priv')) return;
         const area = el.closest('.topo') ? 'Menu' : el.closest('.comentarios') ? 'Blog: comentários' : el.closest('article.post') ? 'Blog: post' : el.closest('.mais') ? 'Blog: mais posts' : 'Blog: lista';
         let alvo = (el.querySelector('h3')?.textContent || el.textContent || '').replace(/\s+/g, ' ').trim();
         if (alvo.length > 80) alvo = alvo.slice(0, 77) + '…';
@@ -372,7 +375,102 @@
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && topo.classList.contains('menu-aberto')) { abrir(false); b.focus(); } });
     matchMedia('(min-width: 861px)').addEventListener('change', (m) => { if (m.matches) abrir(false); });
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', menuCelular); else menuCelular();
+  // ================= COMPARTILHAR =================
+  // Botões no fim de cada post: WhatsApp, Instagram, Facebook e copiar o link.
+  // O Instagram não aceita links pela web: no celular abre o menu de compartilhar do aparelho (que lista o Instagram);
+  // no computador copia o link para colar no Story ou no Direct.
+  const ICONES_COMP = {"whatsapp": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M12 2.2A9.7 9.7 0 0 0 3.7 17l-1.4 4.8 4.9-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.9 2.3 1 2.5c.1.2 1.7 2.6 4.2 3.7 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.6-.4z\"/></svg>", "instagram": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/><circle cx=\"12\" cy=\"12\" r=\"4.2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/><circle cx=\"17.4\" cy=\"6.6\" r=\"1.3\" fill=\"currentColor\"/></svg>", "facebook": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M13.5 21.5v-8h2.7l.4-3.2h-3.1V8.3c0-.9.3-1.6 1.6-1.6h1.7V3.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.3H7.4v3.2h2.7v8z\"/></svg>", "link": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" d=\"M10 14a4.5 4.5 0 0 0 6.4 0l3.2-3.2a4.5 4.5 0 0 0-6.4-6.4l-1.1 1.1M14 10a4.5 4.5 0 0 0-6.4 0l-3.2 3.2a4.5 4.5 0 0 0 6.4 6.4l1.1-1.1\"/></svg>"};
+  async function copiarTexto(t) {
+    try { await navigator.clipboard.writeText(t); return true; } catch { /* tenta do jeito antigo */ }
+    try {
+      const a = document.createElement('textarea'); a.value = t; a.setAttribute('readonly', ''); a.style.position = 'fixed'; a.style.opacity = '0';
+      document.body.appendChild(a); a.select(); const ok = document.execCommand('copy'); a.remove(); return ok;
+    } catch { return false; }
+  }
+  function compartilhar() {
+    const art = document.querySelector('article.post'), texto = art && art.querySelector('.texto');
+    if (!texto || art.querySelector('.compartilhar')) return;
+    const titulo = (art.querySelector('h1')?.textContent || document.title).trim();
+    const url = location.origin + location.pathname;
+    const com = (fonte) => `${url}?utm_source=${fonte}`;
+    const caixa = document.createElement('div');
+    caixa.className = 'compartilhar';
+    caixa.innerHTML = `<p class="comp-titulo">Gostou? Mande para a sua mesa</p>
+      <div class="comp-botoes">
+        <a class="comp comp-whatsapp" href="https://wa.me/?text=${encodeURIComponent(`${titulo} ${com('whatsapp')}`)}" target="_blank" rel="noopener">${ICONES_COMP.whatsapp}<span>WhatsApp</span></a>
+        <button type="button" class="comp comp-instagram" data-comp="instagram">${ICONES_COMP.instagram}<span>Instagram</span></button>
+        <a class="comp comp-facebook" href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(com('facebook'))}" target="_blank" rel="noopener">${ICONES_COMP.facebook}<span>Facebook</span></a>
+        <button type="button" class="comp comp-link" data-comp="link">${ICONES_COMP.link}<span>Copiar link</span></button>
+      </div>
+      <p class="comp-msg" role="status"></p>`;
+    texto.after(caixa);
+    const msg = caixa.querySelector('.comp-msg');
+    let tempoMsg = 0;
+    const avisar = (t) => { msg.textContent = t; clearTimeout(tempoMsg); tempoMsg = setTimeout(() => { msg.textContent = ''; }, 5000); };
+    caixa.addEventListener('click', async (ev) => {
+      const b = ev.target.closest('[data-comp]'); if (!b) return;
+      if (b.dataset.comp === 'instagram' && navigator.share && matchMedia('(pointer: coarse)').matches) {
+        try { await navigator.share({ title: titulo, url: com('instagram') }); } catch { /* fechou o menu */ }
+        return;
+      }
+      const ok = await copiarTexto(b.dataset.comp === 'instagram' ? com('instagram') : url);
+      avisar(!ok ? `Não consegui copiar. O link é ${url}` : b.dataset.comp === 'instagram'
+        ? 'Link copiado! Agora é só colar no seu Story ou no Direct do Instagram.' : 'Link copiado!');
+    });
+  }
 
-  window.BlogPD = { SB, listar, card, artigo, limpar, esc, dataLonga, urlPost, rastro, sbGet, caixaComentarios, comentarios };
+  // ================= PRIVACIDADE =================
+  // Aviso na primeira visita (em todas as páginas que carregam este arquivo). A contagem anônima de visitas
+  // segue até a pessoa recusar; quem recusa não é mais contado e tem os códigos de visita apagados.
+  // Suba VERSAO_PRIV quando a política mudar de um jeito que peça uma nova escolha (o aviso volta para todo mundo).
+  const VERSAO_PRIV = '1';
+  const escolhaPriv = () => { const [e, v] = guardado('pd_privacidade').split('-'); return v === VERSAO_PRIV ? e : ''; };
+  const contarVisitas = () => escolhaPriv() !== 'nao';
+  const ESTILO_PRIV = `
+.aviso-priv { position: fixed; z-index: 60; left: 16px; bottom: 16px; max-width: 420px; padding: 16px 18px; border-radius: 14px;
+  background: #171f38; color: #fff; border: 2px solid #000; outline: 1px solid #26304f; box-shadow: 0 18px 40px rgba(0,0,0,.5);
+  font: 15px/1.5 "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif; }
+.aviso-priv strong { display: block; font-size: 16px; margin-bottom: 4px; }
+.aviso-priv p { margin: 0 0 12px; color: #d3d8ea; }
+.aviso-priv a { color: #00BAFC; }
+.aviso-priv .priv-botoes { display: flex; gap: 10px; flex-wrap: wrap; }
+.aviso-priv button { font: inherit; font-weight: 700; font-size: 15px; padding: 9px 18px; border-radius: 999px; cursor: pointer; border: 2px solid #000; }
+.aviso-priv .priv-sim { background: #FD7601; color: #000; box-shadow: 0 3px 0 #000; }
+.aviso-priv .priv-nao { background: transparent; color: #fff; border-color: #26304f; }
+.aviso-priv button:focus-visible { outline: 3px solid #FD7601; outline-offset: 3px; }
+@media (max-width: 600px) { .aviso-priv { left: 10px; right: 10px; bottom: 10px; max-width: none; padding: 14px 16px; font-size: 14px; } .aviso-priv button { flex: 1; } }
+footer.rodape .link-priv { margin-left: auto; }`;
+  function avisoPrivacidade(forcar) {
+    if (!document.getElementById('estilo-priv')) {
+      const st = document.createElement('style'); st.id = 'estilo-priv'; st.textContent = ESTILO_PRIV; document.head.appendChild(st);
+    }
+    // link para a política no rodapé de todas as páginas
+    const rod = document.querySelector('footer.rodape .wrap');
+    if (rod && !rod.querySelector('a[href="/privacidade"]')) {
+      const a = document.createElement('a'); a.href = '/privacidade'; a.className = 'link-priv'; a.textContent = 'Privacidade';
+      const ult = rod.querySelector('a:last-of-type'); if (ult) ult.before(a); else rod.appendChild(a);
+    }
+    if ((escolhaPriv() && !forcar) || document.getElementById('aviso-priv')) return;
+    const caixa = document.createElement('section');
+    caixa.className = 'aviso-priv'; caixa.id = 'aviso-priv'; caixa.setAttribute('aria-label', 'Aviso de privacidade');
+    caixa.innerHTML = `<strong>Cookies e privacidade</strong>
+      <p>Sem anúncios e sem rastreadores de outras empresas. Guardamos no navegador só um código anônimo para contar visitas e lembrar seus comentários e reações. <a href="/privacidade">Saiba mais</a></p>
+      <div class="priv-botoes"><button type="button" class="priv-sim">Aceitar</button><button type="button" class="priv-nao">Recusar</button></div>`;
+    document.body.appendChild(caixa);
+    caixa.addEventListener('click', (ev) => {
+      const sim = ev.target.closest('.priv-sim'), nao = ev.target.closest('.priv-nao');
+      if (!sim && !nao) return;
+      guardado('pd_privacidade', `${sim ? 'sim' : 'nao'}-${VERSAO_PRIV}`);
+      if (nao) { try { localStorage.removeItem('pd_v'); localStorage.removeItem('pd_s'); } catch { /* sem localStorage */ } }
+      caixa.remove();
+    });
+  }
+  function iniciar() {
+    menuCelular();
+    avisoPrivacidade();
+    document.getElementById('mudar-privacidade')?.addEventListener('click', () => avisoPrivacidade(true));
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', iniciar); else iniciar();
+
+  window.BlogPD = { SB, listar, card, artigo, limpar, esc, dataLonga, urlPost, rastro, sbGet, caixaComentarios, comentarios, contarVisitas, avisoPrivacidade };
 })();
