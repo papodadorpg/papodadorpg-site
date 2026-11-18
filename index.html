@@ -1198,13 +1198,15 @@ const remontar = () => { prepararLives(); montarAgenda(); montarCampanhas(); mon
 const Rastro = (() => {
   const robo = navigator.webdriver || /bot|crawl|spider|slurp|preview|lighthouse|headless|facebookexternalhit|whatsapp/i.test(navigator.userAgent);
   const local = location.protocol === 'file:' || /^(localhost|127\.|192\.168\.|10\.)/.test(location.hostname);
-  const ativo = sbOk && !robo && !local && !logadoAdmin(); // admins logados não entram na conta
+  // admins logados e quem recusou no aviso de privacidade (blog/blog.js) não entram na conta
+  const contar = () => window.BlogPD?.contarVisitas?.() !== false;
+  const ativo = sbOk && !robo && !local && !logadoAdmin() && contar();
   const ler = (k) => { try { return localStorage.getItem(k); } catch { return null; } };
   const gravar = (k, v) => { try { localStorage.setItem(k, v); } catch { /* navegação privada */ } };
   const uuid = () => (crypto.randomUUID ? crypto.randomUUID()
     : '10000000-1000-4000-8000-100000000000'.replace(/[018]/g, (c) => (c ^ (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))).toString(16)));
   let visitante = ler('pd_v');
-  if (!visitante) { visitante = uuid(); gravar('pd_v', visitante); }
+  if (!visitante && ativo) { visitante = uuid(); gravar('pd_v', visitante); }
   let visita = null, nova = false;
   try { const s = JSON.parse(ler('pd_s') || 'null'); if (s && Date.now() - s.t < 30 * 60000) visita = s.id; } catch { /* ignora */ }
   if (!visita) { visita = uuid(); nova = true; }
@@ -1241,7 +1243,7 @@ const Rastro = (() => {
   }
   let ultimaPagina = null;
   function enviar(ev) {
-    if (!ativo) return;
+    if (!ativo || !contar()) return;
     gravar('pd_s', JSON.stringify({ id: visita, t: Date.now() }));
     fetch(`${SB.url}/rest/v1/eventos`, {
       method: 'POST', keepalive: true,
@@ -1258,7 +1260,7 @@ const Rastro = (() => {
   }
   document.addEventListener('click', (e) => {
     const el = e.target.closest('a, button, summary');
-    if (!el) return;
+    if (!el || el.closest('#aviso-priv')) return; // os botões do aviso de privacidade não contam
     enviar({ tipo: 'clique', pagina: rotaAtual(), area: areaDe(el), alvo: alvoDe(el), destino: destinoDe(el) });
   }, true);
   window.addEventListener('hashchange', pagina);
