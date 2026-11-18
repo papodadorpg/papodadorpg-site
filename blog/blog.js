@@ -13,6 +13,8 @@
     if (!r.ok) throw new Error(`Supabase ${r.status}`);
     return r.json();
   }
+  // nome e foto de quem assina vêm do perfil editado no /admin; a lista fixa acima fica de reserva
+  const perfis = sbGet('rpc/perfis_blog').then((ps) => { for (const p of ps || []) if (p.nome && p.foto_url) AUTORES[p.nome] = p.foto_url; }).catch(() => {});
   const CAMPOS = 'id,slug,titulo,resumo,capa_url,autor,categorias,campanha,publicar_em';
   // { limite, campanha, slug, conteudo }
   async function listar(o = {}) {
@@ -20,12 +22,13 @@
     if (o.campanha) q += `&campanha=eq.${encodeURIComponent(o.campanha)}`;
     if (o.slug) q += `&slug=eq.${encodeURIComponent(o.slug)}`;
     if (o.limite) q += `&limit=${o.limite}`;
-    return sbGet(q);
+    const [r] = await Promise.all([sbGet(q), perfis]);
+    return r;
   }
 
   function assinatura(p) {
     const foto = AUTORES[p.autor];
-    return `<span class="assinatura">${foto ? `<img src="${foto}" alt="" width="32" height="32" loading="lazy">` : '<span class="sem-foto" aria-hidden="true"></span>'}
+    return `<span class="assinatura">${foto ? `<img src="${esc(foto)}" alt="" width="32" height="32" loading="lazy">` : '<span class="sem-foto" aria-hidden="true"></span>'}
       <span><strong>${esc(p.autor)}</strong> · ${esc(dataLonga(p.publicar_em))}</span></span>`;
   }
   function card(p) {
@@ -253,7 +256,7 @@
     }
     async function carregar() {
       try {
-        const cs = await sbGet(`comentarios?select=${CAMPOS_C}&post_id=eq.${encodeURIComponent(postId)}&order=criado_em.asc`);
+        const [cs] = await Promise.all([sbGet(`comentarios?select=${CAMPOS_C}&post_id=eq.${encodeURIComponent(postId)}&order=criado_em.asc`), perfis]);
         const raiz = cs.filter((c) => !c.resposta_de);
         lista.innerHTML = raiz.length ? raiz.map((c) => umComentario(c, cs.filter((r) => r.resposta_de === c.id))).join('')
           : '<li class="com-vazio">Ninguém comentou ainda. Role a iniciativa e seja a primeira pessoa!</li>';
