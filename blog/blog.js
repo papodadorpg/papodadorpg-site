@@ -351,5 +351,28 @@
     } catch { /* sem localStorage: não conta */ }
   }
 
+  // ================= MENU NO CELULAR =================
+  // Botão de 3 linhas que abre, em cascata, as mesmas seções do menu do computador (só aparece em telas estreitas, pelo CSS)
+  function menuCelular() {
+    const topo = document.querySelector('header.topo'), nav = topo && topo.querySelector('nav.menu');
+    if (!nav || topo.querySelector('.botao-menu')) return;
+    if (!nav.id) nav.id = 'menu-site';
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'botao-menu';
+    b.setAttribute('aria-controls', nav.id); b.setAttribute('aria-expanded', 'false'); b.setAttribute('aria-label', 'Abrir o menu');
+    b.innerHTML = '<span></span><span></span><span></span>';
+    nav.before(b);
+    const abrir = (sim) => {
+      topo.classList.toggle('menu-aberto', sim);
+      b.setAttribute('aria-expanded', String(sim)); b.setAttribute('aria-label', sim ? 'Fechar o menu' : 'Abrir o menu');
+    };
+    b.addEventListener('click', () => abrir(!topo.classList.contains('menu-aberto')));
+    nav.addEventListener('click', (e) => { if (e.target.closest('a')) abrir(false); });
+    document.addEventListener('click', (e) => { if (!topo.contains(e.target)) abrir(false); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && topo.classList.contains('menu-aberto')) { abrir(false); b.focus(); } });
+    matchMedia('(min-width: 861px)').addEventListener('change', (m) => { if (m.matches) abrir(false); });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', menuCelular); else menuCelular();
+
   window.BlogPD = { SB, listar, card, artigo, limpar, esc, dataLonga, urlPost, rastro, sbGet, caixaComentarios, comentarios };
 })();
