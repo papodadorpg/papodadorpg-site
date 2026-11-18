@@ -168,6 +168,22 @@ dialog::backdrop { background: rgba(0, 0, 0, .6); }
 .selo.agendado { background: var(--laranja); color: #000; border-color: #000; }
 .selo.rascunho { color: var(--suave); }
 .selo.home { background: var(--azul); color: #fff; border-color: #000; }
+.selo.revisao { background: var(--ciano); color: #000; border-color: #000; }
+.selo.ajustes { color: var(--laranja); border-color: var(--laranja); }
+/* colaborador do blog: só a aba Blog e só o que é dele */
+body:not(.modo-autor) .so-autor, .modo-autor .so-admin { display: none !important; }
+.modo-autor .abas button:not([data-aba="blog"]) { display: none; }
+.aviso-revisao { background: color-mix(in srgb, var(--ciano) 12%, var(--superficie)); border: 1px solid var(--ciano); border-radius: var(--raio); padding: 12px 16px; font-size: 15px; }
+.aviso-revisao.ajustes { background: color-mix(in srgb, var(--laranja) 12%, var(--superficie)); border-color: var(--laranja); }
+.aviso-revisao p { margin: 4px 0 0; white-space: pre-wrap; }
+/* meu perfil */
+.meu-perfil { display: inline-flex; align-items: center; gap: 8px; background: none; border: 1px solid transparent; border-radius: 999px; padding: 2px 12px 2px 2px; color: inherit; font: inherit; font-size: 14px; cursor: pointer; max-width: 240px; }
+.meu-perfil:hover { border-color: var(--linha); color: var(--branco); }
+.meu-perfil #quem { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.avatar { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; display: inline-grid; place-items: center; background: var(--roxo); color: #fff; font-weight: 800; font-size: 14px; border: 2px solid var(--preto); flex: none; }
+.avatar.grande { width: 96px; height: 96px; font-size: 38px; }
+.perfil-foto { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+#dlg-perfil { width: min(460px, calc(100% - 24px)); }
 .novos { display: inline-block; min-width: 20px; padding: 0 6px; border-radius: 999px; background: var(--laranja); color: #000; font-size: 12px; font-weight: 800; text-align: center; }
 .com-item { border-bottom: 1px solid var(--linha); padding: 14px 0; display: grid; gap: 6px; }
 .com-item:last-child { border-bottom: 0; }
@@ -180,6 +196,7 @@ dialog::backdrop { background: rgba(0, 0, 0, .6); }
 .com-item textarea { width: 100%; min-height: 80px; }
 .linha-post .info .selo.publicado, .linha-post .info .selo.agendado, td .selo { color: #000; }
 .linha-post .info .selo.home { color: #fff; }
+.linha-post .info .selo.revisao { color: #000; }
 .editor-post { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 18px; align-items: start; }
 .editor-post .principal { display: grid; gap: 12px; }
 .editor-post .lateral { display: grid; gap: 14px; position: sticky; top: 84px; }
@@ -266,12 +283,12 @@ dialog::backdrop { background: rgba(0, 0, 0, .6); }
       <nav class="abas" role="tablist">
         <button role="tab" data-aba="acessos" aria-selected="true">Acessos</button>
         <button role="tab" data-aba="agenda" aria-selected="false">Agenda</button>
-        <button role="tab" data-aba="blog" aria-selected="false">Blog</button>
+        <button role="tab" data-aba="blog" aria-selected="false">Blog <span class="novos" id="blog-revisao" title="Posts esperando aprovação" hidden></span></button>
         <button role="tab" data-aba="comentarios" aria-selected="false">Comentários <span class="novos" id="com-novos" hidden></span></button>
         <button role="tab" data-aba="admins" aria-selected="false">Admins</button>
         <button role="tab" data-aba="historico" aria-selected="false">Histórico</button>
       </nav>
-      <div class="quem"><span id="quem"></span><button class="btn btn-linha btn-mini" id="trocar-senha">Trocar senha</button><button class="btn btn-linha btn-mini" id="sair">Sair</button></div>
+      <div class="quem"><button type="button" class="meu-perfil" id="meu-perfil" title="Meu perfil: nome e foto"><span id="quem-foto"></span><span id="quem"></span></button><button class="btn btn-linha btn-mini" id="trocar-senha">Trocar senha</button><button class="btn btn-linha btn-mini" id="sair">Sair</button></div>
     </div>
   </header>
 
@@ -339,7 +356,7 @@ dialog::backdrop { background: rgba(0, 0, 0, .6); }
     <section id="aba-blog" class="grade" hidden>
       <div id="blog-lista" class="grade">
         <div class="cab">
-          <div><div class="rotulo">Blog</div><h2>Posts</h2><div class="dica">Rascunhos só aparecem aqui. Publicados entram no site na hora; a página própria do post fica pronta em cerca de 1 minuto.</div></div>
+          <div><div class="rotulo">Blog</div><h2 id="blog-titulo">Posts</h2><div class="dica so-admin">Rascunhos só aparecem aqui. Publicados entram no site na hora; a página própria do post fica pronta em cerca de 1 minuto. Posts de colaboradores chegam como “Aguardando aprovação”.</div><div class="dica so-autor">Escreva com calma: seus posts só vão ao ar depois que a equipe do Papo Dado aprovar. Quando estiver pronto, toque em “Enviar para aprovação”.</div></div>
           <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-linha" href="../blog/" target="_blank" rel="noopener">Ver o blog</a><button class="btn btn-play" id="novo-post">+ Novo post</button></div>
         </div>
         <p class="msg" id="msg-blog" role="status"></p>
@@ -348,9 +365,10 @@ dialog::backdrop { background: rgba(0, 0, 0, .6); }
       <form id="blog-editor" class="grade" novalidate hidden>
         <div class="cab" style="margin-bottom:0">
           <div><button type="button" class="link-btn" id="post-voltar">← Todos os posts</button><h2 id="post-titulo-ed" style="margin-top:6px">Novo post</h2></div>
-          <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-linha" id="post-ver" target="_blank" rel="noopener" hidden>Ver no site</a><button type="button" class="btn btn-perigo" id="post-excluir" hidden>Excluir</button><button type="submit" class="btn btn-play" id="post-salvar">Salvar</button></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-linha" id="post-ver" target="_blank" rel="noopener" hidden>Ver no site</a><button type="button" class="btn btn-perigo" id="post-excluir" hidden>Excluir</button><button type="button" class="btn btn-linha so-admin" id="post-devolver" hidden>Devolver com ajustes</button><button type="submit" class="btn btn-play" id="post-salvar">Salvar</button><button type="button" class="btn btn-play so-autor" id="post-enviar">Enviar para aprovação</button></div>
         </div>
         <p class="msg" id="msg-post" role="status"></p>
+        <div class="aviso-revisao" id="post-aviso" hidden></div>
         <div class="editor-post">
           <div class="principal">
             <input class="campo-titulo" id="p-titulo" placeholder="Título do post" maxlength="160" required aria-label="Título">
@@ -359,7 +377,7 @@ dialog::backdrop { background: rgba(0, 0, 0, .6); }
             <p class="dica">Dica: use o botão de imagem para colocar fotos no meio do texto e o botão de vídeo para colar um link do YouTube.</p>
           </div>
           <div class="lateral">
-            <div class="painel grade" style="gap:10px">
+            <div class="painel grade so-admin" style="gap:10px">
               <h3>Publicação</h3>
               <div class="opcoes-pub" id="p-pub">
                 <label><input type="radio" name="pub" value="rascunho" checked> Rascunho</label>
@@ -376,7 +394,7 @@ dialog::backdrop { background: rgba(0, 0, 0, .6); }
               <div style="display:flex;gap:8px;flex-wrap:wrap"><label class="btn btn-linha btn-mini" style="display:inline-flex">Enviar imagem<input type="file" id="p-capa" accept="image/*" hidden></label><button type="button" class="btn btn-linha btn-mini" id="p-capa-tirar" hidden>Tirar capa</button></div>
               <span class="dica">Ideal: 1600 × 900 (16:9). Também vira a prévia no WhatsApp.</span>
             </div>
-            <div class="painel grade" style="gap:10px">
+            <div class="painel grade so-admin" style="gap:10px">
               <h3>Autor</h3>
               <select id="p-autor"><option>Henrique Müller</option><option>Elisinha Müller</option><option value="">Outra pessoa…</option></select>
               <input id="p-autor-outro" placeholder="Nome de quem escreveu" maxlength="80" hidden>
@@ -386,7 +404,7 @@ dialog::backdrop { background: rgba(0, 0, 0, .6); }
               <div class="chips-cat" id="p-cats"></div>
               <input id="p-cat-nova" placeholder="Nova categoria + Enter" maxlength="30">
             </div>
-            <div class="painel grade" style="gap:10px">
+            <div class="painel grade so-admin" style="gap:10px">
               <h3>Destaque na home</h3>
               <select id="p-destaque"><option value="">Não fixar</option><option value="1">1º lugar (card grande)</option><option value="2">2º lugar</option><option value="3">3º lugar</option></select>
               <span class="dica" id="p-destaque-dica">A home mostra 3 posts: primeiro os fixados, na ordem escolhida; as vagas que sobram ficam com os mais recentes.</span>
@@ -416,13 +434,17 @@ dialog::backdrop { background: rgba(0, 0, 0, .6); }
 
     <!-- ADMINS -->
     <section id="aba-admins" class="grade" hidden>
-      <div class="cab"><div><div class="rotulo">Acesso</div><h2>Quem pode entrar no admin</h2><div class="dica">Cada pessoa convidada recebe um e-mail, clica no link e cria a própria senha.</div></div></div>
+      <div class="cab"><div><div class="rotulo">Acesso</div><h2>Quem pode entrar no admin</h2><div class="dica">Cada pessoa convidada recebe um e-mail, clica no link e cria a própria senha. Colaboradores do blog só escrevem posts e mandam para aprovação.</div></div></div>
       <form class="painel" id="form-convite" style="display:flex;gap:10px;flex-wrap:wrap;align-items:end">
-        <label style="flex:1;min-width:220px"><span>E-mail de quem vai ser admin</span><input type="email" id="convite-email" required placeholder="nome@exemplo.com"></label>
+        <label style="flex:1;min-width:220px"><span>E-mail</span><input type="email" id="convite-email" required placeholder="nome@exemplo.com"></label>
+        <label style="min-width:200px"><span>Acesso</span><select id="convite-papel"><option value="admin">Admin (acesso completo)</option><option value="autor">Colaborador do blog</option></select></label>
+        <label style="flex:1;min-width:200px" id="convite-nome-l" hidden><span>Nome que assina os posts</span><input id="convite-nome" maxlength="80" placeholder="Ex.: Ana Souza"></label>
         <button class="btn btn-play" type="submit">Convidar</button>
       </form>
       <p class="msg" id="msg-admins" role="status"></p>
       <div class="painel" id="lista-admins"></div>
+      <div class="cab" style="margin-top:8px"><div><div class="rotulo">Blog</div><h2>Colaboradores do blog</h2><div class="dica">Entram no mesmo endereço do admin, mas só veem a aba Blog e os próprios posts. Nada vai ao ar sem a aprovação de um admin.</div></div></div>
+      <div class="painel" id="lista-autores"></div>
     </section>
 
     <section id="aba-historico" class="grade" hidden>
@@ -431,6 +453,21 @@ dialog::backdrop { background: rgba(0, 0, 0, .6); }
     </section>
   </main>
 </div>
+
+<!-- ============ MEU PERFIL ============ -->
+<dialog id="dlg-perfil">
+  <form id="form-perfil" method="dialog" novalidate>
+    <div class="dlg-cab"><h2>Meu perfil</h2><button class="btn btn-linha btn-mini" type="button" id="perfil-fechar">Fechar</button></div>
+    <div class="dlg-corpo">
+      <div class="perfil-foto"><span id="perfil-foto"></span>
+        <div style="display:grid;gap:8px;justify-items:start"><label class="btn btn-linha btn-mini" style="display:inline-flex">Trocar foto<input type="file" id="perfil-arq" accept="image/*" hidden></label><button type="button" class="link-btn" id="perfil-tirar" hidden>Tirar foto</button><span class="dica">Quadrada fica melhor. Aparece nos seus posts e respostas no blog.</span></div></div>
+      <label><span>Nome</span><input id="perfil-nome" maxlength="80" placeholder="Como você assina no blog"></label>
+      <p class="dica" id="perfil-email" style="margin:0"></p>
+      <p class="msg" id="msg-perfil" role="status"></p>
+    </div>
+    <div class="dlg-pe"><span></span><div style="display:flex;gap:10px"><button class="btn btn-linha" type="button" id="perfil-cancelar">Cancelar</button><button class="btn btn-play" type="submit">Salvar</button></div></div>
+  </form>
+</dialog>
 
 <!-- ============ EDITOR DE CAMPANHA ============ -->
 <dialog id="dlg">
@@ -528,7 +565,7 @@ $('esqueci').addEventListener('click', async () => {
   const email = $('login-email').value.trim();
   if (!email) return aviso('msg-login', 'Digite seu e-mail acima e toque de novo em "Esqueci a senha".', 'erro');
   const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: location.origin + location.pathname });
-  aviso('msg-login', error ? error.message : 'Se esse e-mail for de um admin, chega um link para criar uma nova senha.', error ? 'erro' : 'ok');
+  aviso('msg-login', error ? error.message : 'Se esse e-mail tiver acesso, chega um link para criar uma nova senha.', error ? 'erro' : 'ok');
 });
 $('form-senha').addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -549,16 +586,25 @@ $('senha-voltar').addEventListener('click', () => { precisaSenha = false; entrar
 // convite ou "esqueci a senha": antes de abrir o painel, a pessoa cria a senha
 let precisaSenha = tipoLink === 'invite' || tipoLink === 'recovery';
 let USUARIO = null, iniciado = false;
+let PAPEL = 'admin', PERFIL = null, PERFIS = []; // PAPEL: 'admin' ou 'autor' (colaborador do blog)
 async function entrar() {
   const { data } = await sb.auth.getSession();
   USUARIO = data.session?.user || null;
   if (!USUARIO) { mostrar('tela-login'); if (erroLink) aviso('msg-login', `O link não funcionou (${erroLink}). Peça um novo convite ou use "Esqueci a senha".`, 'erro'); return; }
   if (precisaSenha) { $('senha-email').textContent = USUARIO.email; mostrar('tela-senha'); return; }
   const { data: ehAdmin } = await sb.rpc('is_admin');
-  if (!ehAdmin) { await sb.auth.signOut(); mostrar('tela-login'); aviso('msg-login', 'Esta conta não tem acesso ao admin.', 'erro'); return; }
-  $('quem').textContent = USUARIO.email;
+  const ehAutor = !ehAdmin && !!(await sb.rpc('is_autor')).data;
+  if (!ehAdmin && !ehAutor) { await sb.auth.signOut(); mostrar('tela-login'); aviso('msg-login', 'Esta conta não tem acesso ao admin.', 'erro'); return; }
+  PAPEL = ehAdmin ? 'admin' : 'autor';
+  document.body.classList.toggle('modo-autor', PAPEL === 'autor');
+  await carregarPerfil();
   mostrar('app');
-  if (!iniciado) { iniciado = true; abrirAba(location.hash.replace('#', '') || 'acessos'); contarComentariosNovos(); }
+  if (!iniciado) {
+    iniciado = true;
+    abrirAba(PAPEL === 'autor' ? 'blog' : (location.hash.replace('#', '') || 'acessos'));
+    if (PAPEL === 'admin') { contarComentariosNovos(); contarRevisao(); }
+    else if (!PERFIL?.foto_url) abrirPerfil();
+  }
 }
 sb.auth.onAuthStateChange((evento) => {
   if (evento === 'PASSWORD_RECOVERY') { precisaSenha = true; setTimeout(entrar, 0); return; }
@@ -568,6 +614,7 @@ sb.auth.onAuthStateChange((evento) => {
 // ================= ABAS =================
 function abrirAba(aba) {
   if (!ABAS.includes(aba)) aba = 'acessos';
+  if (PAPEL === 'autor') aba = 'blog';
   document.querySelectorAll('.abas button').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.aba === aba)));
   for (const a of ABAS) $(`aba-${a}`).hidden = a !== aba;
   history.replaceState(null, '', `#${aba}`);
@@ -909,27 +956,36 @@ let POSTS = [], POST = null, QUILL = null, CATS = new Set(), CAPA_POST = null, S
 const isoBR = (local) => new Date(`${local}:00-03:00`).toISOString(); // "AAAA-MM-DDTHH:MM" de Brasília -> ISO
 function situacao(p) {
   const casa = p.destaque ? `<span class="selo home">Home · ${p.destaque}º</span>` : '';
-  if (p.status !== 'publicado') return `<span class="selo rascunho">Rascunho</span>${casa}`;
+  if (p.status === 'revisao') return `<span class="selo revisao">Aguardando aprovação</span>${casa}`;
+  if (p.status !== 'publicado') return p.nota_revisao ? '<span class="selo ajustes">Ajustes pedidos</span>' : `<span class="selo rascunho">Rascunho</span>${casa}`;
   return new Date(p.publicar_em) > new Date() ? `<span class="selo agendado">Agendado · ${esc(quandoBR(new Date(p.publicar_em)))}</span>${casa}` : `<span class="selo publicado">Publicado · ${esc(quandoHist(p.publicar_em).slice(0, 8))}</span>${casa}`;
 }
 async function carregarPosts() {
   $('blog-editor').hidden = true; $('blog-lista').hidden = false;
   aviso('msg-blog', 'Carregando…');
-  const { data, error } = await sb.from('posts').select('id,slug,titulo,resumo,capa_url,autor,categorias,campanha,status,publicar_em,atualizado_em,destaque').order('atualizado_em', { ascending: false });
+  const { data, error } = await sb.from('posts').select('id,slug,titulo,resumo,capa_url,autor,categorias,campanha,status,publicar_em,atualizado_em,destaque,autor_id,nota_revisao,enviado_em').order('atualizado_em', { ascending: false });
   const reac = await sb.from('reacoes').select('post_id,tipo');
   const EMOJI = { critico: '🎲', inspirou: '✨', util: '🧭', aprendi: '🧠', divertido: '😄' }, REAC = {};
   for (const r of reac.data || []) { REAC[r.post_id] ||= {}; REAC[r.post_id][r.tipo] = (REAC[r.post_id][r.tipo] || 0) + 1; }
   const reacoesTxt = (id) => Object.entries(REAC[id] || {}).map(([t, n]) => `${EMOJI[t]} ${n}`).join('  ');
   if (error) return aviso('msg-blog', `Erro ao carregar: ${error.message}`, 'erro');
   aviso('msg-blog', '');
-  POSTS = data;
+  POSTS = data.sort((a, b) => (b.status === 'revisao') - (a.status === 'revisao')); // fila de aprovação primeiro
+  $('blog-titulo').textContent = PAPEL === 'autor' ? 'Meus posts' : 'Posts';
+  if (PAPEL === 'admin') pintarRevisao(POSTS.filter((p) => p.status === 'revisao').length);
   $('lista-posts').innerHTML = POSTS.length ? POSTS.map((p) => `<div class="linha-post">
       ${p.capa_url ? `<img src="${esc(p.capa_url)}" alt="" loading="lazy">` : '<div class="sem-capa"></div>'}
       <div class="info"><strong>${esc(p.titulo)}</strong><span>${situacao(p)}${esc(p.autor)}${p.categorias?.length ? ` · ${esc(p.categorias.join(', '))}` : ''}${reacoesTxt(p.id) ? ` · ${reacoesTxt(p.id)}` : ''}</span></div>
-      <button class="btn btn-linha btn-mini" data-post="${p.id}">Editar</button></div>`).join('')
+      ${PAPEL === 'autor' && p.status === 'publicado' ? `<a class="btn btn-linha btn-mini" href="../blog/${esc(p.slug)}/" target="_blank" rel="noopener">Ver no site</a>`
+        : `<button class="btn btn-linha btn-mini" data-post="${p.id}">${PAPEL === 'admin' && p.status === 'revisao' ? 'Revisar' : 'Editar'}</button>`}</div>`).join('')
     : '<div class="vazio">Nenhum post ainda. Clique em “+ Novo post” para escrever o primeiro.</div>';
 }
 document.addEventListener('click', (e) => { const b = e.target.closest('[data-post]'); if (b) abrirPost(b.dataset.post); });
+function pintarRevisao(n) { $('blog-revisao').textContent = n || ''; $('blog-revisao').hidden = !n; }
+async function contarRevisao() {
+  const { count } = await sb.from('posts').select('id', { count: 'exact', head: true }).eq('status', 'revisao');
+  pintarRevisao(count);
+}
 $('novo-post').addEventListener('click', () => abrirPost(null));
 $('post-voltar').addEventListener('click', () => { if (!confirm('Sair sem salvar? O que não foi salvo se perde.')) return; carregarPosts(); });
 
@@ -948,12 +1004,21 @@ async function prepararEditor() {
   });
 }
 // imagem: reduz para até 1600 px em WebP (GIF vai como está) e envia ao Storage
-async function enviarImagem(arq, pasta, largura = 1600) {
+// quadrada = recorta o centro (foto de perfil). Colaboradores gravam numa pasta só deles: autores/<id>/...
+async function enviarImagem(arq, pasta, largura = 1600, quadrada = false) {
   let blob = arq, ext = (arq.name.split('.').pop() || 'png').toLowerCase(), tipo = arq.type;
+  if (PAPEL === 'autor' && !pasta.startsWith('perfis/')) pasta = `autores/${USUARIO.id}/${pasta}`;
   if (arq.type !== 'image/gif') {
-    const img = await createImageBitmap(arq), k = Math.min(1, largura / img.width), cv = document.createElement('canvas');
-    cv.width = Math.round(img.width * k); cv.height = Math.round(img.height * k);
-    cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
+    const img = await createImageBitmap(arq), cv = document.createElement('canvas');
+    if (quadrada) {
+      const lado = Math.min(img.width, img.height), t = Math.min(largura, lado);
+      cv.width = cv.height = t;
+      cv.getContext('2d').drawImage(img, (img.width - lado) / 2, (img.height - lado) / 2, lado, lado, 0, 0, t, t);
+    } else {
+      const k = Math.min(1, largura / img.width);
+      cv.width = Math.round(img.width * k); cv.height = Math.round(img.height * k);
+      cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
+    }
     blob = await new Promise((ok) => cv.toBlob(ok, 'image/webp', 0.82)); ext = 'webp'; tipo = 'image/webp';
   }
   const caminho = `${pasta}/${Date.now()}-${Math.random().toString(36).slice(2, 7)}.${ext}`;
@@ -1022,8 +1087,12 @@ async function abrirPost(id) {
   $('p-resumo').value = p?.resumo || ''; $('p-resumo-cont').textContent = `${$('p-resumo').value.length}/300`;
   $('p-slug').value = p?.slug || '';
   $('p-slug-dica').textContent = p?.status === 'publicado' ? 'Cuidado: mudar o endereço de um post publicado quebra os links já compartilhados.' : 'papodadorpg.com.br/blog/…';
-  const conhecido = ['Henrique Müller', 'Elisinha Müller'].includes(p?.autor || 'Henrique Müller');
-  $('p-autor').value = conhecido ? (p?.autor || (USUARIO?.email?.includes('elis') ? 'Elisinha Müller' : 'Henrique Müller')) : '';
+  // autores conhecidos = perfis de admins e colaboradores (+ os dois nomes de sempre)
+  const nomes = [...new Set([...PERFIS.map((x) => x.nome), 'Henrique Müller', 'Elisinha Müller'].filter(Boolean))];
+  $('p-autor').innerHTML = nomes.map((n) => `<option>${esc(n)}</option>`).join('') + '<option value="">Outra pessoa…</option>';
+  const padrao = PERFIL?.nome || 'Henrique Müller';
+  const conhecido = nomes.includes(p?.autor || padrao);
+  $('p-autor').value = conhecido ? (p?.autor || padrao) : '';
   $('p-autor-outro').value = conhecido ? '' : p.autor; $('p-autor-outro').hidden = conhecido;
   $('p-campanha').value = p?.campanha || '';
   $('p-destaque').value = p?.destaque ? String(p.destaque) : '';
@@ -1032,10 +1101,27 @@ async function abrirPost(id) {
     const dono = POSTS.find((x) => x.destaque === +o.value && x.id !== p?.id);
     o.textContent = `${o.value}º lugar${o.value === '1' ? ' (card grande)' : ''}${dono ? ` · hoje: ${dono.titulo.slice(0, 32)}${dono.titulo.length > 32 ? '…' : ''}` : ''}`;
   });
-  const publicado = p?.status === 'publicado';
-  $('l-manter').hidden = !publicado;
+  const publicado = p?.status === 'publicado', enviado = p?.status === 'revisao';
+  $('l-manter').hidden = !(publicado || enviado);
   if (publicado) $('l-manter-txt').textContent = new Date(p.publicar_em) > new Date() ? `Manter agendado (${quandoBR(new Date(p.publicar_em))})` : `Continuar publicado (desde ${quandoHist(p.publicar_em).slice(0, 8)})`;
-  document.querySelector(`input[name=pub][value=${publicado ? 'manter' : 'rascunho'}]`).checked = true;
+  if (enviado) $('l-manter-txt').textContent = 'Manter aguardando aprovação';
+  document.querySelector(`input[name=pub][value=${publicado || enviado ? 'manter' : 'rascunho'}]`).checked = true;
+  // fila de aprovação: recado para quem revisa (admin) ou para quem escreveu (colaborador)
+  $('post-devolver').hidden = !(PAPEL === 'admin' && enviado);
+  $('post-enviar').textContent = enviado ? 'Salvar e manter na fila' : 'Enviar para aprovação';
+  $('post-salvar').textContent = PAPEL === 'autor' ? (enviado ? 'Tirar da fila (rascunho)' : 'Salvar rascunho') : 'Salvar';
+  $('post-salvar').className = `btn ${PAPEL === 'autor' ? 'btn-linha' : 'btn-play'}`;
+  const av = $('post-aviso');
+  av.hidden = !(enviado || p?.nota_revisao);
+  if (enviado) {
+    av.className = 'aviso-revisao';
+    av.innerHTML = PAPEL === 'admin'
+      ? `<strong>${esc(p.autor)} enviou este post para aprovação${p.enviado_em ? ` em ${esc(quandoHist(p.enviado_em))}` : ''}.</strong><p>Leia, ajuste o que quiser e, para aprovar, escolha “Publicar agora” ou “Agendar” e salve. Para pedir mudanças à pessoa, use “Devolver com ajustes”.</p>`
+      : '<strong>Enviado para aprovação.</strong><p>Você ainda pode mexer; as mudanças entram na mesma revisão. Para continuar escrevendo sem pressa, use “Tirar da fila”.</p>';
+  } else if (p?.nota_revisao) {
+    av.className = 'aviso-revisao ajustes';
+    av.innerHTML = `<strong>${PAPEL === 'autor' ? 'A equipe pediu alguns ajustes:' : 'Devolvido com ajustes (esperando a pessoa reenviar):'}</strong><p>${esc(p.nota_revisao)}</p>`;
+  }
   $('p-quando').value = p?.publicar_em ? isoLocalBR(new Date(p.publicar_em)) : ''; $('p-quando').hidden = $('p-quando-dica').hidden = true; $('p-quando').required = false;
   $('post-excluir').hidden = !p; $('post-ver').hidden = !(publicado && new Date(p.publicar_em) <= new Date());
   if (p) $('post-ver').href = `../blog/${p.slug}/`;
@@ -1052,13 +1138,16 @@ async function gerarPaginas(eraOuEhPublicado) {
 }
 $('blog-editor').addEventListener('submit', async (e) => {
   e.preventDefault();
-  const modo = document.querySelector('input[name=pub]:checked').value;
-  const autor = $('p-autor').value || $('p-autor-outro').value.trim();
-  if (!autor) return aviso('msg-post', 'Diga quem escreveu o post.', 'erro');
+  const autorModo = PAPEL === 'autor';
+  const modo = autorModo ? (ENVIAR ? 'enviar' : 'rascunho') : document.querySelector('input[name=pub]:checked').value;
+  ENVIAR = false;
+  const autor = autorModo ? (PERFIL?.nome || '') : ($('p-autor').value || $('p-autor-outro').value.trim());
+  if (!autor) return aviso('msg-post', autorModo ? 'Preencha seu nome em “Meu perfil” (no topo da página) antes de salvar.' : 'Diga quem escreveu o post.', 'erro');
   const slugPost = $('p-slug').value.trim();
   if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slugPost)) return aviso('msg-post', 'Endereço inválido: use só letras minúsculas, números e hífen.', 'erro');
   let status = 'publicado', publicar_em = POST?.publicar_em || null;
   if (modo === 'rascunho') status = 'rascunho';
+  else if (modo === 'enviar' || (modo === 'manter' && POST?.status === 'revisao')) status = 'revisao';
   else if (modo === 'agora') publicar_em = new Date().toISOString();
   else if (modo === 'agendar') { if (!$('p-quando').value) return aviso('msg-post', 'Escolha a data e a hora da publicação.', 'erro'); publicar_em = isoBR($('p-quando').value.slice(0, 16)); }
   // o HTML "semântico" do Quill troca o vídeo por um link; aqui o vídeo volta a ser o player do YouTube
@@ -1067,6 +1156,8 @@ $('blog-editor').addEventListener('submit', async (e) => {
   const linha = { slug: slugPost, titulo: $('p-titulo').value.trim(), resumo: $('p-resumo').value.trim() || null, capa_url: CAPA_POST, conteudo,
     autor, categorias: [...CATS], campanha: $('p-campanha').value || null, status, publicar_em, destaque: $('p-destaque').value ? +$('p-destaque').value : null };
   if (!linha.titulo) return aviso('msg-post', 'Dê um título ao post.', 'erro');
+  // colaborador: o banco confere de novo (nome, destaque e data são do admin)
+  if (autorModo) { delete linha.destaque; delete linha.publicar_em; if (!POST) linha.autor_id = USUARIO.id; }
   $('post-salvar').disabled = true; aviso('msg-post', 'Salvando…');
   // a vaga na home é de um post só: quem estava nela sai
   if (linha.destaque) {
@@ -1079,11 +1170,25 @@ $('blog-editor').addEventListener('submit', async (e) => {
   const { data, error } = await q;
   $('post-salvar').disabled = false;
   if (error) return aviso('msg-post', error.code === '23505' ? 'Já existe um post com esse endereço. Mude o endereço.' : `Erro ao salvar: ${error.message}`, 'erro');
-  const extra = await gerarPaginas(POST?.status === 'publicado' || status === 'publicado');
-  const msg = status === 'rascunho' ? `Rascunho salvo.${linha.destaque ? ' Ele entra na home quando for publicado.' : ''}` : new Date(publicar_em) > new Date() ? `Agendado para ${quandoBR(new Date(publicar_em))}. Entra no ar sozinho.` : `Publicado!${extra}`;
+  const extra = autorModo ? '' : await gerarPaginas(POST?.status === 'publicado' || status === 'publicado');
+  const msg = status === 'revisao' ? (autorModo ? 'Enviado para aprovação! Você acompanha a situação aqui na lista.' : 'Salvo. O post continua aguardando aprovação.')
+    : status === 'rascunho' ? `Rascunho salvo.${linha.destaque ? ' Ele entra na home quando for publicado.' : ''}` : new Date(publicar_em) > new Date() ? `Agendado para ${quandoBR(new Date(publicar_em))}. Entra no ar sozinho.` : `Publicado!${extra}`;
   await carregarPosts();
   aviso('msg-blog', msg, 'ok');
   void data;
+});
+let ENVIAR = false;
+$('post-enviar').addEventListener('click', () => { ENVIAR = true; $('blog-editor').requestSubmit(); });
+// devolve o post ao colaborador com um recado (as edições abertas no editor não são salvas)
+$('post-devolver').addEventListener('click', async () => {
+  if (!POST) return;
+  const nota = prompt(`O que ${POST.autor} precisa ajustar? O recado aparece para a pessoa no editor.`);
+  if (nota === null) return;
+  if (!nota.trim()) return aviso('msg-post', 'Escreva o que precisa mudar.', 'erro');
+  const { error } = await sb.from('posts').update({ status: 'rascunho', nota_revisao: nota.trim().slice(0, 2000) }).eq('id', POST.id);
+  if (error) return aviso('msg-post', `Erro: ${error.message}`, 'erro');
+  const quem = POST.autor;
+  await carregarPosts(); aviso('msg-blog', `Devolvido para ${quem} com o recado de ajustes.`, 'ok');
 });
 $('post-excluir').addEventListener('click', async () => {
   if (!POST || !confirm(`Excluir o post “${POST.titulo}”? Não dá para desfazer.`)) return;
@@ -1176,12 +1281,19 @@ async function chamarAdmins(corpo) {
 async function carregarAdmins() {
   aviso('msg-admins', 'Carregando…');
   try {
-    const [{ usuarios: todos }, adm] = await Promise.all([chamarAdmins({ acao: 'listar' }), sb.from('admins').select('user_id')]);
-    const ids = new Set((adm.data || []).map((a) => a.user_id));
-    const usuarios = todos.filter((u) => ids.has(u.id));
+    const [{ usuarios: todos }, adm, aut] = await Promise.all([chamarAdmins({ acao: 'listar' }), sb.from('admins').select('user_id,nome'), sb.from('autores').select('user_id,nome')]);
+    const ids = new Set((adm.data || []).map((a) => a.user_id)), idsAut = new Set((aut.data || []).map((a) => a.user_id));
+    const usuarios = todos.filter((u) => ids.has(u.id)), autores = todos.filter((u) => idsAut.has(u.id) && !ids.has(u.id));
+    const nomeDe = Object.fromEntries([...(adm.data || []), ...(aut.data || [])].map((a) => [a.user_id, a.nome || '']));
+    $('lista-autores').innerHTML = autores.length ? `<table><thead><tr><th>Nome</th><th>E-mail</th><th>Situação</th><th>Último acesso</th><th></th></tr></thead><tbody>${
+      autores.map((u) => `<tr><td>${esc(nomeDe[u.id] || '—')}</td><td>${esc(u.email)}</td>
+        <td>${u.ativo ? '<span class="selo publicado">Ativo</span>' : '<span class="selo agendado">Convite enviado</span>'}</td>
+        <td>${u.ultimo_login ? esc(quandoHist(u.ultimo_login)) : '—'}</td>
+        <td style="text-align:right"><button class="btn btn-perigo btn-mini" data-remover="${u.id}" data-email="${esc(u.email)}">Remover</button></td></tr>`).join('')}</tbody></table>`
+      : '<div class="vazio">Nenhum colaborador ainda. Para convidar, escolha “Colaborador do blog” no formulário acima.</div>';
     aviso('msg-admins', '');
     $('lista-admins').innerHTML = `<table><thead><tr><th>E-mail</th><th>Situação</th><th>Último acesso</th><th></th></tr></thead><tbody>${
-      usuarios.map((u) => `<tr><td>${esc(u.email)}${u.id === USUARIO.id ? ' <span class="dica">(você)</span>' : ''}</td>
+      usuarios.map((u) => `<tr><td>${nomeDe[u.id] ? `<strong>${esc(nomeDe[u.id])}</strong><br>` : ''}${esc(u.email)}${u.id === USUARIO.id ? ' <span class="dica">(você)</span>' : ''}</td>
         <td>${u.ativo ? '<span class="selo publicado">Ativo</span>' : '<span class="selo agendado">Convite enviado</span>'}</td>
         <td>${u.ultimo_login ? esc(quandoHist(u.ultimo_login)) : '—'}</td>
         <td style="text-align:right">${u.id === USUARIO.id ? '' : `<button class="btn btn-perigo btn-mini" data-remover="${u.id}" data-email="${esc(u.email)}">Remover</button>`}</td></tr>`).join('')}</tbody></table>`;
@@ -1193,15 +1305,75 @@ async function carregarAdmins() {
 $('form-convite').addEventListener('submit', async (e) => {
   e.preventDefault();
   const email = $('convite-email').value.trim().toLowerCase();
+  const papel = $('convite-papel').value, nome = $('convite-nome').value.trim();
+  if (papel === 'autor' && nome.length < 2) return aviso('msg-admins', 'Escreva o nome que vai assinar os posts dessa pessoa.', 'erro');
   aviso('msg-admins', 'Enviando o convite…');
-  try { await chamarAdmins({ acao: 'convidar', email }); $('convite-email').value = ''; await carregarAdmins(); aviso('msg-admins', `Convite enviado para ${email}.`, 'ok'); }
-  catch (err) { aviso('msg-admins', /already|registered|exists/i.test(err.message) ? 'Esse e-mail já é admin.' : `Não consegui convidar: ${err.message}`, 'erro'); }
+  try {
+    const r = await chamarAdmins({ acao: 'convidar', email, papel, nome });
+    $('convite-email').value = ''; $('convite-nome').value = ''; await carregarAdmins();
+    aviso('msg-admins', r?.ja_tinha_conta ? `${email} já tinha conta no site e agora é colaborador do blog. Mandamos um e-mail para a pessoa criar a senha.` : `Convite enviado para ${email}.`, 'ok');
+  } catch (err) { aviso('msg-admins', /already|registered|exists/i.test(err.message) ? 'Esse e-mail já tem acesso ao admin.' : `Não consegui convidar: ${err.message}`, 'erro'); }
 });
-$('lista-admins').addEventListener('click', async (e) => {
-  const b = e.target.closest('[data-remover]'); if (!b) return;
+$('convite-papel').addEventListener('change', () => { $('convite-nome-l').hidden = $('convite-papel').value !== 'autor'; });
+document.addEventListener('click', async (e) => {
+  const b = e.target.closest('#lista-admins [data-remover], #lista-autores [data-remover]'); if (!b) return;
   if (!confirm(`Tirar o acesso de ${b.dataset.email} ao admin?`)) return;
   try { await chamarAdmins({ acao: 'remover', id: b.dataset.remover }); await carregarAdmins(); aviso('msg-admins', `${b.dataset.email} não tem mais acesso.`, 'ok'); }
   catch (err) { aviso('msg-admins', `Não consegui remover: ${err.message}`, 'erro'); }
+});
+
+// ================= MEU PERFIL (nome e foto que assinam os posts e as respostas no blog) =================
+let FOTO_PERFIL = null;
+function avatarHtml(nome, foto, classe = '') {
+  if (foto) return `<img class="avatar ${classe}" src="${esc(foto)}" alt="">`;
+  return `<span class="avatar ${classe}" aria-hidden="true">${esc(String(nome || '?').trim().charAt(0).toUpperCase() || '?')}</span>`;
+}
+async function carregarPerfil() {
+  const { data } = await sb.from(PAPEL === 'admin' ? 'admins' : 'autores').select('nome,foto_url').eq('user_id', USUARIO.id).maybeSingle();
+  PERFIL = data || { nome: '', foto_url: null };
+  try { PERFIS = (await sb.rpc('perfis_blog')).data || []; } catch { PERFIS = []; }
+  $('quem').textContent = PERFIL.nome || USUARIO.email;
+  $('quem-foto').innerHTML = avatarHtml(PERFIL.nome || USUARIO.email, PERFIL.foto_url);
+  if (PAPEL === 'admin') { // "Responder como" nos comentários: nomes dos admins
+    const { data: adms } = await sb.from('admins').select('nome');
+    const nomes = [...new Set([...(adms || []).map((a) => a.nome), 'Henrique Müller', 'Elisinha Müller'].filter(Boolean))];
+    $('com-autor').innerHTML = nomes.map((n) => `<option>${esc(n)}</option>`).join('');
+    $('com-autor').value = nomes.includes(PERFIL.nome) ? PERFIL.nome : nomes[0];
+  }
+}
+function pintarFotoPerfil() {
+  $('perfil-foto').innerHTML = avatarHtml($('perfil-nome').value || USUARIO.email, FOTO_PERFIL, 'grande');
+  $('perfil-tirar').hidden = !FOTO_PERFIL;
+}
+function abrirPerfil() {
+  $('perfil-nome').value = PERFIL?.nome || ''; FOTO_PERFIL = PERFIL?.foto_url || null;
+  $('perfil-email').textContent = `Você entra com ${USUARIO.email} · ${PAPEL === 'autor' ? 'Colaborador do blog' : 'Admin'}`;
+  aviso('msg-perfil', PAPEL === 'autor' && !PERFIL?.foto_url ? 'Bem-vindo! Confira seu nome e coloque uma foto: eles assinam os seus posts.' : '');
+  pintarFotoPerfil(); $('dlg-perfil').showModal();
+}
+$('meu-perfil').addEventListener('click', abrirPerfil);
+$('perfil-fechar').addEventListener('click', () => $('dlg-perfil').close());
+$('perfil-cancelar').addEventListener('click', () => $('dlg-perfil').close());
+$('perfil-nome').addEventListener('input', () => { if (!FOTO_PERFIL) pintarFotoPerfil(); });
+$('perfil-tirar').addEventListener('click', () => { FOTO_PERFIL = null; pintarFotoPerfil(); });
+$('perfil-arq').addEventListener('change', async (e) => {
+  const arq = e.target.files[0]; if (!arq) return;
+  aviso('msg-perfil', 'Enviando a foto…');
+  try { FOTO_PERFIL = await enviarImagem(arq, `perfis/${USUARIO.id}`, 400, true); pintarFotoPerfil(); aviso('msg-perfil', 'Foto pronta. Toque em Salvar para usar.'); }
+  catch (err) { aviso('msg-perfil', `Não consegui enviar a foto: ${err.message || err}`, 'erro'); }
+  e.target.value = '';
+});
+$('form-perfil').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const nome = $('perfil-nome').value.trim().replace(/\s+/g, ' ');
+  if (nome.length < 2) return aviso('msg-perfil', 'Escreva seu nome.', 'erro');
+  aviso('msg-perfil', 'Salvando…');
+  const mudouNome = !!PERFIL?.nome && PERFIL.nome !== nome;
+  const { error } = await sb.from(PAPEL === 'admin' ? 'admins' : 'autores').update({ nome, foto_url: FOTO_PERFIL }).eq('user_id', USUARIO.id);
+  if (error) return aviso('msg-perfil', `Erro ao salvar: ${error.message}`, 'erro');
+  await carregarPerfil();
+  $('dlg-perfil').close();
+  aviso('msg-blog', mudouNome ? 'Perfil salvo. Os posts já publicados com o seu nome passam a mostrar o novo em cerca de 1 minuto.' : 'Perfil salvo.', 'ok');
 });
 
 // ================= HISTÓRICO =================
