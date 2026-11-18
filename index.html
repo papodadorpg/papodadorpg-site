@@ -96,6 +96,8 @@ nav.menu a:hover { color: var(--branco); }
 .rotulo { text-transform: uppercase; letter-spacing: .12em; font-size: 12px; font-weight: 700; color: var(--laranja); }
 .proxima h2 { margin: 6px 0 4px; font-size: 26px; line-height: 1.15; font-weight: 800; text-wrap: balance; }
 .proxima .quando { font-size: 17px; color: var(--suave); }
+/* aviso de sessão cancelada hoje (exceção "cancelada" no /admin; o texto é a nota) */
+.aviso-hoje { margin: 0 0 14px; padding: 10px 12px; border-radius: 10px; background: color-mix(in srgb, #E00B33 22%, transparent); border: 1px solid #E00B33; color: var(--branco); font-size: 14px; font-weight: 600; line-height: 1.4; }
 .proxima .ou { color: var(--suave); font-size: 14px; margin-top: 6px; }
 .aovivo { display: inline-flex; align-items: center; gap: 8px; background: var(--vermelho); color: var(--branco); font-weight: 800; font-size: 13px; letter-spacing: .08em; padding: 4px 10px; border-radius: 999px; border: 2px solid var(--preto); }
 .aovivo::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--branco); animation: pulso 1.2s infinite; }
@@ -406,6 +408,7 @@ footer.rodape img { height: 40px; width: auto; }
         </div>
       </div>
       <aside class="proxima" id="proxima" aria-live="polite">
+        <p class="aviso-hoje" id="prox-aviso" hidden></p>
         <a class="prox-capa" id="prox-capa" href="https://www.youtube.com/@papodadorpg/streams" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true" hidden><img id="prox-img" src="data:," alt=""><span class="play"></span></a>
         <div class="rotulo" id="prox-rotulo">Próxima live</div>
         <h2 id="prox-nome">Carregando…</h2>
@@ -848,16 +851,23 @@ function heroiDaAgenda(futuras, canal) {
   });
 }
 
+// lives programadas no YouTube para uma sessão cancelada no /admin não aparecem no topo
+const liveCancelada = (a) => EXCECOES.some((e) => e.acao === 'cancelada' && e.data === diaBR(new Date(a.inicio))
+  && LIVES.some((l) => l.id === e.campanha && norm(a.titulo).includes(norm(l.nome))));
 function montarProxima() {
   prepararLives();
   const agora = Date.now(), JANELA = DURACAO_H * 3600000;
+  const avisos = EXCECOES.filter((e) => e.acao === 'cancelada' && e.data === diaBR(new Date()))
+    .map((e) => e.nota || `Hoje não tem live de ${LIVES.find((l) => l.id === e.campanha)?.nome || 'uma das campanhas'}.`);
+  document.getElementById('prox-aviso').textContent = avisos.join(' ');
+  document.getElementById('prox-aviso').hidden = !avisos.length;
   const canal = 'https://www.youtube.com/@papodadorpg/streams';
   const futuras = [...AGENDA].sort((a, b) => a.proxima - b.proxima);
 
   if (YT) {
     // 1) transmitindo agora (só confia se a coleta for recente) ou agendada que já começou
     const fresco = YT.atualizado && agora - new Date(YT.atualizado).getTime() < JANELA;
-    const agendadas = (YT.agendadas || []).filter((a) => new Date(a.inicio).getTime() + JANELA > agora)
+    const agendadas = (YT.agendadas || []).filter((a) => new Date(a.inicio).getTime() + JANELA > agora && !liveCancelada(a))
       .sort((a, b) => a.inicio.localeCompare(b.inicio));
     const noAr = (fresco && YT.aovivo?.[0]) || agendadas.find((a) => new Date(a.inicio).getTime() <= agora);
     if (noAr) {
