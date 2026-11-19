@@ -160,19 +160,27 @@ section.bloco.alt { background: var(--bg2); border-block: 1px solid var(--linha)
 .carrossel .trilho.encerradas > * { flex-basis: calc((100% - 48px) / 4); }
 @media (max-width: 980px) { .carrossel .trilho.encerradas > * { flex-basis: calc((100% - 16px) / 2); } }
 @media (max-width: 600px) { .carrossel .trilho.encerradas > * { flex-basis: 86%; } }
-.carrossel .seta { position: absolute; z-index: 3; top: calc(var(--meio-capa, 120px) - 22px); width: 44px; height: 44px; display: grid; place-items: center; padding: 0;
-  border-radius: 50%; border: 2px solid var(--preto); background: var(--branco); color: var(--preto); box-shadow: 0 3px 0 var(--preto); cursor: pointer; transition: opacity .2s, transform .15s; }
-.carrossel .seta:hover { transform: translateY(-1px); }
+/* setas no meio da altura dos cards; em telas largas ficam fora dos cards; no celular e em telas de toque, só deslizar */
+.carrossel .seta { position: absolute; z-index: 3; top: calc(var(--meio-trilho, 50%) - 24px); width: 48px; height: 48px; display: grid; place-items: center; padding: 0;
+  border-radius: 50%; border: 1px solid #3a4568; background: rgba(14, 20, 38, .92); color: var(--branco); box-shadow: 0 8px 24px rgba(0, 0, 0, .55);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); cursor: pointer; transition: opacity .2s, color .15s, border-color .15s; }
+.carrossel .seta:hover { color: var(--laranja); border-color: var(--laranja); }
 .carrossel .seta-ant { left: 8px; } .carrossel .seta-prox { right: 8px; }
-@media (min-width: 1240px) { .carrossel .seta-ant { left: -22px; } .carrossel .seta-prox { right: -22px; } }
+@media (min-width: 1260px) { .carrossel .seta-ant { left: -66px; } .carrossel .seta-prox { right: -66px; } }
+@media (max-width: 600px), (pointer: coarse) { .carrossel .seta { display: none; } }
 .carrossel .seta:disabled { opacity: 0; pointer-events: none; }
 .carrossel-rodape { display: flex; justify-content: center; align-items: center; gap: 8px 22px; flex-wrap: wrap; margin-top: 18px; font-size: 14px; color: var(--suave); }
-.carrossel-pos { font-variant-numeric: tabular-nums; font-weight: 700; }
+/* bolinhas: uma por grupo de cards; a comprida laranja é onde você está (clicáveis) */
+.carrossel-pos { display: flex; align-items: center; }
 .carrossel-pos:empty { display: none; }
+.carrossel-pos button { min-width: 16px; height: 24px; padding: 0 4px; border: 0; background: none; cursor: pointer; display: grid; place-items: center; }
+.carrossel-pos button::before { content: ""; display: block; width: 8px; height: 8px; border-radius: 99px; background: #3a4568; transition: width .2s, background .2s; }
+.carrossel-pos button:hover::before { background: var(--suave); }
+.carrossel-pos button[aria-current="true"]::before { width: 24px; background: var(--laranja); }
 .carrossel-rodape a { color: var(--laranja); font-weight: 700; text-decoration: none; }
 .carrossel-rodape a:hover { text-decoration: underline; }
 .carrossel.cabe-tudo .seta { display: none; }
-@media (prefers-reduced-motion: reduce) { .carrossel .trilho { scroll-behavior: auto; } .carrossel .seta { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .carrossel .trilho { scroll-behavior: auto; } .carrossel .seta, .carrossel-pos button::before { transition: none; } }
 .cab-secao.sub { margin-top: clamp(56px, 7vw, 80px); margin-bottom: 24px; }
 .cab-secao.sub h3 { margin: 6px 0 0; font-size: clamp(24px, 3vw, 32px); line-height: 1.1; font-weight: 800; text-wrap: balance; }
 .mesas.encerradas { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
@@ -1317,7 +1325,7 @@ const Rastro = (() => {
 if (logadoAdmin()) document.querySelector('.menu').insertAdjacentHTML('beforeend', '<a class="link-admin" href="admin/">Admin</a>');
 
 // ================= CARROSSÉIS ("No ar no canal", "Já encerradas" e "Mesas abertas no MesaQuest") =================
-// A fileira rola de lado; as setas andam uma "tela" de cards por vez. No celular também dá para deslizar com o dedo.
+// A fileira rola de lado; as setas andam uma "tela" de cards por vez e as bolinhas mostram onde você está. No celular, só deslizar com o dedo.
 function carrossel(lista) {
   const raiz = lista.closest('.carrossel');
   const ant = raiz.querySelector('.seta-ant'), prox = raiz.querySelector('.seta-prox'), pos = raiz.querySelector('.carrossel-pos');
@@ -1332,6 +1340,11 @@ function carrossel(lista) {
   };
   ant.addEventListener('click', () => andar(-1));
   prox.addEventListener('click', () => andar(1));
+  pos.addEventListener('click', (e) => {
+    const b = e.target.closest('button'); if (!b) return;
+    const { passo, porTela } = medidas();
+    lista.scrollTo({ left: [...pos.children].indexOf(b) * porTela * passo, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  });
   let quadro = 0;
   const atualizar = () => {
     cancelAnimationFrame(quadro);
@@ -1344,10 +1357,15 @@ function carrossel(lista) {
       raiz.classList.toggle('cabe-tudo', cabe);
       ant.disabled = cabe || lista.scrollLeft < 8;
       prox.disabled = cabe || noFim;
-      pos.textContent = cabe ? '' : primeiro === ultimo ? `${primeiro} de ${n}` : `${primeiro}–${ultimo} de ${n}`;
-      // setas na altura do meio da capa, para não cobrir o texto dos cards
-      const capa = lista.firstElementChild?.querySelector('.topo-capa');
-      if (capa?.offsetHeight) raiz.style.setProperty('--meio-capa', `${capa.offsetHeight / 2 + 4}px`);
+      const grupos = cabe ? 0 : Math.ceil(n / porTela);
+      const atual = noFim ? grupos - 1 : Math.min(grupos - 1, Math.round((primeiro - 1) / porTela));
+      if (pos.children.length !== grupos) {
+        pos.innerHTML = Array.from({ length: grupos }, (_, k) => `<button type="button" aria-label="Ir para o grupo ${k + 1} de ${grupos}"></button>`).join('');
+      }
+      [...pos.children].forEach((b, k) => b.setAttribute('aria-current', String(k === atual)));
+      pos.title = cabe ? '' : primeiro === ultimo ? `${primeiro} de ${n}` : `${primeiro}–${ultimo} de ${n}`;
+      // setas no meio da altura dos cards
+      raiz.style.setProperty('--meio-trilho', `${lista.offsetTop + lista.offsetHeight / 2 - 3}px`);
     });
   };
   lista.addEventListener('scroll', atualizar, { passive: true });
