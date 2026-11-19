@@ -1,29 +1,6 @@
 {
- "atualizado": "2026-11-18T21:31:49+00:00",
+ "atualizado": "2026-11-19T01:52:35+00:00",
  "itens": [
-  {
-   "slug": "fantasmas-de-saltmarsh-507ts3gb",
-   "nome": "Fantasmas de Saltmarsh",
-   "url": "https://mesaquest.com.br/mesas/fantasmas-de-saltmarsh-507ts3gb",
-   "mestre": "Henrique Müller",
-   "sistema": "Dungeons & Dragons 5.5e (2024)",
-   "descricao": "⚓ \"Ouçam, marujos... deixem que um velho lhes conte sobre Saltmarsh...\" “Reúnam-se, reúnam-se... Tragam o rum, e não interrompam, se quiserem dormir em paz esta noite.” O velho ergueu a caneca com mãos trêmulas…",
-   "inicio": "2026-11-18T20:00:00-03:00",
-   "fim": "2026-11-18T23:00:00-03:00",
-   "vagas": 0,
-   "lotada": true,
-   "preco": "R$ 100,00/mês",
-   "nivel": "Todos os níveis",
-   "tipo": "Campanha",
-   "frequencia": "Quinzenal",
-   "duracao_min": 180,
-   "ferramentas": [
-    "Foundry VTT",
-    "VDO Ninja"
-   ],
-   "ao_vivo": true,
-   "capa": "img/mq/fantasmas-de-saltmarsh-507ts3gb.webp"
-  },
   {
    "slug": "autoral-alem-do-mar-sem-fim-rasf80y8",
    "nome": "[Autoral] Além do Mar Sem Fim",
@@ -79,7 +56,7 @@
    "descricao": "O primeiro som é um bip. Depois outro. Você abre os olhos em uma enfermaria desconhecida. As luzes piscam. O ar tem um gosto metálico e há sangue seco no chão. Você não sabe como chegou ali. Não se lembra de seu nome.…",
    "inicio": "2026-11-21T14:00:00-03:00",
    "fim": "2026-11-21T19:00:00-03:00",
-   "vagas": 3,
+   "vagas": 2,
    "lotada": false,
    "preco": "R$ 80,00 (pagamento único)",
    "nivel": "Todos os níveis",
@@ -277,6 +254,29 @@
    ],
    "ao_vivo": true,
    "capa": "img/mq/contos-dos-reinos-esquecidos-ja99t4h7.webp"
+  },
+  {
+   "slug": "fantasmas-de-saltmarsh-507ts3gb",
+   "nome": "Fantasmas de Saltmarsh",
+   "url": "https://mesaquest.com.br/mesas/fantasmas-de-saltmarsh-507ts3gb",
+   "mestre": "Henrique Müller",
+   "sistema": "Dungeons & Dragons 5.5e (2024)",
+   "descricao": "⚓ \"Ouçam, marujos... deixem que um velho lhes conte sobre Saltmarsh...\" “Reúnam-se, reúnam-se... Tragam o rum, e não interrompam, se quiserem dormir em paz esta noite.” O velho ergueu a caneca com mãos trêmulas…",
+   "inicio": "2026-12-02T20:00:00-03:00",
+   "fim": "2026-12-02T23:00:00-03:00",
+   "vagas": 0,
+   "lotada": true,
+   "preco": "R$ 100,00/mês",
+   "nivel": "Todos os níveis",
+   "tipo": "Campanha",
+   "frequencia": "Quinzenal",
+   "duracao_min": 180,
+   "ferramentas": [
+    "Foundry VTT",
+    "VDO Ninja"
+   ],
+   "ao_vivo": true,
+   "capa": "img/mq/fantasmas-de-saltmarsh-507ts3gb.webp"
   }
  ]
 }
