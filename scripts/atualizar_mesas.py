@@ -123,6 +123,7 @@ def detalhes(slug):
         "duracao_min": round(dur / 30) * 30 if dur else None,  # 2h59 -> 3h
         "ferramentas": ferramentas,
         "ao_vivo": FERRAMENTA_DE_LIVE in ferramentas,
+        "criada_em": t.get("createdAt"),  # o site mostra primeiro as mesas com vaga mais novas
     }
 
 
