@@ -22,6 +22,11 @@ header.topo .marca img { height: 34px; width: auto; }
 nav.menu { display: flex; gap: 22px; margin-left: auto; font-weight: 500; font-size: 15px; }
 nav.menu a { text-decoration: none; color: var(--suave); }
 nav.menu a:hover, nav.menu a[aria-current] { color: var(--branco); }
+/* loja virtual no menu (abre em outra aba) */
+nav.menu a.link-loja { display: inline-flex; align-items: center; gap: 6px; color: var(--laranja); font-weight: 700; }
+nav.menu a.link-loja svg { flex: none; vertical-align: -2px; }
+nav.menu a.link-loja:hover, header.topo:has(.botao-menu) nav.menu a.link-loja:hover { color: var(--branco); }
+header.topo:has(.botao-menu) nav.menu a.link-loja { color: var(--laranja); }
 .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; border-radius: 999px; font-weight: 700; text-decoration: none; border: 2px solid var(--preto); font-size: 15px; white-space: nowrap; font-family: inherit; cursor: pointer; }
 .btn-play { background: var(--laranja); color: var(--preto); box-shadow: 0 3px 0 var(--preto); }
 .btn-linha { border-color: var(--linha); color: var(--branco); background: transparent; }
