@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-19T01:52:35+00:00",
+ "atualizado": "2026-11-19T11:55:56+00:00",
  "itens": [
   {
    "slug": "autoral-alem-do-mar-sem-fim-rasf80y8",
@@ -22,6 +22,7 @@
     "VDO Ninja"
    ],
    "ao_vivo": true,
+   "criada_em": "2026-01-06T17:48:04.430Z",
    "capa": "img/mq/autoral-alem-do-mar-sem-fim-rasf80y8.webp"
   },
   {
@@ -45,6 +46,7 @@
     "Google Meet"
    ],
    "ao_vivo": false,
+   "criada_em": "2026-07-16T16:57:30.115Z",
    "capa": "img/mq/phandelver-e-abaixo-o-obelisco-despedacado-9cjfc98a.webp"
   },
   {
@@ -68,6 +70,7 @@
     "Worldcraft"
    ],
    "ao_vivo": true,
+   "criada_em": "2026-11-09T19:54:23.052Z",
    "capa": "img/mq/protocolo-zero-terra-devastada-r1ex8jtr.webp"
   },
   {
@@ -91,6 +94,7 @@
     "VDO Ninja"
    ],
    "ao_vivo": true,
+   "criada_em": "2026-07-19T05:35:28.678Z",
    "capa": "img/mq/a-lua-tortuosa-sbvs0xqf.webp"
   },
   {
@@ -114,6 +118,7 @@
     "VDO Ninja"
    ],
    "ao_vivo": true,
+   "criada_em": "2025-12-02T04:20:00.186Z",
    "capa": "img/mq/maldicao-de-strahd-9ddz7grj.webp"
   },
   {
@@ -137,6 +142,7 @@
     "VDO Ninja"
    ],
    "ao_vivo": true,
+   "criada_em": "2026-04-02T19:54:38.796Z",
    "capa": "img/mq/principes-do-apocalipse-0j4ebd57.webp"
   },
   {
@@ -160,6 +166,7 @@
     "VDO Ninja"
    ],
    "ao_vivo": true,
+   "criada_em": "2025-12-02T04:32:38.989Z",
    "capa": "img/mq/descida-ao-avernus-n9a4dynt.webp"
   },
   {
@@ -184,6 +191,7 @@
     "Whatsapp"
    ],
    "ao_vivo": true,
+   "criada_em": "2026-09-10T20:35:25.149Z",
    "capa": "img/mq/o-que-restou-de-nos-terra-devastada-w610fhf1.webp"
   },
   {
@@ -207,6 +215,7 @@
     "VDO Ninja"
    ],
    "ao_vivo": true,
+   "criada_em": "2025-12-02T04:50:27.695Z",
    "capa": "img/mq/odisseia-dos-lordes-dragoes-4x844vrw.webp"
   },
   {
@@ -230,6 +239,7 @@
     "VDO Ninja"
    ],
    "ao_vivo": true,
+   "criada_em": "2025-12-02T03:58:00.053Z",
    "capa": "img/mq/vecna-a-beira-da-ruina-e998t6hx.webp"
   },
   {
@@ -253,6 +263,7 @@
     "VDO Ninja"
    ],
    "ao_vivo": true,
+   "criada_em": "2026-10-22T16:09:32.708Z",
    "capa": "img/mq/contos-dos-reinos-esquecidos-ja99t4h7.webp"
   },
   {
@@ -276,6 +287,7 @@
     "VDO Ninja"
    ],
    "ao_vivo": true,
+   "criada_em": "2025-12-02T04:05:59.217Z",
    "capa": "img/mq/fantasmas-de-saltmarsh-507ts3gb.webp"
   }
  ]
