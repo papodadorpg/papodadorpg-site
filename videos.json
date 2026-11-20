@@ -1,27 +1,39 @@
 {
- "atualizado": "2026-11-19T11:55:49+00:00",
- "aovivo": [],
- "agendadas": [
+ "atualizado": "2026-11-20T01:46:35+00:00",
+ "aovivo": [
   {
    "id": "jnQZT1M2bC0",
    "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 23",
-   "inicio": "2026-11-20T00:00:00+00:00",
    "capa": "img/yt/jnQZT1M2bC0-g.webp"
-  },
+  }
+ ],
+ "agendadas": [
   {
    "id": "dmMLS3f2kHU",
    "titulo": "Terra Devastada O Que Restou de Nós - Episódio 03",
    "inicio": "2026-11-27T00:00:00+00:00",
    "capa": "img/yt/dmMLS3f2kHU-g.webp"
+  },
+  {
+   "id": "DiNJ5U0nMEs",
+   "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 35",
+   "inicio": "2026-12-02T23:00:00+00:00",
+   "capa": "img/yt/DiNJ5U0nMEs-g.webp"
   }
  ],
  "itens": [
   {
+   "id": "Lq4wJaNmYEQ",
+   "titulo": "NUNCA CONFIE NUMA BRUXA... Contos dos Reinos Esquecidos Ep. 02 | Highlights D&D 5.5",
+   "data": "2026-11-19T17:46:35+00:00",
+   "capa": "img/yt/Lq4wJaNmYEQ.jpg",
+   "capa_grande": "img/yt/Lq4wJaNmYEQ-g.webp"
+  },
+  {
    "id": "-jwFoH7tbgE",
    "titulo": "D&D 5.5 Contos dos Reinos Esquecidos - Episódio 02 | Rastros Noturnos",
    "data": "2026-11-18T02:07:15+00:00",
-   "capa": "img/yt/-jwFoH7tbgE.jpg",
-   "capa_grande": "img/yt/-jwFoH7tbgE-g.webp"
+   "capa": "img/yt/-jwFoH7tbgE.jpg"
   },
   {
    "id": "euKyshVciHc",
@@ -46,15 +58,14 @@
    "titulo": "A COROA SERÁ SUA... Odisseia dos Lordes Dragões Ep. 23 | Highlights D&D 5.5",
    "data": "2026-11-16T12:55:26+00:00",
    "capa": "img/yt/BhErN7oCt6s.jpg"
-  },
-  {
-   "id": "MoXSwvvDmx0",
-   "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 23 | Conheçam os Lordes Dragões",
-   "data": "2026-11-15T02:26:15+00:00",
-   "capa": "img/yt/MoXSwvvDmx0.jpg"
   }
  ],
  "shorts": [
+  {
+   "id": "jfsLFTyTB9w",
+   "titulo": "A flor que nasceu do chão 🌺 | Além do Mar Sem Fim (D&D)",
+   "capa": "img/yt/jfsLFTyTB9w-s.webp"
+  },
   {
    "id": "kBIBDh8jEsY",
    "titulo": "Joelhos não infinitos",
@@ -89,11 +100,6 @@
    "id": "Xo9wTeuMBtQ",
    "titulo": "Contrato Infernal",
    "capa": "img/yt/Xo9wTeuMBtQ-s.webp"
-  },
-  {
-   "id": "9x3z4CMk7hs",
-   "titulo": "Mais um crítico no Shatar",
-   "capa": "img/yt/9x3z4CMk7hs-s.webp"
   }
  ]
 }
