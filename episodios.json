@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-20T01:46:35+00:00",
+ "atualizado": "2026-11-21T01:30:38+00:00",
  "campanhas": {
   "strahd": {
    "playlist": "PLu-hxXZl-KUQqPuVdQ4vg71gQH-ODurab",
@@ -981,8 +981,8 @@
     },
     {
      "id": "jnQZT1M2bC0",
-     "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 23",
-     "duracao": ""
+     "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 23 | Selvageria",
+     "duracao": "2:49:23"
     }
    ]
   },
@@ -1909,6 +1909,11 @@
   "almoco": {
    "playlist": "PLfEO-j05yTCI",
    "episodios": [
+    {
+     "id": "Js3tjSCM2oM",
+     "titulo": "LIVE DE ALMOÇO 🍗 Bate-papo sobre RPG, D&D e mesas ao vivo | Papo Dado RPG",
+     "duracao": "1:42:49"
+    },
     {
      "id": "0-U7K9EssFM",
      "titulo": "LIVE DE ALMOÇO 🍗 Bate-papo sobre RPG, D&D e mesas ao vivo | Papo Dado RPG",
