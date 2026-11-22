@@ -1,12 +1,12 @@
 {
- "atualizado": "2026-11-21T01:30:38+00:00",
+ "atualizado": "2026-11-22T00:20:19+00:00",
  "aovivo": [],
  "agendadas": [
   {
-   "id": "-uJhMA1DBOg",
-   "titulo": "Protocolo Zero | Oneshot de terror e sobrevivência em Terra Devastada",
-   "inicio": "2026-11-21T17:00:00+00:00",
-   "capa": "img/yt/-uJhMA1DBOg-g.webp"
+   "id": "9Oxr1N7QwY0",
+   "titulo": "D&D 5.5 A Lua Tortuosa - Episódio 06",
+   "inicio": "2026-11-22T01:00:00+00:00",
+   "capa": "img/yt/9Oxr1N7QwY0-g.webp"
   },
   {
    "id": "dmMLS3f2kHU",
@@ -23,17 +23,29 @@
  ],
  "itens": [
   {
+   "id": "-uJhMA1DBOg",
+   "titulo": "Protocolo Zero | Oneshot de terror e sobrevivência em Terra Devastada",
+   "data": "2026-11-21T22:20:19+00:00",
+   "capa": "img/yt/-uJhMA1DBOg.jpg",
+   "capa_grande": "img/yt/-uJhMA1DBOg-g.webp"
+  },
+  {
    "id": "Js3tjSCM2oM",
    "titulo": "LIVE DE ALMOÇO 🍗 Bate-papo sobre RPG, D&D e mesas ao vivo | Papo Dado RPG",
    "data": "2026-11-20T17:30:38+00:00",
-   "capa": "img/yt/Js3tjSCM2oM.jpg",
-   "capa_grande": "img/yt/Js3tjSCM2oM-g.webp"
+   "capa": "img/yt/Js3tjSCM2oM.jpg"
   },
   {
    "id": "jnQZT1M2bC0",
    "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 23 | Selvageria",
    "data": "2026-11-20T03:30:38+00:00",
    "capa": "img/yt/jnQZT1M2bC0.jpg"
+  },
+  {
+   "id": "BhErN7oCt6s",
+   "titulo": "A COROA SERÁ SUA... Odisseia dos Lordes Dragões Ep. 23 | Highlights D&D 5.5",
+   "data": "2026-11-20T00:20:19+00:00",
+   "capa": "img/yt/BhErN7oCt6s.jpg"
   },
   {
    "id": "Lq4wJaNmYEQ",
@@ -46,21 +58,14 @@
    "titulo": "D&D 5.5 Contos dos Reinos Esquecidos - Episódio 02 | Rastros Noturnos",
    "data": "2026-11-18T02:07:15+00:00",
    "capa": "img/yt/-jwFoH7tbgE.jpg"
-  },
-  {
-   "id": "euKyshVciHc",
-   "titulo": "CADÊ O MEU BRAÇO? Vecna: À Beira da Ruína Ep. 44 | Highlights D&D 5.5 (Vecna: Eve of Ruin)",
-   "data": "2026-11-17T16:26:15+00:00",
-   "capa": "img/yt/euKyshVciHc.jpg"
-  },
-  {
-   "id": "lgszg5MUwhc",
-   "titulo": "VIROU MACACO! Descida ao Avernus Ep. 34 | Highlights D&D 5.5 (Descent into Avernus)",
-   "data": "2026-11-17T04:34:22+00:00",
-   "capa": "img/yt/lgszg5MUwhc.jpg"
   }
  ],
  "shorts": [
+  {
+   "id": "jDcNwfP49QQ",
+   "titulo": "O coveiro dançando na chuva 🌧️ | A Lua Tortuosa (D&D de terror)",
+   "capa": "img/yt/jDcNwfP49QQ-s.webp"
+  },
   {
    "id": "InWA3LcKlNo",
    "titulo": "Se eu fosse você, ficaria de joelhos ⚡ | Odisseia dos Lordes Dragões (D&D)",
@@ -95,11 +100,6 @@
    "id": "fhoRNmioxVk",
    "titulo": "Você tem 4h30 pra sair 🧟 | Protocolo Zero, one-shot de Terra Devastada",
    "capa": "img/yt/fhoRNmioxVk-s.webp"
-  },
-  {
-   "id": "psmBjJyUW7E",
-   "titulo": "Se for a ex, pode! 🤣",
-   "capa": "img/yt/psmBjJyUW7E-s.webp"
   }
  ]
 }

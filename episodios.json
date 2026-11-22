@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-21T01:30:38+00:00",
+ "atualizado": "2026-11-22T00:20:19+00:00",
  "campanhas": {
   "strahd": {
    "playlist": "PLu-hxXZl-KUQqPuVdQ4vg71gQH-ODurab",
@@ -1133,6 +1133,11 @@
      "id": "hh8GNm2vW9Q",
      "titulo": "D&D 5.5 A Lua Tortuosa - Episódio 05 | Havia uma Casa Torta",
      "duracao": "3:10:39"
+    },
+    {
+     "id": "9Oxr1N7QwY0",
+     "titulo": "D&D 5.5 A Lua Tortuosa - Episódio 06",
+     "duracao": ""
     }
    ]
   },
@@ -1912,7 +1917,7 @@
     {
      "id": "Js3tjSCM2oM",
      "titulo": "LIVE DE ALMOÇO 🍗 Bate-papo sobre RPG, D&D e mesas ao vivo | Papo Dado RPG",
-     "duracao": "1:42:49"
+     "duracao": "1:42:11"
     },
     {
      "id": "0-U7K9EssFM",
