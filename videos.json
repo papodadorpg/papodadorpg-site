@@ -1,12 +1,24 @@
 {
- "atualizado": "2026-11-22T00:20:19+00:00",
+ "atualizado": "2026-11-23T00:52:44+00:00",
  "aovivo": [],
  "agendadas": [
   {
-   "id": "9Oxr1N7QwY0",
-   "titulo": "D&D 5.5 A Lua Tortuosa - Episódio 06",
-   "inicio": "2026-11-22T01:00:00+00:00",
-   "capa": "img/yt/9Oxr1N7QwY0-g.webp"
+   "id": "I9oiXKYQO_0",
+   "titulo": "D&D 5.5 Maldição de Strahd - Episódio 37",
+   "inicio": "2026-11-23T23:30:00+00:00",
+   "capa": "img/yt/I9oiXKYQO_0-g.webp"
+  },
+  {
+   "id": "qriyMbxh2V8",
+   "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 13",
+   "inicio": "2026-11-24T23:00:00+00:00",
+   "capa": "img/yt/qriyMbxh2V8-g.webp"
+  },
+  {
+   "id": "jZ21GZQmEr0",
+   "titulo": "D&D 5.5 Descida ao Avernus - Episódio 35",
+   "inicio": "2026-11-25T23:00:00+00:00",
+   "capa": "img/yt/jZ21GZQmEr0-g.webp"
   },
   {
    "id": "dmMLS3f2kHU",
@@ -15,19 +27,79 @@
    "capa": "img/yt/dmMLS3f2kHU-g.webp"
   },
   {
+   "id": "PJFR0ZeW2VE",
+   "titulo": "LIVE DE ALMOÇO 🍗 Bate-papo sobre RPG, D&D e mesas ao vivo | Papo Dado RPG",
+   "inicio": "2026-11-27T15:00:00+00:00",
+   "capa": "img/yt/PJFR0ZeW2VE-g.webp"
+  },
+  {
+   "id": "bZSfjIe5qrg",
+   "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 24",
+   "inicio": "2026-11-28T23:00:00+00:00",
+   "capa": "img/yt/bZSfjIe5qrg-g.webp"
+  },
+  {
+   "id": "Y97C1FzIjNA",
+   "titulo": "D&D 5.5 Vecna À Beira da Ruína - Episódio 45",
+   "inicio": "2026-11-30T23:45:00+00:00",
+   "capa": "img/yt/Y97C1FzIjNA-g.webp"
+  },
+  {
+   "id": "27aknzN22kQ",
+   "titulo": "D&D 5.5 Contos dos Reinos Esquecidos - Episódio 03",
+   "inicio": "2026-12-01T23:00:00+00:00",
+   "capa": "img/yt/27aknzN22kQ-g.webp"
+  },
+  {
    "id": "DiNJ5U0nMEs",
    "titulo": "D&D 5.5 Fantasmas de Saltmarsh - Episódio 35",
    "inicio": "2026-12-02T23:00:00+00:00",
    "capa": "img/yt/DiNJ5U0nMEs-g.webp"
+  },
+  {
+   "id": "drnhz0kFXu0",
+   "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 24",
+   "inicio": "2026-12-04T00:00:00+00:00",
+   "capa": "img/yt/drnhz0kFXu0-g.webp"
+  },
+  {
+   "id": "9Ul4-XIF8LY",
+   "titulo": "LIVE DE ALMOÇO 🍗 Bate-papo sobre RPG, D&D e mesas ao vivo | Papo Dado RPG",
+   "inicio": "2026-12-04T15:00:00+00:00",
+   "capa": "img/yt/9Ul4-XIF8LY-g.webp"
+  },
+  {
+   "id": "mFb_VewGMfs",
+   "titulo": "D&D 5.5 A Lua Tortuosa - Episódio 07",
+   "inicio": "2026-12-06T01:00:00+00:00",
+   "capa": "img/yt/mFb_VewGMfs-g.webp"
   }
  ],
  "itens": [
   {
+   "id": "fgWeBJ7Idk0",
+   "titulo": "O PAVÃO GANHOU VIDA! A Lua Tortuosa Ep. 06 | Highlights D&D 5.5 de Terror (The Crooked Moon)",
+   "data": "2026-11-22T22:52:44+00:00",
+   "capa": "img/yt/fgWeBJ7Idk0.jpg",
+   "capa_grande": "img/yt/fgWeBJ7Idk0-g.webp"
+  },
+  {
+   "id": "9Oxr1N7QwY0",
+   "titulo": "D&D 5.5 A Lua Tortuosa - Episódio 06 | A Vida Imita A Arte",
+   "data": "2026-11-22T04:52:44+00:00",
+   "capa": "img/yt/9Oxr1N7QwY0.jpg"
+  },
+  {
    "id": "-uJhMA1DBOg",
    "titulo": "Protocolo Zero | Oneshot de terror e sobrevivência em Terra Devastada",
    "data": "2026-11-21T22:20:19+00:00",
-   "capa": "img/yt/-uJhMA1DBOg.jpg",
-   "capa_grande": "img/yt/-uJhMA1DBOg-g.webp"
+   "capa": "img/yt/-uJhMA1DBOg.jpg"
+  },
+  {
+   "id": "euKyshVciHc",
+   "titulo": "CADÊ O MEU BRAÇO? Vecna: À Beira da Ruína Ep. 44 | Highlights D&D 5.5 (Vecna: Eve of Ruin)",
+   "data": "2026-11-21T00:52:44+00:00",
+   "capa": "img/yt/euKyshVciHc.jpg"
   },
   {
    "id": "Js3tjSCM2oM",
@@ -40,24 +112,6 @@
    "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 23 | Selvageria",
    "data": "2026-11-20T03:30:38+00:00",
    "capa": "img/yt/jnQZT1M2bC0.jpg"
-  },
-  {
-   "id": "BhErN7oCt6s",
-   "titulo": "A COROA SERÁ SUA... Odisseia dos Lordes Dragões Ep. 23 | Highlights D&D 5.5",
-   "data": "2026-11-20T00:20:19+00:00",
-   "capa": "img/yt/BhErN7oCt6s.jpg"
-  },
-  {
-   "id": "Lq4wJaNmYEQ",
-   "titulo": "NUNCA CONFIE NUMA BRUXA... Contos dos Reinos Esquecidos Ep. 02 | Highlights D&D 5.5",
-   "data": "2026-11-19T17:46:35+00:00",
-   "capa": "img/yt/Lq4wJaNmYEQ.jpg"
-  },
-  {
-   "id": "-jwFoH7tbgE",
-   "titulo": "D&D 5.5 Contos dos Reinos Esquecidos - Episódio 02 | Rastros Noturnos",
-   "data": "2026-11-18T02:07:15+00:00",
-   "capa": "img/yt/-jwFoH7tbgE.jpg"
   }
  ],
  "shorts": [

@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-22T00:20:19+00:00",
+ "atualizado": "2026-11-23T00:52:44+00:00",
  "campanhas": {
   "strahd": {
    "playlist": "PLu-hxXZl-KUQqPuVdQ4vg71gQH-ODurab",
@@ -188,6 +188,11 @@
      "id": "xNRWvdCG9WM",
      "titulo": "D&D 5.5 Maldição de Strahd - Episódio 36 | Casos de Família",
      "duracao": "3:09:05"
+    },
+    {
+     "id": "I9oiXKYQO_0",
+     "titulo": "D&D 5.5 Maldição de Strahd - Episódio 37",
+     "duracao": ""
     }
    ]
   },
@@ -408,6 +413,11 @@
      "id": "9-mlsmFsBwo",
      "titulo": "D&D 5.5 Vecna À Beira da Ruína - Episódio 44 | Partes de Nós",
      "duracao": "2:44:28"
+    },
+    {
+     "id": "Y97C1FzIjNA",
+     "titulo": "D&D 5.5 Vecna À Beira da Ruína - Episódio 45",
+     "duracao": ""
     }
    ]
   },
@@ -478,6 +488,11 @@
      "id": "c-SyK5cUEvQ",
      "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 12 | E lá vamos nós...",
      "duracao": "3:46:39"
+    },
+    {
+     "id": "qriyMbxh2V8",
+     "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 13",
+     "duracao": ""
     }
    ]
   },
@@ -833,6 +848,11 @@
      "id": "mkw_LGyRiWw",
      "titulo": "D&D 5.5 Descida ao Avernus - Episódio 34 | Sangue, Ossos e Um Macaco Gigante",
      "duracao": "3:21:51"
+    },
+    {
+     "id": "jZ21GZQmEr0",
+     "titulo": "D&D 5.5 Descida ao Avernus - Episódio 35",
+     "duracao": ""
     }
    ]
   },
@@ -983,6 +1003,11 @@
      "id": "jnQZT1M2bC0",
      "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 23 | Selvageria",
      "duracao": "2:49:23"
+    },
+    {
+     "id": "drnhz0kFXu0",
+     "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 24",
+     "duracao": ""
     }
    ]
   },
@@ -1098,6 +1123,11 @@
      "id": "MoXSwvvDmx0",
      "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 23 | Conheçam os Lordes Dragões",
      "duracao": "2:51:36"
+    },
+    {
+     "id": "bZSfjIe5qrg",
+     "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 24",
+     "duracao": ""
     }
    ]
   },
@@ -1136,7 +1166,12 @@
     },
     {
      "id": "9Oxr1N7QwY0",
-     "titulo": "D&D 5.5 A Lua Tortuosa - Episódio 06",
+     "titulo": "D&D 5.5 A Lua Tortuosa - Episódio 06 | A Vida Imita A Arte",
+     "duracao": "2:58:15"
+    },
+    {
+     "id": "mFb_VewGMfs",
+     "titulo": "D&D 5.5 A Lua Tortuosa - Episódio 07",
      "duracao": ""
     }
    ]
@@ -1915,6 +1950,16 @@
    "playlist": "PLfEO-j05yTCI",
    "episodios": [
     {
+     "id": "9Ul4-XIF8LY",
+     "titulo": "LIVE DE ALMOÇO 🍗 Bate-papo sobre RPG, D&D e mesas ao vivo | Papo Dado RPG",
+     "duracao": ""
+    },
+    {
+     "id": "PJFR0ZeW2VE",
+     "titulo": "LIVE DE ALMOÇO 🍗 Bate-papo sobre RPG, D&D e mesas ao vivo | Papo Dado RPG",
+     "duracao": ""
+    },
+    {
      "id": "Js3tjSCM2oM",
      "titulo": "LIVE DE ALMOÇO 🍗 Bate-papo sobre RPG, D&D e mesas ao vivo | Papo Dado RPG",
      "duracao": "1:42:11"
@@ -1934,6 +1979,11 @@
   "contos": {
    "playlist": "PLfXrR1KV_gis",
    "episodios": [
+    {
+     "id": "27aknzN22kQ",
+     "titulo": "D&D 5.5 Contos dos Reinos Esquecidos - Episódio 03",
+     "duracao": ""
+    },
     {
      "id": "-jwFoH7tbgE",
      "titulo": "D&D 5.5 Contos dos Reinos Esquecidos - Episódio 02 | Rastros Noturnos",
@@ -2049,6 +2099,12 @@
    "titulo": "NUNCA CONFIE NUMA BRUXA... Contos dos Reinos Esquecidos Ep. 02 | Highlights D&D 5.5",
    "duracao": "57:22",
    "capa": "img/yt/Lq4wJaNmYEQ.jpg"
+  },
+  {
+   "id": "fgWeBJ7Idk0",
+   "titulo": "O PAVÃO GANHOU VIDA! A Lua Tortuosa Ep. 06 | Highlights D&D 5.5 de Terror (The Crooked Moon)",
+   "duracao": "59:08",
+   "capa": "img/yt/fgWeBJ7Idk0.jpg"
   }
  ]
 }
