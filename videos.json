@@ -1,13 +1,7 @@
 {
- "atualizado": "2026-11-23T00:52:44+00:00",
+ "atualizado": "2026-11-24T04:47:28+00:00",
  "aovivo": [],
  "agendadas": [
-  {
-   "id": "I9oiXKYQO_0",
-   "titulo": "D&D 5.5 Maldição de Strahd - Episódio 37",
-   "inicio": "2026-11-23T23:30:00+00:00",
-   "capa": "img/yt/I9oiXKYQO_0-g.webp"
-  },
   {
    "id": "qriyMbxh2V8",
    "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 13",
@@ -73,6 +67,12 @@
    "titulo": "D&D 5.5 A Lua Tortuosa - Episódio 07",
    "inicio": "2026-12-06T01:00:00+00:00",
    "capa": "img/yt/mFb_VewGMfs-g.webp"
+  },
+  {
+   "id": "I9oiXKYQO_0",
+   "titulo": "D&D 5.5 Maldição de Strahd - Episódio 37",
+   "inicio": "2026-12-07T23:30:00+00:00",
+   "capa": "img/yt/I9oiXKYQO_0-g.webp"
   }
  ],
  "itens": [
@@ -88,6 +88,12 @@
    "titulo": "D&D 5.5 A Lua Tortuosa - Episódio 06 | A Vida Imita A Arte",
    "data": "2026-11-22T04:52:44+00:00",
    "capa": "img/yt/9Oxr1N7QwY0.jpg"
+  },
+  {
+   "id": "Lq4wJaNmYEQ",
+   "titulo": "NUNCA CONFIE NUMA BRUXA... Contos dos Reinos Esquecidos Ep. 02 | Highlights D&D 5.5",
+   "data": "2026-11-22T04:47:28+00:00",
+   "capa": "img/yt/Lq4wJaNmYEQ.jpg"
   },
   {
    "id": "-uJhMA1DBOg",
@@ -106,15 +112,14 @@
    "titulo": "LIVE DE ALMOÇO 🍗 Bate-papo sobre RPG, D&D e mesas ao vivo | Papo Dado RPG",
    "data": "2026-11-20T17:30:38+00:00",
    "capa": "img/yt/Js3tjSCM2oM.jpg"
-  },
-  {
-   "id": "jnQZT1M2bC0",
-   "titulo": "D&D 5.5 Além do Mar Sem Fim - Episódio 23 | Selvageria",
-   "data": "2026-11-20T03:30:38+00:00",
-   "capa": "img/yt/jnQZT1M2bC0.jpg"
   }
  ],
  "shorts": [
+  {
+   "id": "0YfdgEOEjZs",
+   "titulo": "Eu sou a terra ⚡ | Maldição de Strahd (D&D)",
+   "capa": "img/yt/0YfdgEOEjZs-s.webp"
+  },
   {
    "id": "jDcNwfP49QQ",
    "titulo": "O coveiro dançando na chuva 🌧️ | A Lua Tortuosa (D&D de terror)",
@@ -149,11 +154,6 @@
    "id": "NTE6S2Plt1s",
    "titulo": "O Homem Torto apareceu 🪓 | A Lua Tortuosa (D&D de terror)",
    "capa": "img/yt/NTE6S2Plt1s-s.webp"
-  },
-  {
-   "id": "fhoRNmioxVk",
-   "titulo": "Você tem 4h30 pra sair 🧟 | Protocolo Zero, one-shot de Terra Devastada",
-   "capa": "img/yt/fhoRNmioxVk-s.webp"
   }
  ]
 }
