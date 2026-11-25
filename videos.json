@@ -1,13 +1,7 @@
 {
- "atualizado": "2026-11-24T04:47:28+00:00",
+ "atualizado": "2026-11-25T03:32:44+00:00",
  "aovivo": [],
  "agendadas": [
-  {
-   "id": "qriyMbxh2V8",
-   "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 13",
-   "inicio": "2026-11-24T23:00:00+00:00",
-   "capa": "img/yt/qriyMbxh2V8-g.webp"
-  },
   {
    "id": "jZ21GZQmEr0",
    "titulo": "D&D 5.5 Descida ao Avernus - Episódio 35",
@@ -77,11 +71,17 @@
  ],
  "itens": [
   {
+   "id": "qriyMbxh2V8",
+   "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 13 | Com a Graça de Bane",
+   "data": "2026-11-25T03:08:44+00:00",
+   "capa": "img/yt/qriyMbxh2V8.jpg",
+   "capa_grande": "img/yt/qriyMbxh2V8-g.webp"
+  },
+  {
    "id": "fgWeBJ7Idk0",
    "titulo": "O PAVÃO GANHOU VIDA! A Lua Tortuosa Ep. 06 | Highlights D&D 5.5 de Terror (The Crooked Moon)",
    "data": "2026-11-22T22:52:44+00:00",
-   "capa": "img/yt/fgWeBJ7Idk0.jpg",
-   "capa_grande": "img/yt/fgWeBJ7Idk0-g.webp"
+   "capa": "img/yt/fgWeBJ7Idk0.jpg"
   },
   {
    "id": "9Oxr1N7QwY0",
@@ -106,15 +106,14 @@
    "titulo": "CADÊ O MEU BRAÇO? Vecna: À Beira da Ruína Ep. 44 | Highlights D&D 5.5 (Vecna: Eve of Ruin)",
    "data": "2026-11-21T00:52:44+00:00",
    "capa": "img/yt/euKyshVciHc.jpg"
-  },
-  {
-   "id": "Js3tjSCM2oM",
-   "titulo": "LIVE DE ALMOÇO 🍗 Bate-papo sobre RPG, D&D e mesas ao vivo | Papo Dado RPG",
-   "data": "2026-11-20T17:30:38+00:00",
-   "capa": "img/yt/Js3tjSCM2oM.jpg"
   }
  ],
  "shorts": [
+  {
+   "id": "XORyfJ21qhM",
+   "titulo": "Passou pra mim a maldição 🎲 | Príncipes do Apocalipse (D&D)",
+   "capa": "img/yt/XORyfJ21qhM-s.webp"
+  },
   {
    "id": "0YfdgEOEjZs",
    "titulo": "Eu sou a terra ⚡ | Maldição de Strahd (D&D)",
@@ -149,11 +148,6 @@
    "id": "NeYg75m0iYk",
    "titulo": "Ele bebeu antes de ouvir a explicação 🌳 | Vecna: À Beira da Ruína (D&D)",
    "capa": "img/yt/NeYg75m0iYk-s.webp"
-  },
-  {
-   "id": "NTE6S2Plt1s",
-   "titulo": "O Homem Torto apareceu 🪓 | A Lua Tortuosa (D&D de terror)",
-   "capa": "img/yt/NTE6S2Plt1s-s.webp"
   }
  ]
 }
