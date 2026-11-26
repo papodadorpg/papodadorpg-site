@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-25T03:32:44+00:00",
+ "atualizado": "2026-11-26T02:50:50+00:00",
  "campanhas": {
   "strahd": {
    "playlist": "PLu-hxXZl-KUQqPuVdQ4vg71gQH-ODurab",
@@ -492,7 +492,7 @@
     {
      "id": "qriyMbxh2V8",
      "titulo": "D&D 5.5 Príncipes do Apocalipse - Episódio 13 | Com a Graça de Bane",
-     "duracao": "3:56:36"
+     "duracao": "3:56:34"
     }
    ]
   },
@@ -2105,6 +2105,12 @@
    "titulo": "O PAVÃO GANHOU VIDA! A Lua Tortuosa Ep. 06 | Highlights D&D 5.5 de Terror (The Crooked Moon)",
    "duracao": "59:08",
    "capa": "img/yt/fgWeBJ7Idk0.jpg"
+  },
+  {
+   "id": "alRwGkZzftI",
+   "titulo": "UM OU DOIS PRA SALVAR O XATAR! Príncipes do Apocalipse Ep. 13 | Highlights D&D 5.5",
+   "duracao": "56:18",
+   "capa": "img/yt/alRwGkZzftI.jpg"
   }
  ]
 }

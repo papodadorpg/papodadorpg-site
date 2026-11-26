@@ -1,55 +1,6 @@
 {
- "atualizado": "2026-11-25T03:32:52+00:00",
+ "atualizado": "2026-11-26T02:50:59+00:00",
  "itens": [
-  {
-   "slug": "descida-ao-avernus-n9a4dynt",
-   "nome": "Descida ao Avernus",
-   "url": "https://mesaquest.com.br/mesas/descida-ao-avernus-n9a4dynt",
-   "mestre": "Henrique Müller",
-   "sistema": "Dungeons & Dragons 5.5e (2024)",
-   "descricao": "“Quando as trevas se erguem na cidade e o inferno cresce no horizonte, heróis se forjam… ou se perdem.” Vocês começam suas jornadas nas ruas enevoadas de Baldur's Gate — uma metrópole repleta de ambição, segredos e…",
-   "inicio": "2026-11-25T20:00:00-03:00",
-   "fim": "2026-11-25T23:00:00-03:00",
-   "vagas": 0,
-   "lotada": true,
-   "preco": "R$ 100,00/mês",
-   "nivel": "Todos os níveis",
-   "tipo": "Campanha",
-   "frequencia": "Quinzenal",
-   "duracao_min": 180,
-   "ferramentas": [
-    "Foundry VTT",
-    "VDO Ninja"
-   ],
-   "ao_vivo": true,
-   "criada_em": "2025-12-02T04:32:38.989Z",
-   "capa": "img/mq/descida-ao-avernus-n9a4dynt.webp"
-  },
-  {
-   "slug": "o-que-restou-de-nos-terra-devastada-w610fhf1",
-   "nome": "O Que Restou de Nós - Terra Devastada",
-   "url": "https://mesaquest.com.br/mesas/o-que-restou-de-nos-terra-devastada-w610fhf1",
-   "mestre": "Henrique Müller",
-   "sistema": "Terra Devastada",
-   "descricao": "O mundo ainda não acabou. As pessoas ainda trabalham, discutem no trânsito, fazem planos e acreditam que amanhã será apenas mais um dia. Mas algo não parece certo. Esta crônica começa nos primeiros momentos de uma crise…",
-   "inicio": "2026-11-26T20:00:00-03:00",
-   "fim": "2026-11-26T23:00:00-03:00",
-   "vagas": 2,
-   "lotada": false,
-   "preco": "R$ 160,00/mês",
-   "nivel": "Todos os níveis",
-   "tipo": "Campanha",
-   "frequencia": "Quinzenal",
-   "duracao_min": 180,
-   "ferramentas": [
-    "VDO Ninja",
-    "Worldcraft",
-    "Whatsapp"
-   ],
-   "ao_vivo": true,
-   "criada_em": "2026-09-10T20:35:25.149Z",
-   "capa": "img/mq/o-que-restou-de-nos-terra-devastada-w610fhf1.webp"
-  },
   {
    "slug": "odisseia-dos-lordes-dragoes-4x844vrw",
    "nome": "Odisseia dos Lordes Dragões",
@@ -265,6 +216,30 @@
    "ao_vivo": true,
    "criada_em": "2026-04-02T19:54:38.796Z",
    "capa": "img/mq/principes-do-apocalipse-0j4ebd57.webp"
+  },
+  {
+   "slug": "descida-ao-avernus-n9a4dynt",
+   "nome": "Descida ao Avernus",
+   "url": "https://mesaquest.com.br/mesas/descida-ao-avernus-n9a4dynt",
+   "mestre": "Henrique Müller",
+   "sistema": "Dungeons & Dragons 5.5e (2024)",
+   "descricao": "“Quando as trevas se erguem na cidade e o inferno cresce no horizonte, heróis se forjam… ou se perdem.” Vocês começam suas jornadas nas ruas enevoadas de Baldur's Gate — uma metrópole repleta de ambição, segredos e…",
+   "inicio": "2026-12-09T20:00:00-03:00",
+   "fim": "2026-12-09T23:00:00-03:00",
+   "vagas": 0,
+   "lotada": true,
+   "preco": "R$ 100,00/mês",
+   "nivel": "Todos os níveis",
+   "tipo": "Campanha",
+   "frequencia": "Quinzenal",
+   "duracao_min": 180,
+   "ferramentas": [
+    "Foundry VTT",
+    "VDO Ninja"
+   ],
+   "ao_vivo": true,
+   "criada_em": "2025-12-02T04:32:38.989Z",
+   "capa": "img/mq/descida-ao-avernus-n9a4dynt.webp"
   }
  ]
 }
