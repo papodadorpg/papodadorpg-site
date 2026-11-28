@@ -1,13 +1,7 @@
 {
- "atualizado": "2026-11-27T02:51:10+00:00",
+ "atualizado": "2026-11-28T02:40:23+00:00",
  "aovivo": [],
  "agendadas": [
-  {
-   "id": "PJFR0ZeW2VE",
-   "titulo": "LIVE DE ALMOÇO 🍗 Bate-papo sobre RPG, D&D e mesas ao vivo | Papo Dado RPG",
-   "inicio": "2026-11-27T15:00:00+00:00",
-   "capa": "img/yt/PJFR0ZeW2VE-g.webp"
-  },
   {
    "id": "bZSfjIe5qrg",
    "titulo": "D&D 5.5 Odisseia dos Lordes Dragões - Episódio 24",
@@ -65,11 +59,17 @@
  ],
  "itens": [
   {
+   "id": "PJFR0ZeW2VE",
+   "titulo": "LIVE DE ALMOÇO 🍗 Bate-papo sobre RPG, D&D e mesas ao vivo | Papo Dado RPG",
+   "data": "2026-11-27T16:40:23+00:00",
+   "capa": "img/yt/PJFR0ZeW2VE.jpg",
+   "capa_grande": "img/yt/PJFR0ZeW2VE-g.webp"
+  },
+  {
    "id": "alRwGkZzftI",
    "titulo": "UM OU DOIS PRA SALVAR O XATAR! Príncipes do Apocalipse Ep. 13 | Highlights D&D 5.5",
    "data": "2026-11-25T14:50:50+00:00",
-   "capa": "img/yt/alRwGkZzftI.jpg",
-   "capa_grande": "img/yt/alRwGkZzftI-g.webp"
+   "capa": "img/yt/alRwGkZzftI.jpg"
   },
   {
    "id": "qriyMbxh2V8",
@@ -94,12 +94,6 @@
    "titulo": "NUNCA CONFIE NUMA BRUXA... Contos dos Reinos Esquecidos Ep. 02 | Highlights D&D 5.5",
    "data": "2026-11-22T04:47:28+00:00",
    "capa": "img/yt/Lq4wJaNmYEQ.jpg"
-  },
-  {
-   "id": "-uJhMA1DBOg",
-   "titulo": "Protocolo Zero | Oneshot de terror e sobrevivência em Terra Devastada",
-   "data": "2026-11-21T22:20:19+00:00",
-   "capa": "img/yt/-uJhMA1DBOg.jpg"
   }
  ],
  "shorts": [
